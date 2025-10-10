@@ -1,19 +1,14 @@
-import HeroSection from "@/components/HeroSection";
-import ServicesSection from "@/components/ServicesSection";
-import ProcessSection from "@/components/ProcessSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ContactSection from "@/components/ContactSection";
-import FloatingContact from "@/components/FloatingContact";
+import CardSlider from "@/components/CardSlider";
 
+/**
+ * Main landing page for Soho Connect
+ * Features full-screen card slider with GSAP animations
+ * Conversion-optimized for lead generation
+ */
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <HeroSection />
-      <ServicesSection />
-      <ProcessSection />
-      <TestimonialsSection />
-      <ContactSection />
-      <FloatingContact />
+      <CardSlider />
     </div>
   );
 };
