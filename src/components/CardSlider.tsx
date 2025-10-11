@@ -12,7 +12,7 @@ const cardData = [
     title: "HARARE'S",
     title2: "DESIGN & PRINT PARTNER",
     description: "Trusted by 127+ businesses. Your one-stop solution for premium printing, branding, and digital marketing services in Zimbabwe.",
-    image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=2000",
+    image: "/unsplash/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=2000",
     icon: Printer,
     ctaText: "Start Your Project",
     ctaAction: "whatsapp"
@@ -23,7 +23,7 @@ const cardData = [
     title: "PREMIUM",
     title2: "PRINTING",
     description: "High-quality brochures, flyers, business cards, banners, and large format printing. Fast turnaround, professional finish.",
-    image: "https://images.unsplash.com/photo-1565374473776-8a1b5b9c0b3f?auto=format&fit=crop&q=80&w=2000",
+    image: "/unsplash/photo-1565374473776-8a1b5b9c0b3f?auto=format&fit=crop&q=80&w=2000",
     icon: Printer,
     ctaText: "Get Instant Quote",
     ctaAction: "calculator"
@@ -34,7 +34,7 @@ const cardData = [
     title: "BRANDING &",
     title2: "MARKETING",
     description: "Build a strong brand identity and effective marketing strategies. Logo design, brand guidelines, and complete visual systems.",
-    image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=2000",
+    image: "/unsplash/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=2000",
     icon: Palette,
     ctaText: "View Our Results",
     ctaAction: "whatsapp"
@@ -45,7 +45,7 @@ const cardData = [
     title: "DIGITAL",
     title2: "MARKETING",
     description: "Drive growth with targeted online campaigns. Social media management, SEO, content marketing, and analytics.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
+    image: "/unsplash/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
     icon: TrendingUp,
     ctaText: "Start Strategy",
     ctaAction: "whatsapp"
@@ -56,7 +56,7 @@ const cardData = [
     title: "KNOWLEDGE",
     title2: "BASE",
     description: "Access our collection of articles, case studies, and research on effective marketing and printing strategies.",
-    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000",
+    image: "/unsplash/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000",
     icon: BookOpen,
     ctaText: "Explore Resources",
     ctaAction: "knowledge"

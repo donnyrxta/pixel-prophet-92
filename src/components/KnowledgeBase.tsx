@@ -14,7 +14,7 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
       excerpt: "A complete rebrand and digital marketing campaign transformed a local tech startup into a recognized brand across Zimbabwe.",
       date: "2025-09-15",
       readTime: "8 min read",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+      image: "/unsplash/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
       excerpt: "Discover the latest trends in business card design and how to make a lasting first impression with premium print quality.",
       date: "2025-08-22",
       readTime: "5 min read",
-      image: "https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&q=80&w=800"
+      image: "/unsplash/photo-1589330694653-ded6df03f754?auto=format&fit=crop&q=80&w=800"
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
       excerpt: "Our comprehensive research shows that 78% of SMEs in Harare still rely on print materials as their primary marketing tool.",
       date: "2025-08-10",
       readTime: "12 min read",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+      image: "/unsplash/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
       excerpt: "See how our comprehensive branding package helped a family business expand from Harare to nationwide presence.",
       date: "2025-07-28",
       readTime: "10 min read",
-      image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=800"
+      image: "/unsplash/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=800"
     },
     {
       id: 5,
@@ -50,7 +50,7 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
       excerpt: "Learn how to balance digital and print marketing strategies for maximum impact in the Zimbabwean market.",
       date: "2025-07-14",
       readTime: "6 min read",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800"
+      image: "/unsplash/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800"
     },
     {
       id: 6,
@@ -59,7 +59,7 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
       excerpt: "Our study reveals which color combinations drive the most engagement among Zimbabwean consumers.",
       date: "2025-06-30",
       readTime: "7 min read",
-      image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=800"
+      image: "/unsplash/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=800"
     }
   ];
 
