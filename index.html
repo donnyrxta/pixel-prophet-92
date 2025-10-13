@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- SEO Meta Tags for Soho Connect -->
@@ -14,6 +14,14 @@
     <meta property="og:title" content="Soho Connect | Premium Printing & Marketing in Harare" />
     <meta property="og:description" content="Your one-stop solution for premium printing, branding, and digital marketing services in Zimbabwe." />
     <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://sohoconnect.co.zw/" />
+    <meta property="og:url" content="https://sohoconnect.co.zw/" />
+    <meta property="og:image" content="/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg" />
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Soho Connect | Premium Printing & Marketing in Harare" />
+    <meta name="twitter:description" content="Your one-stop solution for premium printing, branding, and digital marketing services in Zimbabwe." />
+    <meta name="twitter:image" content="/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg" />
     
     <!-- Schema.org LocalBusiness Markup for SEO -->
     <script type="application/ld+json">
@@ -21,7 +29,8 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Soho Connect",
-      "image": "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=1200",
+      "image": "/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg",
+      "logo": "/images/brand/logo-color-icon.png",
       "description": "Premium design, print, branding, and digital marketing services in Harare, Zimbabwe",
       "address": {
         "@type": "PostalAddress",
@@ -42,7 +51,82 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Progressive Enhancement: Crawlable semantic HTML for non-JS and crawlers -->
+      <header role="banner" aria-label="Primary">
+        <nav aria-label="Main navigation">
+          <div>
+            <a href="/" aria-label="Soho Connect Home">
+              <picture>
+                <source srcset="/images/brand/logo-icon.png" media="(prefers-color-scheme: dark)" />
+                <source srcset="/images/brand/logo-color-icon.png" media="(prefers-color-scheme: light)" />
+                <img src="/images/brand/logo-color-icon.png" alt="Soho Connect logo" style="height:40px;width:auto" loading="eager" decoding="async" />
+              </picture>
+            </a>
+            <ul>
+              <li><a href="/" aria-label="Home">Home</a></li>
+              <!-- Add more links when corresponding pages exist -->
+            </ul>
+            <a href="#quote" aria-label="Get Instant Quote">Get Instant Quote</a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="main" role="main">
+        <section aria-labelledby="hero-title">
+          <div>
+            <h1 id="hero-title">Same-Day Premium Print & Design Services for Harare Businesses</h1>
+            <p>From concept to delivery in 24 hours. Trusted by local companies.</p>
+            <ul>
+              <li>International-standard print quality</li>
+              <li>Same-day turnaround available</li>
+              <li>Full-service: design, print, signage, branding</li>
+              <li>Local Harare support and delivery</li>
+            </ul>
+            <figure>
+              <img src="/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg" width="800" height="450" loading="eager" decoding="async" alt="Premium printed materials: business cards, brochures and signage" />
+              <figcaption>Premium printed materials</figcaption>
+            </figure>
+            <div>
+              <a href="#quote" aria-label="Get Instant Quote now">Get Instant Quote</a>
+              <a href="#portfolio" aria-label="View portfolio work">View Portfolio</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="quote" aria-labelledby="quote-title">
+          <h2 id="quote-title">Get Instant Quote</h2>
+          <form>
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+            <div>
+              <label for="details">Project Details</label>
+              <textarea id="details" name="details" rows="6" required></textarea>
+            </div>
+            <button type="submit" aria-label="Submit quote request">Submit</button>
+          </form>
+        </section>
+      </main>
+
+      <footer role="contentinfo">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="/images/brand/logo-icon.png" alt="Soho Connect monochrome logo" style="height:32px;width:auto" loading="lazy" decoding="async" />
+            <p>
+              Soho Connect — 7 Luck Street, Harare CBD ·
+              <a href="tel:+263714570414" aria-label="Call Soho Connect">+263714570414</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+      <!-- End Progressive Enhancement block -->
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

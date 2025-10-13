@@ -5,6 +5,7 @@ import QuotationCalculator from "./QuotationCalculator";
 import KnowledgeBase from "./KnowledgeBase";
 
 // Card data for each service section
+// Use locally hosted, optimized hero images to ensure reliability
 const cardData = [
   {
     id: 0,
@@ -12,7 +13,7 @@ const cardData = [
     title: "HARARE'S",
     title2: "DESIGN & PRINT PARTNER",
     description: "Trusted by 127+ businesses. Your one-stop solution for premium printing, branding, and digital marketing services in Zimbabwe.",
-    image: "/unsplash/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=2000",
+    image: "/images/hero/chloe-evans-7hxLIV3NC2E-unsplash.jpg",
     icon: Printer,
     ctaText: "Start Your Project",
     ctaAction: "whatsapp"
@@ -23,7 +24,7 @@ const cardData = [
     title: "PREMIUM",
     title2: "PRINTING",
     description: "High-quality brochures, flyers, business cards, banners, and large format printing. Fast turnaround, professional finish.",
-    image: "/unsplash/photo-1565374473776-8a1b5b9c0b3f?auto=format&fit=crop&q=80&w=2000",
+    image: "/images/hero/ian-mackey-nsm-gUKDMeQ-unsplash.jpg",
     icon: Printer,
     ctaText: "Get Instant Quote",
     ctaAction: "calculator"
@@ -34,7 +35,7 @@ const cardData = [
     title: "BRANDING &",
     title2: "MARKETING",
     description: "Build a strong brand identity and effective marketing strategies. Logo design, brand guidelines, and complete visual systems.",
-    image: "/unsplash/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=2000",
+    image: "/images/hero/omoniyi-david-2xDt8ahOBCE-unsplash.jpg",
     icon: Palette,
     ctaText: "View Our Results",
     ctaAction: "whatsapp"
@@ -45,7 +46,7 @@ const cardData = [
     title: "DIGITAL",
     title2: "MARKETING",
     description: "Drive growth with targeted online campaigns. Social media management, SEO, content marketing, and analytics.",
-    image: "/unsplash/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000",
+    image: "/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg",
     icon: TrendingUp,
     ctaText: "Start Strategy",
     ctaAction: "whatsapp"
@@ -56,7 +57,7 @@ const cardData = [
     title: "KNOWLEDGE",
     title2: "BASE",
     description: "Access our collection of articles, case studies, and research on effective marketing and printing strategies.",
-    image: "/unsplash/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000",
+    image: "/images/hero/tatenda-mapigoti-CtqY0-G72qg-unsplash.jpg",
     icon: BookOpen,
     ctaText: "Explore Resources",
     ctaAction: "knowledge"
@@ -185,10 +186,18 @@ const CardSlider = () => {
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 md:px-8 py-4 md:py-6"
       >
-        <div className="flex items-center gap-3">
-          <Printer className="w-6 h-6 md:w-8 md:h-8 text-accent" />
+        <a href="/" aria-label="Soho Connect home" className="flex items-center gap-3">
+          <img
+            src="/images/brand/logo-color-icon.png"
+            alt="Soho Connect logo"
+            width={48}
+            height={48}
+            loading="eager"
+            decoding="async"
+            className="w-8 h-auto md:w-10 lg:w-12 select-none"
+          />
           <span className="text-lg md:text-xl font-bold text-white">SOHO CONNECT</span>
-        </div>
+        </a>
         <div className="hidden md:flex items-center gap-6 text-sm text-white/80 uppercase">
           <a href="#services" className="hover:text-accent transition-colors">Services</a>
           <a href="#portfolio" className="hover:text-accent transition-colors">Portfolio</a>
@@ -210,7 +219,8 @@ const CardSlider = () => {
             ref={(el) => (cardsRef.current[index] = el)}
             className="absolute w-full h-screen bg-cover bg-center transition-all duration-700"
             style={{
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url(${card.image})`,
+              // Layer gradient + primary image + local fallback to prevent display issues
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url(${card.image}), url(/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg)`,
               opacity: index === activeCard ? 1 : 0,
               pointerEvents: index === activeCard ? 'auto' : 'none'
             }}

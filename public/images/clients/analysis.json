@@ -1,0 +1,115 @@
+{
+  "analyzedAt": "2025-10-11T23:54:02.477Z",
+  "items": [
+    {
+      "file": "/public/images/clients/0xbitcoin.svg",
+      "format": "svg",
+      "sizeKB": 2,
+      "sizeBytes": 2047,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
+      "file": "/public/images/clients/1st.svg",
+      "format": "svg",
+      "sizeKB": 1.61,
+      "sizeBytes": 1653,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
+      "file": "/public/images/clients/2key.svg",
+      "format": "svg",
+      "sizeKB": 4.47,
+      "sizeBytes": 4580,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
+      "file": "/public/images/clients/airbnb.svg",
+      "format": "svg",
+      "sizeKB": 0.99,
+      "sizeBytes": 1017,
+      "width": 448,
+      "height": 512,
+      "pixelCount": 229376,
+      "aspectRatio": 0.875
+    },
+    {
+      "file": "/public/images/clients/AirSwapLogo.svg",
+      "format": "svg",
+      "sizeKB": 0.61,
+      "sizeBytes": 628,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
+      "file": "/public/images/clients/biohazard.svg",
+      "format": "svg",
+      "sizeKB": 1.57,
+      "sizeBytes": 1604,
+      "width": 576,
+      "height": 512,
+      "pixelCount": 294912,
+      "aspectRatio": 1.125
+    },
+    {
+      "file": "/public/images/clients/bitcoin-logo.svg",
+      "format": "svg",
+      "sizeKB": 1.42,
+      "sizeBytes": 1459,
+      "width": 144,
+      "height": 145,
+      "pixelCount": 20880,
+      "aspectRatio": 0.9931
+    },
+    {
+      "file": "/public/images/clients/client-placeholder-1.svg",
+      "format": "svg",
+      "sizeKB": 3.18,
+      "sizeBytes": 3253,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
+      "file": "/public/images/clients/client-placeholder-2.svg",
+      "format": "svg",
+      "sizeKB": 3.18,
+      "sizeBytes": 3253,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
+      "file": "/public/images/clients/client-placeholder-3.svg",
+      "format": "svg",
+      "sizeKB": 3.18,
+      "sizeBytes": 3253,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
+      "file": "/public/images/clients/duck.svg",
+      "format": "svg",
+      "sizeKB": 1.23,
+      "sizeBytes": 1261,
+      "width": 512,
+      "height": 512,
+      "pixelCount": 262144,
+      "aspectRatio": 1
+    }
+  ]
+}
