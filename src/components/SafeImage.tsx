@@ -21,7 +21,7 @@ export default function SafeImage({
   className,
   loading = "lazy",
   priority = false,
-  fallbackSrc = "/placeholder.svg",
+  fallbackSrc = "https://sohoconnect.co.zw/public/placeholder.svg",
   sizes,
 }: SafeImageProps) {
   const [currentSrc, setCurrentSrc] = useState(src);

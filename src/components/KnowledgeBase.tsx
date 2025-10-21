@@ -1,4 +1,5 @@
 import { X, Calendar, ArrowRight } from "lucide-react";
+import SafeImage from "./SafeImage";
 
 /**
  * Knowledge Base component displaying articles, case studies, and research
@@ -93,10 +94,11 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
               >
                 {/* Article Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <SafeImage
                     src={article.image}
                     alt={article.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    fallbackSrc="https://sohoconnect.co.zw/public/placeholder.svg"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 bg-accent text-accent-foreground text-xs font-semibold rounded-full">
