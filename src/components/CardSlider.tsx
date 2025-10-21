@@ -190,13 +190,12 @@ const CardSlider = () => {
           <img
             src="https://sohoconnect.co.zw/public/images/brand/logo-color-icon.png"
             alt="Soho Connect logo"
-            width={48}
-            height={48}
+            width={128}
+            height={128}
             loading="eager"
             decoding="async"
-            className="w-8 h-auto md:w-10 lg:w-12 select-none"
+            className="w-16 h-auto md:w-20 lg:w-24 xl:w-28 select-none will-change-transform animate-breathe"
           />
-          <span className="text-lg md:text-xl font-bold text-white">SOHO CONNECT (Dev)</span>
         </a>
         <div className="hidden md:flex items-center gap-6 text-sm text-white/80 uppercase">
           <a href="#services" className="hover:text-accent transition-colors">Services</a>

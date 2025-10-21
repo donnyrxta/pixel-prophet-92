@@ -192,3 +192,25 @@ All colors MUST be HSL.
     background-clip: text;
   }
 }
+
+/* Logo breathing animation */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-breathe {
+    animation: none !important;
+  }
+}
+
+@layer utilities {
+  .animate-breathe {
+    animation: breathe 3.5s ease-in-out infinite;
+  }
+}
