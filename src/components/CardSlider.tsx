@@ -13,7 +13,7 @@ const cardData = [
     title: "HARARE'S",
     title2: "DESIGN & PRINT PARTNER",
     description: "Trusted by 127+ businesses. Your one-stop solution for premium printing, branding, and digital marketing services in Zimbabwe.",
-    image: "https://sohoconnect.co.zw/public/images/kaffie-co-7hEZILVOcFU-unsplash.jpg",
+    image: "https://sohoconnect.co.zw/images/kaffie-co-7hEZILVOcFU-unsplash.jpg",
     icon: Printer,
     ctaText: "Start Your Project",
     ctaAction: "whatsapp"
@@ -24,7 +24,7 @@ const cardData = [
     title: "PREMIUM",
     title2: "PRINTING",
     description: "High-quality brochures, flyers, business cards, banners, and large format printing. Fast turnaround, professional finish.",
-    image: "https://sohoconnect.co.zw/public/images/charlesdeluvio-Lks7vei-eAg-unsplash.jpg",
+    image: "https://sohoconnect.co.zw/images/charlesdeluvio-Lks7vei-eAg-unsplash.jpg",
     icon: Printer,
     ctaText: "Get Instant Quote",
     ctaAction: "calculator"
@@ -35,7 +35,7 @@ const cardData = [
     title: "BRANDING &",
     title2: "MARKETING",
     description: "Build a strong brand identity and effective marketing strategies. Logo design, brand guidelines, and complete visual systems.",
-    image: "https://sohoconnect.co.zw/public/images/creatopy-M35xxKGb_tA-unsplash.jpg",
+    image: "https://sohoconnect.co.zw/images/creatopy-M35xxKGb_tA-unsplash.jpg",
     icon: Palette,
     ctaText: "View Our Results",
     ctaAction: "whatsapp"
@@ -46,7 +46,7 @@ const cardData = [
     title: "DIGITAL",
     title2: "MARKETING",
     description: "Drive growth with targeted online campaigns. Social media management, SEO, content marketing, and analytics.",
-    image: "https://sohoconnect.co.zw/public/images/creatopy-M35xxKGb_tA-unsplash.jpg",
+    image: "https://sohoconnect.co.zw/images/creatopy-M35xxKGb_tA-unsplash.jpg",
     icon: TrendingUp,
     ctaText: "Start Strategy",
     ctaAction: "whatsapp"
@@ -57,7 +57,7 @@ const cardData = [
     title: "KNOWLEDGE",
     title2: "BASE",
     description: "Access our collection of articles, case studies, and research on effective marketing and printing strategies.",
-    image: "https://sohoconnect.co.zw/public/images/kaffie-co-DJb2MdMuzbU-unsplash.jpg",
+    image: "https://sohoconnect.co.zw/images/kaffie-co-DJb2MdMuzbU-unsplash.jpg",
     icon: BookOpen,
     ctaText: "Explore Resources",
     ctaAction: "knowledge"
@@ -188,7 +188,7 @@ const CardSlider = () => {
       >
         <a href="/" aria-label="Soho Connect home" className="flex items-center gap-3">
           <img
-            src="https://sohoconnect.co.zw/public/images/brand/logo-color-icon.png"
+            src="https://sohoconnect.co.zw/images/brand/logo-color-icon.png"
             alt="Soho Connect logo"
             width={128}
             height={128}
@@ -219,7 +219,7 @@ const CardSlider = () => {
             className="absolute w-full h-screen bg-cover bg-center transition-all duration-700"
             style={{
               // Layer gradient + primary image + local fallback to prevent display issues
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url(${card.image}), url(https://sohoconnect.co.zw/public/images/creatopy-M35xxKGb_tA-unsplash.jpg)`,
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url(${card.image}), url(https://sohoconnect.co.zw/images/creatopy-M35xxKGb_tA-unsplash.jpg)`,
               opacity: index === activeCard ? 1 : 0,
               pointerEvents: index === activeCard ? 'auto' : 'none'
             }}
