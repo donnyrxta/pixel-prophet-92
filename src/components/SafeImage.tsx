@@ -42,7 +42,6 @@ export default function SafeImage({
       loading={priority ? "eager" : loading}
       decoding="async"
       // fetchPriority is supported in modern browsers; harmless elsewhere
-      // @ts-expect-error: fetchPriority not yet in React's img props typing
       fetchPriority={priority ? "high" : "auto"}
       sizes={sizes}
       onError={handleError}
