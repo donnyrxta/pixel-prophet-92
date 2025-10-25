@@ -1,8 +1,9 @@
 import { MessageCircle, Phone } from "lucide-react";
+import { CONTACT_INFO } from "@/lib/constants";
 
 const FloatingContact = () => {
-  const whatsappNumber = "263777123456"; // Replace with actual number
-  const phoneNumber = "+263777123456"; // Replace with actual number
+  const whatsappNumber = CONTACT_INFO.whatsappNumber;
+  const phoneNumber = CONTACT_INFO.phone;
 
   return (
     <>

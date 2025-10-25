@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CONTACT_INFO, BUSINESS_INFO } from '@/lib/constants';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,8 +60,8 @@ export const Header = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  const whatsappNumber = "263714570414";
-  const phoneNumber = "+263714570414";
+  const whatsappNumber = CONTACT_INFO.whatsappNumber;
+  const phoneNumber = CONTACT_INFO.phone;
 
   return (
     <>
@@ -86,8 +87,8 @@ export const Header = () => {
                 className="h-12 w-12"
               />
               <div className="hidden sm:block">
-                <div className="font-bold text-xl text-gray-900">Soho Connect</div>
-                <div className="text-xs text-primary">Trusted by 127+ businesses</div>
+                <div className="font-bold text-xl text-gray-900">{BUSINESS_INFO.name}</div>
+                <div className="text-xs text-primary">{BUSINESS_INFO.trustSignal}</div>
               </div>
             </Link>
 
@@ -271,8 +272,8 @@ export const Header = () => {
 
           {/* Trust Signal */}
           <div className="mt-8 pt-6 border-t text-center text-sm text-gray-600">
-            <div className="font-semibold text-primary mb-1">Trusted by 127+ businesses</div>
-            <div>7 Luck Street, Harare CBD</div>
+            <div className="font-semibold text-primary mb-1">{BUSINESS_INFO.trustSignal}</div>
+            <div>{CONTACT_INFO.address}</div>
           </div>
         </div>
       </div>

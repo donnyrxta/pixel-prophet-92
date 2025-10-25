@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { Phone, Mail, Printer, Palette, TrendingUp, BookOpen } from "lucide-react";
 import QuotationCalculator from "./QuotationCalculator";
 import KnowledgeBase from "./KnowledgeBase";
+import { CONTACT_INFO, BUSINESS_INFO } from "@/lib/constants";
 
 // Card data for each service section
 // Use locally hosted, optimized hero images to ensure reliability
@@ -148,7 +149,7 @@ const CardSlider = () => {
     } else if (action === "knowledge") {
       setShowKnowledge(true);
     } else if (action === "whatsapp") {
-      window.open("https://wa.me/263714570414", "_blank");
+      window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}`, "_blank");
     }
   };
 
@@ -203,9 +204,9 @@ const CardSlider = () => {
           <a href="#contact" className="hover:text-accent transition-colors">Contact</a>
         </div>
         <div className="flex items-center gap-3">
-          <a href="tel:+263714570414" className="hidden md:flex items-center gap-2 text-white/80 hover:text-accent transition-colors">
+          <a href={`tel:${CONTACT_INFO.phone}`} className="hidden md:flex items-center gap-2 text-white/80 hover:text-accent transition-colors">
             <Phone className="w-4 h-4" />
-            <span className="text-sm">+263 71 457 0414</span>
+            <span className="text-sm">{CONTACT_INFO.phone}</span>
           </a>
         </div>
       </nav>
@@ -334,7 +335,7 @@ const CardSlider = () => {
 
       {/* Floating WhatsApp button */}
       <a
-        href="https://wa.me/263714570414"
+        href={`https://wa.me/${CONTACT_INFO.whatsappNumber}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all"

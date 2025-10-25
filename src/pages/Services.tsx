@@ -17,6 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import FloatingContact from '@/components/FloatingContact';
+import ClientLogos from '@/components/ClientLogos';
 
 // Service categories structured for conversion and SEO
 const serviceCategories = [
@@ -135,7 +136,7 @@ const Services = () => {
 
           <div className="flex flex-wrap justify-center gap-4 animate-slide-up" 
                style={{ animationDelay: '0.2s' }}>
-            <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
+            <a href={`https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote`}>
               <Button size="lg" className="gap-2">
                 Get Free Quote
                 <ArrowRight className="w-4 h-4" />
@@ -149,6 +150,12 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      {/* Client Logos Section */}
+      <ClientLogos 
+        title="Trusted by 127+ Businesses"
+        subtitle="Join Harare's leading companies who trust us with their brand"
+      />
 
       {/* Service Categories Grid */}
       <section className="py-16 px-4">
