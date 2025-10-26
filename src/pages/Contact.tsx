@@ -5,6 +5,9 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import FloatingContact from "@/components/FloatingContact";
+import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -50,9 +53,17 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Header />
-      <FloatingContact />
+    <>
+      <SEOHead 
+        title="Contact Us - Get in Touch"
+        description="Contact Soho Connect for printing, branding, and marketing services in Harare. Visit us at 7 Luck Street, Harare CBD or call +263 71 457 0414."
+        keywords="contact soho connect, printing company harare address, marketing agency zimbabwe contact, 7 luck street harare"
+        canonical="https://sohoconnect.co.zw/contact"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+        <Header />
+        <FloatingContact />
+        <Breadcrumbs />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
@@ -258,7 +269,10 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
+    </>
   );
 };
 

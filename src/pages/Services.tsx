@@ -17,7 +17,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import FloatingContact from '@/components/FloatingContact';
+import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import ClientLogos from '@/components/ClientLogos';
+import SEOHead from '@/components/SEOHead';
 
 // Service categories structured for conversion and SEO
 const serviceCategories = [
@@ -110,9 +113,17 @@ const serviceCategories = [
 
 const Services = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <Header />
-      <FloatingContact />
+    <>
+      <SEOHead 
+        title="Professional Services - Printing, Branding & Digital Marketing"
+        description="Complete business solutions under one roof. Printing services, branding & design, digital marketing, signage, and flexible payment options in Harare, Zimbabwe."
+        keywords="printing services harare, branding design zimbabwe, digital marketing, signage harare, business services zimbabwe"
+        canonical="https://sohoconnect.co.zw/services"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        <Header />
+        <FloatingContact />
+        <Breadcrumbs />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
@@ -296,7 +307,10 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
+    </>
   );
 };
 

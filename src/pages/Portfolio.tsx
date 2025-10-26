@@ -5,6 +5,9 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import FloatingContact from "@/components/FloatingContact";
+import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -119,9 +122,17 @@ const Portfolio = () => {
   const categories: ProjectCategory[] = ["All", "Printing", "Branding", "Digital", "Signage"];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Header />
-      <FloatingContact />
+    <>
+      <SEOHead 
+        title="Portfolio - Our Work & Case Studies"
+        description="Explore our portfolio of completed projects across printing, branding, digital marketing, and signage. Real results for Harare businesses."
+        keywords="portfolio, case studies, printing examples, branding projects harare, marketing results zimbabwe"
+        canonical="https://sohoconnect.co.zw/portfolio"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+        <Header />
+        <FloatingContact />
+        <Breadcrumbs />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
@@ -244,7 +255,10 @@ const Portfolio = () => {
           )}
         </DialogContent>
       </Dialog>
+
+      <Footer />
     </div>
+    </>
   );
 };
 

@@ -16,6 +16,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import FloatingContact from '@/components/FloatingContact';
+import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import SEOHead from '@/components/SEOHead';
 
 // Service detail data structure
 const serviceDetails: Record<string, any> = {
@@ -369,9 +372,18 @@ const ServicesDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <FloatingContact />
+    <>
+      <SEOHead 
+        title={service.title}
+        description={service.description}
+        keywords={`${service.title}, ${slug} harare, ${slug} zimbabwe, professional ${slug} services`}
+        canonical={`https://sohoconnect.co.zw/services/${slug}`}
+        ogImage={service.heroImage}
+      />
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <FloatingContact />
+        <Breadcrumbs />
 
       {/* Hero Section */}
       <section 
@@ -552,7 +564,10 @@ const ServicesDetail = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
+    </>
   );
 };
 

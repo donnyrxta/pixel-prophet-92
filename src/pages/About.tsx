@@ -4,6 +4,9 @@
  */
 import { Header } from "@/components/Header";
 import FloatingContact from "@/components/FloatingContact";
+import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead from "@/components/SEOHead";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
@@ -48,9 +51,17 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      <Header />
-      <FloatingContact />
+    <>
+      <SEOHead 
+        title="About Us - Zimbabwe's Trusted Creative Partner"
+        description="Learn about Soho Connect, Harare's premier printing and marketing company. Established in 2018, trusted by 127+ businesses for quality printing, branding, and digital marketing."
+        keywords="about soho connect, printing company harare, marketing agency zimbabwe, harare cbd business, established 2018"
+        canonical="https://sohoconnect.co.zw/about"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+        <Header />
+        <FloatingContact />
+        <Breadcrumbs />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
@@ -225,7 +236,10 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
+    </>
   );
 };
 
