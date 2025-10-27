@@ -1,12 +1,13 @@
 /**
  * Enhanced Floating Contact Widget
  * Features: Collapsible menu, responsive behavior, glassmorphic design,
- * scroll-triggered animations, full accessibility, analytics-ready
+ * scroll-triggered animations, full accessibility, GTM analytics tracking
  */
 import { useState, useEffect, useRef } from "react";
 import { MessageCircle, Phone, Mail, ChevronUp, ChevronDown, X } from "lucide-react";
 import { CONTACT_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { trackWhatsAppClick, trackMenuInteraction, trackCTAClick } from "@/lib/gtm";
 
 interface ContactOption {
   id: string;
@@ -122,26 +123,23 @@ const FloatingContact = () => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isExpanded]);
 
-  // Analytics event tracking (ready for Phase 3)
-  const trackInteraction = (action: string, label: string) => {
-    // Analytics implementation placeholder
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', action, {
-        event_category: 'Contact Widget',
-        event_label: label
-      });
-    }
-    console.log('Analytics:', { action, label }); // Debug log
-  };
-
   const handleToggle = () => {
     const newState = !isExpanded;
     setIsExpanded(newState);
-    trackInteraction('toggle_contact_menu', newState ? 'expanded' : 'collapsed');
+    trackMenuInteraction(
+      newState ? 'expanded' : 'collapsed',
+      'floating_contact',
+      { screen_size: window.innerWidth >= 1024 ? 'desktop' : 'mobile' }
+    );
   };
 
   const handleContactClick = (option: ContactOption) => {
-    trackInteraction('contact_click', option.id);
+    // Track specific contact methods
+    if (option.id === 'whatsapp') {
+      trackWhatsAppClick('floating_contact_widget');
+    } else {
+      trackCTAClick(option.label, 'floating_contact_widget', option.href);
+    }
   };
 
   return (

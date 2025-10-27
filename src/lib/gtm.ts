@@ -1,0 +1,176 @@
+/**
+ * Google Tag Manager utilities for tracking user interactions
+ * Implements analytics events as specified in the Excellence Rubric:
+ * - form_submit
+ * - cta_click
+ * - portfolio_view
+ * - whatsapp_click
+ */
+
+interface DataLayerEvent {
+  event: string;
+  [key: string]: any;
+}
+
+declare global {
+  interface Window {
+    dataLayer: DataLayerEvent[];
+  }
+}
+
+/**
+ * Initialize dataLayer if it doesn't exist
+ */
+const initDataLayer = () => {
+  window.dataLayer = window.dataLayer || [];
+};
+
+/**
+ * Push an event to the GTM dataLayer
+ */
+const pushEvent = (event: DataLayerEvent) => {
+  initDataLayer();
+  window.dataLayer.push(event);
+};
+
+/**
+ * Track form submissions
+ * @param formName - Name/type of the form (e.g., "quote", "contact", "newsletter")
+ * @param formData - Optional form data to include
+ */
+export const trackFormSubmit = (formName: string, formData?: Record<string, any>) => {
+  pushEvent({
+    event: 'form_submit',
+    form_name: formName,
+    form_location: window.location.pathname,
+    ...formData,
+  });
+};
+
+/**
+ * Track CTA button clicks
+ * @param ctaLabel - Label/text of the CTA button
+ * @param ctaLocation - Where the CTA is located on the page
+ * @param ctaDestination - Where the CTA leads to
+ */
+export const trackCTAClick = (
+  ctaLabel: string,
+  ctaLocation: string,
+  ctaDestination?: string
+) => {
+  pushEvent({
+    event: 'cta_click',
+    cta_label: ctaLabel,
+    cta_location: ctaLocation,
+    cta_destination: ctaDestination || '',
+    page_path: window.location.pathname,
+  });
+};
+
+/**
+ * Track portfolio item views
+ * @param projectId - ID of the portfolio project
+ * @param projectTitle - Title of the project
+ * @param projectCategory - Category of the project
+ */
+export const trackPortfolioView = (
+  projectId: string,
+  projectTitle: string,
+  projectCategory: string
+) => {
+  pushEvent({
+    event: 'portfolio_view',
+    project_id: projectId,
+    project_title: projectTitle,
+    project_category: projectCategory,
+    page_path: window.location.pathname,
+  });
+};
+
+/**
+ * Track WhatsApp click-to-chat interactions
+ * @param source - Where on the site the WhatsApp button was clicked
+ * @param message - Optional pre-filled message
+ */
+export const trackWhatsAppClick = (source: string, message?: string) => {
+  pushEvent({
+    event: 'whatsapp_click',
+    click_source: source,
+    message_template: message || '',
+    page_path: window.location.pathname,
+  });
+};
+
+/**
+ * Track service page views
+ * @param serviceName - Name of the service viewed
+ */
+export const trackServiceView = (serviceName: string) => {
+  pushEvent({
+    event: 'service_view',
+    service_name: serviceName,
+    page_path: window.location.pathname,
+  });
+};
+
+/**
+ * Track quote calculator interactions
+ * @param action - Action taken (e.g., "started", "completed", "abandoned")
+ * @param quoteDetails - Details of the quote
+ */
+export const trackQuoteCalculator = (
+  action: 'started' | 'completed' | 'abandoned',
+  quoteDetails?: Record<string, any>
+) => {
+  pushEvent({
+    event: 'quote_calculator',
+    calculator_action: action,
+    page_path: window.location.pathname,
+    ...quoteDetails,
+  });
+};
+
+/**
+ * Track menu interactions (for floating contact widget)
+ * @param action - Menu action (e.g., "expanded", "collapsed", "item_clicked")
+ * @param menuType - Type of menu (e.g., "floating_contact")
+ */
+export const trackMenuInteraction = (
+  action: string,
+  menuType: string,
+  additionalData?: Record<string, any>
+) => {
+  pushEvent({
+    event: 'menu_interaction',
+    menu_action: action,
+    menu_type: menuType,
+    page_path: window.location.pathname,
+    ...additionalData,
+  });
+};
+
+/**
+ * Track page views (for SPA route changes)
+ * @param pageTitle - Title of the page
+ * @param pagePath - Path of the page
+ */
+export const trackPageView = (pageTitle: string, pagePath: string) => {
+  pushEvent({
+    event: 'page_view',
+    page_title: pageTitle,
+    page_path: pagePath,
+    page_location: window.location.href,
+  });
+};
+
+/**
+ * Track custom events
+ * @param eventName - Name of the custom event
+ * @param eventData - Data associated with the event
+ */
+export const trackCustomEvent = (eventName: string, eventData?: Record<string, any>) => {
+  pushEvent({
+    event: eventName,
+    ...eventData,
+  });
+};

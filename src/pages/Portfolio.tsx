@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { BUSINESS_INFO } from "@/lib/constants";
+import { trackPortfolioView } from "@/lib/gtm";
 
 type ProjectCategory = "All" | "Printing" | "Branding" | "Digital" | "Signage";
 
@@ -29,6 +30,15 @@ interface Project {
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    trackPortfolioView(
+      project.id.toString(),
+      project.title,
+      project.category
+    );
+  };
 
   // Sample portfolio projects
   const projects: Project[] = [
@@ -168,7 +178,7 @@ const Portfolio = () => {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => handleProjectClick(project)}
                 className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border hover:border-primary"
               >
                 <div className="relative h-64 overflow-hidden">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X, Minus, Plus } from "lucide-react";
+import { trackFormSubmit, trackQuoteCalculator, trackWhatsAppClick } from "@/lib/gtm";
 
 /**
  * Interactive quotation calculator for printing services
@@ -70,17 +71,38 @@ const QuotationCalculator = ({ onClose }: { onClose: () => void }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    const estimatedTotal = calculateTotal();
+    const quoteData = {
+      service_type: formData.serviceType,
+      quantity: formData.quantity,
+      size: formData.size,
+      material: formData.material,
+      estimated_total: estimatedTotal
+    };
+    
+    // Track calculator completion
+    trackQuoteCalculator('completed', quoteData);
+    
+    // Track form submission
+    trackFormSubmit('quote_calculator', {
+      service: pricing[formData.serviceType as keyof typeof pricing].name,
+      estimated_value: estimatedTotal
+    });
+    
     const message = `Quote Request:\n
 Service: ${pricing[formData.serviceType as keyof typeof pricing].name}
 Quantity: ${formData.quantity}
 Size: ${formData.size}
 Material: ${formData.material}
-Estimated Total: $${calculateTotal()}
+Estimated Total: $${estimatedTotal}
 
 Contact Details:
 Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}`;
+    
+    // Track WhatsApp click
+    trackWhatsAppClick('quote_calculator', message);
     
     const whatsappUrl = `https://wa.me/263714570414?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");

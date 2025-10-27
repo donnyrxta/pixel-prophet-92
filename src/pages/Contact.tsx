@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { CONTACT_INFO, BUSINESS_INFO } from "@/lib/constants";
+import { trackFormSubmit, trackWhatsAppClick } from "@/lib/gtm";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -29,11 +30,21 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Track form submission
+    trackFormSubmit('contact_form', {
+      has_phone: !!formData.phone,
+      message_length: formData.message.length
+    });
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Send via WhatsApp
     const whatsappMessage = `New Contact Form Submission:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
+    
+    // Track WhatsApp click
+    trackWhatsAppClick('contact_form', whatsappMessage);
+    
     window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
 
     toast({
