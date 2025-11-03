@@ -4,16 +4,17 @@
  * scroll-triggered animations, full accessibility, GTM analytics tracking
  */
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, Phone, Mail, ChevronUp, ChevronDown, X } from "lucide-react";
+import { MessageCircle, Phone, Mail, ChevronUp, ChevronDown, X, Sparkles } from "lucide-react";
 import { CONTACT_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { trackWhatsAppClick, trackMenuInteraction, trackCTAClick } from "@/lib/gtm";
 import QuotationCalculator from "./QuotationCalculator";
+import AskSohoAI from "./AskSohoAI";
 
 interface ContactOption {
   id: string;
   label: string;
-  icon: typeof MessageCircle;
+  icon: typeof MessageCircle | typeof Sparkles;
   href: string;
   color: string;
   ariaLabel: string;
@@ -25,12 +26,21 @@ const FloatingContact = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [showCalculator, setShowCalculator] = useState(false);
+  const [showAI, setShowAI] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const lastScrollY = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Contact options configuration
   const contactOptions: ContactOption[] = [
+    {
+      id: 'ai',
+      label: 'Ask AI',
+      icon: Sparkles,
+      href: '#',
+      color: 'bg-accent hover:bg-accent/90',
+      ariaLabel: 'Ask Soho Connect AI Assistant'
+    },
     {
       id: 'whatsapp',
       label: 'WhatsApp',
@@ -137,7 +147,16 @@ const FloatingContact = () => {
 
   const handleContactClick = (option: ContactOption, e: React.MouseEvent) => {
     e.preventDefault();
-    // All contact options now route through quote calculator
+    
+    // Handle AI assistant separately
+    if (option.id === 'ai') {
+      trackCTAClick('ai_assistant', 'floating_contact_widget');
+      setShowAI(true);
+      setIsExpanded(false);
+      return;
+    }
+    
+    // All other contact options route through quote calculator
     trackCTAClick('quote_request', 'floating_contact_widget');
     setShowCalculator(true);
     setIsExpanded(false);
@@ -288,6 +307,9 @@ const FloatingContact = () => {
 
       {/* Quotation Calculator Modal */}
       {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
+      
+      {/* AI Assistant Modal */}
+      {showAI && <AskSohoAI onClose={() => setShowAI(false)} />}
     </div>
   );
 };
