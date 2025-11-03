@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import QuotationCalculator from "./QuotationCalculator";
 
 const HeroSection = () => {
   const [isPrinting, setIsPrinting] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   useEffect(() => {
     setIsPrinting(true);
   }, []);
-
-  const handleGetQuote = () => {
-    const element = document.getElementById("contact-form");
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-muted to-background">
@@ -60,20 +57,11 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="text-lg px-8 py-6 bg-primary hover:bg-primary-hover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              onClick={handleGetQuote}
+              onClick={() => setShowCalculator(true)}
             >
-              Get Free Quote in 2 Minutes
+              Get Instant Quote
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <a href="https://wa.me/263777123456">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 py-6 border-2 hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-300"
-              >
-                WhatsApp Us Now
-              </Button>
-            </a>
           </div>
 
           {/* Trust Badges */}
@@ -100,6 +88,9 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-primary rounded-full mt-2"></div>
         </div>
       </div>
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </section>
   );
 };

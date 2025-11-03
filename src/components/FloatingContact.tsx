@@ -8,6 +8,7 @@ import { MessageCircle, Phone, Mail, ChevronUp, ChevronDown, X } from "lucide-re
 import { CONTACT_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { trackWhatsAppClick, trackMenuInteraction, trackCTAClick } from "@/lib/gtm";
+import QuotationCalculator from "./QuotationCalculator";
 
 interface ContactOption {
   id: string;
@@ -23,6 +24,7 @@ interface ContactOption {
 const FloatingContact = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [showCalculator, setShowCalculator] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const lastScrollY = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -133,13 +135,12 @@ const FloatingContact = () => {
     );
   };
 
-  const handleContactClick = (option: ContactOption) => {
-    // Track specific contact methods
-    if (option.id === 'whatsapp') {
-      trackWhatsAppClick('floating_contact_widget');
-    } else {
-      trackCTAClick(option.label, 'floating_contact_widget', option.href);
-    }
+  const handleContactClick = (option: ContactOption, e: React.MouseEvent) => {
+    e.preventDefault();
+    // All contact options now route through quote calculator
+    trackCTAClick('quote_request', 'floating_contact_widget');
+    setShowCalculator(true);
+    setIsExpanded(false);
   };
 
   return (
@@ -166,12 +167,9 @@ const FloatingContact = () => {
         {contactOptions.map((option, index) => {
           const Icon = option.icon;
           return (
-            <a
+            <button
               key={option.id}
-              href={option.href}
-              target={option.target}
-              rel={option.rel}
-              onClick={() => handleContactClick(option)}
+              onClick={(e) => handleContactClick(option, e)}
               className={cn(
                 // Base styles
                 "group flex items-center gap-3 px-4 py-3 rounded-full shadow-lg",
@@ -210,7 +208,7 @@ const FloatingContact = () => {
               >
                 {option.label}
               </span>
-            </a>
+            </button>
           );
         })}
       </div>
@@ -287,6 +285,9 @@ const FloatingContact = () => {
       >
         {isExpanded ? 'Contact menu expanded' : 'Contact menu collapsed'}
       </div>
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </div>
   );
 };

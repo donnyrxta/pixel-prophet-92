@@ -5,9 +5,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import QuotationCalculator from "./QuotationCalculator";
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const [showCalculator, setShowCalculator] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -119,39 +121,39 @@ const ContactSection = () => {
                 Or Contact Us Directly
               </h3>
 
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/263777123456"
-                className="block p-6 bg-[#25D366]/10 border-2 border-[#25D366]/20 rounded-xl hover:border-[#25D366] hover:shadow-lg transition-all duration-300 group"
+              {/* Instant Quote */}
+              <button
+                onClick={() => setShowCalculator(true)}
+                className="block w-full p-6 bg-[#25D366]/10 border-2 border-[#25D366]/20 rounded-xl hover:border-[#25D366] hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <MessageCircle className="w-7 h-7 text-white" />
                   </div>
-                  <div>
-                    <p className="font-semibold text-lg text-foreground">WhatsApp</p>
-                    <p className="text-muted-foreground">+263 77 123 4567</p>
+                  <div className="text-left">
+                    <p className="font-semibold text-lg text-foreground">Get Instant Quote</p>
+                    <p className="text-muted-foreground">Calculate & send via WhatsApp</p>
                     <p className="text-sm text-[#25D366]">Fastest response time →</p>
                   </div>
                 </div>
-              </a>
+              </button>
 
               {/* Phone */}
-              <a
-                href="tel:+263777123456"
-                className="block p-6 bg-primary/10 border-2 border-primary/20 rounded-xl hover:border-primary hover:shadow-lg transition-all duration-300 group"
+              <button
+                onClick={() => setShowCalculator(true)}
+                className="block w-full p-6 bg-primary/10 border-2 border-primary/20 rounded-xl hover:border-primary hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <Phone className="w-7 h-7 text-white" />
                   </div>
-                  <div>
-                    <p className="font-semibold text-lg text-foreground">Call Us</p>
+                  <div className="text-left">
+                    <p className="font-semibold text-lg text-foreground">Request Quote & Call</p>
                     <p className="text-muted-foreground">+263 77 123 4567</p>
                     <p className="text-sm text-primary">Mon-Fri 8AM-6PM →</p>
                   </div>
                 </div>
-              </a>
+              </button>
 
               {/* Email */}
               <a
@@ -209,6 +211,9 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </section>
   );
 };

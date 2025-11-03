@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Printer, Palette, FileText, Layout, Package, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import QuotationCalculator from "./QuotationCalculator";
 
 const services = [
   {
@@ -48,6 +49,7 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const [showCalculator, setShowCalculator] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -133,13 +135,17 @@ const ServicesSection = () => {
           <p className="text-lg text-muted-foreground mb-4">
             Need something custom? We love a challenge.
           </p>
-          <a href="https://wa.me/263777123456">
-            <button className="px-8 py-4 bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              Discuss Your Project
-            </button>
-          </a>
+          <button
+            onClick={() => setShowCalculator(true)}
+            className="px-8 py-4 bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          >
+            Get Instant Quote
+          </button>
         </div>
       </div>
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </section>
   );
 };

@@ -16,8 +16,8 @@ const cardData = [
     description: "Trusted by 127+ businesses. Your one-stop solution for premium printing, branding, and digital marketing services in Zimbabwe.",
     image: "/images/hero/kaffie-co-7hEZILVOcFU-unsplash.jpg",
     icon: Printer,
-    ctaText: "Start Your Project",
-    ctaAction: "whatsapp"
+    ctaText: "Get Instant Quote",
+    ctaAction: "calculator"
   },
   {
     id: 1,
@@ -38,8 +38,8 @@ const cardData = [
     description: "Build a strong brand identity and effective marketing strategies. Logo design, brand guidelines, and complete visual systems.",
     image: "/images/hero/creatopy-M35xxKGb_tA-unsplash.jpg",
     icon: Palette,
-    ctaText: "View Our Results",
-    ctaAction: "whatsapp"
+    ctaText: "Get Instant Quote",
+    ctaAction: "calculator"
   },
   {
     id: 3,
@@ -49,8 +49,8 @@ const cardData = [
     description: "Drive growth with targeted online campaigns. Social media management, SEO, content marketing, and analytics.",
     image: "/images/hero/creatopy-M35xxKGb_tA-unsplash.jpg",
     icon: TrendingUp,
-    ctaText: "Start Strategy",
-    ctaAction: "whatsapp"
+    ctaText: "Get Instant Quote",
+    ctaAction: "calculator"
   },
   {
     id: 4,
@@ -148,8 +148,6 @@ const CardSlider = () => {
       setShowCalculator(true);
     } else if (action === "knowledge") {
       setShowKnowledge(true);
-    } else if (action === "whatsapp") {
-      window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}`, "_blank");
     }
   };
 
@@ -333,16 +331,14 @@ const CardSlider = () => {
       {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
       {showKnowledge && <KnowledgeBase onClose={() => setShowKnowledge(false)} />}
 
-      {/* Floating WhatsApp button */}
-      <a
-        href={`https://wa.me/${CONTACT_INFO.whatsappNumber}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all"
-        aria-label="Contact via WhatsApp"
+      {/* Floating Quote button */}
+      <button
+        onClick={() => setShowCalculator(true)}
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-accent hover:bg-accent/90 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all"
+        aria-label="Get instant quote"
       >
         <Mail className="w-6 h-6" />
-      </a>
+      </button>
     </>
   );
 };

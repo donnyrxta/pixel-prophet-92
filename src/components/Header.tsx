@@ -7,11 +7,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CONTACT_INFO, BUSINESS_INFO } from '@/lib/constants';
+import QuotationCalculator from './QuotationCalculator';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [showCalculator, setShowCalculator] = useState(false);
   const location = useLocation();
 
   // Close menu when route changes
@@ -133,24 +135,13 @@ export const Header = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
-              <a
-                href={`tel:${phoneNumber}`}
-                className="flex items-center gap-2 text-gray-700 hover:text-primary 
-                           transition-colors px-3 py-2 rounded-lg hover:bg-gray-50"
+              <Button
+                onClick={() => setShowCalculator(true)}
+                className="bg-[#25D366] hover:bg-[#128C7E] text-white gap-2"
               >
-                <Phone className="w-4 h-4" />
-                <span className="text-sm font-medium">{phoneNumber}</span>
-              </a>
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="bg-[#25D366] hover:bg-[#128C7E] text-white gap-2">
-                  <MessageCircle className="w-4 h-4" />
-                  Get Instant Quote
-                </Button>
-              </a>
+                <MessageCircle className="w-4 h-4" />
+                Get Instant Quote
+              </Button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -248,26 +239,16 @@ export const Header = () => {
 
           {/* Mobile CTAs */}
           <div className="mt-8 space-y-3">
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
+            <Button
+              onClick={() => {
+                setShowCalculator(true);
+                setIsMenuOpen(false);
+              }}
+              className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white gap-2"
             >
-              <Button className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white gap-2">
-                <MessageCircle className="w-4 h-4" />
-                Get Instant Quote
-              </Button>
-            </a>
-            <a
-              href={`tel:${phoneNumber}`}
-              className="block"
-            >
-              <Button variant="outline" className="w-full gap-2">
-                <Phone className="w-4 h-4" />
-                Call Now
-              </Button>
-            </a>
+              <MessageCircle className="w-4 h-4" />
+              Get Instant Quote
+            </Button>
           </div>
 
           {/* Trust Signal */}
@@ -277,6 +258,9 @@ export const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </>
   );
 };

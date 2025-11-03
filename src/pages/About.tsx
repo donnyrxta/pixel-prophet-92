@@ -2,6 +2,7 @@
  * About Page - Company story, team, values, and location
  * Builds trust and credibility with potential clients
  */
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import FloatingContact from "@/components/FloatingContact";
 import Footer from "@/components/Footer";
@@ -12,8 +13,10 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Target, Users, Award, TrendingUp, MapPin, Phone } from "lucide-react";
 import { CONTACT_INFO, BUSINESS_INFO } from "@/lib/constants";
+import QuotationCalculator from "@/components/QuotationCalculator";
 
 const About = () => {
+  const [showCalculator, setShowCalculator] = useState(false);
   const values = [
     {
       icon: Target,
@@ -230,14 +233,15 @@ const About = () => {
             <Link to="/services">
               <Button size="lg" variant="outline">View Our Services</Button>
             </Link>
-            <Link to="/contact">
-              <Button size="lg">Start a Project</Button>
-            </Link>
+            <Button size="lg" onClick={() => setShowCalculator(true)}>Get Instant Quote</Button>
           </div>
         </div>
       </section>
 
       <Footer />
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </div>
     </>
   );
