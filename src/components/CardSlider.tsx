@@ -238,14 +238,14 @@ const CardSlider = () => {
             <span className="text-white/90 text-sm md:text-base">{cardData[activeCard]?.place}</span>
           </div>
           <div className="space-y-2">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none text-shadow-strong">
               {cardData[activeCard]?.title}
             </h1>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none text-shadow-strong">
               {cardData[activeCard]?.title2}
             </h1>
           </div>
-          <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-md">
+          <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-md text-shadow-strong">
             {cardData[activeCard]?.description}
           </p>
           <button
@@ -268,14 +268,14 @@ const CardSlider = () => {
             <span className="text-white/90 text-sm md:text-base">{cardData[activeCard]?.place}</span>
           </div>
           <div className="space-y-2">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none text-shadow-strong">
               {cardData[activeCard]?.title}
             </h1>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-none text-shadow-strong">
               {cardData[activeCard]?.title2}
             </h1>
           </div>
-          <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-md">
+          <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-md text-shadow-strong">
             {cardData[activeCard]?.description}
           </p>
           <button

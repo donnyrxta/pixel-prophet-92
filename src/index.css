@@ -289,4 +289,78 @@ All colors MUST be HSL.
   .animate-breathe {
     animation: breathe 3.5s ease-in-out infinite;
   }
+
+  /* Widget-specific animations */
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .bg-size-200 {
+    background-size: 200%;
+  }
+
+  .bg-pos-0 {
+    background-position: 0%;
+  }
+
+  .bg-pos-100 {
+    background-position: 100%;
+  }
+
+  /* Safe area padding for mobile devices */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1.5rem);
+  }
+}
+
+/* Pulse glow animation for AI widget (purple for Von Restorff Effect) */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
+  }
+}
+
+/* Sticky header animation (Conversion optimization) */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Z-index hierarchy (prevents widget collisions - Fitts's Law) */
+.z-carousel { z-index: 10; }
+.z-ai-widget { z-index: 50; }
+.z-contact-widget { z-index: 40; }
+.z-header { z-index: 100; }
+.z-modal { z-index: 200; }
+
+/* Hero text shadow for readability (8-Second Rule) */
+.text-shadow-strong {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
+               1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Optimal line length for readability (Cognitive Load Theory) */
+.prose-optimal {
+  max-width: 65ch;
+}
+
+/* Touch targets for mobile (Fitts's Law) */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
 }

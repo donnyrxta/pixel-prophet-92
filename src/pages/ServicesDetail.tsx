@@ -15,7 +15,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
-import FloatingContact from '@/components/FloatingContact';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import SEOHead from '@/components/SEOHead';
@@ -382,7 +381,6 @@ const ServicesDetail = () => {
       />
       <div className="min-h-screen bg-gray-50">
         <Header />
-        <FloatingContact />
         <Breadcrumbs />
 
       {/* Hero Section */}

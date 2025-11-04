@@ -16,7 +16,6 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
-import FloatingContact from '@/components/FloatingContact';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ClientLogos from '@/components/ClientLogos';
@@ -122,7 +121,6 @@ const Services = () => {
       />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
         <Header />
-        <FloatingContact />
         <Breadcrumbs />
 
       {/* Hero Section */}

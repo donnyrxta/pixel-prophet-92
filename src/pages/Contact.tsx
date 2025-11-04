@@ -4,7 +4,6 @@
  */
 import { useState } from "react";
 import { Header } from "@/components/Header";
-import FloatingContact from "@/components/FloatingContact";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead from "@/components/SEOHead";
@@ -73,7 +72,6 @@ const Contact = () => {
       />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
         <Header />
-        <FloatingContact />
         <Breadcrumbs />
 
       {/* Hero Section */}
