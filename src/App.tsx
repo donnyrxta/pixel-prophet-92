@@ -12,7 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
-import FloatingContact from "./components/FloatingContact";
+import UnifiedContactWidget from "./components/UnifiedContactWidget";
 import PersistentAIWidget from "./components/PersistentAIWidget";
 
 const queryClient = new QueryClient();
@@ -35,7 +35,7 @@ const AppRoutes = () => {
 
       {/* Global Widgets - Always visible across all pages */}
       <PersistentAIWidget />
-      <FloatingContact />
+      <UnifiedContactWidget />
     </>
   );
 };
