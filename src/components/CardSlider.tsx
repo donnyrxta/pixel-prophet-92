@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Phone, Mail, Printer, Palette, TrendingUp, BookOpen } from "lucide-react";
-import QuotationCalculator from "./QuotationCalculator";
+import PremiumQuotationCalculator from "./PremiumQuotationCalculator";
 import KnowledgeBase from "./KnowledgeBase";
 import { CONTACT_INFO, BUSINESS_INFO } from "@/lib/constants";
 
@@ -328,7 +328,7 @@ const CardSlider = () => {
       />
 
       {/* Modals */}
-      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
+      {showCalculator && <PremiumQuotationCalculator isOpen={showCalculator} onClose={() => setShowCalculator(false)} />}
       {showKnowledge && <KnowledgeBase onClose={() => setShowKnowledge(false)} />}
 
       {/* Floating Quote button */}

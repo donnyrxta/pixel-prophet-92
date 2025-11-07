@@ -1,8 +1,10 @@
-import CardSlider from "@/components/CardSlider";
+import { useState } from 'react';
+import TimedCarousel from "@/components/TimedCarousel";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import TrustBand from "@/components/TrustBand";
 import SEOHead from "@/components/SEOHead";
+import PremiumQuotationCalculator from "@/components/PremiumQuotationCalculator";
 
 /**
  * Main landing page for Soho Connect
@@ -15,6 +17,51 @@ import SEOHead from "@/components/SEOHead";
  * NOTE: FloatingContact and AI widgets are now global in App.tsx
  */
 const Index = () => {
+  const [showQuoteCalculator, setShowQuoteCalculator] = useState(false);
+
+  const carouselSlides = [
+    {
+      id: 'branding',
+      category: 'Brand Identity',
+      title: 'PROFESSIONAL',
+      subtitle: 'BRANDING',
+      description: 'Build a strong brand identity that resonates with your audience. From logo design to complete visual systems.',
+      image: '/images/hero/creatopy-M35xxKGb_tA-unsplash.jpg',
+      cta: 'Start Your Brand',
+      ctaAction: () => setShowQuoteCalculator(true)
+    },
+    {
+      id: 'printing',
+      category: 'Print Services',
+      title: 'PREMIUM',
+      subtitle: 'PRINTING',
+      description: 'High-quality print materials that make your business stand out. Business cards, brochures, banners, and more.',
+      image: '/images/hero/kaffie-co-7hEZILVOcFU-unsplash.jpg',
+      cta: 'Get Print Quote',
+      ctaAction: () => setShowQuoteCalculator(true)
+    },
+    {
+      id: 'digital',
+      category: 'Digital Marketing',
+      title: 'DIGITAL',
+      subtitle: 'EXCELLENCE',
+      description: 'Elevate your online presence with strategic digital marketing and engaging content.',
+      image: '/images/hero/kaffie-co-DJb2MdMuzbU-unsplash.jpg',
+      cta: 'Go Digital',
+      ctaAction: () => setShowQuoteCalculator(true)
+    },
+    {
+      id: 'signage',
+      category: 'Signage Solutions',
+      title: 'IMPACTFUL',
+      subtitle: 'SIGNAGE',
+      description: 'Professional signage that attracts attention and drives foot traffic to your business.',
+      image: '/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg',
+      cta: 'Explore Signage',
+      ctaAction: () => setShowQuoteCalculator(true)
+    }
+  ];
+
   return (
     <>
       <SEOHead
@@ -25,10 +72,14 @@ const Index = () => {
       />
       <div className="min-h-screen flex flex-col">
         <Header />
-        <CardSlider />
-        {/* Trust Band - Positioned after hero for Serial Position Effect */}
+        <TimedCarousel slides={carouselSlides} />
         <TrustBand />
         <Footer />
+        
+        <PremiumQuotationCalculator
+          isOpen={showQuoteCalculator}
+          onClose={() => setShowQuoteCalculator(false)}
+        />
       </div>
     </>
   );
