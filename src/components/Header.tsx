@@ -77,20 +77,22 @@ export const Header = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+            {/* Logo - Modern Minimalist */}
             <Link 
               to="/" 
-              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-3 hover:opacity-90 transition-opacity"
               aria-label="Soho Connect Home"
             >
-              <img 
-                src="/images/brand/logo-color-icon.png" 
-                alt="Soho Connect Logo" 
-                className="h-12 w-12"
-              />
+              <div className="w-10 h-10 bg-gradient-to-br from-stone-900 to-stone-800 flex items-center justify-center shadow-md">
+                <span className="text-white font-bold text-xl select-none">S</span>
+              </div>
               <div className="hidden sm:block">
-                <div className="font-bold text-xl text-gray-900">{BUSINESS_INFO.name}</div>
-                <div className="text-xs text-primary">{BUSINESS_INFO.trustSignal}</div>
+                <div className="font-light text-xl tracking-tight text-stone-900 leading-none mb-1">
+                  Soho Connect
+                </div>
+                <div className="text-[10px] tracking-[0.2em] uppercase text-stone-500 font-medium">
+                  Design Studio
+                </div>
               </div>
             </Link>
 
