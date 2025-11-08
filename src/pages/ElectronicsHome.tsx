@@ -23,7 +23,7 @@ const featuredProducts: FeaturedProduct[] = [
     category: 'Premium Flagship',
     price: 899,
     image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&h=800&fit=crop',
-    bgColor: 'from-blue-500/20 to-blue-600/20'
+    bgColor: 'from-primary/20 to-blue-600/20'
   },
   {
     id: 'cctv-1',
@@ -31,7 +31,7 @@ const featuredProducts: FeaturedProduct[] = [
     category: 'Security Solutions',
     price: 1299,
     image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&h=800&fit=crop',
-    bgColor: 'from-purple-500/20 to-purple-600/20'
+    bgColor: 'from-primary/20 to-blue-600/20'
   },
   {
     id: 'accessory-1',
@@ -39,7 +39,7 @@ const featuredProducts: FeaturedProduct[] = [
     category: 'Premium Accessories',
     price: 149,
     image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&h=800&fit=crop',
-    bgColor: 'from-green-500/20 to-green-600/20'
+    bgColor: 'from-primary/20 to-blue-600/20'
   },
   {
     id: 'consumable-1',
@@ -47,7 +47,7 @@ const featuredProducts: FeaturedProduct[] = [
     category: 'Office Solutions',
     price: 299,
     image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&h=800&fit=crop',
-    bgColor: 'from-orange-500/20 to-orange-600/20'
+    bgColor: 'from-primary/20 to-blue-600/20'
   }
 ];
 

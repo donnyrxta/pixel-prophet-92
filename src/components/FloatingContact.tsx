@@ -280,7 +280,7 @@ const FloatingContact = () => {
           {/* Notification Badge */}
           <div
             className={cn(
-              "absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full",
+              "absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full",
               "border-2 border-white animate-pulse"
             )}
             aria-hidden="true"

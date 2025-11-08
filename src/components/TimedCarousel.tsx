@@ -95,7 +95,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
       <div className="absolute top-0 left-0 right-0 h-1 bg-white/10 z-50">
         <div
           ref={indicatorRef}
-          className="h-full bg-orange-500 origin-left"
+          className="h-full bg-primary origin-left"
           style={{ transformOrigin: 'left' }}
         />
       </div>
@@ -119,7 +119,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
       >
         <div className="mb-6">
           <div className="relative inline-block">
-            <div className="absolute -top-2 left-0 w-8 h-1 bg-orange-500 rounded-full" />
+            <div className="absolute -top-2 left-0 w-8 h-1 bg-primary rounded-full" />
             <div className="pt-4 text-xl text-white/90 tracking-wide">
               {currentSlide.category}
             </div>
@@ -140,7 +140,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
         <div className="flex items-center gap-4">
           <button
             onClick={currentSlide.ctaAction}
-            className="bg-orange-500 text-white px-8 py-3 rounded-full font-medium hover:bg-orange-600 transition-all hover:scale-105 shadow-xl"
+            className="btn-brand text-white px-8 py-3 rounded-full font-medium hover:scale-105 shadow-xl"
           >
             {currentSlide.cta}
           </button>
@@ -156,7 +156,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
       >
         <div className="mb-6">
           <div className="relative inline-block">
-            <div className="absolute -top-2 left-0 w-8 h-1 bg-orange-500 rounded-full" />
+            <div className="absolute -top-2 left-0 w-8 h-1 bg-primary rounded-full" />
             <div className="pt-4 text-xl text-white/90 tracking-wide">
               {currentSlide.category}
             </div>
@@ -177,7 +177,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
         <div className="flex items-center gap-4">
           <button
             onClick={currentSlide.ctaAction}
-            className="bg-orange-500 text-white px-8 py-3 rounded-full font-medium hover:bg-orange-600 transition-all hover:scale-105 shadow-xl"
+            className="btn-brand text-white px-8 py-3 rounded-full font-medium hover:scale-105 shadow-xl"
           >
             {currentSlide.cta}
           </button>
@@ -207,7 +207,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
         <div className="w-96 h-12 flex items-center">
           <div className="w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
             <div
-              className="h-full bg-orange-500 transition-all duration-300"
+              className="h-full bg-primary transition-all duration-300"
               style={{ width: `${((activeIndex + 1) / slides.length) * 100}%` }}
             />
           </div>
@@ -229,7 +229,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
             onClick={() => navigateToSlide(index)}
             className={`transition-all duration-300 rounded-full ${
               index === activeIndex
-                ? 'w-12 h-3 bg-orange-500'
+                ? 'w-12 h-3 bg-primary'
                 : 'w-3 h-3 bg-white/30 hover:bg-white/50'
             }`}
             aria-label={`Go to slide ${index + 1}`}

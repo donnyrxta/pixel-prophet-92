@@ -147,8 +147,8 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
       <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
         <div className="bg-white rounded-lg shadow-2xl max-w-2xl w-full p-8 md:p-12 animate-scale-in">
           <div className="text-center">
-            <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Check className="w-12 h-12 text-green-600" />
+            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Check className="w-12 h-12 text-primary" />
             </div>
 
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-stone-900 mb-4">
@@ -161,7 +161,7 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
                 ${estimatedQuote.toLocaleString()}
               </div>
               <div className="text-sm text-stone-600 mb-4">
-                Potential ROI: <span className="font-medium text-green-600">${roiEstimate.toLocaleString()}</span>
+                Potential ROI: <span className="font-medium text-primary">${roiEstimate.toLocaleString()}</span>
               </div>
               
               <div className="flex flex-wrap justify-center gap-2">
@@ -193,7 +193,7 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
                 href={`https://wa.me/263771234567?text=${encodeURIComponent(`Hi! I just submitted a quote request. Can we discuss?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 transition"
+                className="flex-1 bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-primary/90 transition"
               >
                 Chat on WhatsApp
               </a>
@@ -317,12 +317,12 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
                       <div className="text-sm text-stone-600 mb-1">Estimated Investment</div>
                       <div className="text-3xl font-light text-stone-900">${estimatedQuote.toLocaleString()}</div>
                       {selectedServices.length >= 2 && (
-                        <div className="text-xs text-green-600 mt-1 font-medium">Package discount applied</div>
+                        <div className="text-xs text-primary mt-1 font-medium">Package discount applied</div>
                       )}
                     </div>
                     <div className="text-right">
                       <div className="text-sm text-stone-600 mb-1">Potential ROI</div>
-                      <div className="text-2xl font-light text-green-600">${roiEstimate.toLocaleString()}</div>
+                      <div className="text-2xl font-light text-primary">${roiEstimate.toLocaleString()}</div>
                       <div className="text-xs text-stone-500">3-5x average return</div>
                     </div>
                   </div>
@@ -534,7 +534,7 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-stone-600 mb-1">Expected ROI</div>
-                    <div className="text-3xl font-light text-green-600">${roiEstimate.toLocaleString()}</div>
+                    <div className="text-3xl font-light text-primary">${roiEstimate.toLocaleString()}</div>
                   </div>
                 </div>
                 
@@ -592,7 +592,7 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
                 <button
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="flex-1 bg-green-600 text-white py-4 rounded-lg font-medium hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 bg-primary text-white py-4 rounded-lg font-medium hover:bg-primary/90 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>

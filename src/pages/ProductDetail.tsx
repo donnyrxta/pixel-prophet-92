@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Heart, Share2, Minus, Plus, Check, Truck, Shield, Phone } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
@@ -8,52 +8,40 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useCart } from '@/context/CartContext';
+import { getProductById } from '@/lib/shop/products';
+import { formatPrice } from '@/lib/shop/pricing';
+import { trackProductView } from '@/lib/gtm';
 
 const ProductDetail = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
+  const { addToCart, isInCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isAdding, setIsAdding] = useState(false);
 
-  // Mock product data - in production, fetch from API
-  const product = {
-    id: productId,
-    name: 'iPhone 15 Pro',
-    category: 'Smartphones',
-    price: 1299,
-    currency: 'USD',
-    sku: 'SOHO-IP15P-128-TIT',
-    inStock: true,
-    stockCount: 15,
-    description: 'The iPhone 15 Pro features a titanium design, the powerful A17 Pro chip, and a customizable Action button. With Pro camera system including 48MP Main camera.',
-    features: [
-      'A17 Pro chip with 6-core CPU',
-      '6.1-inch Super Retina XDR display',
-      'Pro camera system (48MP, 12MP, 12MP)',
-      'Up to 29 hours video playback',
-      'Titanium design with textured matte glass',
-      'Action button for quick access',
-      'Face ID facial recognition',
-      'USB-C connector with USB 3 speeds'
-    ],
-    specifications: {
-      'Display': '6.1-inch OLED, 2556 x 1179 pixels',
-      'Processor': 'A17 Pro chip',
-      'Storage': '128GB / 256GB / 512GB / 1TB',
-      'Camera': '48MP Main, 12MP Ultra Wide, 12MP Telephoto',
-      'Battery': 'Up to 23 hours video playback',
-      'OS': 'iOS 17',
-      'Connectivity': '5G, Wi-Fi 6E, Bluetooth 5.3',
-      'Water Resistance': 'IP68 (6m for 30 min)'
-    },
-    images: [
-      '/images/products/iphone-15-pro.jpg',
-      '/images/products/iphone-15-pro-2.jpg',
-      '/images/products/iphone-15-pro-3.jpg'
-    ],
-    warranty: '12 months manufacturer warranty',
-    delivery: 'Same-day delivery in Harare CBD'
-  };
+  // Fetch product from catalog
+  const product = getProductById(productId || '');
+
+  // Track product view on mount
+  useEffect(() => {
+    if (product) {
+      trackProductView(product.id, product.name, product.category, product.price);
+    }
+  }, [product]);
+
+  // Redirect to shop if product not found
+  useEffect(() => {
+    if (!product && productId) {
+      navigate('/shop');
+    }
+  }, [product, productId, navigate]);
+
+  // Return early if no product
+  if (!product) {
+    return null;
+  }
 
   const incrementQuantity = () => {
     if (quantity < product.stockCount) {
@@ -67,17 +55,48 @@ const ProductDetail = () => {
     }
   };
 
+  const handleAddToCart = () => {
+    if (!product.inStock) return;
+
+    setIsAdding(true);
+    addToCart(product, quantity);
+
+    // Visual feedback
+    setTimeout(() => {
+      setIsAdding(false);
+      // Reset quantity after adding
+      setQuantity(1);
+    }, 600);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: product.description,
+        url: window.location.href,
+      }).catch((error) => console.log('Error sharing:', error));
+    } else {
+      // Fallback: copy link to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
+
   const totalPrice = product.price * quantity;
   const govtLevy = totalPrice * 0.02;
   const finalPrice = totalPrice + govtLevy;
 
+  // Get product images or use default
+  const productImages = product.images || [product.image];
+
   return (
     <>
       <SEOHead
-        title={`${product.name} - ${product.category}`}
-        description={product.description}
-        keywords={`${product.name}, ${product.category}, buy in harare, soho connect electronics`}
-        canonical={`https://sohoconnect.co.zw/shop/product/${productId}`}
+        title={product.seoTitle || `${product.name} - Buy in Harare | SohoConnect`}
+        description={product.seoDescription || product.description}
+        keywords={product.seoKeywords?.join(', ') || `${product.name}, ${product.category}, buy in harare`}
+        canonical={`https://sohoconnect.co.zw/shop/product/${product.id}`}
       />
       
       <div className="min-h-screen flex flex-col bg-background">
@@ -109,7 +128,7 @@ const ProductDetail = () => {
               <div className="space-y-4">
                 <div className="aspect-square bg-muted rounded-lg overflow-hidden border">
                   <img
-                    src={product.images[selectedImage]}
+                    src={productImages[selectedImage]}
                     alt={product.name}
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -117,26 +136,28 @@ const ProductDetail = () => {
                     }}
                   />
                 </div>
-                <div className="grid grid-cols-3 gap-4">
-                  {product.images.map((img, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedImage(idx)}
-                      className={`aspect-square bg-muted rounded-lg overflow-hidden border-2 transition-all ${
-                        selectedImage === idx ? 'border-primary' : 'border-transparent'
-                      }`}
-                    >
-                      <img
-                        src={img}
-                        alt={`${product.name} view ${idx + 1}`}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/images/hero/charlesdeluvio-Lks7vei-eAg-unsplash.jpg';
-                        }}
-                      />
-                    </button>
-                  ))}
-                </div>
+                {productImages.length > 1 && (
+                  <div className="grid grid-cols-3 gap-4">
+                    {productImages.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setSelectedImage(idx)}
+                        className={`aspect-square bg-muted rounded-lg overflow-hidden border-2 transition-all ${
+                          selectedImage === idx ? 'border-[#4169e1]' : 'border-transparent'
+                        }`}
+                      >
+                        <img
+                          src={img}
+                          alt={`${product.name} view ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = '/images/hero/charlesdeluvio-Lks7vei-eAg-unsplash.jpg';
+                          }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Product Info */}
@@ -145,7 +166,7 @@ const ProductDetail = () => {
                   <div className="flex items-center gap-3 mb-3">
                     <Badge variant="secondary">{product.category}</Badge>
                     {product.inStock && (
-                      <Badge variant="outline" className="text-green-600 border-green-600">
+                      <Badge variant="outline" className="text-primary border-primary">
                         <Check className="w-3 h-3 mr-1" />
                         In Stock
                       </Badge>
@@ -163,10 +184,10 @@ const ProductDetail = () => {
 
                 <div>
                   <div className="text-4xl font-bold text-foreground mb-2">
-                    ${product.price}
+                    {formatPrice(product.price)}
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    + 2% government levy (${govtLevy.toFixed(2)})
+                    + 2% government levy ({formatPrice(govtLevy)})
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
                     Prices in USD. See current ZWL rate at checkout.
@@ -216,31 +237,44 @@ const ProductDetail = () => {
                 <div className="bg-muted/50 rounded-lg p-4">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-muted-foreground">Subtotal</span>
-                    <span className="font-semibold">${totalPrice}</span>
+                    <span className="font-semibold">{formatPrice(totalPrice)}</span>
                   </div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-muted-foreground">Govt Levy (2%)</span>
-                    <span className="font-semibold">${govtLevy.toFixed(2)}</span>
+                    <span className="font-semibold">{formatPrice(govtLevy)}</span>
                   </div>
                   <Separator className="my-2" />
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-foreground">Total</span>
-                    <span className="text-2xl font-bold text-primary">${finalPrice.toFixed(2)}</span>
+                    <span className="text-2xl font-bold text-primary">{formatPrice(finalPrice)}</span>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
-                  <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-lg">
+                  <Button
+                    size="lg"
+                    className="w-full bg-[#4169e1] hover:bg-[#4169e1]/90 text-lg"
+                    onClick={handleAddToCart}
+                    disabled={!product.inStock || isAdding}
+                  >
                     <ShoppingCart className="w-5 h-5 mr-2" />
-                    Add to Cart
+                    {isAdding ? 'Added to Cart!' : isInCart(product.id) ? 'Add More to Cart' : 'Add to Cart'}
                   </Button>
                   <div className="grid grid-cols-2 gap-3">
-                    <Button size="lg" variant="outline">
-                      <Heart className="w-5 h-5 mr-2" />
-                      Save
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={() => navigate('/cart')}
+                    >
+                      <ShoppingCart className="w-5 h-5 mr-2" />
+                      View Cart
                     </Button>
-                    <Button size="lg" variant="outline">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={handleShare}
+                    >
                       <Share2 className="w-5 h-5 mr-2" />
                       Share
                     </Button>
@@ -284,34 +318,42 @@ const ProductDetail = () => {
                     <h3 className="text-xl font-semibold text-foreground mb-4">
                       Key Features
                     </h3>
-                    <ul className="space-y-3">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {product.features && product.features.length > 0 ? (
+                      <ul className="space-y-3">
+                        {product.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <Check className="w-5 h-5 text-[#4169e1] flex-shrink-0 mt-0.5" />
+                            <span className="text-muted-foreground">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-muted-foreground">No features listed for this product.</p>
+                    )}
                   </div>
                 </TabsContent>
-                
+
                 <TabsContent value="specifications" className="mt-6">
                   <div className="bg-card border rounded-lg p-6">
                     <h3 className="text-xl font-semibold text-foreground mb-4">
                       Technical Specifications
                     </h3>
-                    <div className="space-y-3">
-                      {Object.entries(product.specifications).map(([key, value]) => (
-                        <div key={key} className="flex flex-col sm:flex-row sm:items-center py-3 border-b last:border-b-0">
-                          <div className="font-medium text-foreground w-full sm:w-1/3 mb-1 sm:mb-0">
-                            {key}
+                    {product.specifications && Object.keys(product.specifications).length > 0 ? (
+                      <div className="space-y-3">
+                        {Object.entries(product.specifications).map(([key, value]) => (
+                          <div key={key} className="flex flex-col sm:flex-row sm:items-center py-3 border-b last:border-b-0">
+                            <div className="font-medium text-foreground w-full sm:w-1/3 mb-1 sm:mb-0">
+                              {key}
+                            </div>
+                            <div className="text-muted-foreground w-full sm:w-2/3">
+                              {value}
+                            </div>
                           </div>
-                          <div className="text-muted-foreground w-full sm:w-2/3">
-                            {value}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-muted-foreground">No specifications listed for this product.</p>
+                    )}
                   </div>
                 </TabsContent>
               </Tabs>

@@ -508,7 +508,7 @@ const ServicesDetail = () => {
             {service.benefits.map((benefit: string, idx: number) => (
               <div key={idx} className="flex items-start gap-3 bg-white p-4 rounded-lg 
                                         shadow-sm hover:shadow-md transition-shadow">
-                <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-gray-700 font-medium">{benefit}</span>
               </div>
             ))}

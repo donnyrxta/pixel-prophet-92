@@ -187,15 +187,15 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
         <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 animate-slideUp">
           <div className="text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-12 h-12 text-green-600" />
+            <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-12 h-12 text-primary" />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Quote Request Received! 🎉</h2>
-            <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 mb-6">
+            <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-6 mb-6">
               <div className="text-sm text-gray-600 mb-2">Your Estimated Investment</div>
-              <div className="text-5xl font-bold text-orange-600 mb-2">${calculatedQuote.toLocaleString()}</div>
+              <div className="text-5xl font-bold text-primary mb-2">${calculatedQuote.toLocaleString()}</div>
               <div className="text-sm text-gray-600 mb-4">
-                Potential ROI: <span className="font-bold text-green-600">${roiMultiplier.toLocaleString()}</span>
+                Potential ROI: <span className="font-bold text-primary">${roiMultiplier.toLocaleString()}</span>
               </div>
               <div className="flex flex-wrap justify-center gap-2">
                 {formData.services?.map(serviceId => {
@@ -210,8 +210,8 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
             </div>
             <div className="space-y-4 mb-6">
               <div className={`p-4 rounded-lg border-2 ${
-                leadTier === 'hot' ? 'bg-red-50 border-red-300' :
-                leadTier === 'warm' ? 'bg-orange-50 border-orange-300' : 'bg-blue-50 border-blue-300'
+                leadTier === 'hot' ? 'bg-blue-100 border-brand' :
+                leadTier === 'warm' ? 'bg-blue-50 border-blue-300' : 'bg-blue-50 border-blue-200'
               }`}>
                 <div className="font-semibold text-gray-900 mb-2">
                   {leadTier === 'hot' && '🔥 Priority Processing'}
@@ -234,14 +234,14 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 href={`https://wa.me/263714570414?text=${encodeURIComponent(`Hi! I just submitted quote #${Date.now()} for ${formData.services?.length} services. Can we discuss?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition flex items-center justify-center gap-2"
+                className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-5 h-5" />
                 Chat on WhatsApp
               </a>
               <a
                 href="tel:+263714570414"
-                className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition flex items-center justify-center gap-2"
+                className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Call Us Now
@@ -260,7 +260,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 animate-fadeIn overflow-y-auto">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
       <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full my-8 animate-slideUp">
-        <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white p-6 rounded-t-2xl">
+        <div className="bg-brand-cta text-white p-6 rounded-t-2xl">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -268,7 +268,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
               </div>
               <div>
                 <h2 className="text-2xl font-bold">Get Your Instant Quote</h2>
-                <p className="text-orange-100 text-sm">Transparent pricing • No hidden fees • Same-day response</p>
+                <p className="text-white/80 text-sm">Transparent pricing • No hidden fees • Same-day response</p>
               </div>
             </div>
             <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-full transition">
@@ -280,7 +280,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
               <div key={num} className="flex-1 flex items-center">
                 <div className={`w-full flex items-center ${num < 4 ? 'mr-2' : ''}`}>
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
-                    step >= num ? 'bg-white text-orange-600' : 'bg-white/30 text-white'
+                    step >= num ? 'bg-white text-primary' : 'bg-white/30 text-white'
                   }`}>{num}</div>
                   {num < 4 && <div className={`flex-1 h-1 mx-2 rounded ${step > num ? 'bg-white' : 'bg-white/30'}`} />}
                 </div>
@@ -300,7 +300,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 return (
                   <div key={category}>
                     <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />{category}
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full" />{category}
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {categoryServices.map(service => (
@@ -315,11 +315,11 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                             }));
                           }}
                           className={`relative p-4 border-2 rounded-lg text-left transition-all ${
-                            formData.services?.includes(service.id) ? 'border-orange-500 bg-orange-50' : 'border-gray-200 hover:border-orange-300'
+                            formData.services?.includes(service.id) ? 'selection-brand' : 'border-gray-200 hover:border-primary'
                           }`}
                         >
                           {service.popular && (
-                            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">Popular</span>
+                            <span className="absolute -top-2 -right-2 bg-primary text-white text-xs px-2 py-1 rounded-full font-bold">Popular</span>
                           )}
                           <div className="flex items-start gap-3">
                             <span className="text-3xl">{service.icon}</span>
@@ -330,7 +330,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                                 <Clock className="w-3 h-3" />{service.turnaround}
                               </div>
                             </div>
-                            {formData.services?.includes(service.id) && <CheckCircle className="w-6 h-6 text-orange-600 flex-shrink-0" />}
+                            {formData.services?.includes(service.id) && <CheckCircle className="w-6 h-6 text-primary flex-shrink-0" />}
                           </div>
                         </button>
                       ))}
@@ -339,18 +339,18 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 );
               })}
               {calculatedQuote > 0 && (
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-lg p-4">
+                <div className="bg-blue-50 border-2 border-blue-300 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-sm text-gray-600 mb-1">Estimated Investment</div>
-                      <div className="text-3xl font-bold text-green-700">${calculatedQuote.toLocaleString()}</div>
+                      <div className="text-3xl font-bold text-primary">${calculatedQuote.toLocaleString()}</div>
                       {formData.services && formData.services.length >= 2 && (
-                        <div className="text-xs text-green-600 font-semibold mt-1">✨ Package discount applied!</div>
+                        <div className="text-xs text-primary font-semibold mt-1">✨ Package discount applied!</div>
                       )}
                     </div>
                     <div className="text-right">
                       <div className="text-sm text-gray-600 mb-1">Potential ROI</div>
-                      <div className="text-2xl font-bold text-green-700">${roiMultiplier.toLocaleString()}</div>
+                      <div className="text-2xl font-bold text-primary">${roiMultiplier.toLocaleString()}</div>
                       <div className="text-xs text-gray-600">3-5x average return</div>
                     </div>
                   </div>
@@ -359,7 +359,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
               <button
                 onClick={() => setStep(2)}
                 disabled={!formData.services || formData.services.length === 0}
-                className="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white py-4 rounded-lg font-semibold hover:shadow-xl transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full btn-brand py-4 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 Continue to Budget <ArrowRight className="w-5 h-5" />
               </button>
@@ -379,12 +379,12 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                       key={range.value}
                       onClick={() => setFormData(prev => ({ ...prev, budget: range.value }))}
                       className={`p-4 border-2 rounded-lg text-left transition-all ${
-                        formData.budget === range.value ? 'border-orange-500 bg-orange-50' : 'border-gray-200 hover:border-orange-300'
+                        formData.budget === range.value ? 'selection-brand' : 'border-gray-200 hover:border-primary'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="font-semibold text-gray-900">{range.label}</div>
-                        {formData.budget === range.value && <CheckCircle className="w-5 h-5 text-orange-600" />}
+                        {formData.budget === range.value && <CheckCircle className="w-5 h-5 text-primary" />}
                       </div>
                     </button>
                   ))}
@@ -398,12 +398,12 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                       key={level.value}
                       onClick={() => setFormData(prev => ({ ...prev, authority: level.value }))}
                       className={`w-full p-4 border-2 rounded-lg text-left transition-all ${
-                        formData.authority === level.value ? 'border-orange-500 bg-orange-50' : 'border-gray-200 hover:border-orange-300'
+                        formData.authority === level.value ? 'selection-brand' : 'border-gray-200 hover:border-primary'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="font-semibold text-gray-900">{level.label}</div>
-                        {formData.authority === level.value && <CheckCircle className="w-5 h-5 text-orange-600" />}
+                        {formData.authority === level.value && <CheckCircle className="w-5 h-5 text-primary" />}
                       </div>
                     </button>
                   ))}
@@ -417,15 +417,15 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                       key={timeline.value}
                       onClick={() => setFormData(prev => ({ ...prev, timeline: timeline.value }))}
                       className={`w-full p-4 border-2 rounded-lg text-left transition-all ${
-                        formData.timeline === timeline.value ? 'border-orange-500 bg-orange-50' : 'border-gray-200 hover:border-orange-300'
+                        formData.timeline === timeline.value ? 'selection-brand' : 'border-gray-200 hover:border-primary'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="font-semibold text-gray-900">{timeline.label}</div>
-                          {timeline.value === 'urgent' && <div className="text-xs text-red-600 mt-1">🔥 Rush orders may incur additional fees</div>}
+                          {timeline.value === 'urgent' && <div className="text-xs text-primary mt-1">🔥 Rush orders may incur additional fees</div>}
                         </div>
-                        {formData.timeline === timeline.value && <CheckCircle className="w-5 h-5 text-orange-600" />}
+                        {formData.timeline === timeline.value && <CheckCircle className="w-5 h-5 text-primary" />}
                       </div>
                     </button>
                   ))}
@@ -436,7 +436,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 <button
                   onClick={() => setStep(3)}
                   disabled={!formData.budget || !formData.authority || !formData.timeline}
-                  className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   Continue to Contact Info <ArrowRight className="w-5 h-5" />
                 </button>
@@ -450,30 +450,30 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 <p className="text-gray-600">We'll respond within 2-24 hours depending on urgency</p>
               </div>
               {formData.timeline === 'urgent' && (
-                <div className="bg-red-50 border-2 border-red-300 rounded-lg p-4 flex items-start gap-3">
-                  <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                <div className="bg-blue-50 border-2 border-brand rounded-lg p-4 flex items-start gap-3">
+                  <AlertCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-red-900 mb-1">🔥 Only 3 urgent slots available this week</div>
-                    <div className="text-sm text-red-700">Complete this form to secure priority processing</div>
+                    <div className="font-semibold text-primary mb-1">🔥 Only 3 urgent slots available this week</div>
+                    <div className="text-sm text-primary">Complete this form to secure priority processing</div>
                   </div>
                 </div>
               )}
               <div className="space-y-4">
                 <div>
                   <label className="block font-medium text-gray-900 mb-2">Full Name *</label>
-                  <input type="text" value={formData.name || ''} onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))} placeholder="John Moyo" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 transition" required />
+                  <input type="text" value={formData.name || ''} onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))} placeholder="John Moyo" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus-ring transition" required />
                 </div>
                 <div>
                   <label className="block font-medium text-gray-900 mb-2">Email Address *</label>
-                  <input type="email" value={formData.email || ''} onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))} placeholder="john@business.co.zw" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 transition" required />
+                  <input type="email" value={formData.email || ''} onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))} placeholder="john@business.co.zw" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus-ring transition" required />
                 </div>
                 <div>
                   <label className="block font-medium text-gray-900 mb-2">Phone / WhatsApp *</label>
-                  <input type="tel" value={formData.phone || ''} onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))} placeholder="+263 77 123 4567" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 transition" required />
+                  <input type="tel" value={formData.phone || ''} onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))} placeholder="+263 77 123 4567" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus-ring transition" required />
                 </div>
                 <div>
                   <label className="block font-medium text-gray-900 mb-2">Company / Business Name (Optional)</label>
-                  <input type="text" value={formData.company || ''} onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))} placeholder="Your Business Name" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 transition" />
+                  <input type="text" value={formData.company || ''} onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))} placeholder="Your Business Name" className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus-ring transition" />
                 </div>
               </div>
               <div className="flex gap-3">
@@ -481,7 +481,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 <button
                   onClick={() => setStep(4)}
                   disabled={!formData.name || !formData.email || !formData.phone}
-                  className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   Continue to Review <ArrowRight className="w-5 h-5" />
                 </button>
@@ -494,15 +494,15 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Review your quote request</h3>
                 <p className="text-gray-600">Make sure everything looks correct</p>
               </div>
-              <div className="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 rounded-xl p-6">
+              <div className="bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-200 rounded-xl p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <div className="text-sm text-gray-600 mb-1">Your Investment</div>
-                    <div className="text-4xl font-bold text-orange-600">${calculatedQuote.toLocaleString()}</div>
+                    <div className="text-4xl font-bold text-primary">${calculatedQuote.toLocaleString()}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-gray-600 mb-1">Expected ROI</div>
-                    <div className="text-3xl font-bold text-green-600">${roiMultiplier.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-primary">${roiMultiplier.toLocaleString()}</div>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -547,12 +547,12 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                   onChange={(e) => setFormData(prev => ({ ...prev, additionalNotes: e.target.value }))}
                   placeholder="Tell us more about your project, specific requirements, or questions..."
                   rows={4}
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-orange-500 transition"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus-ring transition"
                 />
               </div>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-gray-700">
                     <strong>What happens next:</strong>
                     <ul className="mt-2 space-y-1">
@@ -569,7 +569,7 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 <button
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-lg font-bold text-lg hover:shadow-xl transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 btn-brand text-white py-4 rounded-lg font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>

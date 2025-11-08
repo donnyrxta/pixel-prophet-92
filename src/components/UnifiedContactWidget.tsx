@@ -23,8 +23,8 @@ const UnifiedContactWidget = () => {
         trackCTAClick('whatsapp_unified_widget', 'unified_contact_widget');
         window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber.replace(/\D/g, '')}?text=Hi%20Soho%20Connect!%20I%27d%20like%20to%20inquire%20about...`, '_blank');
       },
-      color: 'from-green-500 to-green-600',
-      hoverColor: 'hover:from-green-600 hover:to-green-700'
+      color: 'from-primary to-blue-600',
+      hoverColor: 'hover:from-primary hover:to-blue-700'
     },
     {
       id: 'call',
@@ -35,8 +35,8 @@ const UnifiedContactWidget = () => {
         trackCTAClick('call_unified_widget', 'unified_contact_widget');
         window.location.href = `tel:${CONTACT_INFO.phone}`;
       },
-      color: 'from-blue-500 to-blue-600',
-      hoverColor: 'hover:from-blue-600 hover:to-blue-700'
+      color: 'from-primary to-blue-600',
+      hoverColor: 'hover:from-primary hover:to-blue-700'
     },
     {
       id: 'email',
@@ -47,8 +47,8 @@ const UnifiedContactWidget = () => {
         trackCTAClick('email_unified_widget', 'unified_contact_widget');
         window.location.href = `mailto:${CONTACT_INFO.email}`;
       },
-      color: 'from-purple-500 to-purple-600',
-      hoverColor: 'hover:from-purple-600 hover:to-purple-700'
+      color: 'from-primary to-blue-600',
+      hoverColor: 'hover:from-primary hover:to-blue-700'
     }
   ];
 
@@ -83,7 +83,7 @@ const UnifiedContactWidget = () => {
                 setIsExpanded(false);
                 trackCTAClick('quote_unified_widget', 'unified_contact_widget');
               }}
-              className="flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-4 py-3 rounded-full shadow-xl transition-all hover:scale-105 group touch-target"
+              className="flex items-center gap-3 btn-brand text-white px-4 py-3 rounded-full shadow-xl transition-all hover:scale-105 group touch-target"
             >
               <Mail className="w-5 h-5" />
               <div className="text-left">
@@ -97,7 +97,7 @@ const UnifiedContactWidget = () => {
         {/* Toggle Button */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="bg-gradient-to-r from-orange-500 to-red-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group relative touch-target"
+          className="btn-brand text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group relative touch-target"
           aria-label={isExpanded ? 'Close contact menu' : 'Open contact menu'}
         >
           {isExpanded ? (
@@ -105,8 +105,8 @@ const UnifiedContactWidget = () => {
           ) : (
             <>
               <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
-              <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full animate-ping" />
-              <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full" />
+              <span className="absolute -top-1 -right-1 bg-primary w-3 h-3 rounded-full animate-ping" />
+              <span className="absolute -top-1 -right-1 bg-primary w-3 h-3 rounded-full" />
             </>
           )}
         </button>

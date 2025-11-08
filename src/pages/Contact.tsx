@@ -85,7 +85,7 @@ const Contact = () => {
               {BUSINESS_INFO.responseTime}
             </p>
             <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
               <span className="text-sm font-medium text-primary">Available Now</span>
             </div>
           </div>
