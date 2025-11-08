@@ -174,3 +174,152 @@ export const trackCustomEvent = (eventName: string, eventData?: Record<string, a
     ...eventData,
   });
 };
+
+/**
+ * E-COMMERCE TRACKING
+ * Phase 3: Enhanced e-commerce events for GA4
+ */
+
+/**
+ * Track product views
+ * @param productId - ID of the product
+ * @param productName - Name of the product
+ * @param category - Product category
+ * @param price - Product price
+ */
+export const trackProductView = (
+  productId: string,
+  productName: string,
+  category: string,
+  price: number
+) => {
+  pushEvent({
+    event: 'view_item',
+    ecommerce: {
+      currency: 'USD',
+      value: price,
+      items: [{
+        item_id: productId,
+        item_name: productName,
+        item_category: category,
+        price: price,
+        quantity: 1
+      }]
+    },
+    page_path: window.location.pathname
+  });
+};
+
+/**
+ * Track add to cart
+ * @param productId - ID of the product
+ * @param productName - Name of the product
+ * @param price - Product price
+ * @param quantity - Quantity added
+ */
+export const trackAddToCart = (
+  productId: string,
+  productName: string,
+  price: number,
+  quantity: number
+) => {
+  pushEvent({
+    event: 'add_to_cart',
+    ecommerce: {
+      currency: 'USD',
+      value: price * quantity,
+      items: [{
+        item_id: productId,
+        item_name: productName,
+        price: price,
+        quantity: quantity
+      }]
+    },
+    page_path: window.location.pathname
+  });
+};
+
+/**
+ * Track remove from cart
+ * @param productId - ID of the product
+ * @param productName - Name of the product
+ * @param price - Product price
+ * @param quantity - Quantity removed
+ */
+export const trackRemoveFromCart = (
+  productId: string,
+  productName: string,
+  price: number,
+  quantity: number
+) => {
+  pushEvent({
+    event: 'remove_from_cart',
+    ecommerce: {
+      currency: 'USD',
+      value: price * quantity,
+      items: [{
+        item_id: productId,
+        item_name: productName,
+        price: price,
+        quantity: quantity
+      }]
+    },
+    page_path: window.location.pathname
+  });
+};
+
+/**
+ * Track begin checkout
+ * @param cartValue - Total cart value
+ * @param items - Cart items
+ */
+export const trackBeginCheckout = (
+  cartValue: number,
+  items: Array<{
+    item_id: string;
+    item_name: string;
+    price: number;
+    quantity: number;
+  }>
+) => {
+  pushEvent({
+    event: 'begin_checkout',
+    ecommerce: {
+      currency: 'USD',
+      value: cartValue,
+      items: items
+    },
+    page_path: window.location.pathname
+  });
+};
+
+/**
+ * Track purchase/order completion
+ * @param transactionId - Unique transaction ID
+ * @param revenue - Total revenue
+ * @param items - Purchased items
+ * @param paymentMethod - Payment method used
+ */
+export const trackPurchase = (
+  transactionId: string,
+  revenue: number,
+  items: Array<{
+    item_id: string;
+    item_name: string;
+    price: number;
+    quantity: number;
+  }>,
+  paymentMethod?: string
+) => {
+  pushEvent({
+    event: 'purchase',
+    ecommerce: {
+      transaction_id: transactionId,
+      currency: 'USD',
+      value: revenue,
+      items: items
+    },
+    payment_method: paymentMethod,
+    page_path: window.location.pathname
+  });
+};

@@ -13,10 +13,15 @@ import Contact from "./pages/Contact";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import ElectronicsHome from "./pages/ElectronicsHome";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
 import PersistentAIWidget from "./components/PersistentAIWidget";
+// E-commerce Context
+import { CartProvider } from "./context/CartContext";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +40,9 @@ const AppRoutes = () => {
         <Route path="/electronics" element={<ElectronicsHome />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/product/:productId" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order-success" element={<OrderSuccess />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -52,7 +60,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AppRoutes />
+        <CartProvider>
+          <AppRoutes />
+        </CartProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

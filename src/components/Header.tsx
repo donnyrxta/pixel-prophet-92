@@ -8,6 +8,7 @@ import { Menu, X, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CONTACT_INFO, BUSINESS_INFO } from '@/lib/constants';
 import QuotationCalculator from './QuotationCalculator';
+import { CartWidget } from './shop/CartWidget';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -136,6 +137,7 @@ export const Header = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
+              <CartWidget />
               <Button
                 onClick={() => setShowCalculator(true)}
                 className="bg-[#25D366] hover:bg-[#128C7E] text-white gap-2"
@@ -245,7 +247,7 @@ export const Header = () => {
                 setShowCalculator(true);
                 setIsMenuOpen(false);
               }}
-              className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white gap-2"
+              className="w-full btn-brand text-white gap-2"
             >
               <MessageCircle className="w-4 h-4" />
               Get Instant Quote
