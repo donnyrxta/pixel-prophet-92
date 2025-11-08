@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
+import ElectronicsHome from "./pages/ElectronicsHome";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
@@ -31,6 +32,7 @@ const AppRoutes = () => {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/electronics" element={<ElectronicsHome />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/product/:productId" element={<ProductDetail />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

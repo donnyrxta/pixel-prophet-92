@@ -57,7 +57,7 @@ export const Header = () => {
         { name: 'Payment Services', path: '/services/payment-services' },
       ]
     },
-    { name: 'Shop', path: '/shop' },
+    { name: 'Electronics', path: '/electronics' },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
