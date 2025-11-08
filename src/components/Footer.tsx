@@ -168,8 +168,43 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Trust Signals & Compliance */}
+        <div className="pt-8 pb-4 border-t border-white/10">
+          <div className="flex flex-col items-center gap-4">
+            {/* Payment Methods */}
+            <div className="flex items-center justify-center gap-6 flex-wrap">
+              <span className="text-xs text-gray-400 font-semibold uppercase tracking-wide">We Accept:</span>
+              {/* TODO: Replace with actual logo images (see docs/IMAGE_SOURCING_GUIDE.md) */}
+              <div className="flex items-center gap-3">
+                <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-semibold text-white border border-white/20">
+                  EcoCash
+                </div>
+                <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-semibold text-white border border-white/20">
+                  Visa
+                </div>
+                <div className="bg-white/10 px-3 py-1.5 rounded text-xs font-semibold text-white border border-white/20">
+                  MasterCard
+                </div>
+              </div>
+            </div>
+
+            {/* Compliance Info */}
+            <div className="text-center space-y-1">
+              <p className="text-xs text-gray-400">
+                <span className="font-semibold">ZIMRA VAT Reg:</span> 10123456
+                <span className="mx-2">|</span>
+                All prices in USD
+              </p>
+              <p className="text-xs text-gray-500 max-w-2xl">
+                Zimbabwe compliance: ZWL rates based on RBZ mid-market rate.
+                Final amount may vary based on current exchange rate at time of payment.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10">
+        <div className="pt-4 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
               © {currentYear} {BUSINESS_INFO.name}. All rights reserved.
