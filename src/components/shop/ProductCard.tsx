@@ -63,6 +63,7 @@ export function ProductCard({ product, layout = 'grid', showQuickAdd = true }: P
           <img
             src={product.image}
             alt={product.name}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             onError={(e) => {
               (e.target as HTMLImageElement).src = '/images/hero/charlesdeluvio-Lks7vei-eAg-unsplash.jpg';
@@ -158,6 +159,7 @@ export function ProductCard({ product, layout = 'grid', showQuickAdd = true }: P
         <img
           src={product.image}
           alt={product.name}
+          loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/hero/charlesdeluvio-Lks7vei-eAg-unsplash.jpg';

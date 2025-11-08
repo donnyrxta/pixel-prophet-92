@@ -149,6 +149,7 @@ const ProductDetail = () => {
                         <img
                           src={img}
                           alt={`${product.name} view ${idx + 1}`}
+                          loading="lazy"
                           className="w-full h-full object-cover"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = '/images/hero/charlesdeluvio-Lks7vei-eAg-unsplash.jpg';
