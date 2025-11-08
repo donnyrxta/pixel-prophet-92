@@ -2,12 +2,13 @@
  * Services Page - Main hub for all service categories
  * Conversion-optimized with customer segments and value propositions
  */
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Printer, 
-  Palette, 
-  TrendingUp, 
-  SignpostBig, 
+import {
+  Printer,
+  Palette,
+  TrendingUp,
+  SignpostBig,
   CreditCard,
   ArrowRight,
   CheckCircle2,
@@ -20,6 +21,8 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ClientLogos from '@/components/ClientLogos';
 import SEOHead from '@/components/SEOHead';
+import QuotationCalculator from '@/components/QuotationCalculator';
+import { trackCTAClick } from '@/lib/gtm';
 
 // Service categories structured for conversion and SEO
 const serviceCategories = [
@@ -55,7 +58,7 @@ const serviceCategories = [
     ],
     services: ['Logo Design', 'Brand Identity', 'Packaging Design', 'Marketing Materials'],
     ctaText: 'Explore Branding',
-    color: 'from-purple-500 to-pink-500'
+    color: 'from-primary to-blue-600'
   },
   {
     id: 'digital-marketing',
@@ -72,7 +75,7 @@ const serviceCategories = [
     ],
     services: ['Social Media', 'SEO', 'Email Campaigns', 'Content Strategy'],
     ctaText: 'Start Marketing',
-    color: 'from-green-500 to-emerald-500'
+    color: 'from-primary to-blue-600'
   },
   {
     id: 'signage',
@@ -89,7 +92,7 @@ const serviceCategories = [
     ],
     services: ['Shop Signs', 'Vehicle Wraps', 'Banners', 'Display Stands', 'Window Graphics'],
     ctaText: 'View Signage',
-    color: 'from-orange-500 to-red-500'
+    color: 'from-primary to-blue-600'
   },
   {
     id: 'payment-services',
@@ -106,11 +109,13 @@ const serviceCategories = [
     ],
     services: ['EcoCash', 'Mobile Money', 'Bank Transfers', 'Payment Plans'],
     ctaText: 'Learn About Payments',
-    color: 'from-indigo-500 to-blue-500'
+    color: 'from-primary to-blue-600'
   }
 ];
 
 const Services = () => {
+  const [showCalculator, setShowCalculator] = useState(false);
+
   return (
     <>
       <SEOHead 
@@ -143,14 +148,19 @@ const Services = () => {
             grow and succeed in Zimbabwe's competitive market.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 animate-slide-up" 
+          <div className="flex flex-wrap justify-center gap-4 animate-slide-up"
                style={{ animationDelay: '0.2s' }}>
-            <a href={`https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote`}>
-              <Button size="lg" className="gap-2">
-                Get Free Quote
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </a>
+            <Button
+              size="lg"
+              className="gap-2"
+              onClick={() => {
+                trackCTAClick('Get Free Quote', 'services_hero', '/services');
+                setShowCalculator(true);
+              }}
+            >
+              Get Free Quote
+              <ArrowRight className="w-4 h-4" />
+            </Button>
             <Link to="/contact">
               <Button size="lg" variant="outline">
                 Schedule Consultation
@@ -203,7 +213,7 @@ const Services = () => {
                   <div className="space-y-2">
                     {category.benefits.slice(0, 3).map((benefit, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{benefit}</span>
                       </div>
                     ))}
@@ -290,12 +300,18 @@ const Services = () => {
             Get a free quote in minutes. No obligation, no hidden costs.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
-              <Button size="lg" variant="secondary" className="gap-2">
-                WhatsApp Us Now
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </a>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="gap-2"
+              onClick={() => {
+                trackCTAClick('WhatsApp Us Now', 'services_cta', '/services');
+                setShowCalculator(true);
+              }}
+            >
+              WhatsApp Us Now
+              <ArrowRight className="w-4 h-4" />
+            </Button>
             <a href="tel:+263714570414">
               <Button size="lg" variant="outline" className="border-white text-white 
                                                               hover:bg-white hover:text-primary">
@@ -308,6 +324,9 @@ const Services = () => {
 
       <Footer />
     </div>
+
+    {/* Quotation Calculator Modal */}
+    {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </>
   );
 };
