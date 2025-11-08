@@ -90,6 +90,64 @@ const ProductDetail = () => {
   // Get product images or use default
   const productImages = product.images || [product.image];
 
+  // Structured Data - Product Schema
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "image": productImages,
+    "sku": product.sku,
+    "brand": {
+      "@type": "Brand",
+      "name": "SohoConnect"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `https://sohoconnect.co.zw/shop/product/${product.id}`,
+      "priceCurrency": "USD",
+      "price": product.price,
+      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+      "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "SohoConnect Electronics"
+      }
+    },
+    "aggregateRating": product.rating ? {
+      "@type": "AggregateRating",
+      "ratingValue": product.rating,
+      "reviewCount": product.reviewCount || 0
+    } : undefined,
+    "category": product.category
+  };
+
+  // Structured Data - BreadcrumbList Schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://sohoconnect.co.zw"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shop",
+        "item": "https://sohoconnect.co.zw/shop"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": product.name,
+        "item": `https://sohoconnect.co.zw/shop/product/${product.id}`
+      }
+    ]
+  };
+
   return (
     <>
       <SEOHead
@@ -97,6 +155,18 @@ const ProductDetail = () => {
         description={product.seoDescription || product.description}
         keywords={product.seoKeywords?.join(', ') || `${product.name}, ${product.category}, buy in harare`}
         canonical={`https://sohoconnect.co.zw/shop/product/${product.id}`}
+      />
+
+      {/* Structured Data - Product */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+
+      {/* Structured Data - Breadcrumbs */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
       <div className="min-h-screen flex flex-col bg-background">

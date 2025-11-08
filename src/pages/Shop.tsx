@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { ProductGrid } from '@/components/shop/ProductGrid';
 import { PRODUCTS } from '@/lib/shop/products';
 import { trackPageView } from '@/lib/gtm';
+import { CONTACT_INFO } from '@/lib/constants';
 
 const Shop = () => {
   const navigate = useNavigate();
@@ -15,6 +16,55 @@ const Shop = () => {
   useEffect(() => {
     trackPageView('Electronics Shop', '/shop');
   }, []);
+
+  // Structured Data - ElectronicsStore Schema
+  const storeSchema = {
+    "@context": "https://schema.org",
+    "@type": "ElectronicsStore",
+    "name": "SohoConnect Electronics Division",
+    "description": "Premium smartphones, professional CCTV systems, tech accessories and business consumables in Harare, Zimbabwe",
+    "url": "https://sohoconnect.co.zw/shop",
+    "telephone": CONTACT_INFO.phone,
+    "email": CONTACT_INFO.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "7 Luck Street, Avondale",
+      "addressLocality": "Harare",
+      "addressRegion": "Harare Province",
+      "postalCode": "",
+      "addressCountry": "ZW"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-17.8216",
+      "longitude": "31.0492"
+    },
+    "priceRange": "$$",
+    "paymentAccepted": ["EcoCash", "Visa", "MasterCard", "Bank Transfer"],
+    "currenciesAccepted": "USD",
+    "openingHours": "Mo-Fr 08:00-17:00, Sa 09:00-13:00",
+    "image": "https://sohoconnect.co.zw/images/brand/logo-color-icon.png",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Electronics Products",
+      "itemListElement": PRODUCTS.map(product => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": product.name,
+          "description": product.description,
+          "sku": product.sku,
+          "image": product.image,
+          "offers": {
+            "@type": "Offer",
+            "price": product.price,
+            "priceCurrency": "USD",
+            "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+          }
+        }
+      }))
+    }
+  };
 
   return (
     <>
@@ -24,7 +74,13 @@ const Shop = () => {
         keywords="electronics harare, smartphones zimbabwe, cctv installation, tech accessories, business electronics, soho connect shop"
         canonical="https://sohoconnect.co.zw/shop"
       />
-      
+
+      {/* Structured Data - ElectronicsStore */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(storeSchema) }}
+      />
+
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
 
