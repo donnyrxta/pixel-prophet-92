@@ -1,0 +1,32 @@
+{
+  "name": "SohoConnect - Premium Printing & Electronics",
+  "short_name": "SohoConnect",
+  "description": "Premium printing, branding, and electronics in Harare, Zimbabwe",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/images/brand/logo-color-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/brand/logo-color-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#4169e1",
+  "background_color": "#ffffff",
+  "categories": ["business", "shopping", "productivity"]
+}
