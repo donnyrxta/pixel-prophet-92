@@ -17,6 +17,9 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import HararePage from "./pages/locations/Harare";
+import BulawayoPage from "./pages/locations/Bulawayo";
+import GweruPage from "./pages/locations/Gweru";
+import MutarePage from "./pages/locations/Mutare";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
@@ -45,6 +48,9 @@ const AppRoutes = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/locations/harare" element={<HararePage />} />
+        <Route path="/locations/bulawayo" element={<BulawayoPage />} />
+        <Route path="/locations/gweru" element={<GweruPage />} />
+        <Route path="/locations/mutare" element={<MutarePage />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
