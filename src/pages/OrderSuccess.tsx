@@ -148,7 +148,7 @@ export default function OrderSuccess() {
                 <div>
                   <p className="text-muted-foreground mb-1">WhatsApp:</p>
                   <a
-                    href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Hi,%20I%20have%20a%20question%20about%20order%20${orderNumber}`}
+                    href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi,%20I%20have%20a%20question%20about%20order%20${orderNumber}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-semibold text-[#4169e1] hover:underline"
