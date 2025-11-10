@@ -26,6 +26,9 @@ import UnifiedContactWidget from "./components/UnifiedContactWidget";
 import PersistentAIWidget from "./components/PersistentAIWidget";
 // E-commerce Context
 import { CartProvider } from "./context/CartContext";
+import { QuoteCalculatorProvider } from "./context/QuoteCalculatorContext";
+import { AdPlannerProvider } from "./context/AdPlannerContext";
+import AdPlannerPage from "./pages/AdPlanner";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +54,7 @@ const AppRoutes = () => {
         <Route path="/locations/bulawayo" element={<BulawayoPage />} />
         <Route path="/locations/gweru" element={<GweruPage />} />
         <Route path="/locations/mutare" element={<MutarePage />} />
+        <Route path="/ad-planner" element={<AdPlannerPage />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -69,7 +73,11 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <CartProvider>
-          <AppRoutes />
+          <QuoteCalculatorProvider>
+            <AdPlannerProvider>
+              <AppRoutes />
+            </AdPlannerProvider>
+          </QuoteCalculatorProvider>
         </CartProvider>
       </BrowserRouter>
     </TooltipProvider>

@@ -89,7 +89,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
   }, [activeIndex, detailsEven]);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-stone-900">
+    <section className="relative min-h-[60vh] sm:min-h-[80vh] md:min-h-screen overflow-hidden bg-stone-900">
       
       {/* Progress Indicator */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-white/10 z-50">
@@ -106,6 +106,9 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
           src={currentSlide.image}
           alt={currentSlide.title}
           className="w-full h-full object-cover transition-opacity duration-700"
+          decoding="async"
+          sizes="100vw"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
       </div>
@@ -113,7 +116,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
       {/* Content - Even */}
       <div
         ref={detailsEvenRef}
-        className={`absolute top-1/4 left-16 max-w-2xl z-20 transition-opacity duration-500 ${
+        className={`absolute top-1/4 left-4 sm:left-8 md:left-16 max-w-2xl z-20 transition-opacity duration-500 ${
           detailsEven ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -126,10 +129,10 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
           </div>
         </div>
 
-        <h1 className="text-7xl font-bold text-white mb-2 tracking-tight leading-none">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 tracking-tight leading-none">
           {currentSlide.title}
         </h1>
-        <h2 className="text-7xl font-bold text-white mb-6 tracking-tight leading-none">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-none">
           {currentSlide.subtitle}
         </h2>
 
@@ -150,7 +153,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
       {/* Content - Odd */}
       <div
         ref={detailsOddRef}
-        className={`absolute top-1/4 left-16 max-w-2xl z-20 transition-opacity duration-500 ${
+        className={`absolute top-1/4 left-4 sm:left-8 md:left-16 max-w-2xl z-20 transition-opacity duration-500 ${
           !detailsEven ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -163,10 +166,10 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
           </div>
         </div>
 
-        <h1 className="text-7xl font-bold text-white mb-2 tracking-tight leading-none">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 tracking-tight leading-none">
           {currentSlide.title}
         </h1>
-        <h2 className="text-7xl font-bold text-white mb-6 tracking-tight leading-none">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-none">
           {currentSlide.subtitle}
         </h2>
 
@@ -204,7 +207,7 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
         </button>
 
         {/* Progress Bar */}
-        <div className="w-96 h-12 flex items-center">
+        <div className="w-44 sm:w-72 md:w-96 h-12 flex items-center">
           <div className="w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
             <div
               className="h-full bg-primary transition-all duration-300"

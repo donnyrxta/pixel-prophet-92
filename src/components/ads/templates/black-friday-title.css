@@ -1,0 +1,59 @@
+/* Simplified template styles inspired by provided Black Friday CSS */
+.bf-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.bf-sale-ribbon {
+  position: absolute;
+  background: var(--bf-ribbon-bg, yellow);
+  color: var(--bf-ribbon-color, #000);
+  font-weight: 800;
+  letter-spacing: 0.4em;
+  padding: 0.4rem 0;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  transform-origin: 0 50%;
+  display: flex;
+  gap: 2ch;
+}
+
+.bf-sale-ribbon.r1 { transform: rotate(-28deg); top: 14rem; left: -5rem; }
+.bf-sale-ribbon.r2 { transform: rotate(-8deg);  top: 7rem;  left: -16rem; }
+
+.bf-title-wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: end;
+  padding: 1rem;
+}
+
+.bf-title {
+  font-family: var(--bf-font, 'Helvetica, Arial, sans-serif');
+  color: var(--bf-title-color, #111);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.bf-title .line1 { font-size: clamp(24px, 6vw, 56px); font-weight: 800; }
+.bf-title .line2 { font-size: clamp(48px, 10vw, 100px); font-weight: 900; color: var(--bf-accent, #f84342); }
+.bf-title .line3 { font-size: clamp(24px, 6vw, 56px); font-weight: 800; }
+.bf-title .fineprint { font-size: 12px; opacity: .8; margin-top: .5rem; }
+
+.bf-cta {
+  margin-top: 1rem;
+  border: 2px solid var(--bf-accent, #f84342);
+  color: var(--bf-accent, #f84342);
+  background: #fff;
+  padding: .75rem 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .bf-sale-ribbon { letter-spacing: 0.2em; }
+}
+

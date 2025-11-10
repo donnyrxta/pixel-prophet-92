@@ -3,11 +3,11 @@
  * Optimized for conversion with social proof and clear CTAs
  */
 import { useParams, Link } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  CheckCircle2, 
-  Clock, 
-  DollarSign, 
+import {
+  ArrowLeft,
+  CheckCircle2,
+  Clock,
+  DollarSign,
   Star,
   MessageCircle,
   Phone
@@ -18,6 +18,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import SEOHead from '@/components/SEOHead';
+import { useQuoteCalculator } from '@/context/QuoteCalculatorContext';
+import { trackWhatsAppClick } from '@/lib/gtm';
+import { CONTACT_INFO } from '@/lib/constants';
 
 // Service detail data structure
 const serviceDetails: Record<string, any> = {
@@ -356,6 +359,7 @@ const serviceDetails: Record<string, any> = {
 const ServicesDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const service = slug ? serviceDetails[slug] : null;
+  const { openCalculator } = useQuoteCalculator();
 
   if (!service) {
     return (
@@ -406,12 +410,25 @@ const ServicesDetail = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
-              <Button size="lg" className="bg-[#25D366] hover:bg-[#128C7E] gap-2">
-                <MessageCircle className="w-5 h-5" />
-                Get Free Quote
-              </Button>
-            </a>
+            <Button
+              size="lg"
+              className="bg-[#25D366] hover:bg-[#128C7E] gap-2"
+              onClick={() => {
+                trackWhatsAppClick('service_detail_hero', `/services/${slug}`);
+                openCalculator({
+                  trigger: 'whatsapp_interest',
+                  onComplete: (formData) => {
+                    const message = encodeURIComponent(
+                      `Hi! I just requested a quote for ${service.title}. Services: ${formData.services.join(', ')}`
+                    );
+                    window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
+                  }
+                });
+              }}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get Free Quote
+            </Button>
             <a href="tel:+263714570414">
               <Button size="lg" variant="secondary" className="gap-2">
                 <Phone className="w-5 h-5" />
@@ -487,9 +504,23 @@ const ServicesDetail = () => {
                     </div>
                   </div>
 
-                  <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
-                    <Button className="w-full">Get Quote for {item.name}</Button>
-                  </a>
+                  <Button
+                    className="w-full"
+                    onClick={() => {
+                      trackWhatsAppClick('service_detail_card', `/services/${slug}`);
+                      openCalculator({
+                        trigger: 'whatsapp_interest',
+                        onComplete: (formData) => {
+                          const message = encodeURIComponent(
+                            `Hi! I just requested a quote for ${item.name} (${service.title}). Services: ${formData.services.join(', ')}`
+                          );
+                          window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
+                        }
+                      });
+                    }}
+                  >
+                    Get Quote for {item.name}
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -546,14 +577,28 @@ const ServicesDetail = () => {
             Get your free quote now. No obligation, fast response guaranteed.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
-              <Button size="lg" variant="secondary" className="gap-2">
-                <MessageCircle className="w-5 h-5" />
-                WhatsApp Us
-              </Button>
-            </a>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="gap-2"
+              onClick={() => {
+                trackWhatsAppClick('service_detail_final_cta', `/services/${slug}`);
+                openCalculator({
+                  trigger: 'whatsapp_interest',
+                  onComplete: (formData) => {
+                    const message = encodeURIComponent(
+                      `Hi! I just requested a quote for ${service.title}. Services: ${formData.services.join(', ')}`
+                    );
+                    window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
+                  }
+                });
+              }}
+            >
+              <MessageCircle className="w-5 h-5" />
+              WhatsApp Us
+            </Button>
             <a href="tel:+263714570414">
-              <Button size="lg" variant="outline" className="border-white text-white 
+              <Button size="lg" variant="outline" className="border-white text-white
                                                               hover:bg-white hover:text-primary gap-2">
                 <Phone className="w-5 h-5" />
                 Call +263 71 457 0414

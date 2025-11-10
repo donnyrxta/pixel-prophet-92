@@ -1,0 +1,25 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "dist",
+      "numberOfRuns": 2,
+      "url": [
+        "/",
+        "/services",
+        "/contact"
+      ]
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", {"minScore": 0.9}],
+        "cumulative-layout-shift": ["error", {"maxValue": 0.1}],
+        "largest-contentful-paint": ["error", {"maxValue": 3000}],
+        "total-blocking-time": ["error", {"maxValue": 300}],
+        "first-contentful-paint": ["warn", {"maxValue": 2000}]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

@@ -11,10 +11,12 @@ import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { CONTACT_INFO } from '@/lib/constants';
-import { trackPageView } from '@/lib/gtm';
+import { trackPageView, trackWhatsAppClick } from '@/lib/gtm';
+import { useQuoteCalculator } from '@/context/QuoteCalculatorContext';
 
 const HararePage = () => {
   const navigate = useNavigate();
+  const { openCalculator } = useQuoteCalculator();
 
   useEffect(() => {
     trackPageView('Harare Location', '/locations/harare');
@@ -255,14 +257,23 @@ const HararePage = () => {
 
                       <div>
                         <p className="font-semibold text-foreground mb-1">WhatsApp</p>
-                        <a
-                          href={`https://wa.me/${CONTACT_INFO.whatsappNumber}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-[#4169e1] transition-colors"
+                        <button
+                          onClick={() => {
+                            trackWhatsAppClick('location_harare_contact', '/locations/harare');
+                            openCalculator({
+                              trigger: 'whatsapp_interest',
+                              onComplete: (formData) => {
+                                const message = encodeURIComponent(
+                                  `Hi! I'm interested in your services in Harare. I just requested a quote for: ${formData.services.join(', ')}`
+                                );
+                                window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
+                              }
+                            });
+                          }}
+                          className="text-muted-foreground hover:text-[#4169e1] transition-colors text-left"
                         >
                           {CONTACT_INFO.phone} (WhatsApp)
-                        </a>
+                        </button>
                       </div>
 
                       <div>

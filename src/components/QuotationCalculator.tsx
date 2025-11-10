@@ -9,6 +9,7 @@ interface QuotationCalculatorProps {
   onClose: () => void;
   preselectedService?: string;
   trigger?: 'button' | 'ai' | 'exit_intent' | 'time_based';
+  onComplete?: (data: Partial<LeadData>) => void;
 }
 
 interface ServiceOption {
@@ -42,7 +43,8 @@ interface LeadData {
 const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({ 
   onClose, 
   preselectedService,
-  trigger = 'button'
+  trigger = 'button',
+  onComplete
 }) => {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -154,6 +156,12 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
       trackQuoteCalculator('completed', fullLeadData);
       trackFormSubmit('quote_calculator', fullLeadData);
       setShowSuccess(true);
+      // Notify consumer with collected form data
+      try {
+        onComplete?.(formData);
+      } catch (e) {
+        console.error('onComplete handler error:', e);
+      }
       if (leadTier === 'hot') {
         setTimeout(() => {
           const message = encodeURIComponent(

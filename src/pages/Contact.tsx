@@ -14,9 +14,11 @@ import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { CONTACT_INFO, BUSINESS_INFO } from "@/lib/constants";
 import { trackFormSubmit, trackWhatsAppClick } from "@/lib/gtm";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { openCalculator } = useQuoteCalculator();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,17 +40,21 @@ const Contact = () => {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Send via WhatsApp
-    const whatsappMessage = `New Contact Form Submission:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
-    
-    // Track WhatsApp click
-    trackWhatsAppClick('contact_form', whatsappMessage);
-    
-    window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    // Open quote calculator for BANT scoring before WhatsApp
+    trackWhatsAppClick('contact_form', '/contact');
+    openCalculator({
+      trigger: 'contact_form',
+      onComplete: (quoteData) => {
+        const whatsappMessage = encodeURIComponent(
+          `Hi! I submitted a contact form and quote request.\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nServices: ${quoteData.services.join(', ')}\nMessage: ${formData.message}`
+        );
+        window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${whatsappMessage}`, '_blank');
+      }
+    });
 
     toast({
-      title: "Message Sent!",
-      description: "We'll respond within 1 hour. You've been redirected to WhatsApp.",
+      title: "Let's Get Your Quote!",
+      description: "Please complete the quote calculator to help us serve you better.",
     });
 
     setFormData({ name: "", email: "", phone: "", message: "" });
@@ -176,18 +182,27 @@ const Contact = () => {
               <div className="bg-gradient-to-br from-primary to-primary/80 text-white rounded-2xl p-8 shadow-xl">
                 <h3 className="text-2xl font-bold mb-6">Contact Us Directly</h3>
                 <div className="space-y-4">
-                  <a
-                    href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors"
+                  <button
+                    onClick={() => {
+                      trackWhatsAppClick('contact_quick_card', '/contact');
+                      openCalculator({
+                        trigger: 'whatsapp_interest',
+                        onComplete: (formData) => {
+                          const message = encodeURIComponent(
+                            `Hi! I just submitted a quote request. Services: ${formData.services.join(', ')}`
+                          );
+                          window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
+                        }
+                      });
+                    }}
+                    className="flex items-start gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors w-full text-left cursor-pointer"
                   >
                     <MessageCircle className="w-6 h-6 flex-shrink-0 mt-1" />
                     <div>
                       <div className="font-semibold mb-1">WhatsApp (Fastest)</div>
                       <div className="text-sm opacity-90">{CONTACT_INFO.phone}</div>
                     </div>
-                  </a>
+                  </button>
 
                   <a
                     href={`tel:${CONTACT_INFO.phone}`}
