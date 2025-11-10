@@ -218,89 +218,90 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in overflow-y-auto">
-      <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full my-8 animate-scale-in">
+    <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm animate-fade-in overflow-y-auto">
+      <div className="min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-6">
+        <div className="bg-white rounded-lg shadow-2xl w-full max-w-4xl my-4 sm:my-8 animate-scale-in max-h-[95vh] overflow-y-auto">{/* Added max-height and overflow for long content */}
         
-        {/* Header */}
-        <div className="bg-stone-900 text-white p-6 md:p-8 rounded-t-lg">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-2">Request Your Quote</h2>
-              <p className="text-stone-300 text-sm">Transparent pricing · Same-day response · No hidden fees</p>
-            </div>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-white/10 rounded-full transition"
-              aria-label="Close"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-
-          {/* Progress Bar */}
-          <div className="flex items-center justify-between">
-            {[1, 2, 3, 4].map((num) => (
-              <div key={num} className="flex-1 flex items-center">
-                <div className={`w-full flex items-center ${num < 4 ? 'mr-2' : ''}`}>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-medium text-sm ${
-                    step >= num ? 'bg-white text-stone-900' : 'bg-white/20 text-white'
-                  }`}>
-                    {num}
-                  </div>
-                  {num < 4 && (
-                    <div className={`flex-1 h-px mx-2 ${
-                      step > num ? 'bg-white' : 'bg-white/20'
-                    }`} />
-                  )}
-                </div>
+          {/* Header */}
+          <div className="sticky top-0 bg-stone-900 text-white p-4 sm:p-6 md:p-8 rounded-t-lg z-10">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <div className="flex-1 pr-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-light tracking-tight mb-1 sm:mb-2">Request Your Quote</h2>
+                <p className="text-stone-300 text-xs sm:text-sm">Transparent pricing · Same-day response · No hidden fees</p>
               </div>
-            ))}
-          </div>
-        </div>
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-white/10 rounded-full transition flex-shrink-0"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            </div>
 
-        {/* Form Content */}
-        <div className="p-6 md:p-8">
+            {/* Progress Bar */}
+            <div className="flex items-center justify-between">
+              {[1, 2, 3, 4].map((num) => (
+                <div key={num} className="flex-1 flex items-center">
+                  <div className={`w-full flex items-center ${num < 4 ? 'mr-1 sm:mr-2' : ''}`}>
+                    <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-medium text-xs sm:text-sm ${
+                      step >= num ? 'bg-white text-stone-900' : 'bg-white/20 text-white'
+                    }`}>
+                      {num}
+                    </div>
+                    {num < 4 && (
+                      <div className={`flex-1 h-px mx-1 sm:mx-2 ${
+                        step > num ? 'bg-white' : 'bg-white/20'
+                      }`} />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Form Content */}
+          <div className="p-4 sm:p-6 md:p-8 overflow-y-auto">{/* Added overflow for scrollable content */}
           
           {/* STEP 1: Service Selection */}
           {step === 1 && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-light tracking-tight text-stone-900 mb-2">
+                <h3 className="text-xl sm:text-2xl font-light tracking-tight text-stone-900 mb-2">
                   What services do you need?
                 </h3>
-                <p className="text-stone-600">Select all that apply. Package discounts available.</p>
+                <p className="text-sm sm:text-base text-stone-600">Select all that apply. Package discounts available.</p>
               </div>
 
               {['Branding', 'Print', 'Signage', 'Digital'].map(category => {
                 const categoryServices = services.filter(s => s.category === category);
                 return (
                   <div key={category}>
-                    <h4 className="font-medium text-stone-900 mb-3 text-sm tracking-wide uppercase">
+                    <h4 className="font-medium text-stone-900 mb-2 sm:mb-3 text-xs sm:text-sm tracking-wide uppercase">
                       {category}
                     </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                       {categoryServices.map(service => (
                         <button
                           key={service.id}
                           onClick={() => toggleService(service.id)}
-                          className={`p-4 border rounded-lg text-left transition-all ${
+                          className={`p-3 sm:p-4 border rounded-lg text-left transition-all min-h-[72px] ${
                             selectedServices.includes(service.id)
                               ? 'border-stone-900 bg-stone-50'
                               : 'border-stone-200 hover:border-stone-300'
                           }`}
                         >
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <div className="font-medium text-stone-900 mb-1">{service.name}</div>
-                              <div className="text-sm text-stone-600 mb-2">{service.description}</div>
-                              <div className="flex items-center gap-3 text-xs text-stone-500">
-                                <span>${service.basePrice} - ${service.maxPrice}</span>
-                                <span>·</span>
-                                <span>{service.turnaround}</span>
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-sm sm:text-base text-stone-900 mb-1 truncate">{service.name}</div>
+                              <div className="text-xs sm:text-sm text-stone-600 mb-1 sm:mb-2 line-clamp-2">{service.description}</div>
+                              <div className="flex flex-wrap items-center gap-1 sm:gap-3 text-[10px] sm:text-xs text-stone-500">
+                                <span className="whitespace-nowrap">${service.basePrice} - ${service.maxPrice}</span>
+                                <span className="hidden sm:inline">·</span>
+                                <span className="whitespace-nowrap">{service.turnaround}</span>
                               </div>
                             </div>
                             {selectedServices.includes(service.id) && (
-                              <Check className="w-5 h-5 text-stone-900 flex-shrink-0 ml-2" />
+                              <Check className="w-4 h-4 sm:w-5 sm:h-5 text-stone-900 flex-shrink-0" />
                             )}
                           </div>
                         </button>
@@ -311,19 +312,19 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
               })}
 
               {estimatedQuote > 0 && (
-                <div className="bg-stone-50 border border-stone-200 rounded-lg p-6">
-                  <div className="flex items-center justify-between">
+                <div className="bg-stone-50 border border-stone-200 rounded-lg p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                      <div className="text-sm text-stone-600 mb-1">Estimated Investment</div>
-                      <div className="text-3xl font-light text-stone-900">${estimatedQuote.toLocaleString()}</div>
+                      <div className="text-xs sm:text-sm text-stone-600 mb-1">Estimated Investment</div>
+                      <div className="text-2xl sm:text-3xl font-light text-stone-900">${estimatedQuote.toLocaleString()}</div>
                       {selectedServices.length >= 2 && (
-                        <div className="text-xs text-primary mt-1 font-medium">Package discount applied</div>
+                        <div className="text-[10px] sm:text-xs text-primary mt-1 font-medium">Package discount applied</div>
                       )}
                     </div>
-                    <div className="text-right">
-                      <div className="text-sm text-stone-600 mb-1">Potential ROI</div>
-                      <div className="text-2xl font-light text-primary">${roiEstimate.toLocaleString()}</div>
-                      <div className="text-xs text-stone-500">3-5x average return</div>
+                    <div className="text-left sm:text-right">
+                      <div className="text-xs sm:text-sm text-stone-600 mb-1">Potential ROI</div>
+                      <div className="text-xl sm:text-2xl font-light text-primary">${roiEstimate.toLocaleString()}</div>
+                      <div className="text-[10px] sm:text-xs text-stone-500">3-5x average return</div>
                     </div>
                   </div>
                 </div>
@@ -332,10 +333,10 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
               <button
                 onClick={() => setStep(2)}
                 disabled={selectedServices.length === 0}
-                className="w-full bg-stone-900 text-white py-4 rounded-lg font-medium hover:bg-stone-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-stone-900 text-white py-3 sm:py-4 rounded-lg font-medium hover:bg-stone-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] text-sm sm:text-base"
               >
                 Continue to Budget
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           )}
@@ -344,28 +345,28 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
           {step === 2 && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-light tracking-tight text-stone-900 mb-2">
+                <h3 className="text-xl sm:text-2xl font-light tracking-tight text-stone-900 mb-2">
                   Budget and Timeline
                 </h3>
-                <p className="text-stone-600">Help us provide the most accurate quote</p>
+                <p className="text-sm sm:text-base text-stone-600">Help us provide the most accurate quote</p>
               </div>
 
               <div>
-                <label className="block font-medium text-stone-900 mb-3">Budget Range</label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2 sm:mb-3">Budget Range</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   {budgetRanges.map(range => (
                     <button
                       key={range.value}
                       onClick={() => setBudget(range.value)}
-                      className={`p-4 border rounded-lg text-left transition-all ${
+                      className={`p-3 sm:p-4 border rounded-lg text-left transition-all min-h-[52px] ${
                         budget === range.value
                           ? 'border-stone-900 bg-stone-50'
                           : 'border-stone-200 hover:border-stone-300'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="font-medium text-stone-900">{range.label}</div>
-                        {budget === range.value && <Check className="w-5 h-5 text-stone-900" />}
+                        <div className="font-medium text-sm sm:text-base text-stone-900">{range.label}</div>
+                        {budget === range.value && <Check className="w-4 h-4 sm:w-5 sm:h-5 text-stone-900" />}
                       </div>
                     </button>
                   ))}
@@ -373,13 +374,13 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
               </div>
 
               <div>
-                <label className="block font-medium text-stone-900 mb-3">Timeline</label>
-                <div className="space-y-3">
+                <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2 sm:mb-3">Timeline</label>
+                <div className="space-y-2 sm:space-y-3">
                   {timelines.map(t => (
                     <button
                       key={t.value}
                       onClick={() => setTimeline(t.value)}
-                      className={`w-full p-4 border rounded-lg text-left transition-all ${
+                      className={`w-full p-3 sm:p-4 border rounded-lg text-left transition-all min-h-[60px] ${
                         timeline === t.value
                           ? 'border-stone-900 bg-stone-50'
                           : 'border-stone-200 hover:border-stone-300'
@@ -387,10 +388,10 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <div className="font-medium text-stone-900">{t.label}</div>
-                          <div className="text-sm text-stone-600">{t.sublabel}</div>
+                          <div className="font-medium text-sm sm:text-base text-stone-900">{t.label}</div>
+                          <div className="text-xs sm:text-sm text-stone-600">{t.sublabel}</div>
                         </div>
-                        {timeline === t.value && <Check className="w-5 h-5 text-stone-900" />}
+                        {timeline === t.value && <Check className="w-4 h-4 sm:w-5 sm:h-5 text-stone-900" />}
                       </div>
                     </button>
                   ))}
@@ -398,41 +399,41 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
               </div>
 
               <div>
-                <label className="block font-medium text-stone-900 mb-3">Your Role</label>
-                <div className="space-y-3">
+                <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2 sm:mb-3">Your Role</label>
+                <div className="space-y-2 sm:space-y-3">
                   {authorityLevels.map(level => (
                     <button
                       key={level.value}
                       onClick={() => setAuthority(level.value)}
-                      className={`w-full p-4 border rounded-lg text-left transition-all ${
+                      className={`w-full p-3 sm:p-4 border rounded-lg text-left transition-all min-h-[52px] ${
                         authority === level.value
                           ? 'border-stone-900 bg-stone-50'
                           : 'border-stone-200 hover:border-stone-300'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="font-medium text-stone-900">{level.label}</div>
-                        {authority === level.value && <Check className="w-5 h-5 text-stone-900" />}
+                        <div className="font-medium text-sm sm:text-base text-stone-900">{level.label}</div>
+                        {authority === level.value && <Check className="w-4 h-4 sm:w-5 sm:h-5 text-stone-900" />}
                       </div>
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <button
                   onClick={() => setStep(1)}
-                  className="flex-1 bg-stone-100 text-stone-700 py-3 rounded-lg font-medium hover:bg-stone-200 transition"
+                  className="flex-1 bg-stone-100 text-stone-700 py-3 rounded-lg font-medium hover:bg-stone-200 transition min-h-[48px] text-sm sm:text-base"
                 >
                   Back
                 </button>
                 <button
                   onClick={() => setStep(3)}
                   disabled={!budget || !timeline || !authority}
-                  className="flex-1 bg-stone-900 text-white py-3 rounded-lg font-medium hover:bg-stone-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 bg-stone-900 text-white py-3 rounded-lg font-medium hover:bg-stone-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] text-sm sm:text-base"
                 >
                   Continue to Contact Info
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>
@@ -442,75 +443,75 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
           {step === 3 && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-light tracking-tight text-stone-900 mb-2">
+                <h3 className="text-xl sm:text-2xl font-light tracking-tight text-stone-900 mb-2">
                   Contact Information
                 </h3>
-                <p className="text-stone-600">Where should we send your quote?</p>
+                <p className="text-sm sm:text-base text-stone-600">Where should we send your quote?</p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
-                  <label className="block font-medium text-stone-900 mb-2">Full Name *</label>
+                  <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2">Full Name *</label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="John Moyo"
-                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition min-h-[44px]"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block font-medium text-stone-900 mb-2">Email Address *</label>
+                  <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2">Email Address *</label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="john@business.co.zw"
-                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition min-h-[44px]"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block font-medium text-stone-900 mb-2">Phone / WhatsApp *</label>
+                  <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2">Phone / WhatsApp *</label>
                   <input
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+263 77 123 4567"
-                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition min-h-[44px]"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block font-medium text-stone-900 mb-2">Company / Business Name</label>
+                  <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2">Company / Business Name</label>
                   <input
                     type="text"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="Your Business Name (optional)"
-                    className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition min-h-[44px]"
                   />
                 </div>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <button
                   onClick={() => setStep(2)}
-                  className="flex-1 bg-stone-100 text-stone-700 py-3 rounded-lg font-medium hover:bg-stone-200 transition"
+                  className="flex-1 bg-stone-100 text-stone-700 py-3 rounded-lg font-medium hover:bg-stone-200 transition min-h-[48px] text-sm sm:text-base"
                 >
                   Back
                 </button>
                 <button
                   onClick={() => setStep(4)}
                   disabled={!name || !email || !phone}
-                  className="flex-1 bg-stone-900 text-white py-3 rounded-lg font-medium hover:bg-stone-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 bg-stone-900 text-white py-3 rounded-lg font-medium hover:bg-stone-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] text-sm sm:text-base"
                 >
                   Review & Submit
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
             </div>
@@ -520,10 +521,10 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
           {step === 4 && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-light tracking-tight text-stone-900 mb-2">
+                <h3 className="text-xl sm:text-2xl font-light tracking-tight text-stone-900 mb-2">
                   Review Your Request
                 </h3>
-                <p className="text-stone-600">Please confirm everything looks correct</p>
+                <p className="text-sm sm:text-base text-stone-600">Please confirm everything looks correct</p>
               </div>
 
               <div className="bg-stone-50 border border-stone-200 rounded-lg p-6">
@@ -572,32 +573,32 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
               </div>
 
               <div>
-                <label className="block font-medium text-stone-900 mb-2">Additional Details (Optional)</label>
+                <label className="block font-medium text-sm sm:text-base text-stone-900 mb-2">Additional Details (Optional)</label>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Tell us more about your project..."
-                  rows={4}
-                  className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition"
+                  rows={3}
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-stone-300 rounded-lg focus:outline-none focus:border-stone-900 transition resize-none"
                 />
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                 <button
                   onClick={() => setStep(3)}
-                  className="flex-1 bg-stone-100 text-stone-700 py-3 rounded-lg font-medium hover:bg-stone-200 transition"
+                  className="flex-1 bg-stone-100 text-stone-700 py-3 rounded-lg font-medium hover:bg-stone-200 transition min-h-[48px] text-sm sm:text-base"
                 >
                   Back
                 </button>
                 <button
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="flex-1 bg-primary text-white py-4 rounded-lg font-medium hover:bg-primary/90 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 bg-primary text-white py-3 sm:py-4 rounded-lg font-medium hover:bg-primary/90 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px] text-sm sm:text-base"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Submitting...
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span className="text-sm sm:text-base">Submitting...</span>
                     </>
                   ) : (
                     'Submit Request'
@@ -606,6 +607,7 @@ const PremiumQuotationCalculator: React.FC<PremiumQuotationCalculatorProps> = ({
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
     </div>

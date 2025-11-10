@@ -2,6 +2,7 @@
  * Service Detail Page Template - Individual service showcase
  * Optimized for conversion with social proof and clear CTAs
  */
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, 
@@ -18,6 +19,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import SEOHead from '@/components/SEOHead';
+import QuotationCalculator from '@/components/QuotationCalculator';
 
 // Service detail data structure
 const serviceDetails: Record<string, any> = {
@@ -355,6 +357,7 @@ const serviceDetails: Record<string, any> = {
 
 const ServicesDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [showCalculator, setShowCalculator] = useState(false);
   const service = slug ? serviceDetails[slug] : null;
 
   if (!service) {
@@ -406,12 +409,14 @@ const ServicesDetail = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
-              <Button size="lg" className="bg-[#25D366] hover:bg-[#128C7E] gap-2">
-                <MessageCircle className="w-5 h-5" />
-                Get Free Quote
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 gap-2"
+              onClick={() => setShowCalculator(true)}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get Free Quote
+            </Button>
             <a href="tel:+263714570414">
               <Button size="lg" variant="secondary" className="gap-2">
                 <Phone className="w-5 h-5" />
@@ -487,9 +492,12 @@ const ServicesDetail = () => {
                     </div>
                   </div>
 
-                  <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
-                    <Button className="w-full">Get Quote for {item.name}</Button>
-                  </a>
+                  <Button 
+                    className="w-full" 
+                    onClick={() => setShowCalculator(true)}
+                  >
+                    Get Quote for {item.name}
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -546,12 +554,15 @@ const ServicesDetail = () => {
             Get your free quote now. No obligation, fast response guaranteed.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="https://wa.me/263714570414?text=Hi%20Soho%20Connect,%20I'd%20like%20to%20get%20a%20quote">
-              <Button size="lg" variant="secondary" className="gap-2">
-                <MessageCircle className="w-5 h-5" />
-                WhatsApp Us
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="gap-2"
+              onClick={() => setShowCalculator(true)}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get Your Quote
+            </Button>
             <a href="tel:+263714570414">
               <Button size="lg" variant="outline" className="border-white text-white 
                                                               hover:bg-white hover:text-primary gap-2">
@@ -564,6 +575,9 @@ const ServicesDetail = () => {
       </section>
 
       <Footer />
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </div>
     </>
   );
