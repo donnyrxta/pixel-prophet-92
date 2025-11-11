@@ -114,11 +114,6 @@ const ProductDetail = () => {
         "name": "SohoConnect Electronics"
       }
     },
-    "aggregateRating": product.rating ? {
-      "@type": "AggregateRating",
-      "ratingValue": product.rating,
-      "reviewCount": product.reviewCount || 0
-    } : undefined,
     "category": product.category
   };
 

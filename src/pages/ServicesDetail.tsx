@@ -2,6 +2,7 @@
  * Service Detail Page Template - Individual service showcase
  * Optimized for conversion with social proof and clear CTAs
  */
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -358,6 +359,7 @@ const serviceDetails: Record<string, any> = {
 
 const ServicesDetail = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [showCalculator, setShowCalculator] = useState(false);
   const service = slug ? serviceDetails[slug] : null;
   const { openCalculator } = useQuoteCalculator();
 
@@ -425,6 +427,7 @@ const ServicesDetail = () => {
                   }
                 });
               }}
+
             >
               <MessageCircle className="w-5 h-5" />
               Get Free Quote
@@ -504,6 +507,7 @@ const ServicesDetail = () => {
                     </div>
                   </div>
 
+<<<<<<< HEAD
                   <Button
                     className="w-full"
                     onClick={() => {
@@ -518,6 +522,11 @@ const ServicesDetail = () => {
                         }
                       });
                     }}
+=======
+                  <Button 
+                    className="w-full" 
+                    onClick={() => setShowCalculator(true)}
+>>>>>>> 2920c897f18fe0bca68b80f2ad67da691c2cc6cc
                   >
                     Get Quote for {item.name}
                   </Button>
@@ -577,6 +586,7 @@ const ServicesDetail = () => {
             Get your free quote now. No obligation, fast response guaranteed.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
+<<<<<<< HEAD
             <Button
               size="lg"
               variant="secondary"
@@ -596,6 +606,16 @@ const ServicesDetail = () => {
             >
               <MessageCircle className="w-5 h-5" />
               WhatsApp Us
+=======
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="gap-2"
+              onClick={() => setShowCalculator(true)}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Get Your Quote
+>>>>>>> 2920c897f18fe0bca68b80f2ad67da691c2cc6cc
             </Button>
             <a href="tel:+263714570414">
               <Button size="lg" variant="outline" className="border-white text-white
@@ -609,6 +629,9 @@ const ServicesDetail = () => {
       </section>
 
       <Footer />
+
+      {/* Quotation Calculator Modal */}
+      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </div>
     </>
   );

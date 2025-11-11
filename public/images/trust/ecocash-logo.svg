@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="120" height="48">
+  <rect fill="#00923F" width="200" height="80" rx="4"/>
+  <text x="100" y="50" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">EcoCash</text>
+  <circle cx="30" cy="40" r="12" fill="#FFD700"/>
+  <path d="M30 32 L30 48 M22 40 L38 40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
