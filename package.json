@@ -9,6 +9,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "vercel-build": "vite build",
+    "deploy:vercel": "npx vercel --prod --yes",
     "analyze:clients": "node scripts/analyze-images.mjs",
     "perf:ci": "lhci autorun"
   },

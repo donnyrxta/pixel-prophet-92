@@ -19,9 +19,9 @@ export default function OrderSuccess() {
   const orderNumber = searchParams.get('order');
 
   useEffect(() => {
+    // Always track page view on entry
     trackPageView('Order Success', '/order-success');
 
-    // Track purchase in analytics (if order details available)
     if (orderNumber) {
       // TODO: Fetch actual order details from backend
       // For now, track a placeholder purchase event
@@ -31,15 +31,14 @@ export default function OrderSuccess() {
         [], // Replace with actual items
         'ecocash' // Replace with actual payment method
       );
+    } else {
+      // No order number - redirect to shop
+      navigate('/shop');
     }
-  }, [orderNumber]);
+  }, [orderNumber, navigate]);
 
   if (!orderNumber) {
-    // No order number - redirect to shop
-    useEffect(() => {
-      navigate('/shop');
-    }, [navigate]);
-
+    // Avoid rendering while redirecting
     return null;
   }
 

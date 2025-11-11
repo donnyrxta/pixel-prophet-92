@@ -7,9 +7,25 @@
  * - whatsapp_click
  */
 
+// Shared e-commerce types for GA4-compatible events
+type EcommerceItem = {
+  item_id: string;
+  item_name: string;
+  price: number;
+  quantity: number;
+  item_category?: string;
+};
+
+interface EcommercePayload {
+  currency: string;
+  value?: number;
+  items: EcommerceItem[];
+  transaction_id?: string;
+}
+
 interface DataLayerEvent {
   event: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 declare global {
@@ -38,7 +54,7 @@ const pushEvent = (event: DataLayerEvent) => {
  * @param formName - Name/type of the form (e.g., "quote", "contact", "newsletter")
  * @param formData - Optional form data to include
  */
-export const trackFormSubmit = (formName: string, formData?: Record<string, any>) => {
+export const trackFormSubmit = (formName: string, formData?: Record<string, unknown>) => {
   pushEvent({
     event: 'form_submit',
     form_name: formName,
@@ -120,7 +136,7 @@ export const trackServiceView = (serviceName: string) => {
  */
 export const trackQuoteCalculator = (
   action: 'started' | 'completed' | 'abandoned',
-  quoteDetails?: Record<string, any>
+  quoteDetails?: Record<string, unknown>
 ) => {
   pushEvent({
     event: 'quote_calculator',
@@ -138,7 +154,7 @@ export const trackQuoteCalculator = (
 export const trackMenuInteraction = (
   action: string,
   menuType: string,
-  additionalData?: Record<string, any>
+  additionalData?: Record<string, unknown>
 ) => {
   pushEvent({
     event: 'menu_interaction',
@@ -168,7 +184,7 @@ export const trackPageView = (pageTitle: string, pagePath: string) => {
  * @param eventName - Name of the custom event
  * @param eventData - Data associated with the event
  */
-export const trackCustomEvent = (eventName: string, eventData?: Record<string, any>) => {
+export const trackCustomEvent = (eventName: string, eventData?: Record<string, unknown>) => {
   pushEvent({
     event: eventName,
     ...eventData,
@@ -204,7 +220,7 @@ export const trackProductView = (
         item_category: category,
         price: price,
         quantity: 1
-      }]
+      }] as EcommerceItem[]
     },
     page_path: window.location.pathname
   });
@@ -233,7 +249,7 @@ export const trackAddToCart = (
         item_name: productName,
         price: price,
         quantity: quantity
-      }]
+      }] as EcommerceItem[]
     },
     page_path: window.location.pathname
   });
@@ -262,7 +278,7 @@ export const trackRemoveFromCart = (
         item_name: productName,
         price: price,
         quantity: quantity
-      }]
+      }] as EcommerceItem[]
     },
     page_path: window.location.pathname
   });
@@ -275,12 +291,7 @@ export const trackRemoveFromCart = (
  */
 export const trackBeginCheckout = (
   cartValue: number,
-  items: Array<{
-    item_id: string;
-    item_name: string;
-    price: number;
-    quantity: number;
-  }>
+  items: EcommerceItem[]
 ) => {
   pushEvent({
     event: 'begin_checkout',
@@ -303,12 +314,7 @@ export const trackBeginCheckout = (
 export const trackPurchase = (
   transactionId: string,
   revenue: number,
-  items: Array<{
-    item_id: string;
-    item_name: string;
-    price: number;
-    quantity: number;
-  }>,
+  items: EcommerceItem[],
   paymentMethod?: string
 ) => {
   pushEvent({
