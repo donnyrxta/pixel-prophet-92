@@ -507,26 +507,9 @@ const ServicesDetail = () => {
                     </div>
                   </div>
 
-<<<<<<< HEAD
-                  <Button
-                    className="w-full"
-                    onClick={() => {
-                      trackWhatsAppClick('service_detail_card', `/services/${slug}`);
-                      openCalculator({
-                        trigger: 'whatsapp_interest',
-                        onComplete: (formData) => {
-                          const message = encodeURIComponent(
-                            `Hi! I just requested a quote for ${item.name} (${service.title}). Services: ${formData.services.join(', ')}`
-                          );
-                          window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
-                        }
-                      });
-                    }}
-=======
                   <Button 
                     className="w-full" 
                     onClick={() => setShowCalculator(true)}
->>>>>>> 2920c897f18fe0bca68b80f2ad67da691c2cc6cc
                   >
                     Get Quote for {item.name}
                   </Button>
@@ -586,27 +569,6 @@ const ServicesDetail = () => {
             Get your free quote now. No obligation, fast response guaranteed.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-<<<<<<< HEAD
-            <Button
-              size="lg"
-              variant="secondary"
-              className="gap-2"
-              onClick={() => {
-                trackWhatsAppClick('service_detail_final_cta', `/services/${slug}`);
-                openCalculator({
-                  trigger: 'whatsapp_interest',
-                  onComplete: (formData) => {
-                    const message = encodeURIComponent(
-                      `Hi! I just requested a quote for ${service.title}. Services: ${formData.services.join(', ')}`
-                    );
-                    window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
-                  }
-                });
-              }}
-            >
-              <MessageCircle className="w-5 h-5" />
-              WhatsApp Us
-=======
             <Button 
               size="lg" 
               variant="secondary" 
@@ -615,7 +577,6 @@ const ServicesDetail = () => {
             >
               <MessageCircle className="w-5 h-5" />
               Get Your Quote
->>>>>>> 2920c897f18fe0bca68b80f2ad67da691c2cc6cc
             </Button>
             <a href="tel:+263714570414">
               <Button size="lg" variant="outline" className="border-white text-white

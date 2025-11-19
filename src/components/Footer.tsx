@@ -17,6 +17,12 @@ const Footer = () => {
       { label: 'Digital Marketing', href: '/services/digital-marketing' },
       { label: 'Signage & Displays', href: '/services/signage' },
     ],
+    shop: [
+      { label: 'Webstore', href: '/webstore' },
+      { label: 'Design Products', href: '/webstore/design' },
+      { label: 'CCTV & Security', href: '/webstore/cctv' },
+      { label: 'Corporate Wear', href: '/webstore/corporate-wear' },
+    ],
     company: [
       { label: 'About Us', href: '/about' },
       { label: 'Portfolio', href: '/portfolio' },
@@ -31,8 +37,8 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-block mb-4">
@@ -52,41 +58,41 @@ const Footer = () => {
             
             {/* Social Links */}
             <div className="flex gap-3">
-              <a 
-                href={SOCIAL_LINKS.facebook} 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.facebook}
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Follow us on Facebook"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-5 h-5" />
               </a>
-              <a 
-                href={SOCIAL_LINKS.instagram} 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Follow us on Instagram"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-5 h-5" />
               </a>
-              <a 
-                href={SOCIAL_LINKS.linkedin} 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Connect on LinkedIn"
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-5 h-5" />
               </a>
-              <a 
-                href={SOCIAL_LINKS.twitter} 
-                target="_blank" 
+              <a
+                href={SOCIAL_LINKS.twitter}
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors"
                 aria-label="Follow us on Twitter"
               >
-                <Twitter className="w-4 h-4" />
+                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -97,7 +103,24 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
-                  <Link 
+                  <Link
+                    to={link.href}
+                    className="text-gray-300 hover:text-accent transition-colors text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Shop Column */}
+          <div>
+            <h3 className="font-bold text-lg mb-4">Shop</h3>
+            <ul className="space-y-2">
+              {footerLinks.shop.map((link) => (
+                <li key={link.href}>
+                  <Link
                     to={link.href}
                     className="text-gray-300 hover:text-accent transition-colors text-sm"
                   >
@@ -174,16 +197,16 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-4 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <p className="text-sm text-gray-400">
               © {currentYear} {BUSINESS_INFO.name}. All rights reserved.
             </p>
-            <div className="flex gap-6">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               {footerLinks.legal.map((link) => (
-                <Link 
+                <Link
                   key={link.href}
                   to={link.href}
-                  className="text-sm text-gray-400 hover:text-accent transition-colors"
+                  className="text-sm text-gray-400 hover:text-accent transition-colors min-h-[44px] flex items-center justify-center"
                 >
                   {link.label}
                 </Link>

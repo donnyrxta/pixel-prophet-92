@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soho Connect Webstore Preview</title>
+  <!-- Tailwind via CDN for rapid styling in the preview only -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom font imports matching the design system */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Oswald', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img src="soho-webstore/public/logo-icon.png" alt="Soho Connect" class="h-10 w-10" />
+        <span class="font-bold text-xl text-[#4169e1] hidden sm:block">Soho Connect</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#" class="hover:text-[#4169e1]">Home</a>
+        <a href="#" class="hover:text-[#4169e1]">Store</a>
+        <a href="#" class="hover:text-[#4169e1]">Design</a>
+        <a href="#" class="hover:text-[#4169e1]">Print</a>
+        <a href="#" class="hover:text-[#4169e1]">Corporate Wear</a>
+        <a href="#" class="hover:text-[#4169e1]">CCTV</a>
+        <a href="#" class="hover:text-[#4169e1]">Marketing</a>
+      </nav>
+    </div>
+  </header>
+  <!-- Hero: mimics the first slide of the timed carousel. A large
+       background image with a glassmorphic card overlay containing
+       the tagline, headline and call‑to‑action. -->
+  <section class="relative h-[70vh] flex items-center justify-center text-white overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/6476589/pexels-photo-6476589.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative z-10 max-w-2xl mx-auto text-center backdrop-blur-lg bg-white/20 border border-white/20 rounded-3xl shadow-xl p-8">
+      <p class="text-sm uppercase tracking-widest text-white/80 mb-2">Elevate Your Brand</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Design Services</h2>
+      <p class="max-w-xl mx-auto mb-6 text-white/90 text-lg">Professional logo design, brand kits and marketing materials tailored to your business.</p>
+      <a href="#categories" class="inline-block bg-white text-[#4169e1] font-semibold px-8 py-3 rounded-full hover:bg-gray-200 transition">Explore Categories</a>
+    </div>
+  </section>
+  <!-- Categories: horizontally scrollable list. Clicking a card would
+       navigate to a dedicated landing page in the full application. -->
+  <section id="categories" class="py-16 px-6 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-6 text-[#4169e1]">Shop by Category</h2>
+    <div class="overflow-x-auto">
+      <div class="flex gap-6">
+        <!-- Design Services -->
+        <a href="#" class="relative group block w-64 h-48 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('https://images.pexels.com/photos/6476589/pexels-photo-6476589.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+            <h3 class="text-2xl font-bold text-white drop-shadow-lg">Design Services</h3>
+          </div>
+        </a>
+        <!-- Print Products -->
+        <a href="#" class="relative group block w-64 h-48 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('https://images.pexels.com/photos/5720564/pexels-photo-5720564.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+            <h3 class="text-2xl font-bold text-white drop-shadow-lg">Print Products</h3>
+          </div>
+        </a>
+        <!-- Corporate Wear -->
+        <a href="#" class="relative group block w-64 h-48 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('https://images.pexels.com/photos/6140207/pexels-photo-6140207.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+            <h3 class="text-2xl font-bold text-white drop-shadow-lg">Corporate Wear</h3>
+          </div>
+        </a>
+        <!-- CCTV & Security -->
+        <a href="#" class="relative group block w-64 h-48 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('https://images.pexels.com/photos/7784241/pexels-photo-7784241.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+            <h3 class="text-2xl font-bold text-white drop-shadow-lg">CCTV &amp; Security</h3>
+          </div>
+        </a>
+        <!-- Marketing Products -->
+        <a href="#" class="relative group block w-64 h-48 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style="background-image: url('https://images.pexels.com/photos/3952237/pexels-photo-3952237.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+            <h3 class="text-2xl font-bold text-white drop-shadow-lg">Marketing Products</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Trending Products: horizontally scrollable product cards. Each card
+       mirrors the ProductCard design from the webstore with a dark
+       overlay and call‑to‑action. -->
+  <section class="py-16 px-6 bg-gray-50">
+    <h2 class="text-3xl font-semibold text-center mb-6 text-[#4169e1]">Trending Products</h2>
+    <p class="text-center max-w-2xl mx-auto mb-6 text-gray-700">Discover our most popular bundles and services currently in high demand.</p>
+    <div class="overflow-x-auto">
+      <div class="flex gap-6">
+        <!-- Product 1 -->
+        <div class="relative w-64 h-80 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+          <img src="https://images.pexels.com/photos/6461307/pexels-photo-6461307.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Solar CCTV Kit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 transform hover:scale-105" />
+          <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+            <div>
+              <h3 class="text-white text-xl font-semibold mb-1">Solar CCTV Kit</h3>
+              <p class="text-white text-sm">Complete solar‑powered surveillance kit including IP cameras, NVR, solar panels and UPS.</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-lg font-bold text-blue-300">USD $899.99</div>
+              <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">View</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="relative w-64 h-80 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+          <img src="https://images.pexels.com/photos/2611812/pexels-photo-2611812.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Restaurant Launch Kit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 transform hover:scale-105" />
+          <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+            <div>
+              <h3 class="text-white text-xl font-semibold mb-1">Restaurant Launch Kit</h3>
+              <p class="text-white text-sm">Jump‑start your eatery with custom menu design, table talkers, delivery stickers and caps.</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-lg font-bold text-blue-300">USD $349.00</div>
+              <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">View</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="relative w-64 h-80 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+          <img src="https://images.pexels.com/photos/1106476/pexels-photo-1106476.jpeg?auto=compress&cs=tinysrgb&w=800" alt="NFC Smart Business Card" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 transform hover:scale-105" />
+          <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+            <div>
+              <h3 class="text-white text-xl font-semibold mb-1">NFC Smart Business Card</h3>
+              <p class="text-white text-sm">Share your contact details with a single tap. Custom‑branded NFC cards.</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-lg font-bold text-blue-300">USD $19.99</div>
+              <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">View</a>
+            </div>
+          </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="relative w-64 h-80 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+          <img src="https://images.pexels.com/photos/3560437/pexels-photo-3560437.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Corporate Gift Set" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 transform hover:scale-105" />
+          <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+            <div>
+              <h3 class="text-white text-xl font-semibold mb-1">Corporate Gift Set</h3>
+              <p class="text-white text-sm">Delight clients and employees with executive pens, notebooks and power banks.</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-lg font-bold text-blue-300">USD $74.50</div>
+              <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials section -->
+  <section class="py-16 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-semibold text-center mb-6 text-[#4169e1]">What Our Customers Say</h2>
+    <div class="space-y-6">
+      <div class="bg-white/80 backdrop-blur-lg p-4 rounded-xl shadow flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-gray-800">Tendai M.</span>
+          <div class="text-yellow-400 text-sm">★★★★★</div>
+        </div>
+        <p class="text-gray-700 text-sm leading-relaxed">Soho Connect designed our new brand identity and the results exceeded expectations. Their team is creative and professional.</p>
+      </div>
+      <div class="bg-white/80 backdrop-blur-lg p-4 rounded-xl shadow flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-gray-800">Rudo K.</span>
+          <div class="text-yellow-400 text-sm">★★★★☆</div>
+        </div>
+        <p class="text-gray-700 text-sm leading-relaxed">Great quality printing and quick turnaround times. The flyers and banners helped us attract more customers to our cafe.</p>
+      </div>
+      <div class="bg-white/80 backdrop-blur-lg p-4 rounded-xl shadow flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-gray-800">Peter N.</span>
+          <div class="text-yellow-400 text-sm">★★★★★</div>
+        </div>
+        <p class="text-gray-700 text-sm leading-relaxed">We purchased the solar CCTV kit and it has been a game changer for our warehouse security. Highly recommend!</p>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ section using <details> elements for a simple accordion effect -->
+  <section class="py-16 px-6 bg-gray-100">
+    <h2 class="text-3xl font-semibold text-center mb-6 text-[#4169e1]">Frequently Asked Questions</h2>
+    <div class="max-w-4xl mx-auto space-y-4">
+      <details class="border border-gray-200 rounded-lg overflow-hidden bg-white/70 backdrop-blur-lg">
+        <summary class="px-4 py-3 cursor-pointer font-medium text-gray-800 flex justify-between items-center">
+          How long will my print order take?
+        </summary>
+        <div class="px-4 py-3 bg-gray-50 text-gray-700 text-sm">
+          Most standard print jobs are completed within 3–5 business days. Large format and bulk orders may take a little longer.
+        </div>
+      </details>
+      <details class="border border-gray-200 rounded-lg overflow-hidden bg-white/70 backdrop-blur-lg">
+        <summary class="px-4 py-3 cursor-pointer font-medium text-gray-800 flex justify-between items-center">
+          Do you offer custom branding packages?
+        </summary>
+        <div class="px-4 py-3 bg-gray-50 text-gray-700 text-sm">
+          Yes! Our design team can create bespoke packages that include logos, brand guides, stationery, apparel and marketing materials tailored specifically to your business.
+        </div>
+      </details>
+      <details class="border border-gray-200 rounded-lg overflow-hidden bg-white/70 backdrop-blur-lg">
+        <summary class="px-4 py-3 cursor-pointer font-medium text-gray-800 flex justify-between items-center">
+          Can you install CCTV systems?
+        </summary>
+        <div class="px-4 py-3 bg-gray-50 text-gray-700 text-sm">
+          Absolutely. We not only supply CCTV equipment but also provide installation, training and ongoing maintenance services to ensure your premises remain secure.
+        </div>
+      </details>
+    </div>
+  </section>
+  <!-- Quote Form placeholder -->
+  <section id="quote" class="py-16 px-6 bg-white">
+    <h2 class="text-3xl font-semibold text-center mb-6 text-[#4169e1]">Request a Quote</h2>
+    <p class="max-w-2xl mx-auto text-center mb-8 text-gray-700">Let’s discuss your project! Submit your details and our team will get back to you.</p>
+    <form class="max-w-lg mx-auto bg-gray-50 p-6 rounded shadow">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">First Name</label>
+          <input class="w-full px-3 py-2 border rounded" type="text" placeholder="First Name" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Last Name</label>
+          <input class="w-full px-3 py-2 border rounded" type="text" placeholder="Last Name" />
+        </div>
+      </div>
+      <label class="block text-sm font-medium mt-4 mb-1">Email</label>
+      <input class="w-full px-3 py-2 border rounded" type="email" placeholder="you@example.com" />
+      <label class="block text-sm font-medium mt-4 mb-1">Phone</label>
+      <input class="w-full px-3 py-2 border rounded" type="tel" placeholder="+263..." />
+      <label class="block text-sm font-medium mt-4 mb-1">Message</label>
+      <textarea class="w-full px-3 py-2 border rounded" rows="4" placeholder="Tell us about your project..."></textarea>
+      <button class="mt-6 w-full py-3 bg-[#4169e1] text-white font-semibold rounded hover:bg-[#3557c4] transition">Submit</button>
+    </form>
+  </section>
+</body>
+</html>

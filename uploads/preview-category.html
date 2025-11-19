@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CCTV &amp; Security | Soho Connect Preview</title>
+  <!-- Tailwind via CDN for styling in preview -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Oswald', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img src="soho-webstore/public/logo-icon.png" alt="Soho Connect" class="h-10 w-10" />
+        <span class="font-bold text-xl text-[#4169e1] hidden sm:block">Soho Connect</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#" class="hover:text-[#4169e1]">Home</a>
+        <a href="#" class="hover:text-[#4169e1]">Store</a>
+        <a href="#" class="hover:text-[#4169e1]">Design</a>
+        <a href="#" class="hover:text-[#4169e1]">Print</a>
+        <a href="#" class="hover:text-[#4169e1]">Corporate Wear</a>
+        <a href="#" class="hover:text-[#4169e1]">CCTV</a>
+        <a href="#" class="hover:text-[#4169e1]">Marketing</a>
+      </nav>
+    </div>
+  </header>
+  <!-- Category Hero -->
+  <section class="relative h-[60vh] flex items-center justify-center text-white overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/7784241/pexels-photo-7784241.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative z-10 max-w-2xl mx-auto text-center backdrop-blur-lg bg-white/20 border border-white/20 rounded-3xl shadow-xl p-8">
+      <p class="text-sm uppercase tracking-widest text-white/80 mb-2">Secure Your Premises</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">CCTV &amp; Security</h2>
+      <p class="max-w-xl mx-auto mb-6 text-white/90 text-lg">Reliable surveillance systems, access control and visitor management solutions for peace of mind.</p>
+      <a href="#products" class="inline-block bg-white text-[#4169e1] font-semibold px-8 py-3 rounded-full hover:bg-gray-200 transition">Browse Products</a>
+    </div>
+  </section>
+  <!-- Product Grid -->
+  <section id="products" class="py-16 px-6 max-w-6xl mx-auto">
+    <h3 class="text-3xl font-semibold text-center mb-6 text-[#4169e1]">CCTV &amp; Security Products</h3>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Solar CCTV Kit -->
+      <div class="relative w-full h-72 rounded-lg overflow-hidden shadow-lg group">
+        <img src="https://images.pexels.com/photos/6461307/pexels-photo-6461307.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Solar CCTV Kit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+          <div>
+            <h4 class="text-white text-xl font-semibold mb-1">Solar CCTV Kit</h4>
+            <p class="text-white text-sm line-clamp-3">Complete solar‑powered surveillance kit including IP cameras, NVR, solar panels and UPS for continuous monitoring.</p>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="text-lg font-bold text-blue-300">USD $899.99</div>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">View</a>
+          </div>
+        </div>
+      </div>
+      <!-- Retail Shrinkage Pack -->
+      <div class="relative w-full h-72 rounded-lg overflow-hidden shadow-lg group">
+        <img src="https://images.pexels.com/photos/6874583/pexels-photo-6874583.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Retail Shrinkage Pack" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+          <div>
+            <h4 class="text-white text-xl font-semibold mb-1">Retail Shrinkage Pack</h4>
+            <p class="text-white text-sm line-clamp-3">Reduce retail losses with a four‑camera IP surveillance system, panic button, compliance signage and weekly health checks.</p>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="text-lg font-bold text-blue-300">USD $699.50</div>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">View</a>
+          </div>
+        </div>
+      </div>
+      <!-- Visitor Management Bundle -->
+      <div class="relative w-full h-72 rounded-lg overflow-hidden shadow-lg group">
+        <img src="https://images.pexels.com/photos/7709113/pexels-photo-7709113.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Visitor Management Bundle" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+          <div>
+            <h4 class="text-white text-xl font-semibold mb-1">Visitor Management Bundle</h4>
+            <p class="text-white text-sm line-clamp-3">Ensure secure visitor flows with smart ID card printing service, lanyards, sign‑in sheets and privacy signage.</p>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="text-lg font-bold text-blue-300">USD $159.99</div>
+            <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Popular Products Horizontal Scroll -->
+  <section class="py-16 px-6 bg-gray-50">
+    <h3 class="text-2xl font-semibold text-center mb-6 text-[#4169e1]">Popular in CCTV &amp; Security</h3>
+    <div class="overflow-x-auto">
+      <div class="flex gap-6">
+        <!-- Duplicate of first product for scrolling demo -->
+        <div class="relative w-64 h-72 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+          <img src="https://images.pexels.com/photos/6461307/pexels-photo-6461307.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Solar CCTV Kit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+          <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+            <h4 class="text-white text-lg font-semibold mb-1">Solar CCTV Kit</h4>
+            <div class="flex items-center justify-between">
+              <div class="text-md font-bold text-blue-300">$899.99</div>
+              <a href="#" class="inline-block bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs font-medium hover:bg-blue-700">View</a>
+            </div>
+          </div>
+        </div>
+        <!-- Duplicate of second product -->
+        <div class="relative w-64 h-72 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+          <img src="https://images.pexels.com/photos/6874583/pexels-photo-6874583.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Retail Shrinkage Pack" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+          <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+            <h4 class="text-white text-lg font-semibold mb-1">Retail Shrinkage Pack</h4>
+            <div class="flex items-center justify-between">
+              <div class="text-md font-bold text-blue-300">$699.50</div>
+              <a href="#" class="inline-block bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs font-medium hover:bg-blue-700">View</a>
+            </div>
+          </div>
+        </div>
+        <!-- Duplicate of third product -->
+        <div class="relative w-64 h-72 rounded-lg overflow-hidden shadow-lg flex-shrink-0">
+          <img src="https://images.pexels.com/photos/7709113/pexels-photo-7709113.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Visitor Management Bundle" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+          <div class="absolute inset-0 bg-black/50 p-4 flex flex-col justify-between">
+            <h4 class="text-white text-lg font-semibold mb-1">Visitor Management Bundle</h4>
+            <div class="flex items-center justify-between">
+              <div class="text-md font-bold text-blue-300">$159.99</div>
+              <a href="#" class="inline-block bg-blue-600 text-white px-3 py-1.5 rounded-full text-xs font-medium hover:bg-blue-700">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials -->
+  <section class="py-16 px-6 max-w-5xl mx-auto">
+    <h3 class="text-2xl font-semibold text-center mb-6 text-[#4169e1]">What Our Customers Say</h3>
+    <div class="space-y-6">
+      <div class="bg-white/80 backdrop-blur-lg p-4 rounded-xl shadow flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-gray-800">Blessing S.</span>
+          <div class="text-yellow-400 text-sm">★★★★★</div>
+        </div>
+        <p class="text-gray-700 text-sm leading-relaxed">Our retail shrinkage pack from Soho Connect has reduced losses significantly. The installation was quick and professional.</p>
+      </div>
+      <div class="bg-white/80 backdrop-blur-lg p-4 rounded-xl shadow flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-gray-800">Farai D.</span>
+          <div class="text-yellow-400 text-sm">★★★★☆</div>
+        </div>
+        <p class="text-gray-700 text-sm leading-relaxed">We use the visitor management bundle at our head office. It streamlines check‑ins and looks very professional.</p>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ -->
+  <section class="py-16 px-6 bg-gray-100">
+    <h3 class="text-2xl font-semibold text-center mb-6 text-[#4169e1]">FAQs about CCTV &amp; Security</h3>
+    <div class="max-w-4xl mx-auto space-y-4">
+      <details class="border border-gray-200 rounded-lg overflow-hidden bg-white/70 backdrop-blur-lg">
+        <summary class="px-4 py-3 cursor-pointer font-medium text-gray-800 flex justify-between items-center">What does your CCTV installation service include?</summary>
+        <div class="px-4 py-3 bg-gray-50 text-gray-700 text-sm">Our team handles everything from site survey and equipment selection to installation, network configuration and user training.</div>
+      </details>
+      <details class="border border-gray-200 rounded-lg overflow-hidden bg-white/70 backdrop-blur-lg">
+        <summary class="px-4 py-3 cursor-pointer font-medium text-gray-800 flex justify-between items-center">Can I monitor my cameras remotely?</summary>
+        <div class="px-4 py-3 bg-gray-50 text-gray-700 text-sm">Yes, our systems allow you to view live and recorded footage from anywhere via mobile or web apps, provided you have an internet connection.</div>
+      </details>
+      <details class="border border-gray-200 rounded-lg overflow-hidden bg-white/70 backdrop-blur-lg">
+        <summary class="px-4 py-3 cursor-pointer font-medium text-gray-800 flex justify-between items-center">Do you offer maintenance plans?</summary>
+        <div class="px-4 py-3 bg-gray-50 text-gray-700 text-sm">We offer affordable maintenance plans including regular system health checks, firmware updates and on-site support.</div>
+      </details>
+    </div>
+  </section>
+  <!-- Quote Form -->
+  <section class="py-16 px-6 bg-white">
+    <h3 class="text-2xl font-semibold text-center mb-6 text-[#4169e1]">Request a Quote</h3>
+    <p class="max-w-2xl mx-auto text-center mb-8 text-gray-700">Interested in CCTV &amp; security solutions? Fill in your details and we’ll help you choose the perfect system.</p>
+    <form class="max-w-lg mx-auto bg-gray-50 p-6 rounded shadow">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">First Name</label>
+          <input class="w-full px-3 py-2 border rounded" type="text" placeholder="First Name" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Last Name</label>
+          <input class="w-full px-3 py-2 border rounded" type="text" placeholder="Last Name" />
+        </div>
+      </div>
+      <label class="block text-sm font-medium mt-4 mb-1">Email</label>
+      <input class="w-full px-3 py-2 border rounded" type="email" placeholder="you@example.com" />
+      <label class="block text-sm font-medium mt-4 mb-1">Phone</label>
+      <input class="w-full px-3 py-2 border rounded" type="tel" placeholder="+263..." />
+      <label class="block text-sm font-medium mt-4 mb-1">Message</label>
+      <textarea class="w-full px-3 py-2 border rounded" rows="4" placeholder="Tell us about your security needs..."></textarea>
+      <button class="mt-6 w-full py-3 bg-[#4169e1] text-white font-semibold rounded hover:bg-[#3557c4] transition">Submit</button>
+    </form>
+  </section>
+</body>
+</html>

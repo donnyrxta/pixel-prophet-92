@@ -20,6 +20,8 @@ import HararePage from "./pages/locations/Harare";
 import BulawayoPage from "./pages/locations/Bulawayo";
 import GweruPage from "./pages/locations/Gweru";
 import MutarePage from "./pages/locations/Mutare";
+import Webstore from "./pages/Webstore";
+import WebstoreCategory from "./pages/WebstoreCategory";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
@@ -50,6 +52,8 @@ const AppRoutes = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/webstore" element={<Webstore />} />
+        <Route path="/webstore/:slug" element={<WebstoreCategory />} />
         <Route path="/locations/harare" element={<HararePage />} />
         <Route path="/locations/bulawayo" element={<BulawayoPage />} />
         <Route path="/locations/gweru" element={<GweruPage />} />

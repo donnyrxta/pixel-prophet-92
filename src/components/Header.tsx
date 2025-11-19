@@ -46,8 +46,8 @@ export const Header = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { 
-      name: 'Services', 
+    {
+      name: 'Services',
       path: '/services',
       submenu: [
         { name: 'All Services', path: '/services' },
@@ -56,6 +56,18 @@ export const Header = () => {
         { name: 'Digital Marketing', path: '/services/digital-marketing' },
         { name: 'Signage & Displays', path: '/services/signage' },
         { name: 'Payment Services', path: '/services/payment-services' },
+      ]
+    },
+    {
+      name: 'Webstore',
+      path: '/webstore',
+      submenu: [
+        { name: 'All Products', path: '/webstore' },
+        { name: 'Design Services', path: '/webstore/design' },
+        { name: 'Print Products', path: '/webstore/print' },
+        { name: 'Corporate Wear', path: '/webstore/corporate-wear' },
+        { name: 'CCTV & Security', path: '/webstore/cctv' },
+        { name: 'Marketing Products', path: '/webstore/marketing' },
       ]
     },
     { name: 'Electronics', path: '/electronics' },
@@ -150,7 +162,7 @@ export const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="lg:hidden p-3 hover:bg-gray-100 rounded-lg transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
             >
@@ -175,10 +187,10 @@ export const Header = () => {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white z-50 
+        className={`fixed top-0 right-0 bottom-0 w-full max-w-[320px] sm:max-w-[380px] bg-white z-50
                     transform transition-transform duration-300 ease-in-out lg:hidden
                     ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
-                    overflow-y-auto`}
+                    overflow-y-auto shadow-2xl`}
       >
         <div className="p-6">
           {/* Mobile Menu Header */}
@@ -201,8 +213,8 @@ export const Header = () => {
                   <>
                     <button
                       onClick={() => setOpenSubmenu(openSubmenu === link.name ? null : link.name)}
-                      className="w-full flex items-center justify-between px-4 py-3 text-gray-700 
-                                 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                      className="w-full flex items-center justify-between px-4 py-3 text-gray-700
+                                 hover:bg-gray-50 rounded-lg transition-colors font-medium min-h-[48px]"
                     >
                       {link.name}
                       <ChevronDown className={`w-4 h-4 transition-transform ${
@@ -227,7 +239,7 @@ export const Header = () => {
                 ) : (
                   <Link
                     to={link.path}
-                    className={`block px-4 py-3 rounded-lg transition-colors font-medium ${
+                    className={`block px-4 py-3 rounded-lg transition-colors font-medium min-h-[48px] flex items-center ${
                       location.pathname === link.path
                         ? 'bg-primary/10 text-primary'
                         : 'text-gray-700 hover:bg-gray-50'
@@ -247,9 +259,9 @@ export const Header = () => {
                 setShowCalculator(true);
                 setIsMenuOpen(false);
               }}
-              className="w-full btn-brand text-white gap-2"
+              className="w-full btn-brand text-white gap-2 min-h-[48px]"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-5 h-5" />
               Get Instant Quote
             </Button>
           </div>

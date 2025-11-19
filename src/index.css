@@ -159,6 +159,11 @@ All colors MUST be HSL.
   img {
     @apply max-w-full h-auto;
   }
+
+  /* Responsive image optimization */
+  img[loading="lazy"] {
+    content-visibility: auto;
+  }
 }
 
 @layer utilities {
@@ -377,11 +382,20 @@ textarea {
   max-width: 65ch;
 }
 
-/* Touch targets for mobile (Fitts's Law) */
+/* Touch targets for mobile (Fitts's Law) - Ensure 48x48px minimum */
 @media (max-width: 768px) {
   .touch-target {
-    min-height: 44px;
-    min-width: 44px;
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Apply to all interactive elements */
+  button:not(.icon-only),
+  a.btn,
+  input[type="submit"],
+  input[type="button"],
+  .btn {
+    min-height: 48px;
   }
 }
   /* Brand enforcement utilities */
@@ -583,9 +597,33 @@ select:focus-visible {
    ======================================== */
 
 /* Global: prevent horizontal scroll and scale media safely */
-body { overflow-x: hidden; }
-picture, img, video, canvas, svg { max-width: 100%; height: auto; }
-iframe { max-width: 100%; }
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+picture, img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+iframe {
+  max-width: 100%;
+}
+
+/* Prevent content from causing horizontal overflow */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure all containers respect viewport width */
+.container,
+main,
+section,
+article {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 /* Improve focus visibility consistently */
 :focus-visible { outline-offset: 2px; }
@@ -654,6 +692,15 @@ iframe { max-width: 100%; }
   padding-bottom: 0.75rem;
 }
 .h-scroll > * { scroll-snap-align: start; }
+
+/* Hide scrollbars while maintaining functionality */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
 
 /* Visual gradient hints to indicate scrollable content */
 .scroll-hint {

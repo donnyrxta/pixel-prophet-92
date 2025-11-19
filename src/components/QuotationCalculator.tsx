@@ -191,9 +191,9 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
     const leadScore = calculateLeadScore();
     const leadTier = getLeadTier(leadScore);
     return (
-      <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 animate-fadeIn">
+      <div className="fixed inset-0 z-[70] flex items-center justify-center p-2 sm:p-4 animate-fadeIn overflow-y-auto">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-        <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 animate-slideUp">
+        <div className="relative bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-2xl w-full p-4 sm:p-6 md:p-8 my-4 animate-slideUp max-h-[95vh] overflow-y-auto">
           <div className="text-center">
             <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="w-12 h-12 text-primary" />
@@ -242,20 +242,23 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
                 href={`https://wa.me/263714570414?text=${encodeURIComponent(`Hi! I just submitted quote #${Date.now()} for ${formData.services?.length} services. Can we discuss?`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
+                className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 min-h-[48px]"
               >
                 <MessageCircle className="w-5 h-5" />
                 Chat on WhatsApp
               </a>
               <a
                 href="tel:+263714570414"
-                className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
+                className="flex-1 btn-brand text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 min-h-[48px]"
               >
                 <Phone className="w-5 h-5" />
                 Call Us Now
               </a>
             </div>
-            <button onClick={onClose} className="mt-4 text-sm text-gray-500 hover:text-gray-700 underline">
+            <button
+              onClick={onClose}
+              className="mt-4 text-sm text-gray-500 hover:text-gray-700 underline min-h-[44px]"
+            >
               Continue Browsing
             </button>
           </div>
@@ -265,38 +268,42 @@ const QuotationCalculator: React.FC<QuotationCalculatorProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 animate-fadeIn overflow-y-auto">
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-2 sm:p-4 animate-fadeIn overflow-y-auto">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full my-8 animate-slideUp">
-        <div className="bg-brand-cta text-white p-6 rounded-t-2xl">
+      <div className="relative bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full my-4 sm:my-8 animate-slideUp max-h-[95vh] overflow-y-auto">
+        <div className="bg-brand-cta text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                <Calculator className="w-6 h-6" />
+            <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0">
+                <Calculator className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <div>
-                <h2 className="text-2xl font-bold">Get Your Instant Quote</h2>
-                <p className="text-white/80 text-sm">Transparent pricing • No hidden fees • Same-day response</p>
+              <div className="min-w-0 flex-1">
+                <h2 className="text-lg sm:text-2xl font-bold truncate">Get Your Instant Quote</h2>
+                <p className="text-white/80 text-xs sm:text-sm hidden sm:block">Transparent pricing • No hidden fees • Same-day response</p>
               </div>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-full transition">
-              <X className="w-6 h-6" />
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-full transition min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0 ml-2"
+              aria-label="Close calculator"
+            >
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
           <div className="flex items-center justify-between">
             {[1, 2, 3, 4].map((num) => (
               <div key={num} className="flex-1 flex items-center">
-                <div className={`w-full flex items-center ${num < 4 ? 'mr-2' : ''}`}>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                <div className={`w-full flex items-center ${num < 4 ? 'mr-1 sm:mr-2' : ''}`}>
+                  <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm ${
                     step >= num ? 'bg-white text-primary' : 'bg-white/30 text-white'
                   }`}>{num}</div>
-                  {num < 4 && <div className={`flex-1 h-1 mx-2 rounded ${step > num ? 'bg-white' : 'bg-white/30'}`} />}
+                  {num < 4 && <div className={`flex-1 h-0.5 sm:h-1 mx-1 sm:mx-2 rounded ${step > num ? 'bg-white' : 'bg-white/30'}`} />}
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="p-8">
+        <div className="p-4 sm:p-6 md:p-8">
           {step === 1 && (
             <div className="space-y-6">
               <div>
