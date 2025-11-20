@@ -22,12 +22,17 @@ import GweruPage from "./pages/locations/Gweru";
 import MutarePage from "./pages/locations/Mutare";
 import Webstore from "./pages/Webstore";
 import WebstoreCategory from "./pages/WebstoreCategory";
+import WebstoreProductDetail from "./pages/WebstoreProductDetail";
+import WebstoreCart from "./pages/WebstoreCart";
+import WebstoreCheckout from "./pages/WebstoreCheckout";
+import WebstoreOrderConfirmation from "./pages/WebstoreOrderConfirmation";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
 import PersistentAIWidget from "./components/PersistentAIWidget";
 // E-commerce Context
 import { CartProvider } from "./context/CartContext";
+import { WebstoreCartProvider } from "./context/WebstoreCartContext";
 import { QuoteCalculatorProvider } from "./context/QuoteCalculatorContext";
 import { AdPlannerProvider } from "./context/AdPlannerContext";
 import AdPlannerPage from "./pages/AdPlanner";
@@ -53,7 +58,11 @@ const AppRoutes = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/webstore" element={<Webstore />} />
-        <Route path="/webstore/:slug" element={<WebstoreCategory />} />
+        <Route path="/webstore/category/:slug" element={<WebstoreCategory />} />
+        <Route path="/webstore/product/:slug" element={<WebstoreProductDetail />} />
+        <Route path="/webstore/cart" element={<WebstoreCart />} />
+        <Route path="/webstore/checkout" element={<WebstoreCheckout />} />
+        <Route path="/webstore/order-confirmation" element={<WebstoreOrderConfirmation />} />
         <Route path="/locations/harare" element={<HararePage />} />
         <Route path="/locations/bulawayo" element={<BulawayoPage />} />
         <Route path="/locations/gweru" element={<GweruPage />} />
@@ -77,11 +86,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <CartProvider>
-          <QuoteCalculatorProvider>
-            <AdPlannerProvider>
-              <AppRoutes />
-            </AdPlannerProvider>
-          </QuoteCalculatorProvider>
+          <WebstoreCartProvider>
+            <QuoteCalculatorProvider>
+              <AdPlannerProvider>
+                <AppRoutes />
+              </AdPlannerProvider>
+            </QuoteCalculatorProvider>
+          </WebstoreCartProvider>
         </CartProvider>
       </BrowserRouter>
     </TooltipProvider>

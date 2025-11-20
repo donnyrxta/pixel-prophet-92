@@ -211,7 +211,7 @@ const WebstoreCategory = () => {
               <WebstoreProductCard
                 key={product.id}
                 product={product}
-                onViewDetails={(id) => navigate(`/webstore/product/${id}`)}
+                onViewDetails={() => navigate(`/webstore/product/${product.slug}`)}
               />
             ))}
           </div>
@@ -240,7 +240,7 @@ const WebstoreCategory = () => {
                 <WebstoreProductCard
                   key={product.id}
                   product={product}
-                  onViewDetails={(id) => navigate(`/webstore/product/${id}`)}
+                  onViewDetails={() => navigate(`/webstore/product/${product.slug}`)}
                   compact
                 />
               ))}

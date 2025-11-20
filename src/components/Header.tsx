@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { CONTACT_INFO, BUSINESS_INFO } from '@/lib/constants';
 import QuotationCalculator from './QuotationCalculator';
 import { CartWidget } from './shop/CartWidget';
+import { WebstoreCartWidget } from './webstore/WebstoreCartWidget';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -150,6 +151,7 @@ export const Header = () => {
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <CartWidget />
+              <WebstoreCartWidget />
               <Button
                 onClick={() => setShowCalculator(true)}
                 className="bg-[#25D366] hover:bg-[#128C7E] text-white gap-2"

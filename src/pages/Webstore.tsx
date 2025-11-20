@@ -113,7 +113,7 @@ const Webstore = () => {
             {webstoreCategories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => navigate(`/webstore/${category.slug}`)}
+                onClick={() => navigate(`/webstore/category/${category.slug}`)}
                 className="relative group block w-64 h-48 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 transition-transform hover:scale-105"
               >
                 <div
@@ -140,7 +140,7 @@ const Webstore = () => {
               <WebstoreProductCard
                 key={product.id}
                 product={product}
-                onViewDetails={(id) => navigate(`/webstore/product/${id}`)}
+                onViewDetails={() => navigate(`/webstore/product/${product.slug}`)}
                 compact
               />
             ))}
