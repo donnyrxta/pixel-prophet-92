@@ -8,7 +8,11 @@
       "Bash(git fetch:*)",
       "Bash(git log:*)",
       "Bash(git add:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(unzip:*)",
+      "Bash(npm install:*)",
+      "Bash(git remote get-url:*)",
+      "Bash(dist/.nojekyll)"
     ],
     "deny": [],
     "ask": []
