@@ -1,27 +1,17 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { componentTagger } from "lovable-tagger";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import { fileURLToPath } from 'node:url'
+import { URL } from 'node:url'
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  // GitHub Pages deployment configuration
-  base: mode === 'production' ? '/pixel-prophet-92/' : '/',
-  server: {
-    host: "::",
-    port: 8080,
-    proxy: {
-      "/unsplash": {
-        target: "https://images.unsplash.com",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/unsplash/, ""),
-      },
-    },
-  },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+const repo = (process.env.GITHUB_REPOSITORY || '').split('/')[1]
+const isGhActions = !!process.env.GITHUB_ACTIONS
+
+export default defineConfig({
+  plugins: [react()],
+  base: isGhActions && repo ? `/${repo}/` : '/',
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-}));
+})
