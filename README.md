@@ -1,73 +1,119 @@
-# Welcome to your Lovable project
+# Soho Connect — Printing & Design Services for Zimbabwe
 
-## Project info
+Professional printing, branding, digital marketing, and e-commerce solutions built for Zimbabwean businesses.
 
-**URL**: https://lovable.dev/projects/3ad1776b-ac84-46a0-909b-db08edc83d26
+**Live Site**: [sohoconnect.co.zw](https://sohoconnect.co.zw)  
+**Repository**: [donnyrxta/pixel-prophet-92](https://github.com/donnyrxta/pixel-prophet-92)
 
-## How can I edit this code?
+## Quick Start
 
-There are several ways of editing your application.
+### Prerequisites
+- Node.js 18+ and npm (or bun)
+- Git
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/3ad1776b-ac84-46a0-909b-db08edc83d26) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Local Development
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone https://github.com/donnyrxta/pixel-prophet-92.git
+cd pixel-prophet-92
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
+# or
+bun install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start dev server (runs on http://localhost:5173)
 npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+### Linting & Quality
+```sh
+npm run lint                 # Run ESLint
+npm run perf:ci              # Run Lighthouse CI
+npm run analyze:clients      # Analyze client image sizes
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Deployment
+```sh
+npm run deploy:vercel        # Deploy to Vercel (requires CLI)
+# OR use Vercel's GitHub integration for automatic deployments
+```
 
-**Use GitHub Codespaces**
+## Technology Stack
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **Frontend Framework**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS + shadcn-ui components
+- **Routing**: React Router v6
+- **Analytics**: Google Tag Manager (GTM) + GA4
+- **Forms & Validation**: react-hook-form + Zod
+- **State Management**: React Context (CartContext, QuoteCalculatorContext, AdPlannerContext)
+- **UI Components**: Radix UI primitives, Lucide icons
+- **Hosting**: Vercel (with automatic deployments)
 
-## What technologies are used for this project?
+## Project Structure
 
-This project is built with:
+```
+src/
+├── pages/              # Route pages (Services, Shop, Checkout, etc.)
+├── components/         # Reusable UI components
+├── context/            # React Context providers
+├── lib/                # Utilities (GTM, pricing, constants)
+├── hooks/              # Custom React hooks
+├── ads/                # Analytics & ad campaign logic
+├── types/              # TypeScript type definitions
+├── App.tsx             # Router configuration
+└── main.tsx            # Entry point
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+public/
+├── images/             # Optimized images (hero, products, clients)
+└── site.webmanifest    # PWA manifest
 
-## How can I deploy this project?
+docs/                   # Implementation guides & deployment notes
+scripts/                # Build automation (image analysis, etc.)
+```
 
-Simply open [Lovable](https://lovable.dev/projects/3ad1776b-ac84-46a0-909b-db08edc83d26) and click on Share -> Publish.
+## Key Features
 
-## Can I connect a custom domain to my Lovable project?
+### 🖨️ Printing Services
+- Business cards, brochures, flyers, signage, and large-format printing
+- Real-time quotation calculator with instant pricing
+- Fast turnaround (24–48 hours) and local delivery
 
-Yes, you can!
+### 🎨 Branding & Design
+- Logo design, brand identity, and rebranding services
+- Print collateral and marketing materials
+- Professional design consultation
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### 🌐 Digital Marketing
+- Social media marketing, SEO, and content strategy
+- Web design and digital transformation
+- Analytics and performance tracking
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### 🛒 E-Commerce Platform
+- 6 featured products with real-time cart
+- Three-step checkout with multiple payment options (EcoCash, card, bank)
+- Zimbabwe pricing compliance (VAT, government levy, forex disclaimers)
+- Mobile-responsive shop interface
+
+### 📱 Mobile-First & Responsive
+- Fully responsive design (mobile, tablet, desktop)
+- Accessible UI (WCAG AA) with keyboard navigation
+- Fast load times and optimized images (WebP/AVIF)
+
+### 📊 Analytics & Tracking
+- Google Tag Manager integration
+- E-commerce event tracking (add_to_cart, begin_checkout, purchase)
+- Form submissions and lead tracking
+
+### 📍 Location Pages
+- Dedicated pages for Harare, Bulawayo, and Gweru
+- Local business schema markup for SEO
+- Geotargeted content and messaging
