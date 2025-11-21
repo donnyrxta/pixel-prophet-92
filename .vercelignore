@@ -1,6 +1,5 @@
 docs/
 .github/
 .lighthouseci/
-scripts/
 *.map
 tests/
