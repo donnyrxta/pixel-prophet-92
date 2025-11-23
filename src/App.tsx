@@ -10,12 +10,6 @@ import ServicesDetail from "./pages/ServicesDetail";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Shop from "./pages/Shop";
-import ProductDetail from "./pages/ProductDetail";
-import ElectronicsHome from "./pages/ElectronicsHome";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import OrderSuccess from "./pages/OrderSuccess";
 import HararePage from "./pages/locations/Harare";
 import BulawayoPage from "./pages/locations/Bulawayo";
 import GweruPage from "./pages/locations/Gweru";
@@ -26,12 +20,13 @@ import WebstoreProductDetail from "./pages/WebstoreProductDetail";
 import WebstoreCart from "./pages/WebstoreCart";
 import WebstoreCheckout from "./pages/WebstoreCheckout";
 import WebstoreOrderConfirmation from "./pages/WebstoreOrderConfirmation";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
 import PersistentAIWidget from "./components/PersistentAIWidget";
 // E-commerce Context
-import { CartProvider } from "./context/CartContext";
 import { WebstoreCartProvider } from "./context/WebstoreCartContext";
 import { QuoteCalculatorProvider } from "./context/QuoteCalculatorContext";
 import { AdPlannerProvider } from "./context/AdPlannerContext";
@@ -51,12 +46,13 @@ const AppRoutes = () => {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/electronics" element={<ElectronicsHome />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/shop/product/:productId" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/order-success" element={<OrderSuccess />} />
+        {/* Redirect old routes to webstore */}
+        <Route path="/electronics" element={<Webstore />} />
+        <Route path="/shop" element={<Webstore />} />
+        <Route path="/shop/product/:productId" element={<Webstore />} />
+        <Route path="/cart" element={<WebstoreCart />} />
+        <Route path="/checkout" element={<WebstoreCheckout />} />
+        <Route path="/order-success" element={<WebstoreOrderConfirmation />} />
         <Route path="/webstore" element={<Webstore />} />
         <Route path="/webstore/category/:slug" element={<WebstoreCategory />} />
         <Route path="/webstore/product/:slug" element={<WebstoreProductDetail />} />
@@ -68,6 +64,8 @@ const AppRoutes = () => {
         <Route path="/locations/gweru" element={<GweruPage />} />
         <Route path="/locations/mutare" element={<MutarePage />} />
         <Route path="/ad-planner" element={<AdPlannerPage />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogArticle />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -85,15 +83,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <CartProvider>
-          <WebstoreCartProvider>
-            <QuoteCalculatorProvider>
-              <AdPlannerProvider>
-                <AppRoutes />
-              </AdPlannerProvider>
-            </QuoteCalculatorProvider>
-          </WebstoreCartProvider>
-        </CartProvider>
+        <WebstoreCartProvider>
+          <QuoteCalculatorProvider>
+            <AdPlannerProvider>
+              <AppRoutes />
+            </AdPlannerProvider>
+          </QuoteCalculatorProvider>
+        </WebstoreCartProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

@@ -1,53 +1,252 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
   <url>
     <loc>https://sohoconnect.co.zw/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <lastmod>2026-01-15</lastmod>
   </url>
   <url>
     <loc>https://sohoconnect.co.zw/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://sohoconnect.co.zw/services/printing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sohoconnect.co.zw/services/branding</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sohoconnect.co.zw/services/digital-marketing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sohoconnect.co.zw/services/signage</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sohoconnect.co.zw/services/payment-services</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
   </url>
   <url>
     <loc>https://sohoconnect.co.zw/portfolio</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
   </url>
   <url>
     <loc>https://sohoconnect.co.zw/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
   </url>
   <url>
     <loc>https://sohoconnect.co.zw/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+
+  <!-- Service Pages -->
+  <url>
+    <loc>https://sohoconnect.co.zw/services/printing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/services/branding</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/services/digital-marketing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/services/signage</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/services/payment-services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+
+  <!-- Webstore Main Page -->
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+
+  <!-- Webstore Categories -->
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/design</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/print</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/corporate-wear</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/cctv</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/marketing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/office-supplies</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/ict</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/workwear</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/category/fleet-branding</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+
+  <!-- Blog Pages -->
+  <url>
+    <loc>https://sohoconnect.co.zw/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+
+  <!-- Blog Articles -->
+  <url>
+    <loc>https://sohoconnect.co.zw/blog/cctv-buyers-guide-zimbabwe-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/blog/complete-printing-guide-zimbabwe</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-10</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/blog/complete-branding-guide-zimbabwe</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/blog/printing-services-guide-harare-businesses</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-01-14</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/blog/cctv-security-systems-zimbabwe-buyers-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-01-13</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/blog/vehicle-branding-fleet-graphics-zimbabwe</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-01-12</lastmod>
+  </url>
+
+  <!-- Location Pages -->
+  <url>
+    <loc>https://sohoconnect.co.zw/locations/harare</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/locations/bulawayo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/locations/mutare</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/locations/gweru</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+
+  <!-- Sample Featured Products (High-value products) -->
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/complete-brand-identity-package</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/logo-design-professional</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/business-cards-premium</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/corporate-polo-shirts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/solar-cctv-kit-4-camera</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/ip-cctv-system-8-camera</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/branded-notebooks-diaries</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
+  </url>
+  <url>
+    <loc>https://sohoconnect.co.zw/webstore/product/vehicle-full-wrap</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-01-15</lastmod>
   </url>
 </urlset>

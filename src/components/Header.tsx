@@ -8,7 +8,6 @@ import { Menu, X, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CONTACT_INFO, BUSINESS_INFO } from '@/lib/constants';
 import QuotationCalculator from './QuotationCalculator';
-import { CartWidget } from './shop/CartWidget';
 import { WebstoreCartWidget } from './webstore/WebstoreCartWidget';
 
 export const Header = () => {
@@ -64,15 +63,19 @@ export const Header = () => {
       path: '/webstore',
       submenu: [
         { name: 'All Products', path: '/webstore' },
-        { name: 'Design Services', path: '/webstore/design' },
-        { name: 'Print Products', path: '/webstore/print' },
-        { name: 'Corporate Wear', path: '/webstore/corporate-wear' },
-        { name: 'CCTV & Security', path: '/webstore/cctv' },
-        { name: 'Marketing Products', path: '/webstore/marketing' },
+        { name: 'Design Services', path: '/webstore/category/design' },
+        { name: 'Print Products', path: '/webstore/category/print' },
+        { name: 'Corporate Wear', path: '/webstore/category/corporate-wear' },
+        { name: 'CCTV & Security', path: '/webstore/category/cctv' },
+        { name: 'Marketing Products', path: '/webstore/category/marketing' },
+        { name: 'Office Supplies', path: '/webstore/category/office-supplies' },
+        { name: 'ICT Products', path: '/webstore/category/ict' },
+        { name: 'Workwear', path: '/webstore/category/workwear' },
+        { name: 'Fleet Branding', path: '/webstore/category/fleet-branding' },
       ]
     },
-    { name: 'Electronics', path: '/electronics' },
     { name: 'Portfolio', path: '/portfolio' },
+    { name: 'Blog', path: '/blog' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -84,7 +87,7 @@ export const Header = () => {
     <>
       {/* Header with trust signal - Sticky with animation */}
       <header
-        className={`fixed top-0 left-0 right-0 z-header transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
             ? 'bg-white shadow-lg animate-slideDown'
             : 'bg-white/95 backdrop-blur-sm'
@@ -129,9 +132,9 @@ export const Header = () => {
 
                   {/* Dropdown for Services */}
                   {link.submenu && (
-                    <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg 
-                                    shadow-xl opacity-0 invisible group-hover:opacity-100 
-                                    group-hover:visible transition-all duration-200 py-2 border">
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg
+                                    shadow-xl opacity-0 invisible group-hover:opacity-100
+                                    group-hover:visible transition-all duration-200 py-2 border z-50">
                       {link.submenu.map((sublink) => (
                         <Link
                           key={sublink.path}
@@ -150,7 +153,6 @@ export const Header = () => {
 
             {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-3">
-              <CartWidget />
               <WebstoreCartWidget />
               <Button
                 onClick={() => setShowCalculator(true)}

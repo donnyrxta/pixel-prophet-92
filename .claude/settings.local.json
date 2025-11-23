@@ -12,7 +12,8 @@
       "Bash(unzip:*)",
       "Bash(npm install:*)",
       "Bash(git remote get-url:*)",
-      "Bash(dist/.nojekyll)"
+      "Bash(dist/.nojekyll)",
+      "Bash(test:*)"
     ],
     "deny": [],
     "ask": []

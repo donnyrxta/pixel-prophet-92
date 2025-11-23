@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -13,6 +14,7 @@ import { Star, ShoppingCart, Check, X, ChevronLeft, ChevronRight } from 'lucide-
 import { getProductBySlug } from '@/data/webstore-products';
 import { useWebstoreCart } from '@/context/WebstoreCartContext';
 import { useToast } from '@/hooks/use-toast';
+import { generateProductSchema, generateBreadcrumbSchema } from '@/lib/schema';
 
 const WebstoreProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -90,6 +92,15 @@ const WebstoreProductDetail = () => {
     setQuantity(1);
   };
 
+  // Generate Schema.org markup
+  const productSchema = generateProductSchema(product);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Webstore', url: '/webstore' },
+    { name: product.category, url: `/webstore/category/${product.categorySlug}` },
+    { name: product.name, url: `/webstore/product/${product.slug}` }
+  ]);
+
   return (
     <>
       <SEOHead
@@ -98,6 +109,16 @@ const WebstoreProductDetail = () => {
         keywords={product.seoKeywords.join(', ')}
         canonical={`https://sohoconnect.co.zw/webstore/product/${product.slug}`}
       />
+
+      {/* Schema.org Structured Data */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
 
       <div className="min-h-screen flex flex-col bg-gray-50">
         <Header />

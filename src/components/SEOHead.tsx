@@ -1,8 +1,10 @@
 /**
  * SEO Head Component - Dynamic meta tags and structured data
+ * Optimized for Google search and AEO (Answer Engine Optimization)
  * Use this component to override default SEO settings per page
  */
 import { useEffect } from 'react';
+import { OrganizationSchema } from './SchemaMarkup';
 
 interface SEOHeadProps {
   title: string;
@@ -11,6 +13,14 @@ interface SEOHeadProps {
   canonical?: string;
   ogImage?: string;
   schema?: object;
+  noindex?: boolean;
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
 }
 
 const SEOHead = ({
@@ -18,12 +28,14 @@ const SEOHead = ({
   description,
   keywords,
   canonical,
-  ogImage = '/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg',
-  schema
+  ogImage = 'https://sohoconnect.co.zw/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg',
+  schema,
+  noindex = false,
+  article
 }: SEOHeadProps) => {
   useEffect(() => {
     // Update document title
-    document.title = `${title} | Soho Connect`;
+    document.title = `${title} | Soho Connect - Harare's Premier Design & Print Partner`;
 
     // Update meta tags
     const updateMetaTag = (name: string, content: string, property = false) => {
@@ -39,14 +51,55 @@ const SEOHead = ({
       element.setAttribute('content', content);
     };
 
+    // Basic SEO
     updateMetaTag('description', description);
     if (keywords) updateMetaTag('keywords', keywords);
+    
+    // Robots meta
+    if (noindex) {
+      updateMetaTag('robots', 'noindex, nofollow');
+    } else {
+      updateMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+    }
+    
+    // Open Graph
+    updateMetaTag('og:type', article ? 'article' : 'website', true);
+    updateMetaTag('og:site_name', 'Soho Connect', true);
     updateMetaTag('og:title', title, true);
     updateMetaTag('og:description', description, true);
     updateMetaTag('og:image', ogImage, true);
+    updateMetaTag('og:image:width', '1200', true);
+    updateMetaTag('og:image:height', '630', true);
+    updateMetaTag('og:url', canonical || window.location.href, true);
+    updateMetaTag('og:locale', 'en_ZW', true);
+    
+    // Article-specific Open Graph
+    if (article) {
+      if (article.publishedTime) updateMetaTag('article:published_time', article.publishedTime, true);
+      if (article.modifiedTime) updateMetaTag('article:modified_time', article.modifiedTime, true);
+      if (article.author) updateMetaTag('article:author', article.author, true);
+      if (article.section) updateMetaTag('article:section', article.section, true);
+      if (article.tags) {
+        article.tags.forEach(tag => {
+          updateMetaTag('article:tag', tag, true);
+        });
+      }
+    }
+    
+    // Twitter Card
+    updateMetaTag('twitter:card', 'summary_large_image');
+    updateMetaTag('twitter:site', '@sohoconnect');
+    updateMetaTag('twitter:creator', '@sohoconnect');
     updateMetaTag('twitter:title', title);
     updateMetaTag('twitter:description', description);
     updateMetaTag('twitter:image', ogImage);
+    
+    // Additional SEO
+    updateMetaTag('author', 'Soho Connect');
+    updateMetaTag('geo.region', 'ZW-HA');
+    updateMetaTag('geo.placename', 'Harare');
+    updateMetaTag('geo.position', '-17.8252;31.0335');
+    updateMetaTag('ICBM', '-17.8252, 31.0335');
 
     // Update canonical link
     if (canonical) {
@@ -80,9 +133,14 @@ const SEOHead = ({
         }
       };
     }
-  }, [title, description, keywords, canonical, ogImage, schema]);
+  }, [title, description, keywords, canonical, ogImage, schema, noindex, article]);
 
-  return null;
+  return (
+    <>
+      {/* Organization Schema - Always include */}
+      <OrganizationSchema />
+    </>
+  );
 };
 
 export default SEOHead;

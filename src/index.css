@@ -18,15 +18,17 @@ All colors MUST be HSL.
     --popover-foreground: 217 100% 12%;
 
     /* Soho Connect Brand Colors - Royal Blue Enforcement */
-    /* Primary brand: #4169e1 (Royal Blue) → hsl(225, 73%, 57%) */
+    /* PRIMARY BRAND: #4169e1 (Royal Blue) → hsl(225, 73%, 57%) */
+    /* ❌ NO ORANGE HUES ALLOWED (#f97316, #fb923c, #fdba74) */
     --primary: 225 73% 57%;
     --primary-foreground: 0 0% 100%;
     --primary-hover: 225 80% 52%;
 
-    --secondary: 199 100% 45%; /* #00A7E1 - Light Blue (Innovation, Clarity) */
-    --secondary-foreground: 0 0% 100%;
+    /* Stone Palette - NEUTRALS */
+    --secondary: 24 10% 96%; /* Stone-50 for backgrounds */
+    --secondary-foreground: 24 10% 10%;
 
-    --accent: 195 100% 50%; /* #00BFFF - Cyan (Energy, Modernity) */
+    --accent: 225 73% 57%; /* Use Royal Blue for accents too */
     --accent-foreground: 0 0% 100%;
 
     --muted: 210 20% 96%;
@@ -46,10 +48,20 @@ All colors MUST be HSL.
     --gradient-accent: linear-gradient(135deg, hsl(225 73% 57%), hsl(225 85% 45%));
     --gradient-subtle: linear-gradient(180deg, hsl(210 20% 98%), hsl(210 20% 94%));
 
-    /* Brand-specific tokens */
-    --brand-royal-blue: 225 73% 57%;
-    --brand-royal-blue-dark: 225 85% 45%;
+    /* Brand-specific tokens - Royal Blue System */
+    --brand-royal-blue: 225 73% 57%; /* #4169e1 */
+    --brand-royal-blue-dark: 225 85% 45%; /* #3557c4 */
+    --brand-royal-blue-light: 225 70% 65%; /* #5a7fe8 */
     --gradient-brand-cta: linear-gradient(135deg, hsl(var(--brand-royal-blue)), hsl(var(--brand-royal-blue-dark)));
+    
+    /* Stone Palette for text and backgrounds */
+    --stone-50: 24 10% 98%;
+    --stone-900: 24 10% 10%;
+    --stone-600: 24 6% 34%;
+    
+    /* Semantic Colors */
+    --success: 142 71% 45%; /* Green for success states only */
+    --error: 0 84% 60%; /* Red for errors only */
 
     /* Shadows */
     --shadow-elegant: 0 10px 30px -10px hsl(217 100% 19% / 0.2);

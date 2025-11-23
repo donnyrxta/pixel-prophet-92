@@ -1,5 +1,5 @@
 {
-  "analyzedAt": "2025-10-11T23:54:02.477Z",
+  "analyzedAt": "2025-11-21T08:42:26.869Z",
   "items": [
     {
       "file": "/public/images/clients/0xbitcoin.svg",
@@ -52,6 +52,16 @@
       "aspectRatio": null
     },
     {
+      "file": "/public/images/clients/analysis.json",
+      "format": "json",
+      "sizeKB": 2.68,
+      "sizeBytes": 2744,
+      "width": null,
+      "height": null,
+      "pixelCount": null,
+      "aspectRatio": null
+    },
+    {
       "file": "/public/images/clients/biohazard.svg",
       "format": "svg",
       "sizeKB": 1.57,
@@ -64,8 +74,8 @@
     {
       "file": "/public/images/clients/bitcoin-logo.svg",
       "format": "svg",
-      "sizeKB": 1.42,
-      "sizeBytes": 1459,
+      "sizeKB": 1.43,
+      "sizeBytes": 1464,
       "width": 144,
       "height": 145,
       "pixelCount": 20880,

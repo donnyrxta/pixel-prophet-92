@@ -201,19 +201,33 @@ const WebstoreCategory = () => {
         />
 
         {/* Product Grid */}
-        <section id="products" className="py-16 px-6 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-semibold text-center mb-8 text-blue-600 font-['Oswald']">
-            {category.name} Products
-          </h2>
+        <section id="products" className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <div className="w-2 h-2 bg-[#4169e1] rounded-full animate-pulse" />
+                <span className="text-sm tracking-[0.3em] uppercase text-stone-600">
+                  {category.tagline}
+                </span>
+                <div className="w-2 h-2 bg-[#4169e1] rounded-full animate-pulse" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-4">
+                {category.name} Products
+              </h2>
+              <p className="text-lg text-stone-600 max-w-3xl mx-auto">
+                {category.description}
+              </p>
+            </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <WebstoreProductCard
-                key={product.id}
-                product={product}
-                onViewDetails={() => navigate(`/webstore/product/${product.slug}`)}
-              />
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+              {products.map((product) => (
+                <WebstoreProductCard
+                  key={product.id}
+                  product={product}
+                  onViewDetails={() => navigate(`/webstore/product/${product.slug}`)}
+                />
+              ))}
+            </div>
           </div>
 
           {products.length === 0 && (
@@ -262,19 +276,22 @@ const WebstoreCategory = () => {
         )}
 
         {/* Quote CTA */}
-        <section className="py-16 px-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 font-['Oswald']">
+        <section className="py-20 bg-gradient-to-br from-[#4169e1] to-[#3557c4] text-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Interested in {category.name}?
             </h2>
-            <p className="text-lg mb-8 text-blue-100">
+            <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
               Fill in your details and we'll help you choose the perfect solution.
             </p>
             <button
               onClick={() => navigate('/contact')}
-              className="inline-block bg-white text-blue-600 font-semibold px-8 py-4 rounded-full hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center gap-2 bg-white text-[#4169e1] font-bold px-10 py-5 rounded-full hover:bg-stone-100 transition-all duration-300 hover:scale-105 shadow-2xl text-lg"
             >
               Request a Quote
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </section>
