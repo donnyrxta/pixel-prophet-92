@@ -84,6 +84,29 @@ export const trackCTAClick = (
 };
 
 /**
+ * Track WhatsApp button clicks
+ * @param location - Where the button was clicked
+ */
+export const trackWhatsAppClick = (location: string) => {
+  pushEvent({
+    event: 'whatsapp_click',
+    click_location: location,
+    page_path: window.location.pathname,
+  });
+};
+
+/**
+ * Track Quote Calculator usage
+ * @param quoteData - Data from the quote calculator
+ */
+export const trackQuoteCalculator = (quoteData: Record<string, unknown>) => {
+  pushEvent({
+    event: 'quote_calculator_usage',
+    ...quoteData,
+  });
+};
+
+/**
  * Track portfolio item views
  * @param projectId - ID of the portfolio project
  * @param projectTitle - Title of the project
@@ -99,74 +122,11 @@ export const trackPortfolioView = (
     project_id: projectId,
     project_title: projectTitle,
     project_category: projectCategory,
-    page_path: window.location.pathname,
   });
 };
 
 /**
- * Track WhatsApp click-to-chat interactions
- * @param source - Where on the site the WhatsApp button was clicked
- * @param message - Optional pre-filled message
- */
-export const trackWhatsAppClick = (source: string, message?: string) => {
-  pushEvent({
-    event: 'whatsapp_click',
-    click_source: source,
-    message_template: message || '',
-    page_path: window.location.pathname,
-  });
-};
-
-/**
- * Track service page views
- * @param serviceName - Name of the service viewed
- */
-export const trackServiceView = (serviceName: string) => {
-  pushEvent({
-    event: 'service_view',
-    service_name: serviceName,
-    page_path: window.location.pathname,
-  });
-};
-
-/**
- * Track quote calculator interactions
- * @param action - Action taken (e.g., "started", "completed", "abandoned")
- * @param quoteDetails - Details of the quote
- */
-export const trackQuoteCalculator = (
-  action: 'started' | 'completed' | 'abandoned',
-  quoteDetails?: Record<string, unknown>
-) => {
-  pushEvent({
-    event: 'quote_calculator',
-    calculator_action: action,
-    page_path: window.location.pathname,
-    ...quoteDetails,
-  });
-};
-
-/**
- * Track menu interactions (for floating contact widget)
- * @param action - Menu action (e.g., "expanded", "collapsed", "item_clicked")
- * @param menuType - Type of menu (e.g., "floating_contact")
- */
-export const trackMenuInteraction = (
-  action: string,
-  menuType: string,
-  additionalData?: Record<string, unknown>
-) => {
-  pushEvent({
-    event: 'menu_interaction',
-    menu_action: action,
-    menu_type: menuType,
-    page_path: window.location.pathname,
-    ...additionalData,
-  });
-};
-
-/**
- * Track page views (for SPA route changes)
+ * Track page views
  * @param pageTitle - Title of the page
  * @param pagePath - Path of the page
  */
@@ -175,157 +135,20 @@ export const trackPageView = (pageTitle: string, pagePath: string) => {
     event: 'page_view',
     page_title: pageTitle,
     page_path: pagePath,
-    page_location: window.location.href,
   });
 };
 
 /**
- * Track custom events
- * @param eventName - Name of the custom event
- * @param eventData - Data associated with the event
+ * Track generic custom events
+ * @param eventName - Name of the event
+ * @param properties - Additional event properties
  */
-export const trackCustomEvent = (eventName: string, eventData?: Record<string, unknown>) => {
+export const trackEvent = (eventName: string, properties?: Record<string, unknown>) => {
   pushEvent({
     event: eventName,
-    ...eventData,
+    ...properties,
   });
 };
 
-/**
- * E-COMMERCE TRACKING
- * Phase 3: Enhanced e-commerce events for GA4
- */
-
-/**
- * Track product views
- * @param productId - ID of the product
- * @param productName - Name of the product
- * @param category - Product category
- * @param price - Product price
- */
-export const trackProductView = (
-  productId: string,
-  productName: string,
-  category: string,
-  price: number
-) => {
-  pushEvent({
-    event: 'view_item',
-    ecommerce: {
-      currency: 'USD',
-      value: price,
-      items: [{
-        item_id: productId,
-        item_name: productName,
-        item_category: category,
-        price: price,
-        quantity: 1
-      }] as EcommerceItem[]
-    },
-    page_path: window.location.pathname
-  });
-};
-
-/**
- * Track add to cart
- * @param productId - ID of the product
- * @param productName - Name of the product
- * @param price - Product price
- * @param quantity - Quantity added
- */
-export const trackAddToCart = (
-  productId: string,
-  productName: string,
-  price: number,
-  quantity: number
-) => {
-  pushEvent({
-    event: 'add_to_cart',
-    ecommerce: {
-      currency: 'USD',
-      value: price * quantity,
-      items: [{
-        item_id: productId,
-        item_name: productName,
-        price: price,
-        quantity: quantity
-      }] as EcommerceItem[]
-    },
-    page_path: window.location.pathname
-  });
-};
-
-/**
- * Track remove from cart
- * @param productId - ID of the product
- * @param productName - Name of the product
- * @param price - Product price
- * @param quantity - Quantity removed
- */
-export const trackRemoveFromCart = (
-  productId: string,
-  productName: string,
-  price: number,
-  quantity: number
-) => {
-  pushEvent({
-    event: 'remove_from_cart',
-    ecommerce: {
-      currency: 'USD',
-      value: price * quantity,
-      items: [{
-        item_id: productId,
-        item_name: productName,
-        price: price,
-        quantity: quantity
-      }] as EcommerceItem[]
-    },
-    page_path: window.location.pathname
-  });
-};
-
-/**
- * Track begin checkout
- * @param cartValue - Total cart value
- * @param items - Cart items
- */
-export const trackBeginCheckout = (
-  cartValue: number,
-  items: EcommerceItem[]
-) => {
-  pushEvent({
-    event: 'begin_checkout',
-    ecommerce: {
-      currency: 'USD',
-      value: cartValue,
-      items: items
-    },
-    page_path: window.location.pathname
-  });
-};
-
-/**
- * Track purchase/order completion
- * @param transactionId - Unique transaction ID
- * @param revenue - Total revenue
- * @param items - Purchased items
- * @param paymentMethod - Payment method used
- */
-export const trackPurchase = (
-  transactionId: string,
-  revenue: number,
-  items: EcommerceItem[],
-  paymentMethod?: string
-) => {
-  pushEvent({
-    event: 'purchase',
-    ecommerce: {
-      transaction_id: transactionId,
-      currency: 'USD',
-      value: revenue,
-      items: items
-    },
-    payment_method: paymentMethod,
-    page_path: window.location.pathname
-  });
-};
+// Alias for backward compatibility
+export const trackCustomEvent = trackEvent;

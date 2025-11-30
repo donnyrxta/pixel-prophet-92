@@ -1,0 +1,108 @@
+/* SmartDropdown CSS Variables - Theming */
+:root {
+  --sd-z-index: 1000;
+  --sd-bg-color: #ffffff;
+  --sd-text-color: #1f2937;
+  --sd-border-color: #e5e7eb;
+  --sd-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --sd-radius: 0.5rem;
+  --sd-transition-duration: 300ms;
+  --sd-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --sd-item-hover-bg: #f3f4f6;
+  --sd-item-focus-ring: #4169e1;
+  --sd-min-width: 200px;
+}
+
+/* Base Menu Styles */
+.sd-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: var(--sd-min-width);
+  background-color: var(--sd-bg-color);
+  border: 1px solid var(--sd-border-color);
+  border-radius: var(--sd-radius);
+  box-shadow: var(--sd-shadow);
+  color: var(--sd-text-color);
+  z-index: var(--sd-z-index);
+  
+  /* Visibility & Animation States */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95) translateY(-10px);
+  transform-origin: top left;
+  transition: 
+    opacity var(--sd-transition-duration) var(--sd-transition-ease),
+    transform var(--sd-transition-duration) var(--sd-transition-ease),
+    visibility var(--sd-transition-duration) var(--sd-transition-ease);
+    
+  /* Accessibility */
+  outline: none;
+}
+
+/* Open State */
+.sd-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+
+/* Directional Animation Variants */
+.sd-menu[data-placement^="bottom"] {
+  transform-origin: top center;
+}
+.sd-menu[data-placement^="top"] {
+  transform-origin: bottom center;
+}
+
+/* Menu Items */
+.sd-item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.sd-item:first-child {
+  border-top-left-radius: var(--sd-radius);
+  border-top-right-radius: var(--sd-radius);
+}
+
+.sd-item:last-child {
+  border-bottom-left-radius: var(--sd-radius);
+  border-bottom-right-radius: var(--sd-radius);
+}
+
+.sd-item:hover,
+.sd-item:focus {
+  background-color: var(--sd-item-hover-bg);
+  outline: none;
+}
+
+/* High Contrast Mode Support */
+@media (forced-colors: active) {
+  .sd-menu {
+    border: 2px solid CanvasText;
+  }
+  .sd-item:hover,
+  .sd-item:focus {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .sd-menu {
+    transition: opacity 0s, visibility 0s !important;
+    transform: none !important;
+  }
+}

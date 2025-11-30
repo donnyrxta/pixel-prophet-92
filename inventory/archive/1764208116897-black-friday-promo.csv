@@ -1,0 +1,130 @@
+category,brand,product,variant,price_usd,promo,notes
+Phones,Samsung,A06,64/4,72,TRUE,
+Phones,Samsung,A06,128/4,85,TRUE,
+Phones,Samsung,A07,64/4,77,TRUE,
+Phones,Samsung,A07,128/4,89,TRUE,
+Phones,Samsung,A07,128/6,110,FALSE,
+Phones,Samsung,A05s,128/4,109,FALSE,
+Phones,Samsung,A16,128/4,118,FALSE,
+Phones,Samsung,A16,128/6,135,FALSE,
+Phones,Samsung,A16,256/8,165,FALSE,
+Phones,Samsung,A17,128/4,140,TRUE,
+Phones,Samsung,A17,128/6,153,TRUE,
+Phones,Samsung,A17,256/8,180,TRUE,
+Phones,Samsung,A26,128/6,180,FALSE,
+Phones,Samsung,A26,256/8,215,FALSE,
+Phones,Samsung,A34,128/8,220,FALSE,
+Phones,Samsung,A35,128/8,210,FALSE,
+Phones,Samsung,A35,256/8,240,FALSE,
+Phones,Samsung,A36,128/8,240,FALSE,
+Phones,Samsung,A36,256/8,270,FALSE,
+Phones,Samsung,A36,256/12,275,FALSE,
+Phones,Samsung,A56,128/8,300,FALSE,
+Phones,Samsung,A56,256/8,330,FALSE,
+Phones,Samsung,F05,64/4,74,FALSE,
+Phones,Samsung,F06,128/4,90,FALSE,
+Phones,Samsung,F06,128/6,105,FALSE,
+Phones,Samsung,F16,128/4,135,FALSE,
+Phones,Samsung,F16,128/6,138,FALSE,
+Phones,Samsung,F17,128/4,142,TRUE,
+Phones,Samsung,F55,566/8,220,TRUE,variant_unusual_566/8
+Phones,Samsung,M06,128/4,90,FALSE,source_variant 4/128
+Phones,Samsung,M07,64/4,78,TRUE,source_variant 4/64
+Phones,Samsung,M16,128/4,130,FALSE,
+Phones,Samsung,M16,128/6,137,FALSE,
+Phones,Samsung,M16,128/8,155,FALSE,
+Phones,Samsung,M17,128/4,145,TRUE,source_variant 4/128
+Phones,Samsung,M35,256/8,220,FALSE,
+Phones,Samsung,M36,128/6,150,FALSE,
+Phones,Samsung,M55s,128/8,220,FALSE,
+Phones,Samsung,M55s,256/8,230,FALSE,
+Phones,Samsung,S23,256/?,310,FALSE,RF
+Phones,Samsung,S23,256/?,560,FALSE,
+Phones,Samsung,S24 FE,256/?,420,FALSE,
+Phones,Samsung,S24,128/?,550,FALSE,
+Phones,Samsung,S24,256/?,550,FALSE,
+Phones,Samsung,S24 Ultra,256/?,790,FALSE,
+Phones,Samsung,S24 Ultra,512/?,900,FALSE,
+Phones,Samsung,S25 FE,256/?,600,TRUE,
+Phones,Samsung,S25,128/?,620,FALSE,
+Phones,Samsung,S25,256/?,700,FALSE,
+Phones,Samsung,S25 Plus,256/?,840,FALSE,
+Phones,Samsung,S25 Plus,512/?,880,FALSE,
+Phones,Samsung,S25 Ultra,256/?,890,TRUE,
+Phones,Samsung,S25 Ultra,512/?,1050,FALSE,
+Phones,Samsung,S25 Ultra,1024/?,1180,FALSE,1TB
+Phones,Samsung,S25 Edge,256/?,900,FALSE,
+Phones,Samsung,S25 Edge,512/?,940,FALSE,
+Phones,Samsung,Z Flip 6,256/?,730,FALSE,
+Phones,Samsung,Z Flip 6,512/?,840,FALSE,
+Phones,Samsung,Z Fold 6,256/?,1220,FALSE,
+Phones,Samsung,Z Fold 6,512/?,1300,FALSE,
+Phones,Samsung,Z Flip 7 FE,256/?,850,TRUE,
+Phones,Samsung,Z Flip 7,256/?,880,FALSE,
+Phones,Samsung,Z Flip 7,512/?,,FALSE,price_missing
+Phones,Samsung,Z Fold 7,256/?,1530,FALSE,
+Phones,Samsung,Z Fold 7,512/?,1650,FALSE,
+Phones,Samsung,Z Fold 7,1024/?,1960,FALSE,1TB
+Tablets,Samsung,Tab A9,64,105,FALSE,tablet_storage
+Tablets,Samsung,Tab A9,128,140,FALSE,tablet_storage
+Tablets,Samsung,Tab A9+,64,175,FALSE,tablet_storage
+Tablets,Samsung,Tab A9+,128,200,FALSE,tablet_storage
+Tablets,Samsung,Tab S9,128,550,FALSE,tablet_storage
+Tablets,Samsung,Tab S9,256,680,FALSE,tablet_storage
+Tablets,Samsung,Tab S10 FE,128,470,FALSE,tablet_storage
+Tablets,Samsung,Tab S10 FE,256,600,FALSE,tablet_storage
+Tablets,Samsung,Tab S10 Plus,256,990,FALSE,tablet_storage
+Tablets,Samsung,Tab S10 Ultra,256,1070,FALSE,tablet_storage
+Tablets,Samsung,Tab S10 Ultra,512,1260,FALSE,tablet_storage
+Watches,Samsung,Galaxy Watch 5 Pro,45mm,170,FALSE,
+Watches,Samsung,Galaxy Watch 6 Classic,43mm,150,FALSE,
+Watches,Samsung,Galaxy Watch 6 Classic,47mm,160,FALSE,
+Watches,Samsung,Galaxy Watch 7,40mm,190,FALSE,
+Watches,Samsung,Galaxy Watch 7,44mm,190,FALSE,
+Watches,Samsung,Galaxy Watch Ultra,47mm LTE,350,FALSE,
+Watches,Samsung,Galaxy Watch 8,40mm,270,FALSE,
+Watches,Samsung,Galaxy Watch 8,44mm,300,FALSE,
+Watches,Samsung,Galaxy Watch 8 Classic,46mm,370,FALSE,
+Watches,Samsung,Galaxy Watch Ultra 2,47mm LTE,490,FALSE,
+Earbuds,Samsung,Galaxy Buds Core,,40,FALSE,
+Earbuds,Samsung,Galaxy Buds2 Pro,,110,FALSE,
+Earbuds,Samsung,Galaxy Buds 3,,120,FALSE,
+Earbuds,Samsung,Galaxy Buds 3 Pro,,140,FALSE,
+Phones,Nokia,105,,10,FALSE,
+Phones,Nokia,106,,13,FALSE,
+Phones,Nokia,110,,17,FALSE,
+Phones,Nokia,6300,,20,FALSE,
+Phones,Nokia,3310,,20,FALSE,
+Phones,Nokia,130,,24,FALSE,
+Phones,Nokia,150,,25,FALSE,
+Phones,Nokia,6310,,45,FALSE,
+Phones,Nokia,3210,,47,FALSE,
+Phones,HMD,Aura,64/4,85,FALSE,source_variant 4/64
+Watches,Huawei,GT4 Watch,41mm,130,FALSE,
+Phones,OnePlus,13R,256/12,475,FALSE,source_variant 12/256
+Phones,Google,Pixel 7 Pro,512,495,FALSE,
+Phones,Google,Pixel 8 Pro,256,625,FALSE,
+Phones,Google,Pixel 8a,128,410,FALSE,
+Phones,Google,Pixel 9a,128,500,FALSE,
+Phones,Google,Pixel 9 Pro,256,930,FALSE,
+Phones,Google,Pixel 9 Pro XL,128,885,FALSE,
+Phones,Google,Pixel 9 Pro XL,1024,1200,FALSE,1TB
+Phones,Google,Pixel 10 Pro XL,256,1070,FALSE,
+Watches,Google,Pixel Watch 3,41mm,310,FALSE,
+Phones,Redmi,A3,128/4,70,TRUE,source_variant 4/128
+Phones,Redmi,A3x,128/4,70,FALSE,source_variant 4/128
+Phones,Redmi,A4,128/4,100,FALSE,source_variant 4/128
+Phones,Redmi,A5,64/3,63,TRUE,source_variant 3/64
+Phones,Redmi,13X,256/8,120,FALSE,source_variant 8/256
+Phones,Redmi,14C,128/4,87,FALSE,source_variant 4/128
+Phones,Redmi,14C,256/8,110,FALSE,source_variant 8/256
+Phones,Redmi,15C,128/4,100,FALSE,source_variant 4/128
+Phones,Redmi,15C,128/6,100,FALSE,source_variant 6/128
+Phones,Redmi,15C,256/8,115,FALSE,source_variant 8/256
+Phones,Redmi,15,256/8,180,FALSE,source_variant 8/256
+Phones,Redmi,Note 13 Pro+,512/12,320,FALSE,source_variant 12/512
+Phones,Redmi,Note 14,256/8,165,FALSE,source_variant 8/256
+Phones,Redmi,Note 14 Pro,256/8,230,FALSE,source_variant 8/256
+Phones,Redmi,Note 14 Pro,512/12,255,FALSE,source_variant 12/512
+Phones,Redmi,Note 14 Pro Plus,256/8,280,FALSE,source_variant 8/256
+Phones,Redmi,Note 14 Pro Plus,512/?,350,FALSE,

@@ -12,18 +12,18 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-muted to-background">
+    <section className="relative min-h-[100svh] md:min-h-[90vh] pb-safe flex items-center justify-center overflow-hidden isolate bg-gradient-to-br from-background via-muted to-background">
       {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse delay-700"></div>
+      <div className="absolute inset-0 opacity-10 pointer-events-none z-0">
+        <div className="absolute top-0 left-0 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-primary rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-accent rounded-full blur-3xl animate-pulse delay-700"></div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in">
+      <div className="container mobile-safe mx-auto px-4 md:px-8 relative z-10">
+        <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8 animate-fade-in">
           {/* Printing Press Effect Headline */}
           <div className="overflow-hidden">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-balance">
               <span className="block text-foreground mb-2">
                 Print Materials That
               </span>
@@ -33,7 +33,7 @@ const HeroSection = () => {
             </h1>
           </div>
 
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto animate-slide-up">
+          <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto animate-slide-up">
             Professional printing and design services that make your business stand out in Zimbabwe. 
             Fast turnaround. Guaranteed quality.
           </p>
@@ -83,7 +83,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
         <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
           <div className="w-1 h-3 bg-primary rounded-full mt-2"></div>
         </div>

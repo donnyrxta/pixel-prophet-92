@@ -1,0 +1,2178 @@
+[
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A06",
+    "variant": "64/4",
+    "priceUsd": 72,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A06|64/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A06",
+    "variant": "128/4",
+    "priceUsd": 85,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A06|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A07",
+    "variant": "64/4",
+    "priceUsd": 77,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A07|64/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A07",
+    "variant": "128/4",
+    "priceUsd": 89,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A07|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A07",
+    "variant": "128/6",
+    "priceUsd": 110,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A07|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A05s",
+    "variant": "128/4",
+    "priceUsd": 109,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A05s|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A16",
+    "variant": "128/4",
+    "priceUsd": 118,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A16|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A16",
+    "variant": "128/6",
+    "priceUsd": 135,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A16|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A16",
+    "variant": "256/8",
+    "priceUsd": 165,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A16|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A17",
+    "variant": "128/4",
+    "priceUsd": 140,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A17|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A17",
+    "variant": "128/6",
+    "priceUsd": 153,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A17|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A17",
+    "variant": "256/8",
+    "priceUsd": 180,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A17|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A26",
+    "variant": "128/6",
+    "priceUsd": 180,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A26|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A26",
+    "variant": "256/8",
+    "priceUsd": 215,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A26|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A34",
+    "variant": "128/8",
+    "priceUsd": 220,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A34|128/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A35",
+    "variant": "128/8",
+    "priceUsd": 210,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A35|128/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A35",
+    "variant": "256/8",
+    "priceUsd": 240,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A35|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A36",
+    "variant": "128/8",
+    "priceUsd": 240,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A36|128/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A36",
+    "variant": "256/8",
+    "priceUsd": 270,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A36|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A36",
+    "variant": "256/12",
+    "priceUsd": 275,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 12,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A36|256/12"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A56",
+    "variant": "128/8",
+    "priceUsd": 300,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A56|128/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "A56",
+    "variant": "256/8",
+    "priceUsd": 330,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|A56|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "F05",
+    "variant": "64/4",
+    "priceUsd": 74,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|F05|64/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "F06",
+    "variant": "128/4",
+    "priceUsd": 90,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|F06|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "F06",
+    "variant": "128/6",
+    "priceUsd": 105,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|F06|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "F16",
+    "variant": "128/4",
+    "priceUsd": 135,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|F16|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "F16",
+    "variant": "128/6",
+    "priceUsd": 138,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|F16|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "F17",
+    "variant": "128/4",
+    "priceUsd": 142,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|F17|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "F55",
+    "variant": "566/8",
+    "priceUsd": 220,
+    "promo": true,
+    "notes": "variant_unusual_566/8",
+    "attributes": {
+      "storageGB": 566,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|F55|566/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M06",
+    "variant": "128/4",
+    "priceUsd": 90,
+    "promo": false,
+    "notes": "source_variant 4/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M06|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M07",
+    "variant": "64/4",
+    "priceUsd": 78,
+    "promo": true,
+    "notes": "source_variant 4/64",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M07|64/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M16",
+    "variant": "128/4",
+    "priceUsd": 130,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M16|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M16",
+    "variant": "128/6",
+    "priceUsd": 137,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M16|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M16",
+    "variant": "128/8",
+    "priceUsd": 155,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M16|128/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M17",
+    "variant": "128/4",
+    "priceUsd": 145,
+    "promo": true,
+    "notes": "source_variant 4/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M17|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M35",
+    "variant": "256/8",
+    "priceUsd": 220,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M35|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M36",
+    "variant": "128/6",
+    "priceUsd": 150,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M36|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M55s",
+    "variant": "128/8",
+    "priceUsd": 220,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M55s|128/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "M55s",
+    "variant": "256/8",
+    "priceUsd": 230,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|M55s|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S23",
+    "variant": "256/?",
+    "priceUsd": 560,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S23|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S24 FE",
+    "variant": "256/?",
+    "priceUsd": 420,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S24 FE|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S24",
+    "variant": "128/?",
+    "priceUsd": 550,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S24|128/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S24",
+    "variant": "256/?",
+    "priceUsd": 550,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S24|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S24 Ultra",
+    "variant": "256/?",
+    "priceUsd": 790,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S24 Ultra|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S24 Ultra",
+    "variant": "512/?",
+    "priceUsd": 900,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S24 Ultra|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 FE",
+    "variant": "256/?",
+    "priceUsd": 600,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25 FE|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25",
+    "variant": "128/?",
+    "priceUsd": 620,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25|128/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25",
+    "variant": "256/?",
+    "priceUsd": 700,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 Plus",
+    "variant": "256/?",
+    "priceUsd": 840,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25 Plus|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 Plus",
+    "variant": "512/?",
+    "priceUsd": 880,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25 Plus|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 Ultra",
+    "variant": "256/?",
+    "priceUsd": 890,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25 Ultra|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 Ultra",
+    "variant": "512/?",
+    "priceUsd": 1050,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25 Ultra|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 Ultra",
+    "variant": "1024/?",
+    "priceUsd": 1180,
+    "promo": false,
+    "notes": "1TB",
+    "attributes": {
+      "storageGB": 1024,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": true
+    },
+    "key": "smartphones|Samsung|S25 Ultra|1024/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 Edge",
+    "variant": "256/?",
+    "priceUsd": 900,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25 Edge|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "S25 Edge",
+    "variant": "512/?",
+    "priceUsd": 940,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|S25 Edge|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Flip 6",
+    "variant": "256/?",
+    "priceUsd": 730,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Flip 6|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Flip 6",
+    "variant": "512/?",
+    "priceUsd": 840,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Flip 6|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Fold 6",
+    "variant": "256/?",
+    "priceUsd": 1220,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Fold 6|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Fold 6",
+    "variant": "512/?",
+    "priceUsd": 1300,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Fold 6|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Flip 7 FE",
+    "variant": "256/?",
+    "priceUsd": 850,
+    "promo": true,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Flip 7 FE|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Flip 7",
+    "variant": "256/?",
+    "priceUsd": 880,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Flip 7|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Flip 7",
+    "variant": "512/?",
+    "priceUsd": null,
+    "promo": false,
+    "notes": "price_missing",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Flip 7|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Fold 7",
+    "variant": "256/?",
+    "priceUsd": 1530,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Fold 7|256/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Fold 7",
+    "variant": "512/?",
+    "priceUsd": 1650,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Samsung|Z Fold 7|512/?"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Samsung",
+    "product": "Z Fold 7",
+    "variant": "1024/?",
+    "priceUsd": 1960,
+    "promo": false,
+    "notes": "1TB",
+    "attributes": {
+      "storageGB": 1024,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": true
+    },
+    "key": "smartphones|Samsung|Z Fold 7|1024/?"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab A9",
+    "variant": "64",
+    "priceUsd": 105,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab A9|64"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab A9",
+    "variant": "128",
+    "priceUsd": 140,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab A9|128"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab A9+",
+    "variant": "64",
+    "priceUsd": 175,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab A9+|64"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab A9+",
+    "variant": "128",
+    "priceUsd": 200,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab A9+|128"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab S9",
+    "variant": "128",
+    "priceUsd": 550,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab S9|128"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab S9",
+    "variant": "256",
+    "priceUsd": 680,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab S9|256"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab S10 FE",
+    "variant": "128",
+    "priceUsd": 470,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab S10 FE|128"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab S10 FE",
+    "variant": "256",
+    "priceUsd": 600,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab S10 FE|256"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab S10 Plus",
+    "variant": "256",
+    "priceUsd": 990,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab S10 Plus|256"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab S10 Ultra",
+    "variant": "256",
+    "priceUsd": 1070,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab S10 Ultra|256"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Tab S10 Ultra",
+    "variant": "512",
+    "priceUsd": 1260,
+    "promo": false,
+    "notes": "tablet_storage",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Tab S10 Ultra|512"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 5 Pro",
+    "variant": "45mm",
+    "priceUsd": 170,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 45,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 5 Pro|45mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 6 Classic",
+    "variant": "43mm",
+    "priceUsd": 150,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 43,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 6 Classic|43mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 6 Classic",
+    "variant": "47mm",
+    "priceUsd": 160,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 47,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 6 Classic|47mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 7",
+    "variant": "40mm",
+    "priceUsd": 190,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 40,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 7|40mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 7",
+    "variant": "44mm",
+    "priceUsd": 190,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 44,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 7|44mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch Ultra",
+    "variant": "47mm LTE",
+    "priceUsd": 350,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": true,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch Ultra|47mm LTE"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 8",
+    "variant": "40mm",
+    "priceUsd": 270,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 40,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 8|40mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 8",
+    "variant": "44mm",
+    "priceUsd": 300,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 44,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 8|44mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch 8 Classic",
+    "variant": "46mm",
+    "priceUsd": 370,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 46,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch 8 Classic|46mm"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Watch Ultra 2",
+    "variant": "47mm LTE",
+    "priceUsd": 490,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": true,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Watch Ultra 2|47mm LTE"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Buds Core",
+    "variant": "",
+    "priceUsd": 40,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Buds Core|"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Buds2 Pro",
+    "variant": "",
+    "priceUsd": 110,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Buds2 Pro|"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Buds 3",
+    "variant": "",
+    "priceUsd": 120,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Buds 3|"
+  },
+  {
+    "category": "accessories",
+    "brand": "Samsung",
+    "product": "Galaxy Buds 3 Pro",
+    "variant": "",
+    "priceUsd": 140,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Samsung|Galaxy Buds 3 Pro|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "105",
+    "variant": "",
+    "priceUsd": 10,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|105|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "106",
+    "variant": "",
+    "priceUsd": 13,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|106|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "110",
+    "variant": "",
+    "priceUsd": 17,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|110|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "6300",
+    "variant": "",
+    "priceUsd": 20,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|6300|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "3310",
+    "variant": "",
+    "priceUsd": 20,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|3310|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "130",
+    "variant": "",
+    "priceUsd": 24,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|130|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "150",
+    "variant": "",
+    "priceUsd": 25,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|150|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "6310",
+    "variant": "",
+    "priceUsd": 45,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|6310|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Nokia",
+    "product": "3210",
+    "variant": "",
+    "priceUsd": 47,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Nokia|3210|"
+  },
+  {
+    "category": "smartphones",
+    "brand": "HMD",
+    "product": "Aura",
+    "variant": "64/4",
+    "priceUsd": 85,
+    "promo": false,
+    "notes": "source_variant 4/64",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|HMD|Aura|64/4"
+  },
+  {
+    "category": "accessories",
+    "brand": "Huawei",
+    "product": "GT4 Watch",
+    "variant": "41mm",
+    "priceUsd": 130,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 41,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Huawei|GT4 Watch|41mm"
+  },
+  {
+    "category": "smartphones",
+    "brand": "OnePlus",
+    "product": "13R",
+    "variant": "256/12",
+    "priceUsd": 475,
+    "promo": false,
+    "notes": "source_variant 12/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 12,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|OnePlus|13R|256/12"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 7 Pro",
+    "variant": "512",
+    "priceUsd": 495,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Google|Pixel 7 Pro|512"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 8 Pro",
+    "variant": "256",
+    "priceUsd": 625,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Google|Pixel 8 Pro|256"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 8a",
+    "variant": "128",
+    "priceUsd": 410,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Google|Pixel 8a|128"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 9a",
+    "variant": "128",
+    "priceUsd": 500,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Google|Pixel 9a|128"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 9 Pro",
+    "variant": "256",
+    "priceUsd": 930,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Google|Pixel 9 Pro|256"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 9 Pro XL",
+    "variant": "128",
+    "priceUsd": 885,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Google|Pixel 9 Pro XL|128"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 9 Pro XL",
+    "variant": "1024",
+    "priceUsd": 1200,
+    "promo": false,
+    "notes": "1TB",
+    "attributes": {
+      "storageGB": 1024,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": true
+    },
+    "key": "smartphones|Google|Pixel 9 Pro XL|1024"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Google",
+    "product": "Pixel 10 Pro XL",
+    "variant": "256",
+    "priceUsd": 1070,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Google|Pixel 10 Pro XL|256"
+  },
+  {
+    "category": "accessories",
+    "brand": "Google",
+    "product": "Pixel Watch 3",
+    "variant": "41mm",
+    "priceUsd": 310,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": null,
+      "ramGB": null,
+      "sizeMM": 41,
+      "lte": false,
+      "tb": false
+    },
+    "key": "accessories|Google|Pixel Watch 3|41mm"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "A3",
+    "variant": "128/4",
+    "priceUsd": 70,
+    "promo": true,
+    "notes": "source_variant 4/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|A3|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "A3x",
+    "variant": "128/4",
+    "priceUsd": 70,
+    "promo": false,
+    "notes": "source_variant 4/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|A3x|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "A4",
+    "variant": "128/4",
+    "priceUsd": 100,
+    "promo": false,
+    "notes": "source_variant 4/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|A4|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "A5",
+    "variant": "64/3",
+    "priceUsd": 63,
+    "promo": true,
+    "notes": "source_variant 3/64",
+    "attributes": {
+      "storageGB": 64,
+      "ramGB": 3,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|A5|64/3"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "13X",
+    "variant": "256/8",
+    "priceUsd": 120,
+    "promo": false,
+    "notes": "source_variant 8/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|13X|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "14C",
+    "variant": "128/4",
+    "priceUsd": 87,
+    "promo": false,
+    "notes": "source_variant 4/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|14C|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "14C",
+    "variant": "256/8",
+    "priceUsd": 110,
+    "promo": false,
+    "notes": "source_variant 8/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|14C|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "15C",
+    "variant": "128/4",
+    "priceUsd": 100,
+    "promo": false,
+    "notes": "source_variant 4/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 4,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|15C|128/4"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "15C",
+    "variant": "128/6",
+    "priceUsd": 100,
+    "promo": false,
+    "notes": "source_variant 6/128",
+    "attributes": {
+      "storageGB": 128,
+      "ramGB": 6,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|15C|128/6"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "15C",
+    "variant": "256/8",
+    "priceUsd": 115,
+    "promo": false,
+    "notes": "source_variant 8/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|15C|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "15",
+    "variant": "256/8",
+    "priceUsd": 180,
+    "promo": false,
+    "notes": "source_variant 8/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|15|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "Note 13 Pro+",
+    "variant": "512/12",
+    "priceUsd": 320,
+    "promo": false,
+    "notes": "source_variant 12/512",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": 12,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|Note 13 Pro+|512/12"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "Note 14",
+    "variant": "256/8",
+    "priceUsd": 165,
+    "promo": false,
+    "notes": "source_variant 8/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|Note 14|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "Note 14 Pro",
+    "variant": "256/8",
+    "priceUsd": 230,
+    "promo": false,
+    "notes": "source_variant 8/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|Note 14 Pro|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "Note 14 Pro",
+    "variant": "512/12",
+    "priceUsd": 255,
+    "promo": false,
+    "notes": "source_variant 12/512",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": 12,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|Note 14 Pro|512/12"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "Note 14 Pro Plus",
+    "variant": "256/8",
+    "priceUsd": 280,
+    "promo": false,
+    "notes": "source_variant 8/256",
+    "attributes": {
+      "storageGB": 256,
+      "ramGB": 8,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|Note 14 Pro Plus|256/8"
+  },
+  {
+    "category": "smartphones",
+    "brand": "Redmi",
+    "product": "Note 14 Pro Plus",
+    "variant": "512/?",
+    "priceUsd": 350,
+    "promo": false,
+    "notes": "",
+    "attributes": {
+      "storageGB": 512,
+      "ramGB": null,
+      "sizeMM": null,
+      "lte": false,
+      "tb": false
+    },
+    "key": "smartphones|Redmi|Note 14 Pro Plus|512/?"
+  }
+]

@@ -26,11 +26,13 @@ interface ProductGridProps {
   showSearch?: boolean;
   showLayoutToggle?: boolean;
   initialLayout?: 'grid' | 'list';
+  pageSize?: number;
 }
 
 const CATEGORIES = [
   { value: 'all', label: 'All Products' },
   { value: 'smartphones', label: 'Smartphones' },
+  { value: 'laptops', label: 'Laptops' },
   { value: 'cctv', label: 'CCTV Systems' },
   { value: 'accessories', label: 'Tech Accessories' },
   { value: 'consumables', label: 'Business Consumables' }
@@ -51,12 +53,14 @@ export function ProductGrid({
   showCategoryFilter = true,
   showSearch = true,
   showLayoutToggle = true,
-  initialLayout = 'grid'
+  initialLayout = 'grid',
+  pageSize = 16
 }: ProductGridProps) {
   const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
   const [layout, setLayout] = useState<'grid' | 'list'>(initialLayout);
+  const [visibleCount, setVisibleCount] = useState(pageSize);
 
   // Filter products
   const filteredProducts = useMemo(() => {
@@ -92,6 +96,10 @@ export function ProductGrid({
         });
     }
   }, [filteredProducts, sortBy]);
+
+  const visibleProducts = useMemo(() => {
+    return sortedProducts.slice(0, visibleCount);
+  }, [sortedProducts, visibleCount]);
 
   return (
     <div className="w-full">
@@ -192,13 +200,13 @@ export function ProductGrid({
       </div>
 
       {/* Products Grid/List */}
-      {sortedProducts.length > 0 ? (
+      {visibleProducts.length > 0 ? (
         <div className={
           layout === 'grid'
             ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
             : 'space-y-4'
         }>
-          {sortedProducts.map(product => (
+          {visibleProducts.map(product => (
             <ProductCard
               key={product.id}
               product={product}
@@ -223,6 +231,12 @@ export function ProductGrid({
           >
             Clear Filters
           </Button>
+        </div>
+      )}
+
+      {visibleCount < sortedProducts.length && (
+        <div className="mt-8 text-center">
+          <Button onClick={() => setVisibleCount(c => c + pageSize)}>Load More</Button>
         </div>
       )}
     </div>

@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Heart, Share2, Minus, Plus, Check, Truck, Shield, Phone } from 'lucide-react';
+import { ShoppingCart, Heart, Share2, Minus, Plus, Check, Truck, Shield, Phone, MessageCircle, Quote, Package } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
+import TrustBadges from '@/components/TrustBadges';
+import { EmptyState } from '@/components/EmptyState';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/context/CartContext';
-import { getProductById } from '@/lib/shop/products';
+import { getProductById, getFeaturedProducts } from '@/lib/shop/products';
 import { formatPrice } from '@/lib/shop/pricing';
-import { trackProductView } from '@/lib/gtm';
+import { trackProductView, trackAddToCart, trackCTAClick, trackWhatsAppClick } from '@/lib/gtm';
+import { trackBrevoEvent } from '@/lib/brevo';
+import { CONTACT_INFO } from '@/lib/constants';
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -23,6 +28,9 @@ const ProductDetail = () => {
 
   // Fetch product from catalog
   const product = getProductById(productId || '');
+
+  // Get related products for cross-sell
+  const relatedProducts = product ? getFeaturedProducts().filter(p => p.id !== product.id).slice(0, 4) : [];
 
   // Track product view on mount
   useEffect(() => {
@@ -40,7 +48,27 @@ const ProductDetail = () => {
 
   // Return early if no product
   if (!product) {
-    return null;
+    return (
+      <>
+        <SEOHead
+          title="Product Not Found | Soho Connect"
+          description="The product you're looking for could not be found."
+        />
+        <Header />
+        <div className="min-h-screen pt-24">
+          <EmptyState
+            icon={<Package className="w-16 h-16" />}
+            title="Product Not Found"
+            description="The product you're looking for doesn't exist or may have been removed. Browse our other products or contact us for assistance."
+            action={{
+              label: "Browse All Products",
+              onClick: () => navigate('/webstore')
+            }}
+          />
+        </div>
+        <Footer />
+      </>
+    );
   }
 
   const incrementQuantity = () => {
@@ -60,6 +88,9 @@ const ProductDetail = () => {
 
     setIsAdding(true);
     addToCart(product, quantity);
+
+    // Track add to cart event
+    trackAddToCart(product.id, product.name, product.price, quantity);
 
     // Visual feedback
     setTimeout(() => {
@@ -316,12 +347,15 @@ const ProductDetail = () => {
                   </div>
                 </div>
 
-                {/* Action Buttons */}
+                {/* Tri-CTA Action Buttons */}
                 <div className="space-y-3">
                   <Button
                     size="lg"
                     className="w-full bg-[#4169e1] hover:bg-[#4169e1]/90 text-lg"
-                    onClick={handleAddToCart}
+                    onClick={() => {
+                      handleAddToCart();
+                      trackAddToCart(product.id, product.name, product.price, quantity);
+                    }}
                     disabled={!product.inStock || isAdding}
                   >
                     <ShoppingCart className="w-5 h-5 mr-2" />
@@ -331,18 +365,30 @@ const ProductDetail = () => {
                     <Button
                       size="lg"
                       variant="outline"
-                      onClick={() => navigate('/cart')}
+                      className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                      onClick={() => {
+                        trackCTAClick('request_quote', 'product_detail_page');
+                        const message = encodeURIComponent(`Hi! I'm interested in ${product.name}. Can you provide a quote for ${quantity} unit(s)? Product ID: ${product.id}`);
+                        window.open(`https://wa.me/263714570414?text=${message}`, '_blank');
+                        trackWhatsAppClick('quote_request', message);
+                      }}
                     >
-                      <ShoppingCart className="w-5 h-5 mr-2" />
-                      View Cart
+                      <Quote className="w-5 h-5 mr-2" />
+                      Request Quote
                     </Button>
                     <Button
                       size="lg"
                       variant="outline"
-                      onClick={handleShare}
+                      className="border-green-500 text-green-600 hover:bg-green-500 hover:text-white"
+                      onClick={() => {
+                        trackCTAClick('whatsapp_inquiry', 'product_detail_page');
+                        const message = encodeURIComponent(`Hi! I'm looking at ${product.name} on your website. Can we discuss this product?`);
+                        window.open(`https://wa.me/263714570414?text=${message}`, '_blank');
+                        trackWhatsAppClick('product_inquiry', message);
+                      }}
                     >
-                      <Share2 className="w-5 h-5 mr-2" />
-                      Share
+                      <MessageCircle className="w-5 h-5 mr-2" />
+                      WhatsApp
                     </Button>
                   </div>
                 </div>
@@ -405,13 +451,13 @@ const ProductDetail = () => {
                       Technical Specifications
                     </h3>
                     {product.specifications && Object.keys(product.specifications).length > 0 ? (
-                      <div className="space-y-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {Object.entries(product.specifications).map(([key, value]) => (
-                          <div key={key} className="flex flex-col sm:flex-row sm:items-center py-3 border-b last:border-b-0">
-                            <div className="font-medium text-foreground w-full sm:w-1/3 mb-1 sm:mb-0">
+                          <div key={key} className="bg-muted/30 p-4 rounded-lg border border-border/50">
+                            <div className="font-medium text-foreground text-sm uppercase tracking-wide mb-1">
                               {key}
                             </div>
-                            <div className="text-muted-foreground w-full sm:w-2/3">
+                            <div className="text-muted-foreground font-mono text-sm">
                               {value}
                             </div>
                           </div>
@@ -424,6 +470,49 @@ const ProductDetail = () => {
                 </TabsContent>
               </Tabs>
             </div>
+
+            {/* Cross-sell Products */}
+            {relatedProducts.length > 0 && (
+              <section className="mt-16">
+                <div className="bg-muted/30 rounded-lg p-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
+                    You Might Also Like
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {relatedProducts.map((related) => (
+                      <Card key={related.id} className="group hover:shadow-lg transition-all duration-300">
+                        <CardContent className="p-4">
+                          <div
+                            className="aspect-square bg-muted rounded-lg mb-3 overflow-hidden cursor-pointer"
+                            onClick={() => navigate(`/shop/product/${related.id}`)}
+                          >
+                            <img
+                              src={related.image}
+                              alt={related.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                            />
+                          </div>
+                          <h4 className="font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                            {related.name}
+                          </h4>
+                          <p className="text-xl font-bold text-primary mb-3">
+                            {formatPrice(related.price)}
+                          </p>
+                          <Button
+                            size="sm"
+                            className="w-full"
+                            onClick={() => navigate(`/shop/product/${related.id}`)}
+                          >
+                            View Product
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )}
           </section>
         </main>
 

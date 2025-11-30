@@ -3,11 +3,33 @@
  * Phase 3: E-commerce type definitions
  */
 
-export type ProductCategory = 'smartphones' | 'cctv' | 'accessories' | 'consumables';
+export type ProductCategory = 'smartphones' | 'laptops' | 'cctv' | 'accessories' | 'consumables' | 'tablets' | 'watches';
 
 export type PaymentMethod = 'ecocash' | 'card' | 'bank_transfer' | 'cash';
 
 export type OrderStatus = 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+
+export interface ProductVariant {
+  id: string;
+  name: string; // e.g., "Color", "Storage"
+  options: string[]; // e.g., ["Red", "Blue"], ["64GB", "128GB"]
+  selected?: string; // Currently selected option
+}
+
+export interface BulkPricingTier {
+  minQuantity: number;
+  price: number;
+  discountPercentage?: number;
+}
+
+export interface ProductBundle {
+  id: string;
+  name: string;
+  description?: string;
+  bundledProducts: Product[];
+  bundlePrice: number;
+  savingsPercentage?: number;
+}
 
 export interface Product {
   id: string;
@@ -41,6 +63,14 @@ export interface Product {
   // Metadata
   createdAt?: string;
   updatedAt?: string;
+
+  // Extended product types
+  variants?: ProductVariant[];
+  bundles?: ProductBundle[];
+  bulkPricing?: BulkPricingTier[];
+  isVariant?: boolean; // True if this is a variant of another product
+  parentProductId?: string; // ID of the parent product if this is a variant
+  isBundle?: boolean; // True if this product is a bundle
 }
 
 export interface CartItem {

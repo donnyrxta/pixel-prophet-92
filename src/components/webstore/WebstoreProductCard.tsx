@@ -3,8 +3,10 @@
  * Features enhanced hover effects, better typography, and polished design
  */
 
+import { useState } from 'react';
 import { WebstoreProduct } from '@/data/webstore-products';
 import { ShoppingCart, Star, Tag } from 'lucide-react';
+import { CompareButton } from './CompareButton';
 
 interface WebstoreProductCardProps {
   product: WebstoreProduct;
@@ -17,6 +19,8 @@ export const WebstoreProductCard = ({
   onViewDetails,
   compact = false
 }: WebstoreProductCardProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const handleClick = () => {
     if (onViewDetails) {
       onViewDetails(product.id);
@@ -38,11 +42,17 @@ export const WebstoreProductCard = ({
     >
       {/* Product Image */}
       <div className="absolute inset-0 bg-stone-100">
+        {!imageLoaded && (
+          <div className="skeleton w-full h-full" aria-label="Loading product image" />
+        )}
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           loading="lazy"
+          onLoad={() => setImageLoaded(true)}
         />
       </div>
 
@@ -51,6 +61,11 @@ export const WebstoreProductCard = ({
 
       {/* Content */}
       <div className="absolute inset-0 p-5 flex flex-col justify-between">
+        {/* Top Action Buttons */}
+        <div className="absolute top-4 right-4 z-20 flex flex-col gap-4">
+          <CompareButton productId={product.id} />
+        </div>
+
         {/* Top Badges */}
         <div className="flex items-start justify-between gap-2">
           <div className="flex flex-col gap-2">

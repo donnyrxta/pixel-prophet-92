@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import gsap from 'gsap';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 
 interface CarouselSlide {
   id: string;
@@ -22,49 +23,74 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
   slides,
   autoPlayInterval = 5000
 }) => {
+  const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [detailsEven, setDetailsEven] = useState(true);
   
+  // Separate state for the content of the two alternating divs to prevent double-rendering
+  const [evenSlide, setEvenSlide] = useState(slides[0]);
+  const [oddSlide, setOddSlide] = useState(slides[0]);
+
   const indicatorRef = useRef<HTMLDivElement>(null);
   const detailsEvenRef = useRef<HTMLDivElement>(null);
   const detailsOddRef = useRef<HTMLDivElement>(null);
 
   const currentSlide = slides[activeIndex];
 
-  // Auto-advance
+  // Auto-advance (disabled if user prefers reduced motion)
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || prefersReducedMotion) return;
 
     const timer = setTimeout(() => {
-      navigateToSlide((activeIndex + 1) % slides.length);
+      navigateToSlide((activeIndex + 1) % slides.length, false);
     }, autoPlayInterval);
 
     return () => clearTimeout(timer);
-  }, [activeIndex, isAutoPlaying, slides.length, autoPlayInterval]);
+  }, [activeIndex, isAutoPlaying, prefersReducedMotion, slides.length, autoPlayInterval]);
 
-  // Animate indicator
+  // Animate indicator (instant if reduced motion preferred)
   useEffect(() => {
     if (indicatorRef.current) {
-      gsap.to(indicatorRef.current, {
-        scaleX: 0,
-        duration: 0.3,
-        ease: 'power2.out',
-        onComplete: () => {
-          gsap.to(indicatorRef.current, {
-            scaleX: 1,
-            duration: autoPlayInterval / 1000,
-            ease: 'none'
-          });
-        }
-      });
+      if (prefersReducedMotion) {
+        // Instant transition for reduced motion
+        gsap.set(indicatorRef.current, { scaleX: 1 });
+      } else {
+        gsap.to(indicatorRef.current, {
+          scaleX: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+          onComplete: () => {
+            gsap.to(indicatorRef.current, {
+              scaleX: 1,
+              duration: autoPlayInterval / 1000,
+              ease: 'none'
+            });
+          }
+        });
+      }
     }
-  }, [activeIndex, autoPlayInterval]);
+  }, [activeIndex, autoPlayInterval, prefersReducedMotion]);
 
-  const navigateToSlide = (index: number) => {
+  const navigateToSlide = (index: number, stopAutoPlay = true) => {
+    const nextSlide = slides[index];
+    
+    // Update the content of the *next* div (the one we are switching TO)
+    if (detailsEven) {
+      // Currently showing Even, switching to Odd
+      setOddSlide(nextSlide);
+      setDetailsEven(false);
+    } else {
+      // Currently showing Odd, switching to Even
+      setEvenSlide(nextSlide);
+      setDetailsEven(true);
+    }
+
     setActiveIndex(index);
-    setDetailsEven(!detailsEven);
-    setIsAutoPlaying(false);
+    
+    if (stopAutoPlay) {
+      setIsAutoPlaying(false);
+    }
   };
 
   const goToPrevious = () => {
@@ -77,20 +103,36 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
     navigateToSlide(newIndex);
   };
 
-  // Animate details entry
+  // Animate details entry/exit
   useEffect(() => {
     const activeDetails = detailsEven ? detailsEvenRef.current : detailsOddRef.current;
-    if (activeDetails) {
-      gsap.fromTo(activeDetails,
-        { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' }
-      );
+    const inactiveDetails = detailsEven ? detailsOddRef.current : detailsEvenRef.current;
+
+    if (prefersReducedMotion) {
+      // Instant appearance for reduced motion
+      if (activeDetails) gsap.set(activeDetails, { opacity: 1, x: 0 });
+      if (inactiveDetails) gsap.set(inactiveDetails, { opacity: 0 });
+    } else {
+      // Standard animation
+      if (activeDetails) {
+        gsap.fromTo(activeDetails,
+          { opacity: 0, x: -50 },
+          { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' }
+        );
+      }
+      if (inactiveDetails) {
+        gsap.to(inactiveDetails, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.in'
+        });
+      }
     }
-  }, [activeIndex, detailsEven]);
+  }, [detailsEven, prefersReducedMotion]);
 
   return (
-    <section className="relative min-h-[60vh] sm:min-h-[80vh] md:min-h-screen overflow-hidden bg-stone-900">
-      
+    <section className="relative min-h-[100vh] sm:min-h-[100vh] md:min-h-screen overflow-hidden bg-stone-900">
+
       {/* Progress Indicator */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-white/10 z-50">
         <div
@@ -100,145 +142,137 @@ const TimedCarousel: React.FC<TimedCarouselProps> = ({
         />
       </div>
 
-      {/* Background Image */}
-      <div className="absolute inset-0">
+      {/* Background Image - Optimized for mobile */}
+      <div className="absolute inset-0 bg-stone-900">
         <img
           src={currentSlide.image}
-          alt={currentSlide.title}
+          alt={`${currentSlide.title} ${currentSlide.subtitle}`}
           className="w-full h-full object-cover transition-opacity duration-700"
           decoding="async"
-          sizes="100vw"
-          loading="eager"
+          loading={activeIndex === 0 ? "eager" : "lazy"}
+          fetchPriority={activeIndex === 0 ? "high" : "low"}
+          width="1920"
+          height="1080"
+          style={{
+            objectPosition: 'center',
+            willChange: activeIndex === 0 ? 'opacity' : 'auto'
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
       </div>
 
       {/* Content - Even */}
       <div
         ref={detailsEvenRef}
-        className={`absolute top-1/4 left-4 sm:left-8 md:left-16 max-w-2xl z-20 transition-opacity duration-500 ${
-          detailsEven ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className="absolute inset-0 flex items-center z-20 opacity-100"
+        style={{ opacity: detailsEven ? 1 : 0 }}
       >
-        <div className="mb-6">
-          <div className="relative inline-block">
-            <div className="absolute -top-2 left-0 w-8 h-1 bg-primary rounded-full" />
-            <div className="pt-4 text-xl text-white/90 tracking-wide">
-              {currentSlide.category}
+        <div className="w-full px-4 sm:px-8 md:px-16 py-safe max-w-4xl">
+          <div className="mb-4 sm:mb-6">
+            <div className="relative inline-block">
+              <div className="absolute -top-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-primary rounded-full" />
+              <div className="pt-3 sm:pt-4 text-base sm:text-xl text-white/90 tracking-wide">
+                {evenSlide.category}
+              </div>
             </div>
           </div>
-        </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 tracking-tight leading-none">
-          {currentSlide.title}
-        </h1>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-none">
-          {currentSlide.subtitle}
-        </h2>
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-1 sm:mb-2 tracking-tight leading-tight sm:leading-none text-shadow-strong">
+            {evenSlide.title}
+          </h1>
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight sm:leading-none text-shadow-strong">
+            {evenSlide.subtitle}
+          </h2>
 
-        <p className="text-lg text-white/80 mb-8 max-w-xl leading-relaxed">
-          {currentSlide.description}
-        </p>
+          <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 max-w-xl leading-relaxed">
+            {evenSlide.description}
+          </p>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={currentSlide.ctaAction}
-            className="btn-brand text-white px-8 py-3 rounded-full font-medium hover:scale-105 shadow-xl"
-          >
-            {currentSlide.cta}
-          </button>
+          <div className="flex flex-wrap items-center gap-6 mt-8 relative z-30">
+            <button
+              onClick={evenSlide.ctaAction}
+              className="btn-hero text-white text-sm sm:text-base font-medium shadow-xl"
+              aria-label={evenSlide.cta}
+            >
+              {evenSlide.cta}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Content - Odd */}
       <div
         ref={detailsOddRef}
-        className={`absolute top-1/4 left-4 sm:left-8 md:left-16 max-w-2xl z-20 transition-opacity duration-500 ${
-          !detailsEven ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className="absolute inset-0 flex items-center z-20 opacity-0"
+        style={{ opacity: !detailsEven ? 1 : 0 }}
       >
-        <div className="mb-6">
-          <div className="relative inline-block">
-            <div className="absolute -top-2 left-0 w-8 h-1 bg-primary rounded-full" />
-            <div className="pt-4 text-xl text-white/90 tracking-wide">
-              {currentSlide.category}
+        <div className="w-full px-4 sm:px-8 md:px-16 py-safe max-w-4xl">
+          <div className="mb-4 sm:mb-6">
+            <div className="relative inline-block">
+              <div className="absolute -top-2 left-0 w-6 sm:w-8 h-0.5 sm:h-1 bg-primary rounded-full" />
+              <div className="pt-3 sm:pt-4 text-base sm:text-xl text-white/90 tracking-wide">
+                {oddSlide.category}
+              </div>
             </div>
           </div>
-        </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 tracking-tight leading-none">
-          {currentSlide.title}
-        </h1>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-none">
-          {currentSlide.subtitle}
-        </h2>
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-1 sm:mb-2 tracking-tight leading-tight sm:leading-none text-shadow-strong">
+            {oddSlide.title}
+          </h1>
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-tight sm:leading-none text-shadow-strong">
+            {oddSlide.subtitle}
+          </h2>
 
-        <p className="text-lg text-white/80 mb-8 max-w-xl leading-relaxed">
-          {currentSlide.description}
-        </p>
+          <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 max-w-xl leading-relaxed">
+            {oddSlide.description}
+          </p>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={currentSlide.ctaAction}
-            className="btn-brand text-white px-8 py-3 rounded-full font-medium hover:scale-105 shadow-xl"
-          >
-            {currentSlide.cta}
-          </button>
-        </div>
-      </div>
-
-      {/* Navigation Controls */}
-      <div className="absolute bottom-8 left-16 flex items-center gap-6 z-30">
-        {/* Arrows */}
-        <button
-          onClick={goToPrevious}
-          className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white/10 transition group"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-6 h-6 text-white/70 group-hover:text-white" />
-        </button>
-
-        <button
-          onClick={goToNext}
-          className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center hover:bg-white/10 transition group"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-6 h-6 text-white/70 group-hover:text-white" />
-        </button>
-
-        {/* Progress Bar */}
-        <div className="w-44 sm:w-72 md:w-96 h-12 flex items-center">
-          <div className="w-full h-0.5 bg-white/20 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary transition-all duration-300"
-              style={{ width: `${((activeIndex + 1) / slides.length) * 100}%` }}
-            />
+          <div className="flex flex-wrap items-center gap-6 mt-8 relative z-30">
+            <button
+              onClick={oddSlide.ctaAction}
+              className="btn-hero text-white text-sm sm:text-base font-medium shadow-xl"
+              aria-label={oddSlide.cta}
+            >
+              {oddSlide.cta}
+            </button>
           </div>
         </div>
-
-        {/* Slide Number */}
-        <div className="w-12 h-12 flex items-center justify-center">
-          <span className="text-3xl font-bold text-white">
-            {activeIndex + 1}
-          </span>
+      </div>
+      
+      {/* Navigation Buttons */}
+      <div className="absolute bottom-8 left-0 right-0 z-30 px-4 sm:px-8 md:px-16">
+        <div className="max-w-4xl flex items-center gap-4">
+          <button
+            onClick={goToPrevious}
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-colors"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-colors"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+          
+          {/* Dots */}
+          <div className="flex gap-2 ml-4">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => navigateToSlide(index)}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${
+                  index === activeIndex ? 'bg-primary w-6 sm:w-8' : 'bg-white/50 hover:bg-white'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Pagination Dots */}
-      <div className="absolute bottom-8 right-16 flex items-center gap-3 z-30">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => navigateToSlide(index)}
-            className={`transition-all duration-300 rounded-full ${
-              index === activeIndex
-                ? 'w-12 h-3 bg-primary'
-                : 'w-3 h-3 bg-white/30 hover:bg-white/50'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </section>
   );
 };

@@ -19,11 +19,14 @@ export interface CartItem {
 interface CartContextType {
   items: CartItem[];
   addToCart: (product: Omit<CartItem, 'quantity'>) => void;
+  addBundleToCart: (bundleItems: Omit<CartItem, 'quantity'>[], discount: number) => void;
   removeFromCart: (slug: string) => void;
   updateQuantity: (slug: string, quantity: number) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  freeShippingThreshold?: number;
+  shippingProgress: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);

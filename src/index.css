@@ -42,6 +42,11 @@ All colors MUST be HSL.
     --ring: 225 73% 57%;
 
     --radius: 0.75rem;
+    
+    /* Button Spacing Variables */
+    --btn-padding-y: 12px;
+    --btn-padding-x: 24px;
+    --btn-touch-target: 48px;
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(225 73% 57%), hsl(225 80% 52%));
@@ -100,23 +105,16 @@ All colors MUST be HSL.
     --accent: 195 100% 50%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 217 40% 20%;
-    --muted-foreground: 210 20% 65%;
+    --muted: 217 30% 15%;
+    --muted-foreground: 217 20% 65%;
 
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217 40% 20%;
-    --input: 217 40% 20%;
+    --border: 217 30% 15%;
+    --input: 217 30% 15%;
     --ring: 225 73% 57%;
-
-    --gradient-primary: linear-gradient(135deg, hsl(225 73% 57%), hsl(225 85% 45%));
-    --gradient-accent: linear-gradient(135deg, hsl(225 73% 57%), hsl(225 80% 52%));
-    --gradient-subtle: linear-gradient(180deg, hsl(217 100% 8%), hsl(217 60% 12%));
-
-    --shadow-elegant: 0 10px 30px -10px hsl(195 100% 50% / 0.4);
-    --shadow-glow: 0 0 40px hsl(195 100% 50% / 0.5);
-
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -126,628 +124,156 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
-
-@layer base {
+  
   * {
     @apply border-border;
   }
-
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-feature-settings: 'kern' 1, 'liga' 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+  /* Micro-interactions for links and buttons */
+  a, button {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  a:hover {
+    @apply opacity-80;
+  }
+  
+  /* Disable hover effects on buttons as they have their own styles */
+  button:hover {
+    @apply opacity-100; 
+  }
+  
+  /* Standardized Button Class */
+  .btn-hero {
+    padding: 12px;
+    min-height: var(--btn-touch-target);
+    min-width: var(--btn-touch-target);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1E90FF; /* Dodger Blue */
+    border-radius: 4px;
+    transition: all 0.3s ease;
   }
 
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+  .btn-hero:hover {
+    background-color: #187bcd; /* Darker shade for hover state */
+    transform: scale(1.05);
   }
 
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
+  .btn-hero:active {
+    background-color: #1062a6; /* Even darker for active state */
+    transform: scale(0.98);
   }
 
-  h3 {
-    @apply text-2xl md:text-3xl;
+  /* Background Pattern */
+  .bg-hero-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+    background-size: 40px 40px;
   }
 
-  p {
-    line-height: 1.7;
+  /* Enhanced Image Overlay */
+  .bg-image-enhanced {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    mix-blend-mode: overlay;
+    /* Smooth transition for image changes if needed */
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* Add a gradient overlay for better text contrast */
+  .bg-image-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    pointer-events: none;
   }
 
-  a {
-    @apply transition-colors duration-200;
+  /* Section Background Enhancements */
+  .bg-section-enhanced {
+    background: var(--gradient-subtle);
+    position: relative;
   }
 
-  img {
-    @apply max-w-full h-auto;
+  .bg-section-enhanced::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.8) 100%);
+    pointer-events: none;
   }
 
-  /* Responsive image optimization */
-  img[loading="lazy"] {
-    content-visibility: auto;
+  /* 
+   * Glassmorphic Button Style
+   * 
+   * Characteristics:
+   * - Background: Semi-transparent white with blur (frosted glass)
+   * - Border: Subtle white border to define edges
+   * - Shadow: Soft shadow for depth
+   * - Text Color: Royal Blue (#4169e1) to match brand
+   * - Interactions: 
+   *   - Hover: Slightly more opaque background, increased shadow, scale up
+   *   - Active: Scale down, reduced shadow
+   */
+  .btn-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    color: #4169e1;
+    border-radius: 0.5rem; /* Rounded corners matching design system */
+    padding: 0.5rem 1rem; /* Consistent padding */
+    transition: all 0.3s ease;
+  }
+
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 12px rgba(65, 105, 225, 0.15); /* Blue-tinted shadow on hover */
+    transform: translateY(-2px);
+    color: #3557c4; /* Darker blue on hover */
+  }
+
+  .btn-glass:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .btn-glass:focus-visible {
+    outline: 2px solid #4169e1;
+    outline-offset: 2px;
   }
 }
 
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
   }
-
-  .animate-slide-up {
-    animation: slideUp 0.8s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes print {
-    0% {
-      width: 0;
-    }
-    100% {
-      width: 100%;
-    }
-  }
-
-  .printing-effect {
-    overflow: hidden;
-    animation: print 2s steps(30) forwards;
-  }
-
-  .gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hover-lift {
-    @apply transition-transform duration-300 hover:-translate-y-1;
-  }
-
-  .hover-glow {
-    @apply transition-shadow duration-300;
-  }
-
-  .hover-glow:hover {
-    box-shadow: var(--shadow-glow);
-  }
-
+  
   .text-balance {
     text-wrap: balance;
   }
-
-  .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
-
-  /* Screen reader only utility */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
-
-  /* Glassmorphic utilities */
-  .glass-effect {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .glass-dark {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    background: rgba(0, 0, 0, 0.2);
-  }
-}
-
-/* Logo breathing animation */
-@keyframes breathe {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.06);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-breathe {
-    animation: none !important;
-  }
-}
-
-@layer utilities {
-  .animate-breathe {
-    animation: breathe 3.5s ease-in-out infinite;
-  }
-
-  /* Widget-specific animations */
-  .animate-pulse-glow {
-    animation: pulseGlow 2s ease-in-out infinite;
-  }
-
-  .bg-size-200 {
-    background-size: 200%;
-  }
-
-  .bg-pos-0 {
-    background-position: 0%;
-  }
-
-  .bg-pos-100 {
-    background-position: 100%;
-  }
-
-  /* Safe area padding for mobile devices */
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom, 1.5rem);
-  }
-}
-
-/* Pulse glow animation for AI widget (purple for Von Restorff Effect) */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(168, 85, 247, 0.7);
-  }
-}
-
-/* Sticky header animation (Conversion optimization) */
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.animate-slideDown {
-  animation: slideDown 0.3s ease-out;
-}
-
-/* Z-index hierarchy (prevents widget collisions - Fitts's Law) */
-.z-carousel { z-index: 10; }
-.z-contact-widget { z-index: 40; }
-.z-ai-widget { z-index: 50; }
-.z-header { z-index: 100; }
-.z-modal { z-index: 200; }
-
-/* Safe positioning utilities for mobile devices */
-.safe-area-bottom {
-  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
-}
-
-/* Smooth transitions for all interactive elements */
-button,
-a,
-input,
-select,
-textarea {
-  transition: all 0.2s ease-in-out;
-}
-
-/* Hero text shadow for readability (8-Second Rule) */
-.text-shadow-strong {
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7),
-               1px 1px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* Optimal line length for readability (Cognitive Load Theory) */
-.prose-optimal {
-  max-width: 65ch;
-}
-
-/* Touch targets for mobile (Fitts's Law) - Ensure 48x48px minimum */
-@media (max-width: 768px) {
-  .touch-target {
-    min-height: 48px;
-    min-width: 48px;
-  }
-
-  /* Apply to all interactive elements */
-  button:not(.icon-only),
-  a.btn,
-  input[type="submit"],
-  input[type="button"],
-  .btn {
-    min-height: 48px;
-  }
-}
-  /* Brand enforcement utilities */
-  .text-brand {
-    color: hsl(var(--brand-royal-blue));
-  }
-  .border-brand {
-    border-color: hsl(var(--brand-royal-blue));
-  }
-  .bg-brand-cta {
-    background-image: var(--gradient-brand-cta);
-  }
-  .btn-brand {
-    @apply text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl;
-    background-image: var(--gradient-brand-cta);
-  }
-  .btn-brand:disabled {
-    @apply opacity-50 cursor-not-allowed;
-  }
-  .selection-brand {
-    @apply border-2 rounded-lg;
-    border-color: hsl(var(--brand-royal-blue));
-    background-color: hsl(var(--brand-royal-blue) / 0.08);
-  }
-
-/* ========================================
-   Phase 4A Task 3: Micro-Interactions
-   CSS-only hover effects and transitions
-   ======================================== */
-
-/* Product Card Hover Effects */
-.product-card {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-.product-card:hover {
-  @apply -translate-y-1;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-}
-
-.product-card img {
-  @apply transition-transform duration-500 ease-in-out;
-}
-
-.product-card:hover img {
-  @apply scale-105;
-}
-
-/* Navigation Link Smooth Transitions */
-.nav-link {
-  @apply transition-colors duration-200 ease-in-out;
-}
-
-.nav-link:hover {
-  @apply text-primary;
-}
-
-/* Button Hover States */
-button,
-.btn {
-  @apply transition-all duration-200 ease-in-out;
-}
-
-button:hover:not(:disabled),
-.btn:hover:not(:disabled) {
-  @apply shadow-lg;
-  transform: translateY(-1px);
-}
-
-button:active:not(:disabled),
-.btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-/* Card Hover Effects (General) */
-.card-hover {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-.card-hover:hover {
-  @apply shadow-xl -translate-y-0.5;
-}
-
-/* Link Hover with Underline Animation */
-.link-underline {
-  @apply relative;
-}
-
-.link-underline::after {
-  content: '';
-  @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary;
-  transition: width 0.3s ease-in-out;
-}
-
-.link-underline:hover::after {
-  @apply w-full;
-}
-
-/* Skeleton Loader (Simple, CSS-only) */
-.skeleton {
-  @apply bg-muted rounded;
-  background: linear-gradient(
-    90deg,
-    hsl(var(--muted)) 25%,
-    hsl(var(--muted-foreground) / 0.1) 50%,
-    hsl(var(--muted)) 75%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* Icon Hover Scale */
-.icon-hover {
-  @apply transition-transform duration-200 ease-in-out;
-}
-
-.icon-hover:hover {
-  @apply scale-110;
-}
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Focus States for Accessibility */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  @apply outline-none ring-2 ring-primary ring-offset-2;
-}
-
-/* Loading State Animation */
-.loading-dots::after {
-  content: '';
-  animation: loading-dots 1.5s infinite;
-}
-
-@keyframes loading-dots {
-  0%, 20% {
-    content: '.';
-  }
-  40% {
-    content: '..';
-  }
-  60%, 100% {
-    content: '...';
-  }
-}
-
-/* Fade In Animation */
-.fade-in {
-  animation: fade-in 0.5s ease-in-out;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Slide Down Animation (for headers) */
-.animate-slideDown {
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ========================================
-   Responsive Breakpoints & Mobile Tweaks
-   - Mobile (max-width: 480px)
-   - Small Tablets (481px - 768px)
-   - Larger Tablets (769px - 1024px)
-   ======================================== */
-
-/* Global: prevent horizontal scroll and scale media safely */
-body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-}
-picture, img, video, canvas, svg {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-iframe {
-  max-width: 100%;
-}
-
-/* Prevent content from causing horizontal overflow */
-* {
-  box-sizing: border-box;
-}
-
-/* Ensure all containers respect viewport width */
-.container,
-main,
-section,
-article {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Improve focus visibility consistently */
-:focus-visible { outline-offset: 2px; }
-
-/* Mobile: ≤480px */
-@media (max-width: 480px) {
-  /* Typography base scaling using clamp for readability */
-  html { font-size: clamp(15px, 3.8vw, 16px); }
-
-  /* Container padding across pages */
-  .container { padding-left: 1rem; padding-right: 1rem; }
-
-  /* Navigation stacking & spacing safety */
-  header nav { flex-wrap: wrap; gap: 0.5rem; }
-
-  /* Buttons & form controls: accessible touch targets */
-  button,
-  .btn,
-  input[type="submit"],
-  input[type="button"],
-  .touch-target { min-height: 48px; min-width: 48px; }
-
-  /* Form inputs fill width for small screens */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  select,
-  textarea { width: 100%; }
-
-  /* Utility: soften large gaps and margins */
-  .gap-6 { gap: 1rem; }
-  .mb-8 { margin-bottom: 1.25rem; }
-}
-
-/* Small Tablets: 481px–768px */
-@media (min-width: 481px) and (max-width: 768px) {
-  html { font-size: clamp(16px, 2.2vw, 17px); }
-  .container { padding-left: 1.25rem; padding-right: 1.25rem; }
-  header nav { flex-wrap: wrap; gap: 0.75rem; }
-
-  /* Touch targets remain accessible */
-  .touch-target { min-height: 48px; min-width: 48px; }
-}
-
-/* Larger Tablets: 769px–1024px */
-@media (min-width: 769px) and (max-width: 1024px) {
-  html { font-size: clamp(16px, 1.6vw, 18px); }
-  .container { padding-left: 1.5rem; padding-right: 1.5rem; }
-  header nav { gap: 1rem; }
-}
-
-/* Motion sensitivity: reduce non-essential animations */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-}
-
-/* ========================================
-   Horizontal Scroll Utilities
-   - Apply only to components that need x-scroll
-   ======================================== */
-.h-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  scroll-snap-type: x proximity;
-  padding-bottom: 0.75rem;
-}
-.h-scroll > * { scroll-snap-align: start; }
-
-/* Hide scrollbars while maintaining functionality */
-.scrollbar-hide {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-
-/* Visual gradient hints to indicate scrollable content */
-.scroll-hint {
-  position: relative;
-}
-.scroll-hint::before,
-.scroll-hint::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 24px;
-  pointer-events: none;
-  z-index: 5;
-}
-.scroll-hint::before {
-  left: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.12), rgba(0,0,0,0));
-}
-.scroll-hint::after {
-  right: 0;
-  background: linear-gradient(to left, rgba(0,0,0,0.12), rgba(0,0,0,0));
-}
-
-/* ========================================
-   Container Query Utilities (component-level responsiveness)
-   ======================================== */
-.cq { container-type: inline-size; }
-@container (min-width: 480px) {
-  .cq-gap-lg { gap: 1rem; }
-}
-@container (min-width: 768px) {
-  .cq-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cq-text-lg { font-size: 1.125rem; }
-}
-@container (min-width: 1024px) {
-  .cq-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .cq-text-xl { font-size: 1.25rem; }
 }

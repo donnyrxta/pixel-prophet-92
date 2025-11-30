@@ -6,16 +6,25 @@ import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { ProductGrid } from '@/components/shop/ProductGrid';
-import { PRODUCTS } from '@/lib/shop/products';
+import { PRODUCTS, useInventoryProducts } from '@/lib/shop/products';
+import { useToast } from '@/hooks/use-toast';
 import { trackPageView } from '@/lib/gtm';
 import { CONTACT_INFO } from '@/lib/constants';
 
 const Shop = () => {
   const navigate = useNavigate();
+  const { data, isLoading, isError, error } = useInventoryProducts();
+  const { toast } = useToast();
 
   useEffect(() => {
     trackPageView('Electronics Shop', '/shop');
   }, []);
+
+  useEffect(() => {
+    if (isError && error instanceof Error) {
+      toast({ title: 'Inventory load failed', description: error.message, variant: 'destructive' });
+    }
+  }, [isError, error, toast]);
 
   // Structured Data - ElectronicsStore Schema
   const storeSchema = {
@@ -115,13 +124,21 @@ const Shop = () => {
           </div>
 
           {/* Products Grid with Filtering */}
-          <ProductGrid
-            products={PRODUCTS}
-            showCategoryFilter={true}
-            showSearch={true}
-            showLayoutToggle={true}
-            initialLayout="grid"
-          />
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="h-64 rounded-xl bg-muted animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <ProductGrid
+              products={(data && data.length > 0) ? data : PRODUCTS}
+              showCategoryFilter={true}
+              showSearch={true}
+              showLayoutToggle={true}
+              initialLayout="grid"
+            />
+          )}
 
           {/* Trust Signals */}
           <section className="bg-muted/30 py-12">

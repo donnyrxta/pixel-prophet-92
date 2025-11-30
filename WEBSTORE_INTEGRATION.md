@@ -242,6 +242,26 @@ Each page includes:
 
 ## 🔄 Next Steps
 
+### Inventory Synchronization
+
+- Product imports are processed by `scripts/inventory-watcher.mjs` and written to `public/data/inventory.json`.
+- Frontend reads inventory via `useInventoryProducts()` which maps records to `Product` and auto-refreshes every 60s.
+- A localStorage fallback caches the last successful inventory payload for offline resilience.
+- To add new smartphone products quickly, drop a CSV/JSON into `inventory/incoming/` with headers: `category,brand,product,variant,price_usd,promo,notes`.
+- Valid categories: `Phones`, `Tablets`, `Watches`, `Earbuds` (mapped to internal categories).
+
+### Troubleshooting
+
+- If the shop page shows an error toast: check `public/data/inventory.json` exists and is valid JSON.
+- Inventory watcher logs to `logs/inventory-watcher.log`; inspect for validation errors and fix the input file.
+- UI errors on landing pages are captured by the global `ErrorBoundary` and logged to the backend via `recordEvent()`.
+- Retry from the UI or navigate to `/contact` when the friendly error screen appears.
+
+### Adding New Products (Smartphones)
+
+- For curated storefront content, edit `src/data/webstore-products.ts` under the `ICT Products` section.
+- For bulk imports and automatic display in `/shop`, use the inventory watcher pathway above.
+
 ### Recommended Enhancements
 
 1. **Product Detail Pages**: Create individual product pages with full specs
@@ -263,6 +283,12 @@ When ready to connect to a CMS or backend:
 - Add loading states and error boundaries
 - Set up product image CDN
 - Implement dynamic pricing and currency conversion
+
+### Testing & QA
+
+- Run unit and integration tests for inventory: `npm run inventory:test:unit` and `npm run inventory:test:integration`.
+- Performance test large imports: `npm run inventory:test:performance`.
+- Cross-browser QA: Chrome, Firefox, Edge, Safari (mobile). Validate grid responsiveness and image fallbacks.
 
 ## 📚 Resources
 

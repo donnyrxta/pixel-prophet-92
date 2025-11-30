@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import TimedCarousel from "@/components/TimedCarousel";
+import StorySection from "@/components/StorySection";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import TrustBand from "@/components/TrustBand";
@@ -73,6 +74,7 @@ const Index = () => {
       <div className="min-h-screen flex flex-col">
         <Header />
         <TimedCarousel slides={carouselSlides} />
+        <StorySection />
         <TrustBand />
         <Footer />
         

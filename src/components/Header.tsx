@@ -85,9 +85,14 @@ export const Header = () => {
 
   return (
     <>
+      {/* Skip to main content link (WCAG AA requirement) */}
+      <a href="#main-content" className="sr-only">
+        Skip to main content
+      </a>
+
       {/* Header with trust signal - Sticky with animation */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? 'bg-white shadow-lg animate-slideDown'
             : 'bg-white/95 backdrop-blur-sm'
@@ -132,9 +137,8 @@ export const Header = () => {
 
                   {/* Dropdown for Services */}
                   {link.submenu && (
-                    <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg
-                                    shadow-xl opacity-0 invisible group-hover:opacity-100
-                                    group-hover:visible transition-all duration-200 py-2 border z-50">
+                    <div className="absolute top-full left-0 pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div className="bg-white rounded-lg shadow-xl py-2 border">
                       {link.submenu.map((sublink) => (
                         <Link
                           key={sublink.path}
@@ -145,6 +149,7 @@ export const Header = () => {
                           {sublink.name}
                         </Link>
                       ))}
+                        </div>
                     </div>
                   )}
                 </div>

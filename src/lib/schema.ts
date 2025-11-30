@@ -130,7 +130,57 @@ export const generateOrganizationSchema = () => {
     ],
 
     // Price Range
-    priceRange: '$5 - $5000'
+    priceRange: '$5 - $5000',
+
+    // GBP-specific enhancements
+    paymentAccepted: ['Cash', 'Credit Card', 'Bank Transfer', 'Ecocash'],
+    currenciesAccepted: 'ZWL, USD',
+
+    // Enhanced service types for GBP
+    knowsAbout: [
+      'Business Card Printing',
+      'CCTV Installation',
+      'Vehicle Branding',
+      'Logo Design',
+      'Web Development',
+      'Marketing Materials',
+      'Corporate Wear',
+      'Security Systems'
+    ],
+
+    
+
+    // Enhanced contact options
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+263 772 123 456',
+        contactType: 'customer service',
+        availableLanguage: 'English',
+        hoursAvailable: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '08:00',
+          closes: '17:00'
+        }
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+263 772 123 456',
+        contactType: 'WhatsApp',
+        availableLanguage: 'English',
+        url: 'https://wa.me/263772123456'
+      }
+    ],
+
+    // Additional GBP metadata
+    foundingDate: '2018',
+    employeeCount: '15',
+    slogan: 'Your Complete Business Solutions Partner in Zimbabwe',
+    vatID: 'ZW123456789',
+    taxID: 'ZW123456789',
+
+    
   };
 };
 

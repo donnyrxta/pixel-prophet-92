@@ -19,9 +19,9 @@ const Footer = () => {
     ],
     shop: [
       { label: 'Webstore', href: '/webstore' },
-      { label: 'Design Products', href: '/webstore/design' },
-      { label: 'CCTV & Security', href: '/webstore/cctv' },
-      { label: 'Corporate Wear', href: '/webstore/corporate-wear' },
+      { label: 'Design Products', href: '/webstore/category/design' },
+      { label: 'CCTV & Security', href: '/webstore/category/cctv' },
+      { label: 'Corporate Wear', href: '/webstore/category/corporate-wear' },
     ],
     company: [
       { label: 'About Us', href: '/about' },

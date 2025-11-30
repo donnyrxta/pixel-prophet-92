@@ -2,18 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npm run build:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(git ls-tree:*)",
-      "Bash(git fetch:*)",
-      "Bash(git log:*)",
-      "Bash(git add:*)",
       "Bash(npm run dev:*)",
-      "Bash(unzip:*)",
-      "Bash(npm install:*)",
-      "Bash(git remote get-url:*)",
-      "Bash(dist/.nojekyll)",
-      "Bash(test:*)"
+      "Bash(cat:*)",
+      "Bash(npx tsc --noEmit)"
     ],
     "deny": [],
     "ask": []

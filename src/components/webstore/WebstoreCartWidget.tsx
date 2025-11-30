@@ -81,7 +81,7 @@ export function WebstoreCartWidget() {
 
   /**
    * Access webstore cart context
-   * Provides: items, totalItems, totalPrice, removeFromCart, updateQuantity
+   * Provides: items, totalItems, totalPrice, removeFromCart, updateQuantity, freeShippingThreshold, shippingProgress
    */
   const {
     items,
@@ -89,6 +89,8 @@ export function WebstoreCartWidget() {
     totalPrice,
     removeFromCart,
     updateQuantity,
+    freeShippingThreshold = 500,
+    shippingProgress,
   } = useWebstoreCart();
 
   // ==========================================================================
