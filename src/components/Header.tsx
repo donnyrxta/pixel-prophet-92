@@ -54,8 +54,9 @@ export const Header = () => {
         { name: 'Printing Services', path: '/services/printing' },
         { name: 'Branding & Design', path: '/services/branding' },
         { name: 'Digital Marketing', path: '/services/digital-marketing' },
-        { name: 'Signage & Displays', path: '/services/signage' },
         { name: 'Payment Services', path: '/services/payment-services' },
+        { name: 'Signage & Displays', path: '/services/signage' },
+        { name: 'WiFi Marketing', path: '/services/wifi-marketing' },
       ]
     },
     {

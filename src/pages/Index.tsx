@@ -60,6 +60,16 @@ const Index = () => {
       image: '/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg',
       cta: 'Explore Signage',
       ctaAction: () => setShowQuoteCalculator(true)
+    },
+    {
+      id: 'wifi',
+      category: 'WiFi Marketing',
+      title: 'SMART',
+      subtitle: 'CONNECTIVITY',
+      description: 'Turn your guest WiFi into a powerful marketing engine. Capture data and drive repeat visits.',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop',
+      cta: 'WiFi Solutions',
+      ctaAction: () => window.location.href = '/services/wifi-marketing'
     }
   ];
 

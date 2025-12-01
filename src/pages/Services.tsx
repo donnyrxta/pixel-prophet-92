@@ -12,7 +12,8 @@ import {
   CreditCard,
   ArrowRight,
   CheckCircle2,
-  Star
+  Star,
+  Wifi
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -76,6 +77,23 @@ const serviceCategories = [
     services: ['Social Media', 'SEO', 'Email Campaigns', 'Content Strategy'],
     ctaText: 'Start Marketing',
     color: 'from-primary to-blue-600'
+  },
+  {
+    id: 'wifi-marketing',
+    title: 'WiFi Marketing',
+    slug: 'wifi-marketing',
+    icon: Wifi,
+    tagline: 'Turn free WiFi into revenue',
+    description: 'Capture customer data, increase footfall, and drive loyalty with our compliant guest WiFi solutions.',
+    benefits: [
+      'Captive portal & login',
+      'Customer data capture',
+      'Marketing automation',
+      'Analytics dashboard'
+    ],
+    services: ['Guest WiFi', 'Data Capture', 'Loyalty Programs', 'Traffic Analytics'],
+    ctaText: 'Explore WiFi Marketing',
+    color: 'from-blue-500 to-indigo-500'
   },
   {
     id: 'signage',

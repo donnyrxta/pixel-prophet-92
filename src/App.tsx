@@ -26,6 +26,7 @@ import WebstoreProductDetail from "./pages/WebstoreProductDetail";
 import WebstoreCart from "./pages/WebstoreCart";
 import WebstoreCheckout from "./pages/WebstoreCheckout";
 import WebstoreOrderConfirmation from "./pages/WebstoreOrderConfirmation";
+import WifiMarketing from "./pages/WifiMarketing";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import LaptopGuide2026 from "./pages/resources/guides/LaptopGuide2026";
@@ -62,6 +63,7 @@ const AppRoutes = () => {
         <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/wifi-marketing" element={<WifiMarketing />} />
         <Route path="/services/:slug" element={<ServicesDetail />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/about" element={<About />} />
