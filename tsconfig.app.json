@@ -20,6 +20,7 @@
     "noUnusedParameters": false,
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": false,
+    "types": ["vite/client", "vitest/globals", "node"],
 
     "baseUrl": ".",
     "paths": {

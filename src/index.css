@@ -236,17 +236,18 @@ All colors MUST be HSL.
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    color: #4169e1;
+    color: #4169e1; /* Ensure text color is visible */
     border-radius: 0.5rem; /* Rounded corners matching design system */
     padding: 0.5rem 1rem; /* Consistent padding */
     transition: all 0.3s ease;
+    font-weight: 500; /* Enhance text visibility */
   }
 
   .btn-glass:hover {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 8px 12px rgba(65, 105, 225, 0.15); /* Blue-tinted shadow on hover */
     transform: translateY(-2px);
-    color: #3557c4; /* Darker blue on hover */
+    color: #3557c4; /* Darker blue on hover for better contrast */
   }
 
   .btn-glass:active {

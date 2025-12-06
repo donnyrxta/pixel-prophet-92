@@ -4,9 +4,9 @@
   "description": "Premium printing, branding, and electronics in Harare, Zimbabwe",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "/favicon.png",
       "sizes": "48x48 32x32 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
       "src": "/images/brand/logo-color-icon.png",
@@ -28,5 +28,9 @@
   "display": "standalone",
   "theme_color": "#4169e1",
   "background_color": "#ffffff",
-  "categories": ["business", "shopping", "productivity"]
+  "categories": [
+    "business",
+    "shopping",
+    "productivity"
+  ]
 }

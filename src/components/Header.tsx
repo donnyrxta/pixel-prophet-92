@@ -7,14 +7,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CONTACT_INFO, BUSINESS_INFO } from '@/lib/constants';
-import QuotationCalculator from './QuotationCalculator';
+import { useQuoteCalculator } from '@/context/QuoteCalculatorContext';
 import { WebstoreCartWidget } from './webstore/WebstoreCartWidget';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
   const location = useLocation();
 
   // Close menu when route changes
@@ -93,23 +93,22 @@ export const Header = () => {
 
       {/* Header with trust signal - Sticky with animation */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
             ? 'bg-white shadow-lg animate-slideDown'
             : 'bg-white/95 backdrop-blur-sm'
-        }`}
+          }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
               aria-label="Soho Connect Home"
             >
-              <img 
-                src="/images/brand/logo-color-icon.png" 
-                alt="Soho Connect Logo" 
+              <img
+                src="/images/brand/logo-color-icon.png"
+                alt="Soho Connect Logo"
                 className="h-12 w-12"
               />
               <div className="hidden sm:block">
@@ -124,11 +123,10 @@ export const Header = () => {
                 <div key={link.path} className="relative group">
                   <Link
                     to={link.path}
-                    className={`font-medium transition-colors hover:text-primary flex items-center gap-1 ${
-                      location.pathname === link.path 
-                        ? 'text-primary' 
+                    className={`font-medium transition-colors hover:text-primary flex items-center gap-1 ${location.pathname === link.path
+                        ? 'text-primary'
                         : 'text-gray-700'
-                    }`}
+                      }`}
                   >
                     {link.name}
                     {link.submenu && (
@@ -139,18 +137,18 @@ export const Header = () => {
                   {/* Dropdown for Services */}
                   {link.submenu && (
                     <div className="absolute top-full left-0 pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="bg-white rounded-lg shadow-xl py-2 border">
-                      {link.submenu.map((sublink) => (
-                        <Link
-                          key={sublink.path}
-                          to={sublink.path}
-                          className="block px-4 py-2.5 text-gray-700 hover:bg-primary/5 
+                      <div className="bg-white rounded-lg shadow-xl py-2 border">
+                        {link.submenu.map((sublink) => (
+                          <Link
+                            key={sublink.path}
+                            to={sublink.path}
+                            className="block px-4 py-2.5 text-gray-700 hover:bg-primary/5 
                                      hover:text-primary transition-colors text-sm"
-                        >
-                          {sublink.name}
-                        </Link>
-                      ))}
-                        </div>
+                          >
+                            {sublink.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -161,7 +159,7 @@ export const Header = () => {
             <div className="hidden lg:flex items-center gap-3">
               <WebstoreCartWidget />
               <Button
-                onClick={() => setShowCalculator(true)}
+                onClick={() => openCalculator({ trigger: 'button' })}
                 className="bg-[#25D366] hover:bg-[#128C7E] text-white gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -188,7 +186,7 @@ export const Header = () => {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           onClick={() => setIsMenuOpen(false)}
           aria-hidden="true"
@@ -227,9 +225,8 @@ export const Header = () => {
                                  hover:bg-gray-50 rounded-lg transition-colors font-medium min-h-[48px]"
                     >
                       {link.name}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${
-                        openSubmenu === link.name ? 'rotate-180' : ''
-                      }`} />
+                      <ChevronDown className={`w-4 h-4 transition-transform ${openSubmenu === link.name ? 'rotate-180' : ''
+                        }`} />
                     </button>
                     {openSubmenu === link.name && (
                       <div className="ml-4 mt-1 space-y-1">
@@ -249,11 +246,10 @@ export const Header = () => {
                 ) : (
                   <Link
                     to={link.path}
-                    className={`block px-4 py-3 rounded-lg transition-colors font-medium min-h-[48px] flex items-center ${
-                      location.pathname === link.path
+                    className={`block px-4 py-3 rounded-lg transition-colors font-medium min-h-[48px] flex items-center ${location.pathname === link.path
                         ? 'bg-primary/10 text-primary'
                         : 'text-gray-700 hover:bg-gray-50'
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -266,7 +262,7 @@ export const Header = () => {
           <div className="mt-8 space-y-3">
             <Button
               onClick={() => {
-                setShowCalculator(true);
+                openCalculator({ trigger: 'button' });
                 setIsMenuOpen(false);
               }}
               className="w-full btn-brand text-white gap-2 min-h-[48px]"
@@ -284,8 +280,7 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Quotation Calculator Modal */}
-      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
+
     </>
   );
 };

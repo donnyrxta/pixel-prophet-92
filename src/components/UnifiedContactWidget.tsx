@@ -7,11 +7,11 @@ import { useState } from 'react';
 import { Phone, MessageCircle, Mail, X } from 'lucide-react';
 import { CONTACT_INFO } from '@/lib/constants';
 import { trackCTAClick } from '@/lib/gtm';
-import QuotationCalculator from './QuotationCalculator';
+import { useQuoteCalculator } from '@/context/QuoteCalculatorContext';
 
 const UnifiedContactWidget = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
 
   const contactOptions = [
     {
@@ -55,7 +55,7 @@ const UnifiedContactWidget = () => {
   return (
     <>
       <div className="fixed bottom-6 right-6 z-contact-widget flex flex-col items-end gap-3">
-        
+
         {/* Expanded Options */}
         {isExpanded && (
           <div className="flex flex-col gap-3 animate-slideUp">
@@ -75,11 +75,11 @@ const UnifiedContactWidget = () => {
                 </button>
               );
             })}
-            
+
             {/* Get Quote option */}
             <button
               onClick={() => {
-                setShowCalculator(true);
+                openCalculator({ trigger: 'button' });
                 setIsExpanded(false);
                 trackCTAClick('quote_unified_widget', 'unified_contact_widget');
               }}
@@ -119,8 +119,6 @@ const UnifiedContactWidget = () => {
         )}
       </div>
 
-      {/* Quotation Calculator Modal */}
-      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </>
   );
 };

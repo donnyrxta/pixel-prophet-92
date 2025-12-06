@@ -29,6 +29,7 @@ import WebstoreOrderConfirmation from "./pages/WebstoreOrderConfirmation";
 import WifiMarketing from "./pages/WifiMarketing";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
+import DemoCards from "./pages/DemoCards";
 import LaptopGuide2026 from "./pages/resources/guides/LaptopGuide2026";
 import SmartphoneGuide from "./pages/resources/guides/SmartphoneGuide";
 import PrintFinishesGuide from "./pages/resources/guides/PrintFinishesGuide";
@@ -60,43 +61,44 @@ const AppRoutes = () => {
     <>
       <main id="main-content">
         <ErrorBoundary>
-        <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/wifi-marketing" element={<WifiMarketing />} />
-        <Route path="/services/:slug" element={<ServicesDetail />} />
-        <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        {/* Redirect old routes to webstore */}
-        <Route path="/electronics" element={<Webstore />} />
-        <Route path="/shop" element={<Webstore />} />
-        <Route path="/shop/product/:productId" element={<Webstore />} />
-        <Route path="/cart" element={<WebstoreCart />} />
-        <Route path="/checkout" element={<WebstoreCheckout />} />
-        <Route path="/order-success" element={<WebstoreOrderConfirmation />} />
-        <Route path="/webstore" element={<Webstore />} />
-        <Route path="/webstore/category/:slug" element={<WebstoreCategory />} />
-        <Route path="/webstore/product/:slug" element={<WebstoreProductDetail />} />
-        <Route path="/webstore/cart" element={<WebstoreCart />} />
-        <Route path="/webstore/checkout" element={<WebstoreCheckout />} />
-        <Route path="/webstore/order-confirmation" element={<WebstoreOrderConfirmation />} />
-        <Route path="/compare" element={<ProductComparison />} />
-        <Route path="/locations/harare" element={<HararePage />} />
-        <Route path="/locations/bulawayo" element={<BulawayoPage />} />
-        <Route path="/locations/gweru" element={<GweruPage />} />
-        <Route path="/locations/mutare" element={<MutarePage />} />
-        <Route path="/smartphones-harare" element={<SmartphonesHarare />} />
-        <Route path="/laptops-zimbabwe" element={<LaptopsZimbabwe />} />
-        <Route path="/cctv-installation-harare" element={<CctvInstallationHarare />} />
-        <Route path="/vehicle-branding-harare" element={<VehicleBrandingHarare />} />
-        <Route path="/business-cards-harare" element={<BusinessCardsHarare />} />
-        <Route path="/ad-planner" element={<AdPlannerPage />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogArticle />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/wifi-marketing" element={<WifiMarketing />} />
+            <Route path="/services/:slug" element={<ServicesDetail />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            {/* Redirect old routes to webstore */}
+            <Route path="/electronics" element={<Webstore />} />
+            <Route path="/shop" element={<Webstore />} />
+            <Route path="/shop/product/:productId" element={<Webstore />} />
+            <Route path="/cart" element={<WebstoreCart />} />
+            <Route path="/checkout" element={<WebstoreCheckout />} />
+            <Route path="/order-success" element={<WebstoreOrderConfirmation />} />
+            <Route path="/webstore" element={<Webstore />} />
+            <Route path="/webstore/category/:slug" element={<WebstoreCategory />} />
+            <Route path="/webstore/product/:slug" element={<WebstoreProductDetail />} />
+            <Route path="/webstore/cart" element={<WebstoreCart />} />
+            <Route path="/webstore/checkout" element={<WebstoreCheckout />} />
+            <Route path="/webstore/order-confirmation" element={<WebstoreOrderConfirmation />} />
+            <Route path="/compare" element={<ProductComparison />} />
+            <Route path="/locations/harare" element={<HararePage />} />
+            <Route path="/locations/bulawayo" element={<BulawayoPage />} />
+            <Route path="/locations/gweru" element={<GweruPage />} />
+            <Route path="/locations/mutare" element={<MutarePage />} />
+            <Route path="/smartphones-harare" element={<SmartphonesHarare />} />
+            <Route path="/laptops-zimbabwe" element={<LaptopsZimbabwe />} />
+            <Route path="/cctv-installation-harare" element={<CctvInstallationHarare />} />
+            <Route path="/vehicle-branding-harare" element={<VehicleBrandingHarare />} />
+            <Route path="/business-cards-harare" element={<BusinessCardsHarare />} />
+            <Route path="/ad-planner" element={<AdPlannerPage />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
+            <Route path="/demo-cards" element={<DemoCards />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </ErrorBoundary>
       </main>
 
@@ -146,8 +148,8 @@ if (typeof window !== 'undefined') {
         userAgent: navigator.userAgent,
         ts: new Date().toISOString()
       };
-      recordEvent(payload).catch(() => {});
-    } catch {}
+      recordEvent(payload).catch(() => { });
+    } catch { }
   });
   window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => {
     console.error('Unhandled rejection:', event.reason);
@@ -160,8 +162,8 @@ if (typeof window !== 'undefined') {
         userAgent: navigator.userAgent,
         ts: new Date().toISOString()
       };
-      recordEvent(payload).catch(() => {});
-    } catch {}
+      recordEvent(payload).catch(() => { });
+    } catch { }
   });
 }
 

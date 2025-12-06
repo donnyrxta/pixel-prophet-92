@@ -9,11 +9,11 @@ import { OrganizationSchema } from './SchemaMarkup';
 interface SEOHeadProps {
   title: string;
   description: string;
-  keywords?: string;
+  keywords?: string | string[];
   canonical?: string;
   ogImage?: string;
   schema?: object;
-  noindex?: boolean;
+  noIndex?: boolean;
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -30,7 +30,7 @@ const SEOHead = ({
   canonical,
   ogImage = 'https://sohoconnect.co.zw/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg',
   schema,
-  noindex = false,
+  noIndex = false,
   article
 }: SEOHeadProps) => {
   useEffect(() => {
@@ -53,10 +53,13 @@ const SEOHead = ({
 
     // Basic SEO
     updateMetaTag('description', description);
-    if (keywords) updateMetaTag('keywords', keywords);
+    if (keywords) {
+      const keywordsStr = Array.isArray(keywords) ? keywords.join(', ') : keywords;
+      updateMetaTag('keywords', keywordsStr);
+    }
     
     // Robots meta
-    if (noindex) {
+    if (noIndex) {
       updateMetaTag('robots', 'noindex, nofollow');
     } else {
       updateMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
@@ -133,7 +136,7 @@ const SEOHead = ({
         }
       };
     }
-  }, [title, description, keywords, canonical, ogImage, schema, noindex, article]);
+  }, [title, description, keywords, canonical, ogImage, schema, noIndex, article]);
 
   return (
     <>

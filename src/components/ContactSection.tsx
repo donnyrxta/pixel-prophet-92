@@ -5,11 +5,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { MessageCircle, Phone, Mail, MapPin } from "lucide-react";
-import QuotationCalculator from "./QuotationCalculator";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 
 const ContactSection = () => {
   const { toast } = useToast();
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -123,7 +123,7 @@ const ContactSection = () => {
 
               {/* Instant Quote */}
               <button
-                onClick={() => setShowCalculator(true)}
+                onClick={() => openCalculator({ trigger: 'button' })}
                 className="block w-full p-6 bg-[#25D366]/10 border-2 border-[#25D366]/20 rounded-xl hover:border-[#25D366] hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="flex items-center gap-4">
@@ -140,7 +140,7 @@ const ContactSection = () => {
 
               {/* Phone */}
               <button
-                onClick={() => setShowCalculator(true)}
+                onClick={() => openCalculator({ trigger: 'button' })}
                 className="block w-full p-6 bg-primary/10 border-2 border-primary/20 rounded-xl hover:border-primary hover:shadow-lg transition-all duration-300 group"
               >
                 <div className="flex items-center gap-4">
@@ -211,9 +211,6 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Quotation Calculator Modal */}
-      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </section>
   );
 };

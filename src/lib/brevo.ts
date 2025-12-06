@@ -1,8 +1,19 @@
 const BREVO_API_BASE = 'https://api.brevo.com/v3';
 
+// Helper to get env vars safely in both Vite and Node
+const getEnv = (key: string) => {
+  if (typeof process !== 'undefined' && process.env && process.env[key]) {
+    return process.env[key];
+  }
+  if (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env[key]) {
+    return (import.meta as any).env[key];
+  }
+  return undefined;
+};
+
 // Helper to read the API key from env; keeps secret out of client bundles.
 // In Vite, use import.meta.env instead of process.env
-const apiKey = import.meta.env.VITE_BREVO_API_KEY;
+const apiKey = getEnv('VITE_BREVO_API_KEY') || getEnv('BREVO_API_KEY');
 
 // Ensure we fail fast if the key is missing
 if (!apiKey) {
@@ -67,6 +78,8 @@ export async function sendTransactionalTemplate(
 ) {
   // Sends a transactional email (receipts, DOI, notifications) using a Brevo template.
   if (!apiKey) return { skipped: true };
+  const senderEmail = getEnv('VITE_BREVO_SENDER_EMAIL') || 'info@sohoconnect.co.zw';
+  
   const res = await fetch(`${BREVO_API_BASE}/smtp/email`, {
     method: 'POST',
     headers: defaultHeaders,
@@ -74,7 +87,7 @@ export async function sendTransactionalTemplate(
       templateId,
       to,
       params,
-      sender: { email: import.meta.env.VITE_BREVO_SENDER_EMAIL || 'info@sohoconnect.co.zw' },
+      sender: { email: senderEmail },
     }),
   });
   if (!res.ok) {
@@ -99,10 +112,12 @@ export async function trackEvent(payload: EventPayload) {
   return res.status;
 }
 
-export function extractClientMeta(req: NextApiRequest) {
+export const trackBrevoEvent = trackEvent;
+
+export function extractClientMeta(req: any) {
   // Captures lightweight metadata for consent/audit trails.
   return {
-    ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown',
+    ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown',
     ua: req.headers['user-agent'] || 'unknown',
     referer: req.headers.referer || req.headers.origin || 'unknown',
   };
@@ -120,11 +135,13 @@ export async function sendBrevoEmail(params: {
   htmlContent: string;
 }) {
   if (!apiKey) return { skipped: true } as const;
+  const senderEmail = getEnv('VITE_BREVO_SENDER_EMAIL') || 'info@sohoconnect.co.zw';
+
   const res = await fetch(`${BREVO_API_BASE}/smtp/email`, {
     method: 'POST',
     headers: defaultHeaders,
     body: JSON.stringify({
-      sender: { email: import.meta.env.VITE_BREVO_SENDER_EMAIL || 'info@sohoconnect.co.zw' },
+      sender: { email: senderEmail },
       to: [{ email: params.toEmail, name: params.toName }],
       subject: params.subject,
       htmlContent: params.htmlContent,

@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500&display=swap");
+
+.timed-cards-container {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  background-color: #1a1a1a;
+  color: #FFFFFFDD;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.tc-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 6px 6px 10px 2px rgba(0, 0, 0, 0.6);
+  will-change: transform, width, height, top, left;
+}
+
+.tc-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tc-card-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #FFFFFFDD;
+  padding-left: 16px;
+  pointer-events: none;
+}
+
+.tc-content-place {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tc-content-title-1,
+.tc-content-title-2 {
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+.tc-content-start {
+  width: 30px;
+  height: 5px;
+  border-radius: 99px;
+  background-color: #FFFFFFDD;
+}
+
+.tc-details {
+  z-index: 22;
+  position: absolute;
+  top: 240px;
+  left: 60px;
+  opacity: 0;
+  /* Hidden by default, controlled by GSAP */
+}
+
+.tc-place-box {
+  height: 46px;
+  overflow: hidden;
+}
+
+.tc-place-box .text {
+  padding-top: 16px;
+  font-size: 20px;
+  position: relative;
+}
+
+.tc-place-box .text:before {
+  top: 0;
+  left: 0;
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 4px;
+  border-radius: 99px;
+  background-color: white;
+}
+
+.tc-title-1,
+.tc-title-2 {
+  font-weight: 600;
+  font-size: 72px;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.tc-title-box-1,
+.tc-title-box-2 {
+  margin-top: 2px;
+  height: auto;
+  overflow: hidden;
+}
+
+.tc-desc {
+  margin-top: 16px;
+  width: 500px;
+  max-width: 90vw;
+  line-height: 1.5;
+}
+
+.tc-cta {
+  width: 500px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.tc-bookmark {
+  border: none;
+  background-color: #ecad29;
+  /* Primary Color */
+  width: 36px;
+  height: 36px;
+  border-radius: 99px;
+  color: white;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.tc-bookmark:hover {
+  transform: scale(1.1);
+}
+
+.tc-bookmark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tc-discover {
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  height: 36px;
+  border-radius: 99px;
+  color: #ffffff;
+  padding: 4px 24px;
+  font-size: 12px;
+  margin-left: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tc-discover:hover {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+/* Pagination / Progress Bar Controls */
+.tc-pagination {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tc-arrow {
+  z-index: 60;
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  border: 2px solid #ffffff55;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.tc-arrow:hover {
+  border-color: #ffffff;
+}
+
+.tc-arrow:nth-child(2) {
+  margin-left: 20px;
+}
+
+.tc-arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  color: #ffffff99;
+}
+
+.tc-progress-sub-container {
+  margin-left: 24px;
+  z-index: 60;
+  width: 500px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.tc-progress-sub-background {
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff33;
+  position: relative;
+}
+
+.tc-progress-sub-foreground {
+  height: 3px;
+  background-color: #ecad29;
+  width: 0;
+  /* Animated by JS */
+}
+
+.tc-slide-numbers {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  z-index: 60;
+  position: relative;
+  margin-left: 10px;
+}
+
+.tc-slide-item {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  color: white;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.tc-cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a1a1a;
+  /* Match body bg */
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Navigation Overlay Removed */

@@ -1,0 +1,25 @@
+
+.service-page-hero {
+    @apply relative bg-cover bg-center;
+  }
+  
+  .service-page-hero::before {
+    @apply absolute inset-0 bg-black/50;
+  }
+  
+  .service-page-hero-content {
+    @apply container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4 text-center text-white;
+  }
+  
+  .service-page-features {
+    @apply py-20 bg-slate-50;
+  }
+  
+  .service-page-sectors {
+    @apply py-20 bg-white;
+  }
+  
+  .service-page-faq {
+    @apply py-20 bg-slate-50;
+  }
+  

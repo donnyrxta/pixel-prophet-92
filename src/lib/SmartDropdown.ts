@@ -66,7 +66,7 @@ export class SmartDropdown {
     this.addEvent(this.menu, 'keydown', this.handleMenuKeydown.bind(this));
   }
 
-  private addEvent(element: HTMLElement | Document | Window, event: string, handler: (e: Event) => void) {
+  private addEvent(element: HTMLElement | Document | Window, event: string, handler: (e: any) => void) {
     element.addEventListener(event, handler);
     this.cleanupEvents.push(() => element.removeEventListener(event, handler));
   }
@@ -242,9 +242,10 @@ export class SmartDropdown {
         break;
       case 'Tab':
         // Trap focus or allow escape? Usually close on tab out.
-        if (e.shiftKey && currentIndex === 0) {
+        const keyboardEvent = e as KeyboardEvent;
+        if (keyboardEvent.shiftKey && currentIndex === 0) {
              this.close(); // Tab backwards out of menu
-        } else if (!e.shiftKey && currentIndex === items.length - 1) {
+        } else if (!keyboardEvent.shiftKey && currentIndex === items.length - 1) {
              this.close(); // Tab forwards out of menu
         }
         break;

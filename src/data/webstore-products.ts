@@ -31,6 +31,10 @@ export interface WebstoreProduct {
   tags: string[];
   seoKeywords: string[];
   brand?: string;
+  isNew?: boolean;
+  isBestseller?: boolean;
+  delivery?: string;
+  warranty?: string;
 }
 
 export interface ProductCategory {

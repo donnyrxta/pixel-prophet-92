@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import QuotationCalculator from '@/components/QuotationCalculator';
+import UnifiedQuoteCalculator from '@/components/calculators/UnifiedQuoteCalculator';
+import type { ServiceCategory } from '@/data/pricing';
 
 type QuoteFormData = Partial<{
   services: string[];
@@ -17,6 +18,7 @@ type TriggerType = 'button' | 'ai' | 'exit_intent' | 'time_based' | string;
 
 interface OpenOptions {
   preselectedService?: string;
+  preselectedCategory?: ServiceCategory;
   trigger?: TriggerType;
   onComplete?: (data: QuoteFormData) => void;
 }
@@ -52,21 +54,20 @@ export function QuoteCalculatorProvider({ children }: { children: ReactNode }) {
   return (
     <QuoteCalculatorContext.Provider value={{ openCalculator, closeCalculator }}>
       {children}
-      {isOpen && (
-        <QuotationCalculator
-          onClose={closeCalculator}
-          preselectedService={options?.preselectedService}
-          trigger={normalizeTrigger(options?.trigger)}
-          // Note: QuotationCalculator will call onComplete when the user submits
-          onComplete={(data) => {
-            try {
-              options?.onComplete?.(data ?? { services: [] });
-            } finally {
-              // Do not auto-close; let user choose to continue browsing
-            }
-          }}
-        />
-      )}
+      <UnifiedQuoteCalculator
+        isOpen={isOpen}
+        onClose={closeCalculator}
+        preselectedService={options?.preselectedService}
+        preselectedCategory={options?.preselectedCategory}
+        trigger={normalizeTrigger(options?.trigger)}
+        onComplete={(data) => {
+          try {
+            options?.onComplete?.(data ?? { services: [] });
+          } finally {
+            // Do not auto-close; let user choose to continue browsing
+          }
+        }}
+      />
     </QuoteCalculatorContext.Provider>
   );
 }

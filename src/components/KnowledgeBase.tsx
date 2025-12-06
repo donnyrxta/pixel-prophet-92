@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { X, Calendar, ArrowRight } from "lucide-react";
 import SafeImage from "./SafeImage";
-import QuotationCalculator from "./QuotationCalculator";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 
 /**
  * Knowledge Base component displaying articles, case studies, and research
  * Establishes authority and provides value to visitors
  */
 const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
   // Sample articles/case studies data
   const articles = [
     {
@@ -152,16 +152,13 @@ const KnowledgeBase = ({ onClose }: { onClose: () => void }) => {
               Partner with us and let's create success stories together. Get in touch to discuss your project.
             </p>
             <button
-              onClick={() => setShowCalculator(true)}
+              onClick={() => openCalculator({ trigger: 'button' })}
               className="px-8 py-4 bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-bold shadow-lg hover:scale-105 transition-all"
             >
               Get Instant Quote
             </button>
           </div>
         </div>
-
-        {/* Quotation Calculator Modal */}
-        {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
       </div>
     </div>
   );
