@@ -178,7 +178,7 @@ const LaptopsZimbabwe = () => {
                             <input
                               type="number"
                               min="1"
-                              max={product.stockCount}
+                              max={product.stock}
                               value={quantity}
                               onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value) || 1)}
                               className="w-20 px-2 py-1 border rounded text-center"
@@ -216,7 +216,7 @@ const LaptopsZimbabwe = () => {
                         <div className="mt-4 pt-4 border-t text-xs text-gray-500">
                           <p>✓ {product.delivery}</p>
                           <p>✓ {product.warranty}</p>
-                          <p>✓ {product.stockCount} units in stock</p>
+                          <p>✓ {product.stock} units in stock</p>
                         </div>
                       </div>
                     </div>

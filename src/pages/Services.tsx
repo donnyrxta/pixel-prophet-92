@@ -22,7 +22,7 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ClientLogos from '@/components/ClientLogos';
 import SEOHead from '@/components/SEOHead';
-import QuotationCalculator from '@/components/QuotationCalculator';
+import { useQuoteCalculator } from '@/context/QuoteCalculatorContext';
 import { trackCTAClick } from '@/lib/gtm';
 
 // Service categories structured for conversion and SEO
@@ -132,11 +132,11 @@ const serviceCategories = [
 ];
 
 const Services = () => {
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
 
   return (
     <>
-      <SEOHead 
+      <SEOHead
         title="Professional Services - Printing, Branding & Digital Marketing"
         description="Complete business solutions under one roof. Printing services, branding & design, digital marketing, signage, and flexible payment options in Harare, Zimbabwe."
         keywords="printing services harare, branding design zimbabwe, digital marketing, signage harare, business services zimbabwe"
@@ -146,205 +146,203 @@ const Services = () => {
         <Header />
         <Breadcrumbs />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="container mx-auto max-w-6xl text-center">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 px-4">
+          <div className="container mx-auto max-w-6xl text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 
                           rounded-full text-sm font-semibold mb-6 animate-fade-in">
-            <Star className="w-4 h-4" />
-            Trusted by 127+ Harare Businesses
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-slide-up">
-            Complete Business Solutions
-            <span className="block text-primary mt-2">Under One Roof</span>
-          </h1>
-          
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 animate-slide-up" 
-             style={{ animationDelay: '0.1s' }}>
-            From printing to digital marketing, we provide all the services your business needs to 
-            grow and succeed in Zimbabwe's competitive market.
-          </p>
+              <Star className="w-4 h-4" />
+              Trusted by 127+ Harare Businesses
+            </div>
 
-          <div className="flex flex-wrap justify-center gap-4 animate-slide-up"
-               style={{ animationDelay: '0.2s' }}>
-            <Button
-              size="lg"
-              className="gap-2"
-              onClick={() => {
-                trackCTAClick('Get Free Quote', 'services_hero', '/services');
-                setShowCalculator(true);
-              }}
-            >
-              Get Free Quote
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-            <Link to="/contact">
-              <Button size="lg" variant="outline">
-                Schedule Consultation
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-slide-up">
+              Complete Business Solutions
+              <span className="block text-primary mt-2">Under One Roof</span>
+            </h1>
 
-      {/* Client Logos Section */}
-      <ClientLogos 
-        title="Trusted by 127+ Businesses"
-        subtitle="Join Harare's leading companies who trust us with their brand"
-      />
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 animate-slide-up"
+              style={{ animationDelay: '0.1s' }}>
+              From printing to digital marketing, we provide all the services your business needs to
+              grow and succeed in Zimbabwe's competitive market.
+            </p>
 
-      {/* Service Categories Grid */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceCategories.map((category, index) => (
-              <Card 
-                key={category.id}
-                className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 
-                           border-2 hover:border-primary/50 animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+            <div className="flex flex-wrap justify-center gap-4 animate-slide-up"
+              style={{ animationDelay: '0.2s' }}>
+              <Button
+                size="lg"
+                className="gap-2"
+                onClick={() => {
+                  trackCTAClick('Get Free Quote', 'services_hero', '/services');
+                  openCalculator({ trigger: 'button' });
+                }}
               >
-                <CardHeader>
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${category.color} 
+                Get Free Quote
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Link to="/contact">
+                <Button size="lg" variant="outline">
+                  Schedule Consultation
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Client Logos Section */}
+        <ClientLogos
+          title="Trusted by 127+ Businesses"
+          subtitle="Join Harare's leading companies who trust us with their brand"
+        />
+
+        {/* Service Categories Grid */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {serviceCategories.map((category, index) => (
+                <Card
+                  key={category.id}
+                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 
+                           border-2 hover:border-primary/50 animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardHeader>
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${category.color} 
                                   flex items-center justify-center mb-4 group-hover:scale-110 
                                   transition-transform duration-300`}>
-                    <category.icon className="w-7 h-7 text-white" />
-                  </div>
-                  
-                  <CardTitle className="text-2xl text-gray-900 group-hover:text-primary 
+                      <category.icon className="w-7 h-7 text-white" />
+                    </div>
+
+                    <CardTitle className="text-2xl text-gray-900 group-hover:text-primary 
                                         transition-colors">
-                    {category.title}
-                  </CardTitle>
-                  
-                  <CardDescription className="text-base font-medium text-primary">
-                    {category.tagline}
-                  </CardDescription>
-                </CardHeader>
+                      {category.title}
+                    </CardTitle>
 
-                <CardContent className="space-y-4">
-                  <p className="text-gray-600">
-                    {category.description}
-                  </p>
+                    <CardDescription className="text-base font-medium text-primary">
+                      {category.tagline}
+                    </CardDescription>
+                  </CardHeader>
 
-                  {/* Key Benefits */}
-                  <div className="space-y-2">
-                    {category.benefits.slice(0, 3).map((benefit, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <CardContent className="space-y-4">
+                    <p className="text-gray-600">
+                      {category.description}
+                    </p>
 
-                  {/* Service Tags */}
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {category.services.slice(0, 4).map((service, idx) => (
-                      <span 
-                        key={idx}
-                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div>
+                    {/* Key Benefits */}
+                    <div className="space-y-2">
+                      {category.benefits.slice(0, 3).map((benefit, idx) => (
+                        <div key={idx} className="flex items-start gap-2 text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
 
-                  {/* CTA Button */}
-                  <Link to={`/services/${category.slug}`} className="block">
-                    <Button 
-                      className="w-full mt-4 group-hover:bg-primary group-hover:text-white 
+                    {/* Service Tags */}
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {category.services.slice(0, 4).map((service, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
+                        >
+                          {service}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <Link to={`/services/${category.slug}`} className="block">
+                      <Button
+                        className="w-full mt-4 group-hover:bg-primary group-hover:text-white 
                                  transition-colors"
-                      variant="outline"
-                    >
-                      {category.ctaText}
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 
+                        variant="outline"
+                      >
+                        {category.ctaText}
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 
                                              transition-transform" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Businesses Choose Soho Connect
+        {/* Why Choose Us Section */}
+        <section className="py-16 px-4 bg-white">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Why Businesses Choose Soho Connect
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                We combine quality, speed, and local expertise to deliver exceptional results
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: 'Local Expertise',
+                  description: 'Based in Harare CBD, we understand Zimbabwe\'s business landscape',
+                  icon: '🇿🇼'
+                },
+                {
+                  title: 'Fast Turnaround',
+                  description: 'Same-day printing and quick project delivery when you need it',
+                  icon: '⚡'
+                },
+                {
+                  title: 'Trusted Quality',
+                  description: '127+ businesses trust us for consistent, professional results',
+                  icon: '⭐'
+                }
+              ].map((feature, idx) => (
+                <div key={idx} className="text-center p-6">
+                  <div className="text-5xl mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-16 px-4 bg-gradient-to-br from-primary to-blue-700 text-white">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Start Your Project?
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We combine quality, speed, and local expertise to deliver exceptional results
+            <p className="text-xl text-white/90 mb-8">
+              Get a free quote in minutes. No obligation, no hidden costs.
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: 'Local Expertise',
-                description: 'Based in Harare CBD, we understand Zimbabwe\'s business landscape',
-                icon: '🇿🇼'
-              },
-              {
-                title: 'Fast Turnaround',
-                description: 'Same-day printing and quick project delivery when you need it',
-                icon: '⚡'
-              },
-              {
-                title: 'Trusted Quality',
-                description: '127+ businesses trust us for consistent, professional results',
-                icon: '⭐'
-              }
-            ].map((feature, idx) => (
-              <div key={idx} className="text-center p-6">
-                <div className="text-5xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16 px-4 bg-gradient-to-br from-primary to-blue-700 text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Get a free quote in minutes. No obligation, no hidden costs.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button
-              size="lg"
-              variant="secondary"
-              className="gap-2"
-              onClick={() => {
-                trackCTAClick('WhatsApp Us Now', 'services_cta', '/services');
-                setShowCalculator(true);
-              }}
-            >
-              WhatsApp Us Now
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-            <a href="tel:+263714570414">
-              <Button size="lg" variant="outline" className="border-white text-white 
-                                                              hover:bg-white hover:text-primary">
-                Call +263 71 457 0414
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="gap-2"
+                onClick={() => {
+                  trackCTAClick('WhatsApp Us Now', 'services_cta', '/services');
+                  openCalculator({ trigger: 'button' });
+                }}
+              >
+                WhatsApp Us Now
+                <ArrowRight className="w-4 h-4" />
               </Button>
-            </a>
+              <a href="tel:+263714570414">
+                <Button size="lg" variant="outline" className="border-white text-white 
+                                                              hover:bg-white hover:text-primary">
+                  Call +263 71 457 0414
+                </Button>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
 
-    {/* Quotation Calculator Modal */}
-    {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </>
   );
 };

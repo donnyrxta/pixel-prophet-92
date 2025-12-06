@@ -97,7 +97,12 @@ export function CartProvider({ children }: CartProviderProps) {
         };
 
         // Track analytics
-        trackAddToCart(product.id, product.name, product.price, newQuantity);
+        trackAddToCart({
+          item_id: product.id,
+          item_name: product.name,
+          price: product.price,
+          quantity: newQuantity
+        });
 
         return updated;
       } else {
@@ -114,7 +119,12 @@ export function CartProvider({ children }: CartProviderProps) {
         };
 
         // Track analytics
-        trackAddToCart(product.id, product.name, product.price, quantity);
+        trackAddToCart({
+          item_id: product.id,
+          item_name: product.name,
+          price: product.price,
+          quantity: quantity
+        });
 
         return [...prevItems, newItem];
       }
@@ -130,12 +140,12 @@ export function CartProvider({ children }: CartProviderProps) {
 
       if (itemToRemove) {
         // Track analytics
-        trackRemoveFromCart(
-          itemToRemove.product.id,
-          itemToRemove.product.name,
-          itemToRemove.product.price,
-          itemToRemove.quantity
-        );
+        trackRemoveFromCart({
+          item_id: itemToRemove.product.id,
+          item_name: itemToRemove.product.name,
+          price: itemToRemove.product.price,
+          quantity: itemToRemove.quantity
+        });
       }
 
       return prevItems.filter(item => item.product.id !== productId);

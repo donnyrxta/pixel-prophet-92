@@ -86,23 +86,143 @@ export const trackCTAClick = (
 /**
  * Track WhatsApp button clicks
  * @param location - Where the button was clicked
+ * @param details - Optional details about the click (e.g. destination)
  */
-export const trackWhatsAppClick = (location: string) => {
+export const trackWhatsAppClick = (location: string, details?: string) => {
   pushEvent({
     event: 'whatsapp_click',
     click_location: location,
+    click_details: details,
     page_path: window.location.pathname,
   });
 };
 
 /**
  * Track Quote Calculator usage
- * @param quoteData - Data from the quote calculator
+ * @param action - Action performed (e.g., 'started', 'completed')
+ * @param data - Data from the quote calculator
  */
-export const trackQuoteCalculator = (quoteData: Record<string, unknown>) => {
+export function trackQuoteCalculator(action: string, data?: Record<string, unknown>): void;
+export function trackQuoteCalculator(data: Record<string, unknown>): void;
+export function trackQuoteCalculator(actionOrData: string | Record<string, unknown>, data?: Record<string, unknown>) {
+  if (typeof actionOrData === 'string') {
+    pushEvent({
+      event: 'quote_calculator_usage',
+      action: actionOrData,
+      ...data,
+    });
+  } else {
+    pushEvent({
+      event: 'quote_calculator_usage',
+      ...actionOrData,
+    });
+  }
+}
+
+/**
+ * Track product views
+ */
+export function trackProductView(product: EcommerceItem): void;
+export function trackProductView(id: string, name: string, category: string, price: number): void;
+export function trackProductView(productOrId: EcommerceItem | string, name?: string, category?: string, price?: number) {
+  if (typeof productOrId === 'object') {
+    pushEvent({
+      event: 'view_item',
+      ecommerce: { items: [productOrId] },
+    });
+  } else {
+    pushEvent({
+      event: 'view_item',
+      ecommerce: {
+        items: [{
+          item_id: productOrId,
+          item_name: name || '',
+          item_category: category,
+          price: price || 0,
+          quantity: 1
+        }]
+      },
+    });
+  }
+}
+
+/**
+ * Track add to cart
+ */
+export function trackAddToCart(product: EcommerceItem): void;
+export function trackAddToCart(id: string, name: string, price: number, quantity: number): void;
+export function trackAddToCart(productOrId: EcommerceItem | string, name?: string, price?: number, quantity?: number) {
+  if (typeof productOrId === 'object') {
+    pushEvent({
+      event: 'add_to_cart',
+      ecommerce: { items: [productOrId] },
+    });
+  } else {
+    pushEvent({
+      event: 'add_to_cart',
+      ecommerce: {
+        items: [{
+          item_id: productOrId,
+          item_name: name || '',
+          price: price || 0,
+          quantity: quantity || 1
+        }]
+      },
+    });
+  }
+}
+
+/**
+ * Track remove from cart
+ */
+export const trackRemoveFromCart = (product: EcommerceItem) => {
   pushEvent({
-    event: 'quote_calculator_usage',
-    ...quoteData,
+    event: 'remove_from_cart',
+    ecommerce: {
+      items: [product],
+    },
+  });
+};
+
+/**
+ * Track begin checkout
+ */
+export function trackBeginCheckout(items: EcommerceItem[], value: number, currency?: string): void;
+export function trackBeginCheckout(value: number, items: EcommerceItem[], currency?: string): void; // Legacy
+export function trackBeginCheckout(itemsOrValue: EcommerceItem[] | number, valueOrItems: number | EcommerceItem[], currency: string = 'USD') {
+  let items: EcommerceItem[];
+  let value: number;
+
+  if (Array.isArray(itemsOrValue)) {
+    items = itemsOrValue;
+    value = valueOrItems as number;
+  } else {
+    items = valueOrItems as EcommerceItem[];
+    value = itemsOrValue;
+  }
+
+  pushEvent({
+    event: 'begin_checkout',
+    ecommerce: {
+      items,
+      value,
+      currency,
+    },
+  });
+}
+
+/**
+ * Track purchase
+ */
+export const trackPurchase = (transactionId: string, items: EcommerceItem[], value: number, currency: string = 'USD') => {
+  pushEvent({
+    event: 'purchase',
+    ecommerce: {
+      transaction_id: transactionId,
+      value,
+      currency,
+      items,
+    },
   });
 };
 

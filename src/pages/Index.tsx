@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import TimedCarousel from "@/components/TimedCarousel";
 import StorySection from "@/components/StorySection";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import TrustBand from "@/components/TrustBand";
 import SEOHead from "@/components/SEOHead";
-import PremiumQuotationCalculator from "@/components/PremiumQuotationCalculator";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 
 /**
  * Main landing page for Soho Connect
@@ -16,9 +15,10 @@ import PremiumQuotationCalculator from "@/components/PremiumQuotationCalculator"
  * - Proximity (contact info near conversion points)
  *
  * NOTE: FloatingContact and AI widgets are now global in App.tsx
+ * NOTE: Quote Calculator is now managed globally via QuoteCalculatorContext
  */
 const Index = () => {
-  const [showQuoteCalculator, setShowQuoteCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
 
   const carouselSlides = [
     {
@@ -29,7 +29,7 @@ const Index = () => {
       description: 'Build a strong brand identity that resonates with your audience. From logo design to complete visual systems.',
       image: '/images/hero/creatopy-M35xxKGb_tA-unsplash.jpg',
       cta: 'Start Your Brand',
-      ctaAction: () => setShowQuoteCalculator(true)
+      ctaAction: () => openCalculator({ preselectedCategory: 'Branding', trigger: 'button' })
     },
     {
       id: 'printing',
@@ -39,7 +39,7 @@ const Index = () => {
       description: 'High-quality print materials that make your business stand out. Business cards, brochures, banners, and more.',
       image: '/images/hero/kaffie-co-7hEZILVOcFU-unsplash.jpg',
       cta: 'Get Print Quote',
-      ctaAction: () => setShowQuoteCalculator(true)
+      ctaAction: () => openCalculator({ preselectedCategory: 'Printing', trigger: 'button' })
     },
     {
       id: 'digital',
@@ -49,7 +49,7 @@ const Index = () => {
       description: 'Elevate your online presence with strategic digital marketing and engaging content.',
       image: '/images/hero/kaffie-co-DJb2MdMuzbU-unsplash.jpg',
       cta: 'Go Digital',
-      ctaAction: () => setShowQuoteCalculator(true)
+      ctaAction: () => openCalculator({ preselectedCategory: 'Digital', trigger: 'button' })
     },
     {
       id: 'signage',
@@ -59,7 +59,7 @@ const Index = () => {
       description: 'Professional signage that attracts attention and drives foot traffic to your business.',
       image: '/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg',
       cta: 'Explore Signage',
-      ctaAction: () => setShowQuoteCalculator(true)
+      ctaAction: () => openCalculator({ preselectedCategory: 'Signage', trigger: 'button' })
     },
     {
       id: 'wifi',
@@ -87,11 +87,6 @@ const Index = () => {
         <StorySection />
         <TrustBand />
         <Footer />
-        
-        <PremiumQuotationCalculator
-          isOpen={showQuoteCalculator}
-          onClose={() => setShowQuoteCalculator(false)}
-        />
       </div>
     </>
   );

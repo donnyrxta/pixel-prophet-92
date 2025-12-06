@@ -58,7 +58,7 @@ export function ConsentBanner() {
             <input
               type="checkbox"
               checked={consent.analytics}
-              onChange={(e) => setConsent((c) => ({ ...c, analytics: e.target.checked }))}
+              onChange={(e) => setConsent({ ...consent, analytics: e.target.checked })}
             />
             <span>Allow analytics</span>
           </label>
@@ -66,7 +66,7 @@ export function ConsentBanner() {
             <input
               type="checkbox"
               checked={consent.marketing}
-              onChange={(e) => setConsent((c) => ({ ...c, marketing: e.target.checked }))}
+              onChange={(e) => setConsent({ ...consent, marketing: e.target.checked })}
             />
             <span>Allow marketing</span>
           </label>

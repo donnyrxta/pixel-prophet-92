@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
-import { Campaign, DEFAULT_PLANNER_CONFIG, Holiday, PlannerConfig } from '@/ads/types';
+import { Campaign, CampaignStatus, DEFAULT_PLANNER_CONFIG, Holiday, PlannerConfig } from '@/ads/types';
 import { getUpcomingHolidays } from '@/ads/holidayApi';
 import { buildCampaignFromHoliday } from '@/ads/scheduler';
 import { attachCampaignMetrics } from '@/ads/analytics';
@@ -68,7 +68,7 @@ export const AdPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const approveCampaign = (id: string, approver: string) => {
     setState((prev) => {
       const campaigns = prev.campaigns.map((c) =>
-        c.id === id ? { ...c, status: 'approved', approvedBy: approver, updatedAt: new Date().toISOString() } : c
+        c.id === id ? { ...c, status: 'approved' as CampaignStatus, approvedBy: approver, updatedAt: new Date().toISOString() } : c
       );
       const next = { ...prev, campaigns };
       persist(next);
@@ -79,7 +79,7 @@ export const AdPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const scheduleCampaign = (id: string, whenISO: string) => {
     setState((prev) => {
       const campaigns = prev.campaigns.map((c) =>
-        c.id === id ? { ...c, scheduledAt: whenISO, status: c.status === 'approved' ? 'scheduled' : c.status, updatedAt: new Date().toISOString() } : c
+        c.id === id ? { ...c, scheduledAt: whenISO, status: (c.status === 'approved' ? 'scheduled' : c.status) as CampaignStatus, updatedAt: new Date().toISOString() } : c
       );
       const next = { ...prev, campaigns };
       persist(next);
@@ -90,7 +90,7 @@ export const AdPlannerProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const markDeployed = (id: string) => {
     setState((prev) => {
       const campaigns = prev.campaigns.map((c) =>
-        c.id === id ? { ...c, status: 'deployed', updatedAt: new Date().toISOString() } : c
+        c.id === id ? { ...c, status: 'deployed' as CampaignStatus, updatedAt: new Date().toISOString() } : c
       );
       const next = { ...prev, campaigns };
       persist(next);

@@ -27,9 +27,9 @@ export default function OrderSuccess() {
       // For now, track a placeholder purchase event
       trackPurchase(
         orderNumber,
-        0, // Replace with actual revenue
-        [], // Replace with actual items
-        'ecocash' // Replace with actual payment method
+        [], // Items
+        0, // Value
+        'USD' // Currency
       );
     } else {
       // No order number - redirect to shop

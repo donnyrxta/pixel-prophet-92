@@ -1,0 +1,1 @@
+{"root":["./vite.config.ts","./api/consent.ts","./api/lead.ts","./api/send-email.ts"],"version":"5.9.3"}

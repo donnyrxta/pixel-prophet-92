@@ -32,4 +32,4 @@ export default defineConfig({
     css: true,
     exclude: ['**/node_modules/**', '**/dist/**', '**/tests/visual/**'],
   },
-})
+} as any)

@@ -38,7 +38,15 @@ npm run preview
 npm run lint                 # Run ESLint
 npm run perf:ci              # Run Lighthouse CI
 npm run analyze:clients      # Analyze client image sizes
+npm run sync-portfolio       # Auto-detect new portfolio images & add to site
 ```
+
+### 🚀 Simplified Content Updates (New!)
+
+**Adding New Portfolio Items:**
+1.  **Drop Image**: Place your image file (e.g., `domed-stickers.jpg`) into `public/images/portfolio/printing/`.
+2.  **Run Sync**: Execute `npm run sync-portfolio` in your terminal.
+3.  **Done**: The site updates automatically. You can optionally edit the description in `src/data/portfolio.ts`.
 
 ### Deployment
 ```sh

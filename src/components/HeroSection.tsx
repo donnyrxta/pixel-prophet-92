@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import QuotationCalculator from "./QuotationCalculator";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 
 const HeroSection = () => {
   const [isPrinting, setIsPrinting] = useState(false);
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
 
   useEffect(() => {
     setIsPrinting(true);
@@ -34,7 +34,7 @@ const HeroSection = () => {
           </div>
 
           <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto animate-slide-up">
-            Professional printing and design services that make your business stand out in Zimbabwe. 
+            Professional printing and design services that make your business stand out in Zimbabwe.
             Fast turnaround. Guaranteed quality.
           </p>
 
@@ -57,7 +57,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="text-lg px-8 py-6 bg-primary hover:bg-primary-hover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              onClick={() => setShowCalculator(true)}
+              onClick={() => openCalculator({ trigger: 'button' })}
             >
               Get Instant Quote
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -88,11 +88,9 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-primary rounded-full mt-2"></div>
         </div>
       </div>
-
-      {/* Quotation Calculator Modal */}
-      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </section>
   );
 };
 
 export default HeroSection;
+

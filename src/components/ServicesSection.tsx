@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Printer, Palette, FileText, Layout, Package, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import QuotationCalculator from "./QuotationCalculator";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 
 const services = [
   {
@@ -49,7 +49,7 @@ const services = [
 ];
 
 const ServicesSection = () => {
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -101,11 +101,10 @@ const ServicesSection = () => {
 
                   {/* Benefits - Show on hover */}
                   <div
-                    className={`space-y-2 transition-all duration-500 ${
-                      hoveredIndex === index
+                    className={`space-y-2 transition-all duration-500 ${hoveredIndex === index
                         ? "opacity-100 max-h-40"
                         : "opacity-0 max-h-0 overflow-hidden"
-                    }`}
+                      }`}
                   >
                     {service.benefits.map((benefit, i) => (
                       <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -136,16 +135,13 @@ const ServicesSection = () => {
             Need something custom? We love a challenge.
           </p>
           <button
-            onClick={() => setShowCalculator(true)}
+            onClick={() => openCalculator({ trigger: 'button' })}
             className="px-8 py-4 bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             Get Instant Quote
           </button>
         </div>
       </div>
-
-      {/* Quotation Calculator Modal */}
-      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </section>
   );
 };

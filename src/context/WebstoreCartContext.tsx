@@ -131,6 +131,35 @@ export function WebstoreCartProvider({ children }: CartProviderProps) {
   };
 
   /**
+   * Add a bundle of products to the cart.
+   */
+  const addBundleToCart = (bundleItems: Omit<CartItem, 'quantity'>[], discount: number) => {
+    setItems((prev) => {
+      let currentItems = [...prev];
+      
+      bundleItems.forEach((product) => {
+        const existingIndex = currentItems.findIndex((item) => item.slug === product.slug);
+        // Apply discount to the product price for the bundle
+        const bundlePrice = product.price * (1 - discount);
+        const productToAdd = { ...product, price: bundlePrice };
+
+        if (existingIndex >= 0) {
+          const existing = currentItems[existingIndex];
+          const newQuantity = existing.quantity + 1;
+          
+          if (!product.stock || newQuantity <= product.stock) {
+            currentItems[existingIndex] = { ...existing, quantity: newQuantity };
+          }
+        } else {
+          currentItems.push({ ...productToAdd, quantity: 1 });
+        }
+      });
+      
+      return currentItems;
+    });
+  };
+
+  /**
    * Empty the cart entirely. Useful after checkout.
    */
   const clearCart = () => setItems([]);
@@ -143,16 +172,22 @@ export function WebstoreCartProvider({ children }: CartProviderProps) {
     return sum + (isNaN(price) ? 0 : price * item.quantity);
   }, 0);
 
+  const freeShippingThreshold = 500; // Example threshold
+  const shippingProgress = Math.min((totalPrice / freeShippingThreshold) * 100, 100);
+
   return (
     <CartContext.Provider
       value={{
         items,
         addToCart,
+        addBundleToCart,
         removeFromCart,
         updateQuantity,
         clearCart,
         totalItems,
         totalPrice,
+        freeShippingThreshold,
+        shippingProgress,
       }}
     >
       {children}

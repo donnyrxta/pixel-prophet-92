@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Phone, Mail, Printer, Palette, TrendingUp, BookOpen } from "lucide-react";
-import PremiumQuotationCalculator from "./PremiumQuotationCalculator";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 import KnowledgeBase from "./KnowledgeBase";
 import { CONTACT_INFO, BUSINESS_INFO } from "@/lib/constants";
 
@@ -67,8 +67,8 @@ const cardData = [
 
 const CardSlider = () => {
   const [activeCard, setActiveCard] = useState(0);
-  const [showCalculator, setShowCalculator] = useState(false);
   const [showKnowledge, setShowKnowledge] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
   const [detailsEven, setDetailsEven] = useState(true);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const contentRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -85,7 +85,7 @@ const CardSlider = () => {
     const init = () => {
       const { innerHeight: height, innerWidth: width } = window;
       const isMobile = width < 768;
-      
+
       // Set initial positions
       if (paginationRef.current && navRef.current) {
         gsap.set(paginationRef.current, {
@@ -145,7 +145,7 @@ const CardSlider = () => {
   // Handle CTA button clicks
   const handleCTA = (action: string) => {
     if (action === "calculator") {
-      setShowCalculator(true);
+      openCalculator({ trigger: 'button' });
     } else if (action === "knowledge") {
       setShowKnowledge(true);
     }
@@ -156,7 +156,7 @@ const CardSlider = () => {
     const newIndex = Math.max(0, Math.min(cardData.length - 1, activeCard + direction));
     if (newIndex !== activeCard) {
       setActiveCard(newIndex);
-      
+
       // Update progress bar
       if (progressRef.current) {
         gsap.to(progressRef.current, {
@@ -174,14 +174,14 @@ const CardSlider = () => {
   return (
     <>
       {/* Top progress indicator */}
-      <div 
+      <div
         ref={indicatorRef}
         className="fixed top-0 left-0 right-0 h-1 bg-accent z-50"
         style={{ width: `${((activeCard + 1) / cardData.length) * 100}%`, transition: "width 0.5s ease" }}
       />
 
       {/* Navigation bar */}
-      <nav 
+      <nav
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 md:px-8 py-4 md:py-6"
       >
@@ -327,13 +327,13 @@ const CardSlider = () => {
         className="fixed inset-0 bg-primary z-50"
       />
 
+
       {/* Modals */}
-      {showCalculator && <PremiumQuotationCalculator isOpen={showCalculator} onClose={() => setShowCalculator(false)} />}
       {showKnowledge && <KnowledgeBase onClose={() => setShowKnowledge(false)} />}
 
       {/* Floating Quote button */}
       <button
-        onClick={() => setShowCalculator(true)}
+        onClick={() => openCalculator({ trigger: 'button' })}
         className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-accent hover:bg-accent/90 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all"
         aria-label="Get instant quote"
       >

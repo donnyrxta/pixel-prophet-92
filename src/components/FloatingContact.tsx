@@ -14,7 +14,7 @@ import { MessageCircle, Phone, Mail, X } from "lucide-react";
 import { CONTACT_INFO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { trackWhatsAppClick, trackCTAClick } from "@/lib/gtm";
-import QuotationCalculator from "./QuotationCalculator";
+import { useQuoteCalculator } from "@/context/QuoteCalculatorContext";
 
 interface ContactOption {
   id: string;
@@ -30,7 +30,7 @@ interface ContactOption {
 
 const FloatingContact = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [showCalculator, setShowCalculator] = useState(false);
+  const { openCalculator } = useQuoteCalculator();
 
   // Contact options configuration (AI removed - now separate widget)
   const contactOptions: ContactOption[] = [
@@ -112,7 +112,7 @@ const FloatingContact = () => {
       // For other options, could route through calculator
       e.preventDefault();
       trackCTAClick('quote_request', 'floating_contact_widget');
-      setShowCalculator(true);
+      openCalculator({ trigger: 'button' });
       setIsExpanded(false);
     }
   };
@@ -287,9 +287,6 @@ const FloatingContact = () => {
           />
         </button>
       </div>
-
-      {/* Quotation Calculator Modal */}
-      {showCalculator && <QuotationCalculator onClose={() => setShowCalculator(false)} />}
     </>
   );
 };
