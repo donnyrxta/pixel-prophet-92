@@ -305,7 +305,7 @@ describe('ServicePage Component', () => {
         // We can't directly test the mock here since it's called internally
         expect(getFreeQuoteButton).toBeInTheDocument();
       } else {
-        fail('Get Free Quote button not found');
+        throw new Error('Get Free Quote button not found');
       }
     });
   });
