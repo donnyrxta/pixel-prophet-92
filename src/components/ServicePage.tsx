@@ -74,7 +74,7 @@ const ServicePage: React.FC<ServicePageProps> = ({
     trackCTAClick('Get Free Quote', 'hero', window.location.pathname);
     openCalculator({
       trigger: 'button',
-      selectedServices: serviceName ? [serviceName] : []
+      preselectedService: serviceName || undefined
     });
   };
   return (
@@ -84,14 +84,7 @@ const ServicePage: React.FC<ServicePageProps> = ({
         description={`${description} Same-day turnaround, premium quality, and free delivery in Harare. Get a free quote today!`}
         canonical={canonical}
         keywords={[...keywords, 'Harare printing services', 'professional printing Harare', 'same day printing Zimbabwe', 'business printing services', 'printing company Harare']}
-        ogTitle={`${title} Services in Harare - Soho Printing Services`}
-        ogDescription={`Professional ${title.toLowerCase()} in Harare with same-day turnaround and free delivery. Trusted by 127+ businesses. Get your free quote today!`}
         ogImage="https://sohoprinting.co.zw/og-image.jpg"
-        ogUrl={canonical}
-        twitterCard="summary_large_image"
-        twitterTitle={`${title} in Harare | Soho Printing Services`}
-        twitterDescription={`Professional ${title.toLowerCase()} in Harare. Same-day service, premium quality, free delivery. Get free quote now!`}
-        twitterImage="https://sohoprinting.co.zw/twitter-image.jpg"
       />
       <Helmet>
         {/* LocalBusiness Schema */}

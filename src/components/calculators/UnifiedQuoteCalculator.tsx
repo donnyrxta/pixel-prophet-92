@@ -175,6 +175,9 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
         return () => document.removeEventListener('mouseleave', handleMouseLeave);
     }, [isOpen, formData.services]);
 
+    // Calculate quote - must be before generatePDF which uses it
+    const quoteEstimate = calculateQuoteEstimate(formData.services);
+
     // Generate PDF quote
     const generatePDF = useCallback(() => {
         const doc = new jsPDF();
@@ -277,9 +280,6 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
             tip: "Hot leads get priority processing—the more info you provide, the faster we respond!"
         }
     ];
-
-    // Calculate quote
-    const quoteEstimate = calculateQuoteEstimate(formData.services);
 
     // Handle form submission
     const handleSubmit = useCallback(async () => {
