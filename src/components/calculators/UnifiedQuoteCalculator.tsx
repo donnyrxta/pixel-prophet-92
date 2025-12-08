@@ -5,15 +5,11 @@ import { jsPDF } from 'jspdf';
 import {
     X, CheckCircle, AlertCircle, Clock, Zap, ArrowRight,
     MessageCircle, Phone, Rocket, RefreshCw, Package, HelpCircle,
-    Download, Sparkles, ChevronLeft, ChevronRight
+    Download, Sparkles, Brain, ListCheck, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { trackFormSubmit, trackQuoteCalculator, trackWhatsAppClick } from '@/lib/gtm';
 import {
-    SERVICE_CATALOG,
     SERVICE_CATEGORIES,
-    BUDGET_RANGES,
-    AUTHORITY_LEVELS,
-    TIMELINES,
     GOAL_OPTIONS,
     calculateQuoteEstimate,
     calculateLeadScore,
@@ -22,8 +18,8 @@ import {
     getServiceById,
     getServicesByCategory,
     type ServiceCategory,
-    type LeadTier,
 } from '@/data/pricing';
+import ConsultationEngine from './ConsultationEngine';
 
 // ============== Types ==============
 
@@ -52,6 +48,7 @@ interface FormData {
     trigger: string;
 }
 
+type Mode = 'select' | 'direct' | 'consult';
 type Step = 1 | 2 | 3 | 4;
 
 const STORAGE_KEY = 'soho_quote_draft';
@@ -66,11 +63,14 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
     trigger = 'button',
     onComplete,
 }) => {
+    // Mode Selection State
+    const [mode, setMode] = useState<Mode>(preselectedService ? 'direct' : 'select');
+
+    // Direct Mode Steps
     const [step, setStep] = useState<Step>(1);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
-    const [showGuideMe, setShowGuideMe] = useState(false);
-    const [guideMeStep, setGuideMeStep] = useState(0);
     const [activeCategory, setActiveCategory] = useState<ServiceCategory>(
         preselectedCategory || 'Printing'
     );
@@ -107,6 +107,16 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
             trigger,
         };
     });
+
+    // Calculate quote early to avoid ReferenceError in callbacks
+    const quoteEstimate = calculateQuoteEstimate(formData.services);
+
+    // Reset mode if opened fresh without preselection
+    useEffect(() => {
+        if (isOpen && !preselectedService && !preselectedCategory) {
+            setMode('select');
+        }
+    }, [isOpen, preselectedService, preselectedCategory]);
 
     // Persist form data to localStorage
     useEffect(() => {
@@ -158,7 +168,6 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
     // Exit-intent detection
     useEffect(() => {
         const handleMouseLeave = (e: MouseEvent) => {
-            // Only trigger if mouse leaves at top of page and calculator is not open
             if (
                 e.clientY <= 0 &&
                 !isOpen &&
@@ -166,7 +175,6 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
                 formData.services.length > 0
             ) {
                 hasTriggeredExitIntent.current = true;
-                // Trigger the calculator to open (handled by parent context)
                 trackQuoteCalculator('exit_intent_triggered', { services: formData.services });
             }
         };
@@ -252,34 +260,7 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
         doc.save(`SohoConnect-Quote-${Date.now()}.pdf`);
     }, [formData, quoteEstimate]);
 
-    // Guide Me wizard content
-    const guideMeSteps = [
-        {
-            title: "Welcome! 👋",
-            content: "I'll guide you through getting your quote. It only takes 60 seconds!",
-            tip: "Click 'Next' to continue or 'Skip' if you prefer to explore on your own."
-        },
-        {
-            title: "Step 1: Your Goal",
-            content: "First, tell us what you're trying to achieve. Are you launching something new, refreshing your brand, or need ongoing support?",
-            tip: "Pick the option that best describes your situation—don't worry, you can always change it!"
-        },
-        {
-            title: "Step 2: Pick Services",
-            content: "Browse our service categories and select what you need. The more you add, the bigger your package discount!",
-            tip: "Look for the 'Popular' badges for our most requested services."
-        },
-        {
-            title: "Step 3: Contact Info",
-            content: "Let us know how to reach you. We respond within 2 hours on average!",
-            tip: "WhatsApp is our fastest channel—make sure to add your number."
-        },
-        {
-            title: "You're Ready! 🎉",
-            content: "That's all there is to it! Review your quote and submit when ready.",
-            tip: "Hot leads get priority processing—the more info you provide, the faster we respond!"
-        }
-    ];
+
 
     // Handle form submission
     const handleSubmit = useCallback(async () => {
@@ -302,6 +283,7 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
                 leadTier,
                 timestamp: new Date().toISOString(),
                 estimatedValue: quoteEstimate.total,
+                calculatorMode: mode // Track which mode produced the lead
             };
 
             trackQuoteCalculator('completed', fullLeadData);
@@ -329,17 +311,7 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
         } finally {
             setIsSubmitting(false);
         }
-    }, [formData, quoteEstimate, onComplete]);
-
-    // Get icon component for goal
-    const getGoalIcon = (iconName: string) => {
-        switch (iconName) {
-            case '🚀': return <Rocket className="w-8 h-8" />;
-            case '🔄': return <RefreshCw className="w-8 h-8" />;
-            case '📦': return <Package className="w-8 h-8" />;
-            default: return <HelpCircle className="w-8 h-8" />;
-        }
-    };
+    }, [formData, quoteEstimate, onComplete, mode]);
 
     if (!isOpen) return null;
 
@@ -459,7 +431,7 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
         );
     }
 
-    // ============== Main Calculator ==============
+    // ============== Main Calculator Shell ==============
     return (
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-2 sm:p-4 animate-fadeIn overflow-y-auto">
             <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
@@ -470,15 +442,15 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
             >
                 {/* Header */}
                 <div className="bg-gradient-to-r from-slate-800 to-slate-900 text-white p-4 sm:p-6 border-b border-slate-700 flex-shrink-0">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 backdrop-blur-sm rounded-full flex items-center justify-center">
                                 <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
                             </div>
                             <div>
-                                <h2 className="text-lg sm:text-2xl font-bold">Get Your Quote</h2>
+                                <h2 className="text-lg sm:text-2xl font-bold">Smart Quote Calculator</h2>
                                 <p className="text-slate-400 text-xs sm:text-sm hidden sm:block">
-                                    Takes 60 seconds • No hidden fees
+                                    {mode === 'consult' ? 'AI Consultation Mode • Finding your perfect fit' : 'Direct Quote Mode • Instant pricing'}
                                 </p>
                             </div>
                         </div>
@@ -491,485 +463,407 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
                         </button>
                     </div>
 
-                    {/* Progress bar */}
-                    <div className="flex items-center gap-2">
-                        {[1, 2, 3, 4].map(num => (
-                            <div key={num} className="flex-1 flex items-center">
-                                <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm transition-colors ${step >= num ? 'bg-blue-500 text-white' : 'bg-slate-700 text-slate-400'
-                                    }`}>
-                                    {num}
+                    {/* Progress Bar (Visible in Direct/Consult flow) */}
+                    {mode !== 'select' && (
+                        <div className="flex items-center gap-2 mt-2">
+                            {[1, 2, 3, 4].map(num => (
+                                <div key={num} className="flex-1 flex items-center">
+                                    <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm transition-colors ${step >= num ? 'bg-blue-500 text-white' : 'bg-slate-700 text-slate-400'
+                                        }`}>
+                                        {num}
+                                    </div>
+                                    {num < 4 && (
+                                        <div className={`flex-1 h-1 mx-1 sm:mx-2 rounded transition-colors ${step > num ? 'bg-blue-500' : 'bg-slate-700'
+                                            }`} />
+                                    )}
                                 </div>
-                                {num < 4 && (
-                                    <div className={`flex-1 h-1 mx-1 sm:mx-2 rounded transition-colors ${step > num ? 'bg-blue-500' : 'bg-slate-700'
-                                        }`} />
-                                )}
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* Content */}
                 <div className="p-4 sm:p-6 md:p-8 overflow-y-auto flex-1">
                     <AnimatePresence mode="wait">
-                        {/* Step 1: Goal Selection */}
-                        {step === 1 && (
+
+                        {/* MODE SELECTION SCREEN */}
+                        {mode === 'select' && (
                             <motion.div
-                                key="step1"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
+                                key="mode-select"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.95 }}
+                                className="space-y-8 py-4"
                             >
-                                <div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">What's your main goal?</h3>
-                                    <p className="text-slate-400">Select one to get started</p>
+                                <div className="text-center">
+                                    <h3 className="text-2xl font-bold text-white mb-2">How can we help you today?</h3>
+                                    <p className="text-slate-400">Choose the option that fits you best</p>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    {GOAL_OPTIONS.map(goal => (
-                                        <motion.button
-                                            key={goal.id}
-                                            whileHover={{ scale: 1.02, y: -2 }}
-                                            onClick={() => setFormData(prev => ({ ...prev, goal: goal.id }))}
-                                            className={`relative p-6 rounded-xl text-left transition-all ${formData.goal === goal.id
-                                                ? 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/20'
-                                                : 'bg-slate-800/50 border-2 border-slate-700/50 hover:border-slate-600'
-                                                }`}
-                                        >
-                                            <div className="text-4xl mb-3">{goal.icon}</div>
-                                            <div className="font-semibold text-white mb-1">{goal.title}</div>
-                                            <div className="text-sm text-slate-400">{goal.description}</div>
-                                            {formData.goal === goal.id && (
-                                                <CheckCircle className="absolute top-4 right-4 w-5 h-5 text-blue-400" />
-                                            )}
-                                        </motion.button>
-                                    ))}
-                                </div>
+                                <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                                    <button
+                                        onClick={() => {
+                                            setMode('direct');
+                                            setStep(1);
+                                        }}
+                                        className="group p-8 rounded-2xl bg-slate-800/50 border-2 border-slate-700/50 hover:bg-slate-800 hover:border-slate-500 transition-all text-left relative overflow-hidden"
+                                    >
+                                        <div className="absolute top-0 right-0 p-4 opacity-50"><ListCheck className="w-24 h-24 text-slate-700 -rotate-12" /></div>
+                                        <div className="relative z-10">
+                                            <div className="w-14 h-14 bg-slate-700 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                                                <ListCheck className="w-8 h-8 text-white" />
+                                            </div>
+                                            <h4 className="text-xl font-bold text-white mb-2">I know what I need</h4>
+                                            <p className="text-slate-400 mb-6">Skip the questions. Pick your services directly from our catalog and get a price.</p>
+                                            <span className="inline-flex items-center text-blue-400 font-semibold group-hover:translate-x-2 transition-transform">
+                                                Start Selecting <ArrowRight className="w-4 h-4 ml-2" />
+                                            </span>
+                                        </div>
+                                    </button>
 
-                                <div className="bg-slate-800/30 border border-slate-700/30 rounded-full px-4 py-2 flex items-center gap-2 text-sm text-slate-500">
-                                    <Sparkles className="w-4 h-4 text-amber-400" />
-                                    <span>Not sure? <button
-                                        onClick={() => { setShowGuideMe(true); setGuideMeStep(0); }}
-                                        className="text-blue-400 hover:underline font-medium"
-                                    >Let us guide you</button></span>
+                                    <button
+                                        onClick={() => {
+                                            setMode('consult');
+                                            setStep(1); // Reusing Step 1/2 UI logic but wrapper handles logic
+                                        }}
+                                        className="group p-8 rounded-2xl bg-gradient-to-br from-blue-900/40 to-indigo-900/40 border-2 border-blue-500/30 hover:border-blue-400 transition-all text-left relative overflow-hidden ring-1 ring-blue-500/20"
+                                    >
+                                        <div className="absolute top-0 right-0 p-4 opacity-50"><Brain className="w-24 h-24 text-blue-800/50 rotate-12" /></div>
+                                        <div className="relative z-10">
+                                            <div className="absolute -top-2 -right-2 bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                                RECOMMENDED
+                                            </div>
+                                            <div className="w-14 h-14 bg-blue-600/20 border border-blue-500/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                                                <Sparkles className="w-8 h-8 text-blue-300 group-hover:text-white" />
+                                            </div>
+                                            <h4 className="text-xl font-bold text-white mb-2">Help me decide</h4>
+                                            <p className="text-slate-300 mb-6">Not sure? Answer a few questions and our AI will recommend the perfect package.</p>
+                                            <span className="inline-flex items-center text-blue-300 font-semibold group-hover:translate-x-2 transition-transform">
+                                                Start Consultation <ArrowRight className="w-4 h-4 ml-2" />
+                                            </span>
+                                        </div>
+                                    </button>
                                 </div>
-
-                                <div className="flex items-center justify-between text-sm text-slate-500">
-                                    <span>🔒 127+ businesses quoted this week</span>
-                                </div>
-
-                                <button
-                                    onClick={() => setStep(2)}
-                                    disabled={!formData.goal}
-                                    className="w-full bg-white hover:bg-blue-50 text-slate-900 py-4 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors shadow-lg shadow-white/5"
-                                >
-                                    Continue <ArrowRight className="w-5 h-5" />
-                                </button>
                             </motion.div>
                         )}
 
-                        {/* Step 2: Service Selection */}
-                        {step === 2 && (
-                            <motion.div
-                                key="step2"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
-                            >
-                                <div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">What do you need?</h3>
-                                    <p className="text-slate-400">Select all that apply • Package discounts available</p>
-                                </div>
-
-                                {/* Category tabs */}
-                                <div className="flex gap-2 overflow-x-auto pb-2 border-b border-slate-700">
-                                    {SERVICE_CATEGORIES.map(cat => (
-                                        <button
-                                            key={cat}
-                                            onClick={() => setActiveCategory(cat)}
-                                            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${activeCategory === cat
-                                                ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50'
-                                                : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                                                }`}
-                                        >
-                                            {cat}
-                                        </button>
-                                    ))}
-                                </div>
-
-                                {/* Service grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                    {getServicesByCategory(activeCategory).map(service => (
-                                        <motion.button
-                                            key={service.id}
-                                            whileHover={{ scale: 1.01 }}
-                                            onClick={() => {
-                                                setFormData(prev => ({
-                                                    ...prev,
-                                                    services: prev.services.includes(service.id)
-                                                        ? prev.services.filter(s => s !== service.id)
-                                                        : [...prev.services, service.id],
-                                                }));
-                                            }}
-                                            className={`relative p-4 rounded-xl text-left transition-all ${formData.services.includes(service.id)
-                                                ? 'bg-blue-500/20 border-2 border-blue-500/50'
-                                                : 'bg-slate-800/30 border-2 border-slate-700/50 hover:border-slate-600'
-                                                }`}
-                                        >
-                                            {service.popular && (
-                                                <span className="absolute -top-2 -right-2 bg-amber-500 text-slate-900 text-xs px-2 py-0.5 rounded-full font-bold">
-                                                    Popular
-                                                </span>
-                                            )}
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-2xl">{service.icon}</span>
-                                                <div className="flex-1">
-                                                    <div className="font-semibold text-white">{service.name}</div>
-                                                    <div className="text-sm text-blue-300">${service.basePrice} - ${service.maxPrice}</div>
-                                                    <div className="flex items-center gap-1 text-xs text-slate-500 mt-1">
-                                                        <Clock className="w-3 h-3" /> {service.turnaround}
-                                                    </div>
-                                                </div>
-                                                {formData.services.includes(service.id) && (
-                                                    <CheckCircle className="w-5 h-5 text-blue-400" />
-                                                )}
-                                            </div>
-                                        </motion.button>
-                                    ))}
-                                </div>
-
-                                {/* Quote summary */}
-                                {quoteEstimate.total > 0 && (
-                                    <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <div className="text-sm text-slate-400">Estimated Investment</div>
-                                                <div className="text-3xl font-bold text-white">${quoteEstimate.total.toLocaleString()}</div>
-                                                {quoteEstimate.discountPercent > 0 && (
-                                                    <div className="text-xs text-emerald-400 font-medium">
-                                                        ✨ {quoteEstimate.discountPercent}% package discount applied!
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <div className="text-right">
-                                                <div className="text-sm text-slate-400">Potential ROI</div>
-                                                <div className="text-2xl font-bold text-emerald-400">${quoteEstimate.roiEstimate.toLocaleString()}</div>
-                                            </div>
+                        {/* ==========================================================
+                            CONSULTATION MODE LOGIC
+                           ========================================================== */}
+                        {mode === 'consult' && (
+                            <>
+                                {/* Step 1: Select Category for Consultation */}
+                                {step === 1 && (
+                                    <motion.div
+                                        key="consult-cat"
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        className="space-y-6"
+                                    >
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white mb-2">What area do you need help with?</h3>
+                                            <p className="text-slate-400">We'll tailor our questions to this topic.</p>
                                         </div>
-                                    </div>
+                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                            {SERVICE_CATEGORIES.map(cat => (
+                                                <button
+                                                    key={cat}
+                                                    onClick={() => {
+                                                        setActiveCategory(cat);
+                                                        setStep(2); // Move to Engine
+                                                    }}
+                                                    className="p-4 bg-slate-800 border border-slate-700 rounded-xl hover:border-blue-500 hover:bg-slate-700 transition flex flex-col items-center text-center gap-2"
+                                                >
+                                                    <span className="text-white font-semibold">{cat}</span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                        <button onClick={() => setMode('select')} className="text-slate-500 hover:text-white mt-4 flex items-center gap-2"><ArrowLeft className="w-4 h-4" /> Back</button>
+                                    </motion.div>
                                 )}
 
-                                <div className="flex gap-3">
-                                    <button
-                                        onClick={() => setStep(1)}
-                                        className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-semibold transition-colors"
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        onClick={() => setStep(3)}
-                                        disabled={formData.services.length === 0}
-                                        className="flex-1 bg-white hover:bg-blue-50 text-slate-900 py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
-                                    >
-                                        Continue <ArrowRight className="w-5 h-5" />
-                                    </button>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* Step 3: Contact Info */}
-                        {step === 3 && (
-                            <motion.div
-                                key="step3"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
-                            >
-                                <div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">Where should we send your quote?</h3>
-                                    <p className="text-slate-400">We respond within 2 hours on average</p>
-                                </div>
-
-                                {/* Urgency banner */}
-                                {formData.timeline === 'urgent' && (
-                                    <div className="bg-amber-500/20 border border-amber-500/50 rounded-lg p-4 flex items-start gap-3">
-                                        <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                                        <div>
-                                            <div className="font-semibold text-amber-400">⚡ Only 3 rush slots available this week</div>
-                                            <div className="text-sm text-amber-300/70">Complete this form to secure priority processing</div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                <div className="space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-300 mb-2">Full Name *</label>
-                                        <input
-                                            type="text"
-                                            value={formData.name}
-                                            onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                                            placeholder="John Moyo"
-                                            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-300 mb-2">Email Address *</label>
-                                        <input
-                                            type="email"
-                                            value={formData.email}
-                                            onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                                            placeholder="john@business.co.zw"
-                                            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-300 mb-2">Phone / WhatsApp *</label>
-                                        <input
-                                            type="tel"
-                                            value={formData.phone}
-                                            onChange={e => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                                            placeholder="+263 77 123 4567"
-                                            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-400 mb-2">Company (Optional)</label>
-                                        <input
-                                            type="text"
-                                            value={formData.company}
-                                            onChange={e => setFormData(prev => ({ ...prev, company: e.target.value }))}
-                                            placeholder="Your Business Name"
-                                            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center gap-4 text-sm text-slate-500">
-                                    <span className="flex items-center gap-1">🔒 Secure</span>
-                                    <span className="flex items-center gap-1">⚡ Fast</span>
-                                    <span className="flex items-center gap-1">✅ ${quoteEstimate.total.toLocaleString()} estimate</span>
-                                </div>
-
-                                <div className="flex gap-3">
-                                    <button
-                                        onClick={() => setStep(2)}
-                                        className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-semibold transition-colors"
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        onClick={() => setStep(4)}
-                                        disabled={!formData.name || !formData.email || !formData.phone}
-                                        className="flex-1 bg-white hover:bg-blue-50 text-slate-900 py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
-                                    >
-                                        Continue to Review <ArrowRight className="w-5 h-5" />
-                                    </button>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* Step 4: Review */}
-                        {step === 4 && (
-                            <motion.div
-                                key="step4"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
-                            >
-                                <div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">Review Your Quote Request</h3>
-                                    <p className="text-slate-400">Make sure everything looks correct</p>
-                                </div>
-
-                                {/* Quote summary */}
-                                <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-6">
-                                    <div className="grid grid-cols-2 gap-6 mb-4">
-                                        <div>
-                                            <div className="text-sm text-slate-400">Your Investment</div>
-                                            <div className="text-4xl font-bold text-white">${quoteEstimate.total.toLocaleString()}</div>
-                                        </div>
-                                        <div className="text-right">
-                                            <div className="text-sm text-slate-400">Expected ROI</div>
-                                            <div className="text-3xl font-bold text-emerald-400">${quoteEstimate.roiEstimate.toLocaleString()}</div>
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {formData.services.map(serviceId => {
-                                            const service = getServiceById(serviceId);
-                                            return (
-                                                <span key={serviceId} className="bg-slate-800/50 px-3 py-1 rounded-full text-xs font-medium text-slate-300">
-                                                    {service?.icon} {service?.name}
-                                                </span>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-
-                                {/* Contact details */}
-                                <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4 space-y-2">
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-400">Name:</span>
-                                        <span className="text-white font-medium">{formData.name}</span>
-                                    </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-400">Email:</span>
-                                        <span className="text-white font-medium">{formData.email}</span>
-                                    </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-slate-400">Phone:</span>
-                                        <span className="text-white font-medium">{formData.phone}</span>
-                                    </div>
-                                    {formData.company && (
-                                        <div className="flex justify-between text-sm">
-                                            <span className="text-slate-400">Company:</span>
-                                            <span className="text-white font-medium">{formData.company}</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Additional notes */}
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-300 mb-2">Any special requirements? (Optional)</label>
-                                    <textarea
-                                        value={formData.additionalNotes}
-                                        onChange={e => setFormData(prev => ({ ...prev, additionalNotes: e.target.value }))}
-                                        placeholder="Tell us more about your project..."
-                                        rows={3}
-                                        className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
+                                {/* Step 2: The Engine */}
+                                {step === 2 && (
+                                    <ConsultationEngine
+                                        category={activeCategory}
+                                        onBack={() => setStep(1)}
+                                        onComplete={(recommended) => {
+                                            // Auto-select recommendations and move to Contact
+                                            setFormData(prev => ({ ...prev, services: [...new Set([...prev.services, ...recommended])] }));
+                                            setStep(4); // Jump to Contact/Review phase logic (mapped to step 4 in direct mode flow roughly)
+                                        }}
                                     />
-                                </div>
-
-                                {/* What happens next */}
-                                <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4">
-                                    <div className="text-sm text-slate-300">
-                                        <strong className="text-white">What happens next:</strong>
-                                        <ul className="mt-2 space-y-1 text-slate-400">
-                                            <li>✅ Instant confirmation to your email & WhatsApp</li>
-                                            <li>✅ Detailed quote within 24 hours</li>
-                                            <li>✅ Free consultation call</li>
-                                            <li>✅ No obligation • No pressure</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-3">
-                                    <button
-                                        onClick={() => setStep(3)}
-                                        className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-semibold transition-colors"
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        onClick={handleSubmit}
-                                        disabled={isSubmitting}
-                                        className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white py-4 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-500/20"
-                                    >
-                                        {isSubmitting ? (
-                                            <>
-                                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                                Submitting...
-                                            </>
-                                        ) : (
-                                            <>
-                                                🚀 Submit & Get My Quote
-                                            </>
-                                        )}
-                                    </button>
-                                </div>
-                            </motion.div>
+                                )}
+                            </>
                         )}
+
+
+                        {/* ==========================================================
+                            DIRECT MODE LOGIC (Original Flow) & SHARED STEPS (3 & 4)
+                            Note: We map the engine completion to Step 4 logic
+                           ========================================================== */}
+                        {(mode === 'direct' || (mode === 'consult' && step >= 3)) && (
+                            <>
+                                {/* Step 1 (Direct): Goal Selection */}
+                                {step === 1 && mode === 'direct' && (
+                                    <motion.div
+                                        key="step1"
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        className="space-y-6"
+                                    >
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white mb-2">What's your main goal?</h3>
+                                            <p className="text-slate-400">Select one to get started</p>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            {GOAL_OPTIONS.map(goal => (
+                                                <motion.button
+                                                    key={goal.id}
+                                                    whileHover={{ scale: 1.02, y: -2 }}
+                                                    onClick={() => setFormData(prev => ({ ...prev, goal: goal.id }))}
+                                                    className={`relative p-6 rounded-xl text-left transition-all ${formData.goal === goal.id
+                                                        ? 'bg-blue-500/20 border-2 border-blue-500/50 ring-1 ring-blue-500/20'
+                                                        : 'bg-slate-800/50 border-2 border-slate-700/50 hover:border-slate-600'
+                                                        }`}
+                                                >
+                                                    <div className="text-4xl mb-3">{goal.icon}</div>
+                                                    <div className="font-semibold text-white mb-1">{goal.title}</div>
+                                                    <div className="text-sm text-slate-400">{goal.description}</div>
+                                                    {formData.goal === goal.id && (
+                                                        <CheckCircle className="absolute top-4 right-4 w-5 h-5 text-blue-400" />
+                                                    )}
+                                                </motion.button>
+                                            ))}
+                                        </div>
+
+                                        <div className="flex justify-between items-center">
+                                            <button onClick={() => setMode('select')} className="text-slate-500 hover:text-white flex items-center gap-2"><ArrowLeft className="w-4 h-4" /> Back</button>
+                                            <button
+                                                onClick={() => setStep(2)}
+                                                disabled={!formData.goal}
+                                                className="bg-white hover:bg-blue-50 text-slate-900 py-3 px-8 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors shadow-lg shadow-white/5"
+                                            >
+                                                Continue <ArrowRight className="w-5 h-5" />
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                )}
+
+                                {/* Step 2 (Direct): Service Selection */}
+                                {step === 2 && mode === 'direct' && (
+                                    <motion.div
+                                        key="step2"
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        className="space-y-6"
+                                    >
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white mb-2">What do you need?</h3>
+                                            <p className="text-slate-400">Select all that apply • Package discounts available</p>
+                                        </div>
+
+                                        {/* Category tabs */}
+                                        <div className="flex gap-2 overflow-x-auto pb-2 border-b border-slate-700">
+                                            {SERVICE_CATEGORIES.map(cat => (
+                                                <button
+                                                    key={cat}
+                                                    onClick={() => setActiveCategory(cat)}
+                                                    className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${activeCategory === cat
+                                                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50'
+                                                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                                                        }`}
+                                                >
+                                                    {cat}
+                                                </button>
+                                            ))}
+                                        </div>
+
+                                        {/* Service grid */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                            {getServicesByCategory(activeCategory).map(service => (
+                                                <motion.button
+                                                    key={service.id}
+                                                    whileHover={{ scale: 1.01 }}
+                                                    onClick={() => {
+                                                        setFormData(prev => ({
+                                                            ...prev,
+                                                            services: prev.services.includes(service.id)
+                                                                ? prev.services.filter(s => s !== service.id)
+                                                                : [...prev.services, service.id],
+                                                        }));
+                                                    }}
+                                                    className={`relative p-4 rounded-xl text-left transition-all ${formData.services.includes(service.id)
+                                                        ? 'bg-blue-500/20 border-2 border-blue-500/50'
+                                                        : 'bg-slate-800/30 border-2 border-slate-700/50 hover:border-slate-600'
+                                                        }`}
+                                                >
+                                                    {service.popular && (
+                                                        <span className="absolute -top-2 -right-2 bg-amber-500 text-slate-900 text-xs px-2 py-0.5 rounded-full font-bold">
+                                                            Popular
+                                                        </span>
+                                                    )}
+                                                    <div className="flex items-start gap-3">
+                                                        <span className="text-2xl">{service.icon}</span>
+                                                        <div className="flex-1">
+                                                            <div className="font-semibold text-white">{service.name}</div>
+                                                            <div className="text-sm text-blue-300">${service.basePrice} - ${service.maxPrice}</div>
+                                                            <div className="flex items-center gap-1 text-xs text-slate-500 mt-1">
+                                                                <Clock className="w-3 h-3" /> {service.turnaround}
+                                                            </div>
+                                                        </div>
+                                                        {formData.services.includes(service.id) && (
+                                                            <CheckCircle className="w-5 h-5 text-blue-400" />
+                                                        )}
+                                                    </div>
+                                                </motion.button>
+                                            ))}
+                                        </div>
+
+                                        <div className="flex gap-3">
+                                            <button
+                                                onClick={() => setStep(1)}
+                                                className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-semibold transition-colors"
+                                            >
+                                                Back
+                                            </button>
+                                            <button
+                                                onClick={() => setStep(3)}
+                                                disabled={formData.services.length === 0}
+                                                className="flex-1 bg-white hover:bg-blue-50 text-slate-900 py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+                                            >
+                                                Continue <ArrowRight className="w-5 h-5" />
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                )}
+
+                                {/* Step 3: Contact Info (Shared) */}
+                                {/* For Consult mode, we skip straight here (Step 4 technically in our state map) */}
+                                {(step === 3 || (mode === 'consult' && step === 4)) && (
+                                    <motion.div
+                                        key="step3"
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        className="space-y-6"
+                                    >
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white mb-2">Where should we send your quote?</h3>
+                                            <p className="text-slate-400">
+                                                {mode === 'consult' ? 'We have compiled your recommended package.' : 'We respond within 2 hours on average'}
+                                            </p>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-300 mb-2">Full Name *</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.name}
+                                                    onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                                    placeholder="John Moyo"
+                                                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-300 mb-2">Email Address *</label>
+                                                <input
+                                                    type="email"
+                                                    value={formData.email}
+                                                    onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                                                    placeholder="john@business.co.zw"
+                                                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-300 mb-2">Phone / WhatsApp *</label>
+                                                <input
+                                                    type="tel"
+                                                    value={formData.phone}
+                                                    onChange={e => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                                                    placeholder="+263 77 123 4567"
+                                                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-lg text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="flex gap-3">
+                                            <button
+                                                onClick={() => mode === 'consult' ? setStep(2) : setStep(2)}
+                                                className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-semibold transition-colors"
+                                            >
+                                                Back
+                                            </button>
+                                            <button
+                                                onClick={() => setStep(mode === 'consult' ? 5 as any : 4)} // Hacky step increment for review
+                                                disabled={!formData.name || !formData.email || !formData.phone}
+                                                className="flex-1 bg-white hover:bg-blue-50 text-slate-900 py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+                                            >
+                                                Continue to Review <ArrowRight className="w-5 h-5" />
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                )}
+
+                                {/* Step 4: Review (Shared) */}
+                                {(step === 4 || (mode === 'consult' && step === 5)) && (
+                                    <motion.div
+                                        key="step4"
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        className="space-y-6"
+                                    >
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-white mb-2">Review Your Quote Request</h3>
+                                            <p className="text-slate-400">Make sure everything looks correct</p>
+                                        </div>
+
+                                        {/* Quote summary */}
+                                        <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-6">
+                                            <div className="grid grid-cols-2 gap-6 mb-4">
+                                                <div>
+                                                    <div className="text-sm text-slate-400">Your Investment</div>
+                                                    <div className="text-4xl font-bold text-white">${quoteEstimate.total.toLocaleString()}</div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <div className="text-sm text-slate-400">Expected ROI</div>
+                                                    <div className="text-3xl font-bold text-emerald-400">${quoteEstimate.roiEstimate.toLocaleString()}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Submit Block */}
+                                        <button
+                                            onClick={handleSubmit}
+                                            disabled={isSubmitting}
+                                            className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-4 rounded-xl font-bold text-lg shadow-xl shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            {isSubmitting ? (
+                                                <>Processing...</>
+                                            ) : (
+                                                <>Submit Request <Rocket className="w-6 h-6" /></>
+                                            )}
+                                        </button>
+
+                                        <button onClick={() => setStep(mode === 'consult' ? 4 : 3)} className="w-full text-slate-500 text-sm hover:text-white">Back to Edit</button>
+                                    </motion.div>
+                                )}
+                            </>
+                        )}
+
                     </AnimatePresence>
                 </div>
             </motion.div>
-
-            {/* Guide Me Wizard Modal */}
-            {showGuideMe && (
-                <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 animate-fadeIn">
-                    <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setShowGuideMe(false)} />
-                    <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700 rounded-2xl shadow-2xl max-w-md w-full p-6 overflow-hidden"
-                    >
-                        {/* Ambient glow */}
-                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/20 rounded-full blur-3xl" />
-                        <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl" />
-
-                        <div className="relative">
-                            {/* Progress dots */}
-                            <div className="flex justify-center gap-2 mb-6">
-                                {guideMeSteps.map((_, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`w-2 h-2 rounded-full transition-colors ${idx === guideMeStep ? 'bg-amber-400' : idx < guideMeStep ? 'bg-blue-500' : 'bg-slate-600'
-                                            }`}
-                                    />
-                                ))}
-                            </div>
-
-                            {/* Icon */}
-                            <div className="w-16 h-16 bg-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                <Sparkles className="w-8 h-8 text-amber-400" />
-                            </div>
-
-                            {/* Content */}
-                            <h3 className="text-xl font-bold text-white text-center mb-2">{guideMeSteps[guideMeStep].title}</h3>
-                            <p className="text-slate-300 text-center mb-4">{guideMeSteps[guideMeStep].content}</p>
-
-                            {/* Tip */}
-                            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 mb-6">
-                                <div className="flex items-start gap-2">
-                                    <HelpCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
-                                    <p className="text-sm text-blue-300">{guideMeSteps[guideMeStep].tip}</p>
-                                </div>
-                            </div>
-
-                            {/* Navigation */}
-                            <div className="flex gap-3">
-                                {guideMeStep > 0 ? (
-                                    <button
-                                        onClick={() => setGuideMeStep(prev => prev - 1)}
-                                        className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors"
-                                    >
-                                        <ChevronLeft className="w-4 h-4" /> Back
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={() => setShowGuideMe(false)}
-                                        className="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-medium transition-colors"
-                                    >
-                                        Skip
-                                    </button>
-                                )}
-                                {guideMeStep < guideMeSteps.length - 1 ? (
-                                    <button
-                                        onClick={() => setGuideMeStep(prev => prev + 1)}
-                                        className="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-900 py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors"
-                                    >
-                                        Next <ChevronRight className="w-4 h-4" />
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={() => setShowGuideMe(false)}
-                                        className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors"
-                                    >
-                                        <CheckCircle className="w-4 h-4" /> Got It!
-                                    </button>
-                                )}
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            )}
         </div>
     );
 };
 
 export default UnifiedQuoteCalculator;
-
