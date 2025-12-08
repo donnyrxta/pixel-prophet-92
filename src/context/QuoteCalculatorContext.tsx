@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import UnifiedQuoteCalculator from '@/components/calculators/UnifiedQuoteCalculator';
+import SmartQuoteCalculator from '@/components/calculators/SmartQuoteCalculator';
 import type { ServiceCategory } from '@/data/pricing';
 
 type QuoteFormData = Partial<{
@@ -54,7 +54,7 @@ export function QuoteCalculatorProvider({ children }: { children: ReactNode }) {
   return (
     <QuoteCalculatorContext.Provider value={{ openCalculator, closeCalculator }}>
       {children}
-      <UnifiedQuoteCalculator
+      <SmartQuoteCalculator
         isOpen={isOpen}
         onClose={closeCalculator}
         preselectedService={options?.preselectedService}
