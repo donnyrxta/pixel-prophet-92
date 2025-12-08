@@ -20,6 +20,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { useToast } from '@/hooks/use-toast';
+import { useBrevoLead } from '@/hooks/useBrevoLead';
 import { 
   SERVICE_CATALOG, 
   SERVICE_CATEGORIES,
@@ -433,6 +435,9 @@ const SmartQuoteCalculator: React.FC<SmartQuoteCalculatorProps> = ({
     }
   };
 
+  const { toast } = useToast();
+  const { captureLead } = useBrevoLead();
+
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
@@ -443,6 +448,36 @@ const SmartQuoteCalculator: React.FC<SmartQuoteCalculatorProps> = ({
         trigger,
       });
       const leadTier = getLeadTier(leadScore);
+
+      // Capture lead in Brevo CRM
+      const nameParts = formData.name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      const brevoResult = await captureLead({
+        email: formData.email,
+        firstName,
+        lastName,
+        phone: formData.phone,
+        company: formData.company,
+        message: formData.additionalNotes,
+        services: formData.services,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        sourceForm: 'smart_quote_calculator',
+        bantScore: leadScore,
+        leadTier,
+      });
+
+      if (!brevoResult.success) {
+        console.error('Brevo capture failed:', brevoResult.error);
+        // Show toast but don't block success - we still want to show the quote
+        toast({
+          title: "Note",
+          description: "Quote saved. We'll reach out soon!",
+          variant: "default",
+        });
+      }
 
       trackFormSubmit('smart_quote_calculator', {
         ...formData,
@@ -463,6 +498,13 @@ const SmartQuoteCalculator: React.FC<SmartQuoteCalculatorProps> = ({
           window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${message}`, '_blank');
         }, 2000);
       }
+    } catch (error) {
+      console.error('Submit error:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
