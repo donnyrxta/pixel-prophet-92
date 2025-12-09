@@ -9,11 +9,12 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import {
   Wifi, Sun, Truck, TrendingUp, CheckCircle,
-  ArrowRight, Calendar, Clock, User
+  ArrowRight, Calendar, Clock, User, Calculator
 } from 'lucide-react';
 import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { CTAButton } from '@/components/ui/cta-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 
@@ -73,26 +74,75 @@ const MiningCampWifiGuide: React.FC = () => {
         <meta property="og:type" content="article" />
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "How Mining Camps Can Monetize Wi-Fi: A Complete Guide for Zimbabwe Operations",
-            "description": "Learn how mining operations can generate revenue from Wi-Fi token sales with solar-powered solutions.",
-            "author": {
-              "@type": "Organization",
-              "name": "SoHo Connect"
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "headline": "How Mining Camps Can Monetize Wi-Fi: A Complete Guide for Zimbabwe Operations",
+              "description": "Learn how mining operations can generate revenue from Wi-Fi token sales with solar-powered solutions.",
+              "author": {
+                "@type": "Organization",
+                "name": "SoHo Connect"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "SoHo Connect",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://sohoconnect.co.zw/logo.png"
+                }
+              },
+              "datePublished": "2024-12-09",
+              "dateModified": "2024-12-09",
+              "image": "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1200"
             },
-            "publisher": {
-              "@type": "Organization",
-              "name": "SoHo Connect",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://sohoconnect.co.zw/logo.png"
-              }
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://sohoconnect.co.zw/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://sohoconnect.co.zw/blog"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Mining Camp Wi-Fi Guide",
+                  "item": "https://sohoconnect.co.zw/blog/mining-camp-wifi-guide"
+                }
+              ]
             },
-            "datePublished": "2024-12-01",
-            "dateModified": "2024-12-09"
-          })}
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "How much revenue can a mining camp generate from Wi-Fi?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For a camp with 500 workers, assuming 70% adoption at $0.75 daily spend, a camp can generate approximately $7,875 in monthly revenue, resulting in over $7,600 monthly profit after ISP costs."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do you power Wi-Fi in off-grid mining camps?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We use specialized solar-powered bundles with LiFePO4 batteries and hybrid inverters to ensure 24/7 operation independent of the grid."
+                  }
+                }
+              ]
+            }
+          ])}
         </script>
       </Helmet>
 
@@ -148,6 +198,28 @@ const MiningCampWifiGuide: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
 
+              {/* Quick Summary / Cheatsheet for AEO */}
+              <div className="not-prose bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-xl p-6 mb-8">
+                <h3 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  Quick Summary
+                </h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">Opportunity:</span> Monetize mining camp internet for 500+ workers.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">Revenue:</span> Potential $7,000+ monthly net profit.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">Solution:</span> Solar-powered off-grid Wi-Fi bundles.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">ROI:</span> Typical payback period of 3-5 months.
+                  </li>
+                </ul>
+              </div>
+
               <h2>The Opportunity in Mining Camp Connectivity</h2>
               <p>
                 Zimbabwe's mining sector employs thousands of workers who often live in remote camps
@@ -170,6 +242,28 @@ const MiningCampWifiGuide: React.FC = () => {
                     </CardContent>
                   </Card>
                 ))}
+              </div>
+
+              {/* Lead Capture Block */}
+              <div className="not-prose my-12 p-8 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
+                <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                  <div className="flex-shrink-0 w-16 h-16 bg-amber-100 dark:bg-amber-800/30 rounded-full flex items-center justify-center text-amber-600 dark:text-amber-400">
+                    <Calculator className="w-8 h-8" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      Calculate Your Mining Camp Revenue
+                    </h3>
+                    <p className="text-muted-foreground mb-4 md:mb-0">
+                      Use our specialized calculator to estimate monthly profit based on your camp size and worker count.
+                    </p>
+                  </div>
+                  <Link to="/tools/wifi-token-calculator">
+                    <CTAButton variant="primary" className="bg-amber-600 hover:bg-amber-700 text-white">
+                      Calculate Revenue
+                    </CTAButton>
+                  </Link>
+                </div>
               </div>
 
               <h2>Understanding the Revenue Model</h2>

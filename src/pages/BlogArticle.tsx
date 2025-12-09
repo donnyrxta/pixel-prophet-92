@@ -7,9 +7,10 @@ import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
 import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
-import { ArticleSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
+import { ArticleSchema, BreadcrumbSchema, FAQPageSchema } from '@/components/SchemaMarkup';
 import { getArticleBySlug, getRecentArticles } from '@/data/blog-articles';
 import { CTAButton } from '@/components/ui/cta-button';
+import { Calculator, FileText, CheckCircle } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 const BlogArticle = () => {
@@ -57,6 +58,8 @@ const BlogArticle = () => {
         dateModified={article.modifiedDate}
         author={article.author}
       />
+
+      {article.faq && <FAQPageSchema faqs={article.faq} />}
 
       <BreadcrumbSchema
         items={[
@@ -129,6 +132,36 @@ const BlogArticle = () => {
                 <div className="prose prose-lg prose-stone max-w-none">
                   <ReactMarkdown>{article.content}</ReactMarkdown>
                 </div>
+
+                {/* Lead Magnet / CTA Block */}
+                {article.leadMagnet && (
+                  <div className="my-12 p-8 bg-stone-50 border border-stone-200 rounded-xl">
+                    <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                      <div className="flex-shrink-0 w-16 h-16 bg-[#4169e1]/10 rounded-full flex items-center justify-center text-[#4169e1]">
+                        {article.leadMagnet.type === 'calculator' ? (
+                          <Calculator className="w-8 h-8" />
+                        ) : article.leadMagnet.type === 'quote' ? (
+                          <FileText className="w-8 h-8" />
+                        ) : (
+                          <CheckCircle className="w-8 h-8" />
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-stone-900 mb-2">
+                          {article.leadMagnet.title}
+                        </h3>
+                        <p className="text-stone-600 mb-4 md:mb-0">
+                          {article.leadMagnet.description}
+                        </p>
+                      </div>
+                      <Link to={article.leadMagnet.link}>
+                        <CTAButton variant="primary">
+                          {article.leadMagnet.ctaText}
+                        </CTAButton>
+                      </Link>
+                    </div>
+                  </div>
+                )}
 
                 {/* Tags */}
                 <div className="mt-12 pt-8 border-t border-stone-200">

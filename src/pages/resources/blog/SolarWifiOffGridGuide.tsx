@@ -14,6 +14,7 @@ import {
 import { Header } from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { CTAButton } from '@/components/ui/cta-button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 
@@ -93,22 +94,76 @@ const SolarWifiOffGridGuide: React.FC = () => {
         <meta property="og:type" content="article" />
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "Solar-Powered Wi-Fi for Off-Grid Locations: A Complete Guide",
-            "description": "How to deploy reliable Wi-Fi connectivity at remote locations using solar power.",
-            "author": {
-              "@type": "Organization",
-              "name": "SoHo Connect"
+
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "headline": "Solar-Powered Wi-Fi for Off-Grid Locations: A Complete Technical Guide",
+              "description": "How to deploy reliable Wi-Fi connectivity at remote locations using solar power.",
+              "author": {
+                "@type": "Organization",
+                "name": "SoHo Connect"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "SoHo Connect",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://sohoconnect.co.zw/logo.png"
+                }
+              },
+              "datePublished": "2024-12-09",
+              "dateModified": "2024-12-09",
+              "image": "https://images.pexels.com/photos/987541/pexels-photo-987541.jpeg?auto=compress&cs=tinysrgb&w=1200"
             },
-            "publisher": {
-              "@type": "Organization",
-              "name": "SoHo Connect"
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://sohoconnect.co.zw/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://sohoconnect.co.zw/blog"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Solar Wi-Fi Off-Grid Guide",
+                  "item": "https://sohoconnect.co.zw/blog/solar-wifi-off-grid-guide"
+                }
+              ]
             },
-            "datePublished": "2024-12-01",
-            "dateModified": "2024-12-09"
-          })}
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What batteries are best for solar Wi-Fi?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "LiFePO4 (Lithium Iron Phosphate) batteries are superior due to their long lifespan (6000+ cycles), safety, and lack of maintenance compared to lead-acid batteries."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How big of a solar system do I need for 50 users?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For 50 users, we recommend a system with at least 5kWh battery storage and 800-1000W of solar panel capacity to ensure 24/7 uptime."
+                  }
+                }
+              ]
+            }
+          ])}
         </script>
       </Helmet>
 
@@ -162,12 +217,56 @@ const SolarWifiOffGridGuide: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
 
+              {/* Quick Summary / Cheatsheet for AEO */}
+              <div className="not-prose bg-stone-50 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-xl p-6 mb-8">
+                <h3 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  Quick Summary
+                </h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">Core Tech:</span> LiFePO4 batteries + Hybrid Inverters.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">Sizing Rule:</span> 1.2-2.4 kWh daily energy per 50 users.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">Key Benefit:</span> 100% uptime independent of ZESA grid.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-semibold text-foreground">Cost:</span> Bundles start from $650 fully installed.
+                  </li>
+                </ul>
+              </div>
+
               <h2>The Challenge of Remote Connectivity</h2>
               <p>
                 Zimbabwe has vast areas where grid electricity is either unavailable or unreliable.
                 Farms, mining sites, rural schools, and remote communities often have no access to
                 reliable power, making traditional Wi-Fi deployment impossible.
               </p>
+
+              {/* Lead Capture Block */}
+              <div className="not-prose my-12 p-8 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800 rounded-xl">
+                <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                  <div className="flex-shrink-0 w-16 h-16 bg-green-100 dark:bg-green-800/30 rounded-full flex items-center justify-center text-green-600 dark:text-green-400">
+                    <Zap className="w-8 h-8" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      Get a Custom Solar Wi-Fi Quote
+                    </h3>
+                    <p className="text-muted-foreground mb-4 md:mb-0">
+                      Need a reliable off-grid solution? Get a tailored configuration for your specific location and user count.
+                    </p>
+                  </div>
+                  <Link to="/contact?subject=SolarWifiQuote">
+                    <CTAButton variant="primary" className="bg-green-600 hover:bg-green-700 text-white">
+                      Request Quote
+                    </CTAButton>
+                  </Link>
+                </div>
+              </div>
 
               <p>
                 Yet these same locations often have strong demand for connectivity. Farm workers want
