@@ -35,6 +35,9 @@ import SmartphoneGuide from "./pages/resources/guides/SmartphoneGuide";
 import PrintFinishesGuide from "./pages/resources/guides/PrintFinishesGuide";
 import CctvBuyersGuide from "./pages/resources/guides/CctvBuyersGuide";
 import FleetBrandingGuide from "./pages/resources/guides/FleetBrandingGuide";
+import WifiTokenCalculatorPage from "./pages/resources/tools/WifiTokenCalculatorPage";
+import MiningCampWifiGuide from "./pages/resources/blog/MiningCampWifiGuide";
+import SolarWifiOffGridGuide from "./pages/resources/blog/SolarWifiOffGridGuide";
 import NotFound from "./pages/NotFound";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
@@ -95,6 +98,9 @@ const AppRoutes = () => {
             <Route path="/ad-planner" element={<AdPlannerPage />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogArticle />} />
+            <Route path="/blog/mining-camp-wifi-guide" element={<MiningCampWifiGuide />} />
+            <Route path="/blog/solar-wifi-off-grid-guide" element={<SolarWifiOffGridGuide />} />
+            <Route path="/tools/wifi-token-calculator" element={<WifiTokenCalculatorPage />} />
             <Route path="/demo-cards" element={<DemoCards />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
