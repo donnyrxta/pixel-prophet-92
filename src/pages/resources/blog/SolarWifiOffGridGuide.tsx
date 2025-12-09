@@ -7,8 +7,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { 
-  Sun, Wifi, Battery, Zap, TreePine, 
+import {
+  Sun, Wifi, Battery, Zap, TreePine,
   ArrowRight, Calendar, Clock, User, CheckCircle
 } from 'lucide-react';
 import { Header } from '@/components/Header';
@@ -87,11 +87,11 @@ const SolarWifiOffGridGuide: React.FC = () => {
         <meta name="description" content="Deploy reliable Wi-Fi at remote locations without grid power. Our solar bundles from $650 provide 24/7 connectivity for farms, mining camps, and rural communities in Zimbabwe." />
         <meta name="keywords" content="solar WiFi Zimbabwe, off-grid WiFi, solar powered internet, farm WiFi, remote WiFi, solar hotspot, LiFePO4 WiFi, rural connectivity Zimbabwe" />
         <link rel="canonical" href="https://sohoconnect.co.zw/blog/solar-wifi-off-grid-guide" />
-        
+
         <meta property="og:title" content="Solar-Powered Wi-Fi for Off-Grid Locations | Complete Guide" />
         <meta property="og:description" content="Deploy reliable Wi-Fi anywhere with our solar bundles. Perfect for farms, mines, and remote communities." />
         <meta property="og:type" content="article" />
-        
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -142,9 +142,9 @@ const SolarWifiOffGridGuide: React.FC = () => {
                 Solar-Powered Wi-Fi for Off-Grid Locations:
                 <span className="text-amber-600 block">A Complete Technical Guide</span>
               </h1>
-              
+
               <p className="text-xl text-muted-foreground mb-8">
-                No grid power? No problem. Learn how to deploy reliable, revenue-generating 
+                No grid power? No problem. Learn how to deploy reliable, revenue-generating
                 Wi-Fi connectivity at any location in Zimbabwe using our integrated solar solutions.
               </p>
 
@@ -161,18 +161,18 @@ const SolarWifiOffGridGuide: React.FC = () => {
         <article className="py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
-              
+
               <h2>The Challenge of Remote Connectivity</h2>
               <p>
-                Zimbabwe has vast areas where grid electricity is either unavailable or unreliable. 
-                Farms, mining sites, rural schools, and remote communities often have no access to 
+                Zimbabwe has vast areas where grid electricity is either unavailable or unreliable.
+                Farms, mining sites, rural schools, and remote communities often have no access to
                 reliable power, making traditional Wi-Fi deployment impossible.
               </p>
-              
+
               <p>
-                Yet these same locations often have strong demand for connectivity. Farm workers want 
-                to contact family. Mining staff need entertainment during off-hours. Rural students 
-                need access to educational resources. The solution? Solar-powered Wi-Fi systems 
+                Yet these same locations often have strong demand for connectivity. Farm workers want
+                to contact family. Mining staff need entertainment during off-hours. Rural students
+                need access to educational resources. The solution? Solar-powered Wi-Fi systems
                 that operate completely independently of the grid.
               </p>
 
@@ -198,7 +198,7 @@ const SolarWifiOffGridGuide: React.FC = () => {
 
               <h2>Solar Bundle Specifications</h2>
               <p>
-                We offer four pre-configured bundles based on user capacity needs. All pricing is 
+                We offer four pre-configured bundles based on user capacity needs. All pricing is
                 as of December 2024 and includes installation:
               </p>
 
@@ -227,10 +227,10 @@ const SolarWifiOffGridGuide: React.FC = () => {
 
               <h2>Why LiFePO4 Batteries?</h2>
               <p>
-                All our bundles use Lithium Iron Phosphate (LiFePO4) batteries rather than traditional 
+                All our bundles use Lithium Iron Phosphate (LiFePO4) batteries rather than traditional
                 lead-acid. Here's why:
               </p>
-              
+
               <ul>
                 <li><strong>6,000+ cycle life</strong> vs 500-800 for lead-acid (10x longer life)</li>
                 <li><strong>No maintenance required</strong> – no water topping, no acid spills</li>
@@ -240,20 +240,20 @@ const SolarWifiOffGridGuide: React.FC = () => {
               </ul>
 
               <p>
-                While LiFePO4 has higher upfront cost, the 10+ year lifespan makes it more economical 
-                over time. A $300 LiFePO4 battery lasting 10 years costs $30/year, while a $200 lead-acid 
+                While LiFePO4 has higher upfront cost, the 10+ year lifespan makes it more economical
+                over time. A $300 LiFePO4 battery lasting 10 years costs $30/year, while a $200 lead-acid
                 battery lasting 3 years costs $67/year.
               </p>
 
               <h2>Sizing Your System</h2>
               <p>
-                The key to reliable off-grid Wi-Fi is proper sizing. You need enough solar capacity to 
-                charge the batteries during the day, and enough battery capacity to power the system 
+                The key to reliable off-grid Wi-Fi is proper sizing. You need enough solar capacity to
+                charge the batteries during the day, and enough battery capacity to power the system
                 through the night (and cloudy days).
               </p>
 
               <p>
-                A typical Wi-Fi system consumes 50-100W depending on traffic load. Over 24 hours, that's 
+                A typical Wi-Fi system consumes 50-100W depending on traffic load. Over 24 hours, that's
                 1.2-2.4 kWh. Adding a 50% safety margin, you need:
               </p>
 
@@ -264,7 +264,7 @@ const SolarWifiOffGridGuide: React.FC = () => {
               </ul>
 
               <h2>Installation Considerations</h2>
-              
+
               <div className="not-prose my-8 space-y-4">
                 {[
                   'Panel orientation: North-facing in Zimbabwe (Southern Hemisphere)',
@@ -285,7 +285,7 @@ const SolarWifiOffGridGuide: React.FC = () => {
               <p>
                 Our solar Wi-Fi systems have been deployed across Zimbabwe since 2023. Key learnings:
               </p>
-              
+
               <ul>
                 <li>Average uptime exceeds 99.5% with proper sizing</li>
                 <li>LiFePO4 batteries show minimal degradation after 2 years</li>
@@ -294,14 +294,14 @@ const SolarWifiOffGridGuide: React.FC = () => {
               </ul>
 
               <blockquote className="border-l-4 border-amber-500 pl-4 italic">
-                "We installed solar Wi-Fi at our farm compound two years ago. Not a single day without 
+                "We installed solar Wi-Fi at our farm compound two years ago. Not a single day without
                 internet, even during load shedding. The workers love it."
                 <footer className="text-sm text-muted-foreground mt-2">— Farm Manager, Marondera</footer>
               </blockquote>
 
               <h2>Getting Started</h2>
               <p>
-                Ready to bring reliable Wi-Fi to your off-grid location? Start with our revenue 
+                Ready to bring reliable Wi-Fi to your off-grid location? Start with our revenue
                 calculator to see potential earnings, or contact us for a site assessment.
               </p>
             </div>
@@ -319,15 +319,10 @@ const SolarWifiOffGridGuide: React.FC = () => {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button size="lg" className="bg-amber-600 hover:bg-amber-700" asChild>
-                      <Link to="/tools/wifi-token-calculator">
-                        Open Calculator
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Link>
+                      <Link to="/tools/wifi-token-calculator">Open Calculator<ArrowRight className="w-4 h-4 ml-2" /></Link>
                     </Button>
                     <Button size="lg" variant="outline" asChild>
-                      <Link to="/webstore/category/solar">
-                        View Solar Equipment
-                      </Link>
+                      <Link to="/webstore/category/solar">View Solar Equipment</Link>
                     </Button>
                   </div>
                 </CardContent>

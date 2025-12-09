@@ -32,16 +32,31 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   isLoading?: boolean;
 }
 
+// Fixed: asChild prop now properly handles loading state to prevent React.Children.only errors
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, isLoading = false, children, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+    // When asChild is true, Slot expects exactly ONE child element
+    // We cannot add loading spinner alongside the child when using Slot
+    if (asChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, className }), "active:scale-95 transition-all duration-200")}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      );
+    }
+
+    // Regular button rendering with optional loading state
     return (
-      <Comp
+      <button
         className={cn(buttonVariants({ variant, size, className }), "active:scale-95 transition-all duration-200")}
         ref={ref}
         disabled={isLoading || props.disabled}
@@ -70,7 +85,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </svg>
         )}
         {children}
-      </Comp>
+      </button>
     );
   },
 );

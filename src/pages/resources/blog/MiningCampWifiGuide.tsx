@@ -7,8 +7,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { 
-  Wifi, Sun, Truck, TrendingUp, CheckCircle, 
+import {
+  Wifi, Sun, Truck, TrendingUp, CheckCircle,
   ArrowRight, Calendar, Clock, User
 } from 'lucide-react';
 import { Header } from '@/components/Header';
@@ -67,11 +67,11 @@ const MiningCampWifiGuide: React.FC = () => {
         <meta name="description" content="Learn how mining operations in Zimbabwe can generate revenue from Wi-Fi token sales. Includes solar-powered solutions for remote camps, ROI calculations, and implementation guide." />
         <meta name="keywords" content="mining camp WiFi, Zimbabwe mining WiFi, monetize internet mining, off-grid WiFi mining, solar WiFi mining camp, remote camp connectivity" />
         <link rel="canonical" href="https://sohoconnect.co.zw/blog/mining-camp-wifi-guide" />
-        
+
         <meta property="og:title" content="How Mining Camps Can Monetize Wi-Fi | Complete Guide" />
         <meta property="og:description" content="Generate additional revenue from Wi-Fi token sales at your mining operation. Solar-powered solutions available." />
         <meta property="og:type" content="article" />
-        
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -124,13 +124,13 @@ const MiningCampWifiGuide: React.FC = () => {
               </div>
 
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                How Mining Camps Can Monetize Wi-Fi: 
+                How Mining Camps Can Monetize Wi-Fi:
                 <span className="text-amber-600 block">A Complete Guide for Zimbabwe Operations</span>
               </h1>
-              
+
               <p className="text-xl text-muted-foreground mb-8">
-                With hundreds of workers living on-site for weeks at a time, mining camps represent 
-                an untapped opportunity for internet monetization. Here's how to turn connectivity 
+                With hundreds of workers living on-site for weeks at a time, mining camps represent
+                an untapped opportunity for internet monetization. Here's how to turn connectivity
                 into a revenue stream.
               </p>
 
@@ -147,17 +147,17 @@ const MiningCampWifiGuide: React.FC = () => {
         <article className="py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto prose prose-lg dark:prose-invert">
-              
+
               <h2>The Opportunity in Mining Camp Connectivity</h2>
               <p>
-                Zimbabwe's mining sector employs thousands of workers who often live in remote camps 
-                for extended periods. These workers have a strong demand for internet connectivity—to 
-                stay in touch with family, access entertainment, and handle personal banking. Yet many 
+                Zimbabwe's mining sector employs thousands of workers who often live in remote camps
+                for extended periods. These workers have a strong demand for internet connectivity—to
+                stay in touch with family, access entertainment, and handle personal banking. Yet many
                 camps provide no connectivity, or offer limited, expensive options.
               </p>
-              
+
               <p>
-                This gap represents a significant opportunity. By deploying a Wi-Fi token reselling 
+                This gap represents a significant opportunity. By deploying a Wi-Fi token reselling
                 system, mining operations can:
               </p>
 
@@ -176,7 +176,7 @@ const MiningCampWifiGuide: React.FC = () => {
               <p>
                 Let's break down a typical mining camp scenario:
               </p>
-              
+
               <ul>
                 <li><strong>Population:</strong> 500 workers on-site</li>
                 <li><strong>Paid users:</strong> 70% purchase tokens (350 users)</li>
@@ -202,8 +202,8 @@ const MiningCampWifiGuide: React.FC = () => {
 
               <h2>Off-Grid Solar Solutions</h2>
               <p>
-                Most mining camps are located in remote areas with unreliable or non-existent grid power. 
-                Our solar-powered Wi-Fi bundles solve this challenge with packages designed for different 
+                Most mining camps are located in remote areas with unreliable or non-existent grid power.
+                Our solar-powered Wi-Fi bundles solve this challenge with packages designed for different
                 camp sizes:
               </p>
 
@@ -227,12 +227,12 @@ const MiningCampWifiGuide: React.FC = () => {
               </div>
 
               <p>
-                Each bundle includes LiFePO4 batteries for long life, high-efficiency solar panels, 
+                Each bundle includes LiFePO4 batteries for long life, high-efficiency solar panels,
                 hybrid inverters, and all Wi-Fi equipment needed for deployment.
               </p>
 
               <h2>Implementation Process</h2>
-              
+
               <div className="not-prose space-y-4 my-8">
                 {steps.map((item) => (
                   <div key={item.step} className="flex gap-4 items-start">
@@ -249,10 +249,10 @@ const MiningCampWifiGuide: React.FC = () => {
 
               <h2>Case Study: Hwange Mining Operation</h2>
               <p>
-                A mid-sized mining operation near Hwange deployed our system in Q3 2024. Results after 
+                A mid-sized mining operation near Hwange deployed our system in Q3 2024. Results after
                 three months:
               </p>
-              
+
               <ul>
                 <li>Worker satisfaction surveys improved by 45%</li>
                 <li>Monthly revenue exceeded $6,000</li>
@@ -261,14 +261,14 @@ const MiningCampWifiGuide: React.FC = () => {
               </ul>
 
               <blockquote className="border-l-4 border-amber-500 pl-4 italic">
-                "The Wi-Fi system has transformed our camp. Workers are happier, we've reduced turnover, 
+                "The Wi-Fi system has transformed our camp. Workers are happier, we've reduced turnover,
                 and the revenue covers our entire site security budget."
                 <footer className="text-sm text-muted-foreground mt-2">— Operations Manager, Hwange</footer>
               </blockquote>
 
               <h2>Getting Started</h2>
               <p>
-                Ready to explore Wi-Fi monetization for your mining operation? Use our free calculator 
+                Ready to explore Wi-Fi monetization for your mining operation? Use our free calculator
                 to estimate your potential revenue, or request a site assessment from our team.
               </p>
             </div>
@@ -286,15 +286,10 @@ const MiningCampWifiGuide: React.FC = () => {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button size="lg" className="bg-amber-600 hover:bg-amber-700" asChild>
-                      <Link to="/tools/wifi-token-calculator">
-                        Open Calculator
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Link>
+                      <Link to="/tools/wifi-token-calculator">Open Calculator<ArrowRight className="w-4 h-4 ml-2" /></Link>
                     </Button>
                     <Button size="lg" variant="outline" asChild>
-                      <Link to="/contact">
-                        Request Site Assessment
-                      </Link>
+                      <Link to="/contact">Request Site Assessment</Link>
                     </Button>
                   </div>
                 </CardContent>

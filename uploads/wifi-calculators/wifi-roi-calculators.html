@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Free Wi-Fi Marketing ROI Calculator | Calculate Guest Data Revenue | SoHo Connect</title>
+  <meta name="description" content="Calculate your hotel's Wi-Fi marketing ROI instantly. Free calculator shows revenue leakage from guest data loss, OTA commission savings, and direct booking potential. Used by 500+ hospitality businesses.">
+  <meta name="keywords" content="WiFi marketing ROI calculator, guest WiFi revenue, hotel WiFi marketing, location intelligence calculator, hospitality WiFi ROI, guest data capture calculator, OTA commission calculator, direct booking calculator">
+  <meta name="author" content="SoHo Connect">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://sohoconnect.co.zw/calculators/wifi-roi">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sohoconnect.co.zw/calculators/wifi-roi">
+  <meta property="og:title" content="Free Wi-Fi Marketing ROI Calculator | SoHo Connect">
+  <meta property="og:description" content="Calculate your hotel's Wi-Fi marketing ROI instantly. See exactly how much revenue you're losing from guest data leakage.">
+  <meta property="og:image" content="https://sohoconnect.co.zw/images/wifi-calculator-og.jpg">
+  <meta property="og:site_name" content="SoHo Connect">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sohoconnect.co.zw/calculators/wifi-roi">
+  <meta name="twitter:title" content="Free Wi-Fi Marketing ROI Calculator">
+  <meta name="twitter:description" content="Calculate your hotel's Wi-Fi marketing ROI instantly. See exactly how much revenue you're losing.">
+  <meta name="twitter:image" content="https://sohoconnect.co.zw/images/wifi-calculator-twitter.jpg">
+  
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wi-Fi Marketing ROI Calculator",
+    "description": "Free calculator to determine the return on investment for hotel and hospitality Wi-Fi marketing solutions. Calculate guest data capture value, OTA commission savings, and direct booking potential.",
+    "url": "https://sohoconnect.co.zw/calculators/wifi-roi",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "127"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "SoHo Connect",
+      "url": "https://sohoconnect.co.zw"
+    }
+  }
+  </script>
+  
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Wi-Fi marketing ROI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wi-Fi marketing ROI measures the return on investment from using guest Wi-Fi as a marketing channel. It includes revenue from captured guest data, email remarketing conversions, OTA commission savings from direct bookings, and increased guest lifetime value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate revenue leakage from Wi-Fi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Revenue leakage is calculated by: (Monthly guests × 0% email capture × Average room rate × Remarketing conversion rate × 12 months). Without a captive portal, hotels typically capture 0% of guest emails, losing potential direct rebookings worth $5,000-$50,000+ annually."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good email capture rate for hotel Wi-Fi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With a properly configured captive portal and Wi-Fi marketing solution, hotels typically achieve 70-90% email capture rates. Without one, the rate is effectively 0% since guests connect directly without providing contact information."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much can hotels save on OTA commissions with Wi-Fi marketing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OTAs like Booking.com and Expedia charge 15-25% commission. By capturing guest emails through Wi-Fi and remarketing directly, hotels can convert 5-12% of guests to direct rebookings, saving the full commission amount on those bookings."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SoHo Connect",
+    "url": "https://sohoconnect.co.zw",
+    "logo": "https://sohoconnect.co.zw/logo.png",
+    "description": "Zimbabwe's leading Wi-Fi marketing and location intelligence provider for hospitality businesses.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "7 Luck Street",
+      "addressLocality": "Harare",
+      "addressCountry": "ZW"
+    },
+    "sameAs": [
+      "https://www.facebook.com/sohoconnect",
+      "https://www.linkedin.com/company/sohoconnect"
+    ]
+  }
+  </script>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            royal: {
+              50: '#e8edfa',
+              100: '#d1dbf5',
+              200: '#a3b7eb',
+              300: '#7593e1',
+              400: '#4169e1',
+              500: '#3557c5',
+              600: '#2945a9',
+              700: '#1d338d',
+              800: '#112171',
+              900: '#050f55'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e8edfa 50%, #f1f5f9 100%);
+      min-height: 100vh;
+    }
+    
+    /* Animated gradient background */
+    .hero-gradient {
+      background: linear-gradient(-45deg, #e8edfa, #f8fafc, #d1dbf5, #f1f5f9);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Glass morphism cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 
+        0 4px 6px -1px rgba(65, 105, 225, 0.05),
+        0 10px 40px -15px rgba(65, 105, 225, 0.15);
+    }
+    
+    /* Result highlight animation */
+    .result-highlight {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.2); }
+      50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.4); }
+    }
+    
+    .success-highlight {
+      animation: successGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes successGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
+      50% { box-shadow: 0 0 40px rgba(34, 197, 94, 0.4); }
+    }
+    
+    /* Input focus styles */
+    .calc-input {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .calc-input:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -10px rgba(65, 105, 225, 0.3);
+    }
+    
+    /* Tab animation */
+    .tab-indicator {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Number counter animation */
+    .animate-count {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Tooltip styles */
+    .tooltip {
+      position: relative;
+    }
+    
+    .tooltip-text {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: all 0.2s;
+      z-index: 100;
+      margin-bottom: 8px;
+    }
+    
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    /* Print styles */
+    @media print {
+      .no-print { display: none !important; }
+      .glass-card { background: white !important; }
+      body { background: white !important; }
+    }
+    
+    /* Floating shapes */
+    .float-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 20s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(20px) rotate(240deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    
+    // Icon components using Lucide
+    const Icon = ({ name, className = "w-5 h-5" }) => {
+      const ref = useRef(null);
+      useEffect(() => {
+        if (ref.current) {
+          ref.current.innerHTML = '';
+          lucide.createElement(lucide.icons[name]).then(el => {
+            if (ref.current) ref.current.appendChild(el);
+          }).catch(() => {});
+        }
+      }, [name]);
+      return <span ref={ref} className={`inline-flex ${className}`} />;
+    };
+    
+    // Simple icon fallbacks
+    const WifiIcon = () => (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+      </svg>
+    );
+    
+    const MapPinIcon = () => (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    );
+    
+    const CheckIcon = () => (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+      </svg>
+    );
+    
+    const DownloadIcon = () => (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+      </svg>
+    );
+    
+    const ArrowRightIcon = () => (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
+    );
+    
+    const InfoIcon = () => (
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    );
+    
+    const TrendingUpIcon = () => (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      </svg>
+    );
+    
+    const TrendingDownIcon = () => (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+      </svg>
+    );
+    
+    // Animated Number Component
+    const AnimatedNumber = ({ value, prefix = "", suffix = "", className = "" }) => {
+      const [displayValue, setDisplayValue] = useState(0);
+      
+      useEffect(() => {
+        const duration = 800;
+        const steps = 30;
+        const increment = value / steps;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= value) {
+            setDisplayValue(value);
+            clearInterval(timer);
+          } else {
+            setDisplayValue(Math.round(current));
+          }
+        }, duration / steps);
+        
+        return () => clearInterval(timer);
+      }, [value]);
+      
+      return (
+        <span className={`animate-count ${className}`}>
+          {prefix}{displayValue.toLocaleString()}{suffix}
+        </span>
+      );
+    };
+    
+    // Input Field Component with Tooltip
+    const InputField = ({ label, value, onChange, tooltip, prefix, suffix, min = 0, max, step = 1 }) => (
+      <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium text-gray-700">{label}</label>
+          {tooltip && (
+            <div className="tooltip">
+              <InfoIcon />
+              <span className="tooltip-text">{tooltip}</span>
+            </div>
+          )}
+        </div>
+        <div className="relative">
+          {prefix && (
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">
+              {prefix}
+            </span>
+          )}
+          <input
+            type="number"
+            value={value}
+            onChange={(e) => onChange(Number(e.target.value))}
+            min={min}
+            max={max}
+            step={step}
+            className={`calc-input w-full px-4 py-3 rounded-xl border-2 border-gray-200 
+                       focus:border-royal-400 focus:outline-none focus:ring-4 focus:ring-royal-100
+                       font-mono text-lg text-gray-800 bg-white
+                       ${prefix ? 'pl-10' : ''} ${suffix ? 'pr-12' : ''}`}
+          />
+          {suffix && (
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">
+              {suffix}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+    
+    // Result Card Component
+    const ResultCard = ({ title, value, subtitle, type = "neutral", icon }) => {
+      const bgColors = {
+        loss: "bg-gradient-to-br from-red-50 to-red-100 border-red-200",
+        gain: "bg-gradient-to-br from-green-50 to-green-100 border-green-200",
+        neutral: "bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200",
+        primary: "bg-gradient-to-br from-royal-50 to-royal-100 border-royal-200"
+      };
+      
+      const textColors = {
+        loss: "text-red-600",
+        gain: "text-green-600",
+        neutral: "text-gray-800",
+        primary: "text-royal-500"
+      };
+      
+      const highlightClass = type === "loss" ? "result-highlight" : type === "gain" ? "success-highlight" : "";
+      
+      return (
+        <div className={`p-6 rounded-2xl border-2 ${bgColors[type]} ${highlightClass}`}>
+          <div className="flex items-start justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
+              <p className={`text-3xl font-bold ${textColors[type]}`}>{value}</p>
+              {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
+            </div>
+            {icon && (
+              <div className={`p-2 rounded-lg ${type === 'loss' ? 'bg-red-200' : type === 'gain' ? 'bg-green-200' : 'bg-gray-200'}`}>
+                {icon}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    };
+    
+    // Wi-Fi Marketing ROI Calculator
+    const WiFiCalculator = () => {
+      const [inputs, setInputs] = useState({
+        rooms: 30,
+        occupancy: 60,
+        guestsPerRoom: 1.5,
+        avgRate: 85,
+        currentCapture: 0,
+        remarketingRate: 8,
+        otaCommission: 18,
+        avgStayNights: 2
+      });
+      
+      const [showResults, setShowResults] = useState(true);
+      
+      // Calculations
+      const monthlyRoomNights = inputs.rooms * (inputs.occupancy / 100) * 30;
+      const monthlyGuests = monthlyRoomNights * inputs.guestsPerRoom;
+      const annualGuests = monthlyGuests * 12;
+      const currentCaptured = annualGuests * (inputs.currentCapture / 100);
+      const emailsLost = annualGuests - currentCaptured;
+      
+      const potentialRebookings = emailsLost * (inputs.remarketingRate / 100);
+      const rebookingRevenue = potentialRebookings * inputs.avgRate * inputs.avgStayNights;
+      const otaSavings = rebookingRevenue * (inputs.otaCommission / 100);
+      const totalLoss = rebookingRevenue + otaSavings;
+      
+      // With solution (85% capture)
+      const withSolutionCaptured = annualGuests * 0.85;
+      const additionalBookings = (withSolutionCaptured - currentCaptured) * (inputs.remarketingRate / 100);
+      const recoveredRevenue = additionalBookings * inputs.avgRate * inputs.avgStayNights * (1 + inputs.otaCommission / 100);
+      
+      const updateInput = (key, value) => {
+        setInputs(prev => ({ ...prev, [key]: value }));
+      };
+      
+      return (
+        <div className="space-y-8">
+          {/* Input Section */}
+          <div className="glass-card rounded-3xl p-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-royal-400 text-white flex items-center justify-center text-sm font-bold">1</span>
+              Enter Your Property Data
+            </h3>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <InputField
+                label="Number of Rooms"
+                value={inputs.rooms}
+                onChange={(v) => updateInput('rooms', v)}
+                tooltip="Your total room inventory"
+                min={1}
+                max={1000}
+              />
+              <InputField
+                label="Occupancy Rate"
+                value={inputs.occupancy}
+                onChange={(v) => updateInput('occupancy', v)}
+                tooltip="Annual average occupancy percentage"
+                suffix="%"
+                min={1}
+                max={100}
+              />
+              <InputField
+                label="Guests per Room"
+                value={inputs.guestsPerRoom}
+                onChange={(v) => updateInput('guestsPerRoom', v)}
+                tooltip="Average guests per occupied room"
+                step={0.1}
+                min={1}
+                max={5}
+              />
+              <InputField
+                label="Average Room Rate"
+                value={inputs.avgRate}
+                onChange={(v) => updateInput('avgRate', v)}
+                tooltip="Your ADR in USD"
+                prefix="$"
+                min={1}
+              />
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+              <InputField
+                label="Current Email Capture"
+                value={inputs.currentCapture}
+                onChange={(v) => updateInput('currentCapture', v)}
+                tooltip="% of guests whose email you currently collect (likely 0%)"
+                suffix="%"
+                min={0}
+                max={100}
+              />
+              <InputField
+                label="Remarketing Conversion"
+                value={inputs.remarketingRate}
+                onChange={(v) => updateInput('remarketingRate', v)}
+                tooltip="Industry average: 5-12% for hospitality"
+                suffix="%"
+                min={1}
+                max={25}
+              />
+              <InputField
+                label="OTA Commission"
+                value={inputs.otaCommission}
+                onChange={(v) => updateInput('otaCommission', v)}
+                tooltip="Booking.com/Expedia typically charge 15-25%"
+                suffix="%"
+                min={0}
+                max={35}
+              />
+              <InputField
+                label="Avg Stay Length"
+                value={inputs.avgStayNights}
+                onChange={(v) => updateInput('avgStayNights', v)}
+                tooltip="Average nights per booking"
+                suffix="nights"
+                min={1}
+                max={14}
+              />
+            </div>
+          </div>
+          
+          {/* Results Section */}
+          <div className="glass-card rounded-3xl p-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-royal-400 text-white flex items-center justify-center text-sm font-bold">2</span>
+              Your Revenue Leakage Analysis
+            </h3>
+            
+            {/* Key Metrics */}
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              <div className="bg-gray-50 rounded-2xl p-5 text-center">
+                <p className="text-sm text-gray-600 mb-1">Annual Wi-Fi Users</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  <AnimatedNumber value={Math.round(annualGuests)} />
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 text-center">
+                <p className="text-sm text-gray-600 mb-1">Emails Currently Captured</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  <AnimatedNumber value={Math.round(currentCaptured)} />
+                </p>
+              </div>
+              <div className="bg-red-50 rounded-2xl p-5 text-center border-2 border-red-200">
+                <p className="text-sm text-red-600 mb-1">Guest Contacts LOST</p>
+                <p className="text-2xl font-bold text-red-600">
+                  <AnimatedNumber value={Math.round(emailsLost)} />
+                </p>
+              </div>
+            </div>
+            
+            {/* Revenue Impact */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <ResultCard
+                title="ANNUAL REVENUE YOU'RE LOSING"
+                value={`$${Math.round(totalLoss).toLocaleString()}`}
+                subtitle={`$${Math.round(totalLoss / 12).toLocaleString()}/month walking out the door`}
+                type="loss"
+                icon={<TrendingDownIcon />}
+              />
+              <ResultCard
+                title="WITH WI-FI MARKETING (85% Capture)"
+                value={`$${Math.round(recoveredRevenue).toLocaleString()}`}
+                subtitle="Potential annual revenue recovered"
+                type="gain"
+                icon={<TrendingUpIcon />}
+              />
+            </div>
+            
+            {/* Breakdown */}
+            <div className="mt-8 bg-gray-50 rounded-2xl p-6">
+              <h4 className="font-semibold text-gray-800 mb-4">How We Calculated This:</h4>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div className="space-y-2">
+                  <p className="flex justify-between">
+                    <span className="text-gray-600">Potential direct rebookings:</span>
+                    <span className="font-mono font-medium">{Math.round(potentialRebookings).toLocaleString()} bookings</span>
+                  </p>
+                  <p className="flex justify-between">
+                    <span className="text-gray-600">Revenue from rebookings:</span>
+                    <span className="font-mono font-medium">${Math.round(rebookingRevenue).toLocaleString()}</span>
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="flex justify-between">
+                    <span className="text-gray-600">OTA commission savings:</span>
+                    <span className="font-mono font-medium">${Math.round(otaSavings).toLocaleString()}</span>
+                  </p>
+                  <p className="flex justify-between border-t pt-2 border-gray-300">
+                    <span className="text-gray-800 font-semibold">Total opportunity cost:</span>
+                    <span className="font-mono font-bold text-red-600">${Math.round(totalLoss).toLocaleString()}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+    
+    // Location Intelligence Calculator
+    const LocationCalculator = () => {
+      const [inputs, setInputs] = useState({
+        monthlyFootfall: 5000,
+        avgTransactionValue: 25,
+        conversionRate: 15,
+        currentReturnRate: 10,
+        targetReturnRate: 25,
+        avgVisitsPerCustomer: 2,
+        marketingBudget: 500
+      });
+      
+      // Calculations
+      const monthlyTransactions = inputs.monthlyFootfall * (inputs.conversionRate / 100);
+      const monthlyRevenue = monthlyTransactions * inputs.avgTransactionValue;
+      const annualRevenue = monthlyRevenue * 12;
+      
+      const currentReturnCustomers = inputs.monthlyFootfall * (inputs.currentReturnRate / 100);
+      const targetReturnCustomers = inputs.monthlyFootfall * (inputs.targetReturnRate / 100);
+      const additionalReturns = targetReturnCustomers - currentReturnCustomers;
+      
+      const additionalRevenue = additionalReturns * inputs.avgTransactionValue * inputs.avgVisitsPerCustomer * 12;
+      const roi = inputs.marketingBudget > 0 ? ((additionalRevenue / (inputs.marketingBudget * 12)) * 100) : 0;
+      
+      // Insights value calculation
+      const insightsValue = {
+        peakHours: monthlyRevenue * 0.08,
+        dwellTime: monthlyRevenue * 0.05,
+        heatmapping: monthlyRevenue * 0.06,
+        customerJourney: monthlyRevenue * 0.04
+      };
+      const totalInsightsValue = Object.values(insightsValue).reduce((a, b) => a + b, 0) * 12;
+      
+      const updateInput = (key, value) => {
+        setInputs(prev => ({ ...prev, [key]: value }));
+      };
+      
+      return (
+        <div className="space-y-8">
+          {/* Input Section */}
+          <div className="glass-card rounded-3xl p-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-royal-400 text-white flex items-center justify-center text-sm font-bold">1</span>
+              Enter Your Business Data
+            </h3>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <InputField
+                label="Monthly Foot Traffic"
+                value={inputs.monthlyFootfall}
+                onChange={(v) => updateInput('monthlyFootfall', v)}
+                tooltip="Estimated monthly visitors to your location"
+                min={100}
+              />
+              <InputField
+                label="Avg Transaction Value"
+                value={inputs.avgTransactionValue}
+                onChange={(v) => updateInput('avgTransactionValue', v)}
+                tooltip="Average spend per customer"
+                prefix="$"
+                min={1}
+              />
+              <InputField
+                label="Conversion Rate"
+                value={inputs.conversionRate}
+                onChange={(v) => updateInput('conversionRate', v)}
+                tooltip="% of visitors who make a purchase"
+                suffix="%"
+                min={1}
+                max={100}
+              />
+              <InputField
+                label="Current Return Rate"
+                value={inputs.currentReturnRate}
+                onChange={(v) => updateInput('currentReturnRate', v)}
+                tooltip="% of customers who return within 90 days"
+                suffix="%"
+                min={0}
+                max={100}
+              />
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+              <InputField
+                label="Target Return Rate"
+                value={inputs.targetReturnRate}
+                onChange={(v) => updateInput('targetReturnRate', v)}
+                tooltip="Goal for repeat customers with location intelligence"
+                suffix="%"
+                min={inputs.currentReturnRate}
+                max={100}
+              />
+              <InputField
+                label="Avg Visits per Returner"
+                value={inputs.avgVisitsPerCustomer}
+                onChange={(v) => updateInput('avgVisitsPerCustomer', v)}
+                tooltip="How many times return customers visit annually"
+                min={1}
+                max={52}
+              />
+              <InputField
+                label="Monthly Marketing Budget"
+                value={inputs.marketingBudget}
+                onChange={(v) => updateInput('marketingBudget', v)}
+                tooltip="Current monthly spend on marketing"
+                prefix="$"
+                min={0}
+              />
+            </div>
+          </div>
+          
+          {/* Results Section */}
+          <div className="glass-card rounded-3xl p-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-royal-400 text-white flex items-center justify-center text-sm font-bold">2</span>
+              Location Intelligence ROI Analysis
+            </h3>
+            
+            {/* Key Metrics */}
+            <div className="grid md:grid-cols-4 gap-4 mb-8">
+              <div className="bg-gray-50 rounded-2xl p-5 text-center">
+                <p className="text-sm text-gray-600 mb-1">Monthly Transactions</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  <AnimatedNumber value={Math.round(monthlyTransactions)} />
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 text-center">
+                <p className="text-sm text-gray-600 mb-1">Current Annual Revenue</p>
+                <p className="text-2xl font-bold text-gray-800">
+                  <AnimatedNumber value={Math.round(annualRevenue)} prefix="$" />
+                </p>
+              </div>
+              <div className="bg-royal-50 rounded-2xl p-5 text-center border-2 border-royal-200">
+                <p className="text-sm text-royal-600 mb-1">Additional Returns/Month</p>
+                <p className="text-2xl font-bold text-royal-600">
+                  +<AnimatedNumber value={Math.round(additionalReturns)} />
+                </p>
+              </div>
+              <div className="bg-green-50 rounded-2xl p-5 text-center border-2 border-green-200">
+                <p className="text-sm text-green-600 mb-1">Marketing ROI</p>
+                <p className="text-2xl font-bold text-green-600">
+                  <AnimatedNumber value={Math.round(roi)} suffix="%" />
+                </p>
+              </div>
+            </div>
+            
+            {/* Revenue Impact */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <ResultCard
+                title="ADDITIONAL ANNUAL REVENUE"
+                value={`$${Math.round(additionalRevenue).toLocaleString()}`}
+                subtitle="From improved customer retention"
+                type="gain"
+                icon={<TrendingUpIcon />}
+              />
+              <ResultCard
+                title="INSIGHTS VALUE (Est.)"
+                value={`$${Math.round(totalInsightsValue).toLocaleString()}`}
+                subtitle="Annual value from data-driven decisions"
+                type="primary"
+                icon={<MapPinIcon />}
+              />
+            </div>
+            
+            {/* Insights Breakdown */}
+            <div className="mt-8 bg-gray-50 rounded-2xl p-6">
+              <h4 className="font-semibold text-gray-800 mb-4">Location Intelligence Value Breakdown:</h4>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-royal-400"></div>
+                      <span className="text-gray-600">Peak Hours Optimization</span>
+                    </div>
+                    <span className="font-mono font-medium">${Math.round(insightsValue.peakHours * 12).toLocaleString()}/yr</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                      <span className="text-gray-600">Dwell Time Analysis</span>
+                    </div>
+                    <span className="font-mono font-medium">${Math.round(insightsValue.dwellTime * 12).toLocaleString()}/yr</span>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                      <span className="text-gray-600">Heatmap & Flow Insights</span>
+                    </div>
+                    <span className="font-mono font-medium">${Math.round(insightsValue.heatmapping * 12).toLocaleString()}/yr</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                      <span className="text-gray-600">Customer Journey Mapping</span>
+                    </div>
+                    <span className="font-mono font-medium">${Math.round(insightsValue.customerJourney * 12).toLocaleString()}/yr</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+    
+    // Lead Capture Modal
+    const LeadModal = ({ isOpen, onClose, calculatorType }) => {
+      const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        property: '',
+        rooms: ''
+      });
+      const [submitted, setSubmitted] = useState(false);
+      
+      if (!isOpen) return null;
+      
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        // In production, this would send to your backend
+        console.log('Lead captured:', { ...formData, calculatorType });
+        setSubmitted(true);
+        setTimeout(() => {
+          onClose();
+          setSubmitted(false);
+          setFormData({ name: '', email: '', phone: '', property: '', rooms: '' });
+        }, 2000);
+      };
+      
+      return (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-md w-full p-8 relative animate-in fade-in zoom-in duration-300">
+            <button 
+              onClick={onClose}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            {submitted ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckIcon />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Report Sent!</h3>
+                <p className="text-gray-600">Check your email for your personalized analysis.</p>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Get Your Full Report</h3>
+                <p className="text-gray-600 mb-6">We'll send you a detailed PDF with recommendations specific to your property.</p>
+                
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-royal-400 focus:outline-none"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-royal-400 focus:outline-none"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-royal-400 focus:outline-none"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Property/Business Name"
+                    value={formData.property}
+                    onChange={(e) => setFormData({...formData, property: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-royal-400 focus:outline-none"
+                  />
+                  
+                  <button
+                    type="submit"
+                    className="w-full bg-royal-400 hover:bg-royal-500 text-white font-semibold py-4 rounded-xl transition-colors flex items-center justify-center gap-2"
+                  >
+                    Send My Free Report
+                    <ArrowRightIcon />
+                  </button>
+                </form>
+                
+                <p className="text-xs text-gray-500 mt-4 text-center">
+                  No spam. We'll only contact you about your results.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      );
+    };
+    
+    // Main App Component
+    const App = () => {
+      const [activeTab, setActiveTab] = useState('wifi');
+      const [showModal, setShowModal] = useState(false);
+      
+      return (
+        <div className="min-h-screen">
+          {/* Floating Background Shapes */}
+          <div className="fixed inset-0 overflow-hidden pointer-events-none">
+            <div className="float-shape bg-royal-400 w-96 h-96 -top-48 -right-48" style={{animationDelay: '0s'}}></div>
+            <div className="float-shape bg-royal-300 w-64 h-64 top-1/3 -left-32" style={{animationDelay: '5s'}}></div>
+            <div className="float-shape bg-royal-200 w-80 h-80 bottom-0 right-1/4" style={{animationDelay: '10s'}}></div>
+          </div>
+          
+          {/* Header */}
+          <header className="relative z-10 py-6 no-print">
+            <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-royal-400 rounded-xl flex items-center justify-center">
+                  <WifiIcon />
+                </div>
+                <div>
+                  <h1 className="font-bold text-gray-800">SoHo Connect</h1>
+                  <p className="text-xs text-gray-500">Wi-Fi Marketing & Analytics</p>
+                </div>
+              </div>
+              <a 
+                href="https://sohoconnect.co.zw" 
+                className="text-sm text-royal-500 hover:text-royal-600 font-medium"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit Website →
+              </a>
+            </div>
+          </header>
+          
+          {/* Hero Section */}
+          <section className="relative z-10 py-12 hero-gradient">
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm font-medium text-royal-600 mb-6">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                Free Calculator • No Login Required
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                Is Your Wi-Fi <span className="text-royal-400">Leaving Money</span> on the Table?
+              </h1>
+              
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+                Calculate exactly how much revenue you're losing from uncaptured guest data. 
+                Join 500+ hospitality businesses who've discovered their hidden revenue potential.
+              </p>
+              
+              {/* Calculator Tabs */}
+              <div className="inline-flex bg-white rounded-2xl p-1.5 shadow-lg mb-8">
+                <button
+                  onClick={() => setActiveTab('wifi')}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+                    activeTab === 'wifi' 
+                      ? 'bg-royal-400 text-white shadow-lg' 
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                >
+                  <WifiIcon />
+                  Wi-Fi Marketing ROI
+                </button>
+                <button
+                  onClick={() => setActiveTab('location')}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+                    activeTab === 'location' 
+                      ? 'bg-royal-400 text-white shadow-lg' 
+                      : 'text-gray-600 hover:text-gray-800'
+                  }`}
+                >
+                  <MapPinIcon />
+                  Location Intelligence
+                </button>
+              </div>
+            </div>
+          </section>
+          
+          {/* Calculator Section */}
+          <section className="relative z-10 py-12">
+            <div className="max-w-5xl mx-auto px-4">
+              {activeTab === 'wifi' ? <WiFiCalculator /> : <LocationCalculator />}
+              
+              {/* CTA Section */}
+              <div className="mt-8 glass-card rounded-3xl p-8 text-center no-print">
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                  Ready to Stop Losing Revenue?
+                </h3>
+                <p className="text-gray-600 mb-6 max-w-xl mx-auto">
+                  Get a personalized analysis and see how SoHo Connect can help you capture guest data and increase direct bookings.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className="bg-royal-400 hover:bg-royal-500 text-white font-semibold px-8 py-4 rounded-xl transition-all hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                  >
+                    Get My Free Report
+                    <DownloadIcon />
+                  </button>
+                  <button
+                    onClick={() => window.print()}
+                    className="border-2 border-gray-300 hover:border-royal-400 text-gray-700 hover:text-royal-500 font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2"
+                  >
+                    Print Results
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* SEO Content Section */}
+          <section className="relative z-10 py-16 bg-white no-print" id="learn-more">
+            <div className="max-w-4xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+                Understanding Wi-Fi Marketing ROI
+              </h2>
+              
+              <div className="prose prose-lg max-w-none">
+                <article className="mb-12">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4">What is Wi-Fi Marketing?</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Wi-Fi marketing transforms your guest Wi-Fi from a cost center into a powerful revenue-generating asset. When guests connect to your network, a captive portal captures their contact information in exchange for internet access. This creates a direct marketing channel that bypasses expensive OTA commissions and enables personalized remarketing campaigns.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    For hotels and hospitality businesses, Wi-Fi marketing typically delivers 70-90% email capture rates compared to the industry standard of near 0% without implementation. This guest data becomes the foundation for automated remarketing sequences, loyalty programs, and direct booking initiatives.
+                  </p>
+                </article>
+                
+                <article className="mb-12">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4">How to Calculate Wi-Fi Marketing ROI</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    The ROI formula considers multiple revenue streams: direct rebooking revenue from email remarketing, OTA commission savings (typically 15-25% per booking), increased guest lifetime value, and upselling opportunities through targeted campaigns.
+                  </p>
+                  <div className="bg-gray-50 rounded-xl p-6 mb-4">
+                    <p className="font-mono text-sm text-gray-700">
+                      <strong>Basic ROI Formula:</strong><br/>
+                      Annual Guests × Email Capture Rate × Remarketing Conversion × (ADR × Avg Stay) × (1 + OTA Commission Rate)
+                    </p>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    Industry benchmarks show that hospitality email campaigns achieve 5-12% conversion rates, with properties reporting 20-40% increases in direct bookings within the first year of Wi-Fi marketing implementation.
+                  </p>
+                </article>
+                
+                <article className="mb-12">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4">Location Intelligence for Business Growth</h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Location intelligence uses anonymized Wi-Fi signals to understand customer behavior patterns. This includes foot traffic analysis, dwell time measurement, heat mapping, and customer journey tracking. These insights enable data-driven decisions about staffing, layout optimization, and marketing timing.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    Businesses using location analytics report improved operational efficiency, better customer experiences, and measurable increases in conversion rates. The combination of Wi-Fi marketing and location intelligence creates a comprehensive guest engagement platform.
+                  </p>
+                </article>
+              </div>
+              
+              {/* FAQ Section */}
+              <div className="mt-16">
+                <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {[
+                    {
+                      q: "What is Wi-Fi marketing ROI?",
+                      a: "Wi-Fi marketing ROI measures the return on investment from using guest Wi-Fi as a marketing channel. It includes revenue from captured guest data, email remarketing conversions, OTA commission savings from direct bookings, and increased guest lifetime value."
+                    },
+                    {
+                      q: "How do I calculate revenue leakage from Wi-Fi?",
+                      a: "Revenue leakage is calculated by multiplying your annual guests by potential remarketing conversion rate and average booking value. Without a captive portal, hotels typically capture 0% of guest emails, losing potential direct rebookings worth $5,000-$50,000+ annually depending on property size."
+                    },
+                    {
+                      q: "What is a good email capture rate for hotel Wi-Fi?",
+                      a: "With a properly configured captive portal and Wi-Fi marketing solution, hotels typically achieve 70-90% email capture rates. Without one, the rate is effectively 0% since guests connect directly without providing contact information."
+                    },
+                    {
+                      q: "How much can hotels save on OTA commissions?",
+                      a: "OTAs like Booking.com and Expedia charge 15-25% commission per booking. By capturing guest emails through Wi-Fi and remarketing directly, hotels can convert 5-12% of guests to direct rebookings, saving the full commission amount on those bookings."
+                    },
+                    {
+                      q: "Is Wi-Fi marketing GDPR compliant?",
+                      a: "Yes, when implemented correctly. Proper Wi-Fi marketing solutions include consent mechanisms, clear privacy policies, and data handling procedures that comply with GDPR and other data protection regulations."
+                    }
+                  ].map((faq, i) => (
+                    <details key={i} className="bg-gray-50 rounded-xl p-6 group">
+                      <summary className="font-semibold text-gray-800 cursor-pointer list-none flex justify-between items-center">
+                        {faq.q}
+                        <span className="ml-4 text-royal-400 group-open:rotate-180 transition-transform">▼</span>
+                      </summary>
+                      <p className="text-gray-600 mt-4 leading-relaxed">{faq.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Footer */}
+          <footer className="relative z-10 py-12 bg-gray-900 text-white no-print">
+            <div className="max-w-6xl mx-auto px-4">
+              <div className="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-royal-400 rounded-xl flex items-center justify-center">
+                      <WifiIcon />
+                    </div>
+                    <span className="font-bold text-lg">SoHo Connect</span>
+                  </div>
+                  <p className="text-gray-400 text-sm">
+                    Zimbabwe's leading Wi-Fi marketing and location intelligence provider. 
+                    Helping hospitality businesses turn guest Wi-Fi into a revenue engine.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4">Resources</h4>
+                  <ul className="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#" className="hover:text-white transition-colors">Wi-Fi ROI Calculator</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Location Intelligence Guide</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Case Studies</a></li>
+                    <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-4">Contact</h4>
+                  <ul className="space-y-2 text-gray-400 text-sm">
+                    <li>7 Luck Street, Harare, Zimbabwe</li>
+                    <li>info@sohoconnect.co.zw</li>
+                    <li>+263 XXX XXX XXX</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>© 2024 SoHo Connect. All rights reserved.</p>
+                <div className="flex gap-6 mt-4 md:mt-0">
+                  <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                  <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+              </div>
+            </div>
+          </footer>
+          
+          {/* Lead Capture Modal */}
+          <LeadModal 
+            isOpen={showModal} 
+            onClose={() => setShowModal(false)} 
+            calculatorType={activeTab}
+          />
+        </div>
+      );
+    };
+    
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

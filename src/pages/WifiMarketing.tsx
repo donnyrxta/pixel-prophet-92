@@ -183,6 +183,67 @@ const WifiMarketing = () => {
           </div>
         </div>
       </section>
+
+      {/* Calculator CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-transparent">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                <BarChart3 className="w-4 h-4" />
+                <span>ROI Estimator</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                Calculate Your Potential <span className="text-primary">Revenue</span>
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Wondering how much you could earn by monetizing your Wi-Fi?
+                Use our free calculator to estimate daily, monthly, and annual revenue suitable for
+                hotels, mining camps, salons, schools, and more.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
+                  <a href="/tools/wifi-token-calculator" className="flex items-center justify-center">
+                    Launch Calculator<ArrowRight className="w-4 h-4 ml-2" />
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <a href="/contact" className="flex items-center justify-center">Talk to an Expert</a>
+                </Button>
+              </div>
+            </div>
+
+            <div className="flex-1 w-full relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-primary/20 rounded-3xl blur-2xl opacity-50" />
+              <Card className="relative bg-white border-0 shadow-xl p-6 md:p-8">
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center border-b pb-4">
+                    <span className="font-semibold text-gray-700">Estimated Monthly Profit</span>
+                    <span className="text-2xl font-bold text-green-600">$1,250.00</span>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Daily Active Users</span>
+                      <span className="font-medium">150</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Avg. Daily Spend</span>
+                      <span className="font-medium">$0.50</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-500">Solar Bundle</span>
+                      <span className="font-medium text-amber-600">Standard (5kWh)</span>
+                    </div>
+                  </div>
+                  <div className="pt-4 mt-2 bg-gray-50 rounded-lg p-4 text-xs text-gray-500 text-center">
+                    * Example calculation for a standardized mining camp setup
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
     </ServicePage>
   );
 };

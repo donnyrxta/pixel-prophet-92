@@ -60,6 +60,13 @@ export const Header = () => {
       ]
     },
     {
+      name: 'Tools',
+      path: '/tools/wifi-token-calculator',
+      submenu: [
+        { name: 'WiFi Profit Calculator', path: '/tools/wifi-token-calculator' },
+      ]
+    },
+    {
       name: 'Webstore',
       path: '/webstore',
       submenu: [
@@ -94,8 +101,8 @@ export const Header = () => {
       {/* Header with trust signal - Sticky with animation */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-            ? 'bg-white shadow-lg animate-slideDown'
-            : 'bg-white/95 backdrop-blur-sm'
+          ? 'bg-white shadow-lg animate-slideDown'
+          : 'bg-white/95 backdrop-blur-sm'
           }`}
       >
         <div className="container mx-auto px-4">
@@ -124,8 +131,8 @@ export const Header = () => {
                   <Link
                     to={link.path}
                     className={`font-medium transition-colors hover:text-primary flex items-center gap-1 ${location.pathname === link.path
-                        ? 'text-primary'
-                        : 'text-gray-700'
+                      ? 'text-primary'
+                      : 'text-gray-700'
                       }`}
                   >
                     {link.name}
@@ -247,8 +254,8 @@ export const Header = () => {
                   <Link
                     to={link.path}
                     className={`block px-4 py-3 rounded-lg transition-colors font-medium min-h-[48px] flex items-center ${location.pathname === link.path
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-gray-700 hover:bg-gray-50'
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-gray-700 hover:bg-gray-50'
                       }`}
                   >
                     {link.name}

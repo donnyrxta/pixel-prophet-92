@@ -39,6 +39,12 @@ import WifiTokenCalculatorPage from "./pages/resources/tools/WifiTokenCalculator
 import MiningCampWifiGuide from "./pages/resources/blog/MiningCampWifiGuide";
 import SolarWifiOffGridGuide from "./pages/resources/blog/SolarWifiOffGridGuide";
 import NotFound from "./pages/NotFound";
+// Internal Tools
+import InternalLayout from "./components/internal/InternalLayout";
+import InternalDashboard from "./pages/internal/InternalDashboard";
+import NewCampaign from "./pages/internal/NewCampaign";
+import CampaignLogs from "./pages/internal/CampaignLogs";
+import InternalSettings from "./pages/internal/InternalSettings";
 // Global Widgets - Present on all pages
 import UnifiedContactWidget from "./components/UnifiedContactWidget";
 import PersistentAIWidget from "./components/PersistentAIWidget";
@@ -97,11 +103,18 @@ const AppRoutes = () => {
             <Route path="/business-cards-harare" element={<BusinessCardsHarare />} />
             <Route path="/ad-planner" element={<AdPlannerPage />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/blog/mining-camp-wifi-guide" element={<MiningCampWifiGuide />} />
             <Route path="/blog/solar-wifi-off-grid-guide" element={<SolarWifiOffGridGuide />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/tools/wifi-token-calculator" element={<WifiTokenCalculatorPage />} />
             <Route path="/demo-cards" element={<DemoCards />} />
+            {/* Internal Tools - Protected Dashboard */}
+            <Route path="/internal" element={<InternalLayout />}>
+              <Route index element={<InternalDashboard />} />
+              <Route path="campaign/new" element={<NewCampaign />} />
+              <Route path="logs" element={<CampaignLogs />} />
+              <Route path="settings" element={<InternalSettings />} />
+            </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

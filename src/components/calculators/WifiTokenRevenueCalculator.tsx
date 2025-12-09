@@ -8,10 +8,10 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Wifi, Sun, Building2, Users, Home, Truck, TreePine, 
+import {
+  Wifi, Sun, Building2, Users, Home, Truck, TreePine,
   GraduationCap, Hotel, Users2, Calculator, TrendingUp,
-  Download, Send, Check, ChevronDown, Info, ArrowRight
+  Download, Send, Check, ChevronDown, Info, ArrowRight, AlertTriangle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -134,6 +134,24 @@ const industries: IndustryConfig[] = [
     defaults: { population: 300, paidPercent: 45, avgSpendDaily: 0.35 },
     needsSolar: false,
     color: 'primary'
+  },
+  {
+    id: 'beauty',
+    name: 'Salons & Spas',
+    icon: Users2,
+    description: 'Beauty salons, spas, wellness centres',
+    defaults: { population: 50, paidPercent: 20, avgSpendDaily: 1.00 },
+    needsSolar: false,
+    color: 'primary'
+  },
+  {
+    id: 'healthcare',
+    name: 'Healthcare',
+    icon: Building2,
+    description: 'Hospitals, clinics, waiting rooms',
+    defaults: { population: 200, paidPercent: 30, avgSpendDaily: 0.50 },
+    needsSolar: false,
+    color: 'primary'
   }
 ];
 
@@ -172,8 +190,27 @@ const solarBundles: SolarBundle[] = [
   }
 ];
 
-const BASE_EQUIPMENT_COST = 500; // Router, captive portal, installation
-const BASE_ISP_COST = 100; // Monthly ISP subscription
+// ============== Cost Configuration ==============
+// Improved cost scaling per audit recommendations
+
+const BASE_EQUIPMENT_COST = 150; // Base deployment cost
+const EQUIPMENT_COST_PER_50_USERS = 100; // Additional equipment cost per 50 users
+const BASE_ISP_COST = 50; // Base monthly ISP subscription
+
+// Tiered ISP cost based on population
+const getISPCost = (population: number): number => {
+  if (population <= 50) return BASE_ISP_COST;
+  if (population <= 100) return BASE_ISP_COST + 30;
+  if (population <= 200) return BASE_ISP_COST + 80;
+  if (population <= 500) return BASE_ISP_COST + 150;
+  return BASE_ISP_COST + 250; // 500+ users
+};
+
+// Scaled equipment cost
+const getEquipmentCost = (population: number): number => {
+  const additionalCost = Math.floor(population / 50) * EQUIPMENT_COST_PER_50_USERS;
+  return BASE_EQUIPMENT_COST + additionalCost;
+};
 
 // ============== Calculator Component ==============
 
@@ -209,29 +246,41 @@ const WifiTokenRevenueCalculator: React.FC = () => {
     setIncludeSolar(industry.needsSolar);
   }, []);
 
-  // Calculate results
+  // Check if solar bundle is undersized for population
+  const solarWarning = useMemo(() => {
+    if (!includeSolar) return null;
+    if (population > selectedSolarBundle.maxUsers) {
+      return `Warning: Selected solar bundle supports max ${selectedSolarBundle.maxUsers} users, but you have ${population} people. Consider upgrading.`;
+    }
+    return null;
+  }, [includeSolar, population, selectedSolarBundle]);
+
+  // Calculate results with improved cost logic
   const results: CalculatorResults = useMemo(() => {
     const paidUsers = Math.round(population * (paidPercent / 100));
     const freeUsers = Math.round(population * (freePercent / 100));
-    
+    const totalConnectedUsers = paidUsers + freeUsers;
+
     const dailyRevenue = paidUsers * avgSpendDaily;
     const monthlyRevenue = dailyRevenue * 30;
     const annualRevenue = monthlyRevenue * 12;
-    
-    // Scale ISP cost with population
-    const monthlyISPCost = BASE_ISP_COST + (population > 200 ? 50 : 0) + (population > 500 ? 100 : 0);
-    
+
+    // Improved ISP cost scaling based on total connected users (paid + free)
+    const monthlyISPCost = getISPCost(totalConnectedUsers);
+
     const monthlyProfit = monthlyRevenue - monthlyISPCost;
     const annualProfit = monthlyProfit * 12;
-    
+
+    // Scaled equipment cost based on population
+    const equipmentCost = getEquipmentCost(population);
     const solarCost = includeSolar ? selectedSolarBundle.price : 0;
-    const totalInvestment = BASE_EQUIPMENT_COST + solarCost;
-    
+    const totalInvestment = equipmentCost + solarCost;
+
     const paybackMonths = monthlyProfit > 0 ? Math.ceil(totalInvestment / monthlyProfit) : 0;
     const yearOneProfit = annualProfit;
     const roi12Month = totalInvestment > 0 ? ((yearOneProfit - totalInvestment) / totalInvestment) * 100 : 0;
     const yearOneNetGain = yearOneProfit - totalInvestment;
-    
+
     return {
       dailyRevenue,
       monthlyRevenue,
@@ -244,7 +293,7 @@ const WifiTokenRevenueCalculator: React.FC = () => {
       roi12Month,
       yearOneNetGain
     };
-  }, [population, paidPercent, avgSpendDaily, includeSolar, selectedSolarBundle]);
+  }, [population, paidPercent, freePercent, avgSpendDaily, includeSolar, selectedSolarBundle]);
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -455,30 +504,49 @@ Total Investment: $${results.totalInvestment}`,
                   <Label className="text-foreground font-semibold">Solar Power Bundle</Label>
                 </div>
                 
+                {/* Solar Warning */}
+                {solarWarning && (
+                  <div className="mb-4 p-3 bg-amber-100 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 rounded-lg flex items-start gap-2">
+                    <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-amber-800 dark:text-amber-200">{solarWarning}</p>
+                  </div>
+                )}
+
                 <div className="space-y-3">
-                  {solarBundles.map((bundle) => (
-                    <button
-                      key={bundle.id}
-                      onClick={() => setSelectedSolarBundle(bundle)}
-                      className={cn(
-                        "w-full p-3 rounded-lg border-2 text-left transition-all",
-                        selectedSolarBundle.id === bundle.id
-                          ? "border-amber-500 bg-amber-50 dark:bg-amber-950/30"
-                          : "border-border hover:border-amber-300"
-                      )}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <h5 className="font-medium text-foreground">{bundle.name}</h5>
-                          <p className="text-xs text-muted-foreground">{bundle.description}</p>
+                  {solarBundles.map((bundle) => {
+                    const isUndersized = population > bundle.maxUsers;
+                    return (
+                      <button
+                        key={bundle.id}
+                        onClick={() => setSelectedSolarBundle(bundle)}
+                        className={cn(
+                          "w-full p-3 rounded-lg border-2 text-left transition-all",
+                          selectedSolarBundle.id === bundle.id
+                            ? "border-amber-500 bg-amber-50 dark:bg-amber-950/30"
+                            : "border-border hover:border-amber-300",
+                          isUndersized && selectedSolarBundle.id !== bundle.id && "opacity-60"
+                        )}
+                      >
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h5 className="font-medium text-foreground flex items-center gap-2">
+                              {bundle.name}
+                              {isUndersized && (
+                                <span className="text-xs text-amber-600 bg-amber-100 dark:bg-amber-900 px-2 py-0.5 rounded">
+                                  Max {bundle.maxUsers} users
+                                </span>
+                              )}
+                            </h5>
+                            <p className="text-xs text-muted-foreground">{bundle.description}</p>
+                          </div>
+                          <div className="text-right">
+                            <span className="font-bold text-amber-600">${bundle.price}</span>
+                            <p className="text-xs text-muted-foreground">{bundle.capacity}</p>
+                          </div>
                         </div>
-                        <div className="text-right">
-                          <span className="font-bold text-amber-600">${bundle.price}</span>
-                          <p className="text-xs text-muted-foreground">{bundle.capacity}</p>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
