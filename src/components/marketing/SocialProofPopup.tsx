@@ -10,16 +10,61 @@ interface Order {
 }
 
 const recentOrders: Order[] = [
+  // Harare CBD & Surrounds
   { name: 'Tendai M.', location: 'Harare CBD', product: 'Business Cards (500)', time: '2 minutes ago' },
-  { name: 'Sarah K.', location: 'Borrowdale', product: 'Company Brochures', time: '5 minutes ago' },
-  { name: 'James T.', location: 'Bulawayo', product: 'Logo Design Package', time: '8 minutes ago' },
-  { name: 'Chipo N.', location: 'Mutare', product: 'Wedding Invitations', time: '12 minutes ago' },
-  { name: 'David R.', location: 'Gweru', product: 'Roll-up Banners (2)', time: '15 minutes ago' },
-  { name: 'Grace M.', location: 'Avondale', product: 'Flyers (1000)', time: '18 minutes ago' },
-  { name: 'Peter Z.', location: 'Eastlea', product: 'T-Shirt Printing (50)', time: '22 minutes ago' },
-  { name: 'Linda S.', location: 'Chitungwiza', product: 'Vehicle Branding', time: '25 minutes ago' },
-  { name: 'Mike C.', location: 'Highlands', product: 'Letterheads & Envelopes', time: '28 minutes ago' },
-  { name: 'Tatenda P.', location: 'Greendale', product: 'Shop Signage', time: '32 minutes ago' },
+  { name: 'Sarah K.', location: 'Borrowdale', product: 'Company Brochures (200)', time: '5 minutes ago' },
+  { name: 'Grace M.', location: 'Avondale', product: 'Flyers (1000)', time: '8 minutes ago' },
+  { name: 'Peter Z.', location: 'Eastlea', product: 'T-Shirt Printing (50)', time: '12 minutes ago' },
+  { name: 'Mike C.', location: 'Highlands', product: 'Letterheads & Envelopes', time: '15 minutes ago' },
+  { name: 'Tatenda P.', location: 'Greendale', product: 'Shop Signage', time: '18 minutes ago' },
+  { name: 'Rumbidzai T.', location: 'Mount Pleasant', product: 'Corporate Diaries (100)', time: '22 minutes ago' },
+  { name: 'Blessing N.', location: 'Mbare', product: 'Event Posters (500)', time: '25 minutes ago' },
+  { name: 'Nyasha K.', location: 'Hatfield', product: 'Menu Design & Print', time: '28 minutes ago' },
+  { name: 'Farai D.', location: 'Belvedere', product: 'Invoice Books (50)', time: '32 minutes ago' },
+  
+  // Other Major Cities
+  { name: 'James T.', location: 'Bulawayo', product: 'Logo Design Package', time: '35 minutes ago' },
+  { name: 'Chipo N.', location: 'Mutare', product: 'Wedding Invitations (150)', time: '38 minutes ago' },
+  { name: 'David R.', location: 'Gweru', product: 'Roll-up Banners (2)', time: '42 minutes ago' },
+  { name: 'Linda S.', location: 'Chitungwiza', product: 'Vehicle Branding', time: '45 minutes ago' },
+  { name: 'Simba M.', location: 'Masvingo', product: 'Church Banners (5)', time: '48 minutes ago' },
+  { name: 'Rudo C.', location: 'Kwekwe', product: 'Business Stamps Set', time: '52 minutes ago' },
+  { name: 'Tapiwa H.', location: 'Kadoma', product: 'Branded Caps (100)', time: '55 minutes ago' },
+  { name: 'Memory Z.', location: 'Chinhoyi', product: 'School Uniforms Quote', time: '58 minutes ago' },
+  
+  // Electronics & Tech
+  { name: 'Collins P.', location: 'Harare CBD', product: 'CCTV System (4 Cameras)', time: '1 hour ago' },
+  { name: 'Munyaradzi B.', location: 'Msasa', product: 'Samsung Galaxy A15', time: '1 hour ago' },
+  { name: 'Patricia K.', location: 'Westgate', product: 'WiFi Router Setup', time: '1 hour ago' },
+  { name: 'Tinashe R.', location: 'Ruwa', product: 'Laptop Accessories', time: '1 hour ago' },
+  
+  // Printing & Stationery
+  { name: 'Joseph M.', location: 'Graniteside', product: 'NCR Books (100)', time: '1 hour ago' },
+  { name: 'Elizabeth W.', location: 'Waterfalls', product: 'Calendar Printing (500)', time: '1 hour ago' },
+  { name: 'Charles N.', location: 'Sunningdale', product: 'Certificates (200)', time: '2 hours ago' },
+  { name: 'Angela T.', location: 'Mabelreign', product: 'ID Cards (50)', time: '2 hours ago' },
+  { name: 'Robert K.', location: 'Marlborough', product: 'Booklet Printing (100)', time: '2 hours ago' },
+  
+  // Branding & Signage
+  { name: 'Faith C.', location: 'Glen View', product: 'Full Brand Identity', time: '2 hours ago' },
+  { name: 'Emmanuel S.', location: 'Southerton', product: 'Outdoor Billboard', time: '2 hours ago' },
+  { name: 'Precious M.', location: 'Arcadia', product: 'Neon Sign Design', time: '3 hours ago' },
+  { name: 'Tawanda G.', location: 'Budiriro', product: 'A-Frame Signs (2)', time: '3 hours ago' },
+  { name: 'Vimbai H.', location: 'Dzivaresekwa', product: 'Window Graphics', time: '3 hours ago' },
+  
+  // Corporate & Events
+  { name: 'Sandra P.', location: 'Newlands', product: 'Conference Materials', time: '3 hours ago' },
+  { name: 'Brian M.', location: 'Alexandra Park', product: 'Exhibition Stand', time: '4 hours ago' },
+  { name: 'Joyce N.', location: 'Emerald Hill', product: 'Annual Report Design', time: '4 hours ago' },
+  { name: 'Kevin T.', location: 'Vainona', product: 'Company Profile', time: '4 hours ago' },
+  { name: 'Stella K.', location: 'Chisipite', product: 'Corporate Gift Set', time: '5 hours ago' },
+  
+  // Promotional Items
+  { name: 'Owen D.', location: 'Norton', product: 'Branded Umbrellas (50)', time: '5 hours ago' },
+  { name: 'Tendai S.', location: 'Epworth', product: 'Promotional Pens (500)', time: '5 hours ago' },
+  { name: 'Mercy L.', location: 'Zimre Park', product: 'Branded Water Bottles', time: '6 hours ago' },
+  { name: 'Gift M.', location: 'Kuwadzana', product: 'USB Flash Drives (100)', time: '6 hours ago' },
+  { name: 'Nelson R.', location: 'Marondera', product: 'Tote Bags (200)', time: '6 hours ago' },
 ];
 
 export function SocialProofPopup() {
