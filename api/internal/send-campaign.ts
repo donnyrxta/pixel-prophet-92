@@ -51,7 +51,7 @@ async function sendBrevoEmail(
             return { success: false, error: `Brevo error: ${res.status} ${text}` };
         }
 
-        const data = await res.json();
+        const data = await res.json() as { messageId?: string };
         return { success: true, messageId: data.messageId };
     } catch (error) {
         return {

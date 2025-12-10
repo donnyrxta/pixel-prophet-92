@@ -58,6 +58,8 @@ import AdPlannerPage from "./pages/AdPlanner";
 import ProductComparison from "./pages/ProductComparison";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { recordEvent } from "./lib/strapi-client";
+import { SocialProofPopup } from "./components/marketing/SocialProofPopup";
+import { PromoBanner } from "./components/marketing/PromoBanner";
 
 const queryClient = new QueryClient();
 
@@ -125,6 +127,8 @@ const AppRoutes = () => {
       <PersistentAIWidget />
       <UnifiedContactWidget />
       <CompareFloatingBar />
+      <SocialProofPopup />
+      <PromoBanner />
     </>
   );
 };

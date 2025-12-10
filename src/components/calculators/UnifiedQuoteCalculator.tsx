@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { jsPDF } from 'jspdf';
 import {
-    X, CheckCircle, AlertCircle, Clock, Zap, ArrowRight,
+    X, CheckCircle, AlertCircle, Clock, Zap, ArrowRight, ArrowLeft,
     MessageCircle, Phone, Rocket, RefreshCw, Package, HelpCircle,
     Download, Sparkles, Brain, ListCheck, ChevronLeft, ChevronRight
 } from 'lucide-react';
@@ -108,8 +108,7 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
         };
     });
 
-    // Calculate quote early to avoid ReferenceError in callbacks
-    const quoteEstimate = calculateQuoteEstimate(formData.services);
+    // quoteEstimate is calculated later after formData is tracked
 
     // Reset mode if opened fresh without preselection
     useEffect(() => {
@@ -813,7 +812,7 @@ const UnifiedQuoteCalculator: React.FC<UnifiedQuoteCalculatorProps> = ({
                                 )}
 
                                 {/* Step 4: Review (Shared) */}
-                                {(step === 4 || (mode === 'consult' && step === 5)) && (
+                                {step === 4 && (
                                     <motion.div
                                         key="step4"
                                         initial={{ opacity: 0, x: 20 }}

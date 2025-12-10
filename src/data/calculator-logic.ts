@@ -127,9 +127,7 @@ export const CONSULTATION_FLOWS: Record<ServiceCategory | 'General', LogicFlow> 
     'Printing': { startQuestionId: 'goal', questions: {} },
     'Digital': { startQuestionId: 'goal', questions: {} },
     'Signage': { startQuestionId: 'goal', questions: {} },
-    'Designing': { startQuestionId: 'goal', questions: {} },
-    'Webstore': { startQuestionId: 'goal', questions: {} },
-    'Installation': { startQuestionId: 'goal', questions: {} }
+    'Web': { startQuestionId: 'goal', questions: {} }
 };
 
 // Merge general questions into specific flows if needed

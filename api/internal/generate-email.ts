@@ -148,7 +148,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                     throw new Error(`OpenRouter error: ${response.status} ${text}`);
                 }
 
-                const data = await response.json();
+                const data = await response.json() as { choices?: { message?: { content?: string } }[] };
                 const aiContent = data.choices?.[0]?.message?.content;
 
                 if (!aiContent) {
