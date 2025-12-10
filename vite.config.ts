@@ -3,12 +3,16 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { fileURLToPath } from 'node:url'
 import { URL } from 'node:url'
+import { componentTagger } from "lovable-tagger"
 
 const repo = (process.env.GITHUB_REPOSITORY || '').split('/')[1]
 const isGhActions = !!process.env.GITHUB_ACTIONS
 
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(({ mode }) => ({
+  plugins: [
+    react(),
+    mode === 'development' && componentTagger(),
+  ].filter(Boolean),
   base: isGhActions && repo ? `/${repo}/` : '/',
   resolve: {
     alias: {
