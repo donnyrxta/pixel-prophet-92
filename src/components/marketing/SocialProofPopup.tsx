@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, MapPin, X } from 'lucide-react';
+import { ShoppingBag, MapPin, X, TrendingUp } from 'lucide-react';
 
 interface Order {
   name: string;
@@ -72,6 +72,16 @@ export function SocialProofPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const [orderIndex, setOrderIndex] = useState(0);
+  const [todayOrders, setTodayOrders] = useState(43);
+
+  // Simulate order count incrementing
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTodayOrders(prev => prev + Math.floor(Math.random() * 2));
+    }, 30000 + Math.random() * 30000); // Random increment every 30-60 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (isDismissed) return;
@@ -140,6 +150,16 @@ export function SocialProofPopup() {
             >
               <X className="w-4 h-4" />
             </button>
+
+            {/* Today's order counter */}
+            <div className="flex items-center gap-1.5 mb-3 pb-2 border-b border-border/50">
+              <TrendingUp className="w-3.5 h-3.5 text-green-500" />
+              <span className="text-xs font-medium text-green-600">
+                {todayOrders} orders today
+              </span>
+              <span className="ml-auto text-[10px] text-muted-foreground">Live</span>
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+            </div>
 
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
