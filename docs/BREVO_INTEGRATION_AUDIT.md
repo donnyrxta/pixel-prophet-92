@@ -16,12 +16,13 @@ The Soho Connect website has a **foundational Brevo integration** for contact ma
 |----------|--------|----------|
 | Contact API Integration | ✅ Implemented | - |
 | Transactional Email | ✅ Implemented | - |
-| Brevo Tracker (Client-side) | ❌ Missing | **CRITICAL** |
-| Email Open/Click Tracking | ⚠️ Partial (via Brevo templates) | HIGH |
+| Brevo Tracker (Client-side) | ✅ Implemented | - |
+| Email Open/Click Tracking | ✅ Via Brevo Tracker | - |
 | UTM Parameter Capture | ✅ Implemented | - |
 | Consent Management | ✅ Implemented | - |
 | GDPR/POPIA Compliance | ✅ Compliant | - |
 | GA4 Conflict Check | ✅ No conflicts | - |
+| Webhook Handler | ✅ Implemented | - |
 
 ---
 
