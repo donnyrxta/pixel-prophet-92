@@ -2,3 +2,9 @@ project_id = "czljypfrtvtdotqbxeds"
 
 [functions.brevo-lead]
 verify_jwt = false
+
+[functions.ask-soho-ai]
+verify_jwt = false
+
+[functions.ai-lead-scoring]
+verify_jwt = false
