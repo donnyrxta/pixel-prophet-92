@@ -31,7 +31,7 @@ interface BrevoLeadResult {
 // Capture UTM parameters from URL
 function getUTMParams(): Record<string, string> {
   if (typeof window === 'undefined') return {};
-  
+
   const params = new URLSearchParams(window.location.search);
   return {
     utmSource: params.get('utm_source') || '',
@@ -51,7 +51,7 @@ export function useBrevoLead() {
 
     try {
       const utmParams = getUTMParams();
-      
+
       const payload = {
         ...data,
         ...utmParams,
@@ -60,6 +60,16 @@ export function useBrevoLead() {
         landingPage: typeof window !== 'undefined' ? window.location.pathname : '',
         consentText: 'I agree to receive communications from Soho Connect',
       };
+
+      // Brevo Tracker Identification
+      if (typeof window !== 'undefined' && (window as any).Brevo) {
+        (window as any).Brevo.push(['identify', {
+          email: data.email,
+          FIRSTNAME: data.firstName,
+          LASTNAME: data.lastName,
+          SMS: data.phone
+        }]);
+      }
 
       console.log('Capturing lead via Brevo:', data.sourceForm);
 

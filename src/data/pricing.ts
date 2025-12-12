@@ -17,7 +17,7 @@ export interface ServiceOption {
     description?: string;
 }
 
-export type ServiceCategory = 'Printing' | 'Branding' | 'Digital' | 'Signage' | 'Web';
+export type ServiceCategory = 'Printing' | 'Branding' | 'Digital' | 'Signage' | 'Web' | 'WiFi Marketing';
 
 export interface BudgetRange {
     value: string;
@@ -64,9 +64,51 @@ export const SERVICE_CATALOG: ServiceOption[] = [
     // Web
     { id: 'website-design', name: 'Website Design', category: 'Web', basePrice: 800, maxPrice: 5000, turnaround: '2-4 weeks', icon: '💻' },
     { id: 'landing-page', name: 'Landing Page', category: 'Web', basePrice: 300, maxPrice: 1500, turnaround: '1 week', icon: '🌐' },
+
+    // WiFi Marketing (Challenger Sale Terminology)
+    {
+        id: 'guest-data-capture',
+        name: 'Guest Data Capture',
+        category: 'WiFi Marketing',
+        basePrice: 150,
+        maxPrice: 500,
+        turnaround: '3-5 days',
+        icon: '📡',
+        description: 'Capture guest emails and phone numbers automatically.'
+    },
+    {
+        id: 'direct-booking-tool',
+        name: 'Direct Booking Tool',
+        category: 'WiFi Marketing',
+        basePrice: 200,
+        maxPrice: 600,
+        turnaround: '1 week',
+        icon: '🏨',
+        description: 'Drive direct bookings and bypass OTA commissions.'
+    },
+    {
+        id: 'customer-insights',
+        name: 'Customer Insights Platform',
+        category: 'WiFi Marketing',
+        basePrice: 300,
+        maxPrice: 1000,
+        turnaround: '1-2 weeks',
+        icon: '📊',
+        description: 'Understand guest behavior and preferences.'
+    },
+    {
+        id: 'guest-engagement',
+        name: 'Guest Engagement System',
+        category: 'WiFi Marketing',
+        basePrice: 400,
+        maxPrice: 1500,
+        turnaround: '2 weeks',
+        icon: '💬',
+        description: 'Automated reviews, surveys, and loyalty rewards.'
+    },
 ];
 
-export const SERVICE_CATEGORIES: ServiceCategory[] = ['Printing', 'Branding', 'Digital', 'Signage', 'Web'];
+export const SERVICE_CATEGORIES: ServiceCategory[] = ['Printing', 'Branding', 'Digital', 'Signage', 'Web', 'WiFi Marketing'];
 
 // ============== Budget Ranges ==============
 
@@ -93,6 +135,104 @@ export const TIMELINES: Timeline[] = [
     { value: 'soon', label: 'Soon (1-2 weeks)', points: 8 },
     { value: 'month', label: 'Within a month', points: 5 },
     { value: 'planning', label: 'Just planning ahead', points: 2 },
+];
+
+// ============== Business Types (New Screen 1) ==============
+
+export interface BusinessType {
+    id: string;
+    label: string;
+    icon: string;
+    primaryCategories: ServiceCategory[];
+    recommendedModules: string[];
+}
+
+export const BUSINESS_TYPES: BusinessType[] = [
+    {
+        id: 'restaurant',
+        label: 'Restaurant / Cafe',
+        icon: 'Utensils',
+        primaryCategories: ['Printing', 'Branding', 'WiFi Marketing'],
+        recommendedModules: ['business-cards', 'flyers-brochures', 'guest-data-capture', 'social-media']
+    },
+    {
+        id: 'hotel',
+        label: 'Hotel / Lodge',
+        icon: 'Building',
+        primaryCategories: ['WiFi Marketing', 'Web', 'Branding'],
+        recommendedModules: ['guest-data-capture', 'direct-booking-tool', 'website-design', 'visual-identity']
+    },
+    {
+        id: 'safari',
+        label: 'Safari / Camp',
+        icon: 'TreeDeciduous',
+        primaryCategories: ['WiFi Marketing', 'Signage', 'Web'],
+        recommendedModules: ['guest-data-capture', 'customer-insights', 'website-design', 'banners-posters']
+    },
+    {
+        id: 'mine-camp',
+        label: 'Mine Camp',
+        icon: 'Pickaxe',
+        primaryCategories: ['WiFi Marketing', 'Signage'],
+        recommendedModules: ['guest-data-capture', 'guest-engagement', 'banners-posters', 'shop-signage']
+    },
+    {
+        id: 'retail',
+        label: 'Retail Store',
+        icon: 'ShoppingBag',
+        primaryCategories: ['Printing', 'Signage', 'Digital'],
+        recommendedModules: ['business-cards', 'flyers-brochures', 'shop-signage', 'social-media']
+    },
+    {
+        id: 'salon',
+        label: 'Salon / Spa',
+        icon: 'Scissors',
+        primaryCategories: ['Branding', 'Digital', 'Printing'],
+        recommendedModules: ['logo-design', 'social-media', 'business-cards', 'flyers-brochures']
+    },
+    {
+        id: 'gym',
+        label: 'Gym / Fitness',
+        icon: 'Dumbbell',
+        primaryCategories: ['Digital', 'Signage', 'Printing'],
+        recommendedModules: ['social-media', 'digital-ads', 'banners-posters', 'flyers-brochures']
+    },
+    {
+        id: 'conference',
+        label: 'Conference Centre',
+        icon: 'Mic',
+        primaryCategories: ['Signage', 'WiFi Marketing', 'Branding'],
+        recommendedModules: ['exhibition-stands', 'guest-data-capture', 'customer-insights', 'banners-posters']
+    },
+    {
+        id: 'corporate',
+        label: 'Corporate Office',
+        icon: 'Building2',
+        primaryCategories: ['Branding', 'Printing', 'Web'],
+        recommendedModules: ['brand-guidelines', 'business-cards', 'visual-identity', 'website-design']
+    },
+    {
+        id: 'other',
+        label: 'Other Business',
+        icon: 'HelpCircle',
+        primaryCategories: ['Printing', 'Branding', 'Digital', 'Signage', 'Web', 'WiFi Marketing'],
+        recommendedModules: []
+    },
+];
+
+// ============== Footfall Presets (New Screen 2) ==============
+
+export interface FootfallPreset {
+    id: string;
+    label: string;
+    value: number;
+}
+
+export const FOOTFALL_PRESETS: FootfallPreset[] = [
+    { id: 'small', label: '0-50/day', value: 25 },
+    { id: 'medium', label: '50-200/day', value: 125 },
+    { id: 'large', label: '200-500/day', value: 350 },
+    { id: 'enterprise', label: '500+/day', value: 750 },
 ];
 
 // ============== Goal Options (New Step 1) ==============

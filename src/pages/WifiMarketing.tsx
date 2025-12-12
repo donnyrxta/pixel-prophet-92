@@ -14,17 +14,17 @@ const WifiMarketing = () => {
   const features = [
     {
       icon: <Wifi className="w-10 h-10 text-primary" />,
-      title: "Captive Portals",
+      title: "Guest Engagement System",
       description: "Branded login pages that capture customer data while offering seamless connectivity."
     },
     {
       icon: <Users className="w-10 h-10 text-primary" />,
-      title: "Customer Profiles",
+      title: "Guest Data Capture",
       description: "Build a consented database of customer profiles for targeted marketing campaigns."
     },
     {
       icon: <BarChart3 className="w-10 h-10 text-primary" />,
-      title: "Analytics Dashboard",
+      title: "Customer Insights Platform",
       description: "Real-time insights into footfall, dwell time, and repeat visit frequency."
     },
     {
@@ -37,23 +37,27 @@ const WifiMarketing = () => {
   const sectors = [
     {
       title: "Cafés & Restaurants",
-      description: "Turn free WiFi into a loyalty engine. Capture emails for menu updates and special offers.",
-      image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
+      description: "Turn anonymous guests into loyal customers. Capture data for automated email marketing.",
+      image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop",
+      serviceId: "guest-data-capture"
     },
     {
       title: "Retail Stores",
-      description: "Analyze shopper behavior and send real-time coupons to customers in-store.",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop"
+      description: "Understand shopper behavior and dwell time. Send real-time offers to customers in-store.",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop",
+      serviceId: "customer-insights"
     },
     {
       title: "Hospitality",
-      description: "Enhance guest experience with seamless connectivity and concierge services.",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop"
+      description: "Stop losing data to OTAs. Drive direct bookings and build your own guest database.",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop",
+      serviceId: "direct-booking-tool"
     },
     {
       title: "Co-working Spaces",
-      description: "Manage member access and monetize guest usage with tiered bandwidth plans.",
-      image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1000&auto=format&fit=crop"
+      description: "Monetize guest access and automate member management with secure captive portals.",
+      image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1000&auto=format&fit=crop",
+      serviceId: "guest-engagement"
     }
   ];
 

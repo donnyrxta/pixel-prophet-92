@@ -26,6 +26,7 @@ interface Sector {
   title: string;
   description: string;
   image: string;
+  serviceId?: string;
 }
 
 interface FAQ {
@@ -70,11 +71,11 @@ const ServicePage: React.FC<ServicePageProps> = ({
 }) => {
   const { openCalculator } = useQuoteCalculator();
 
-  const handleGetQuote = (serviceName?: string) => {
+  const handleGetQuote = (serviceIdOrName?: string) => {
     trackCTAClick('Get Free Quote', 'hero', window.location.pathname);
     openCalculator({
       trigger: 'button',
-      preselectedService: serviceName || undefined
+      preselectedService: serviceIdOrName || undefined
     });
   };
   return (
@@ -419,7 +420,7 @@ const ServicePage: React.FC<ServicePageProps> = ({
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-2xl cursor-pointer"
-                  onClick={() => handleGetQuote(sector.title)}
+                  onClick={() => handleGetQuote(sector.serviceId || sector.title)}
                 >
                   <div className="aspect-[4/5] relative">
                     <div

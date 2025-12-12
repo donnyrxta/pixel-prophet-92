@@ -15,7 +15,69 @@ const getEnv = (key: string): string | undefined => {
 };
 
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const MODEL = 'x-ai/grok-4.1-free';
+const MODEL = 'x-ai/grok-4.1-free'; // Default for emails
+
+export interface ChatMessage {
+    role: 'system' | 'user' | 'assistant';
+    content: string;
+}
+
+export interface CompletionOptions {
+    model?: string;
+    temperature?: number;
+    max_tokens?: number;
+    headers?: Record<string, string>;
+}
+
+export async function callOpenRouter(
+    messages: ChatMessage[],
+    options: CompletionOptions = {}
+): Promise<string> {
+    const apiKey = getEnv('OPENROUTER_API_KEY');
+
+    if (!apiKey) {
+        throw new Error('OPENROUTER_API_KEY is not configured');
+    }
+
+    const start = Date.now();
+    try {
+        const response = await fetch(OPENROUTER_API_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+                'HTTP-Referer': 'https://sohoconnect.com',
+                'X-Title': 'SoHo Connect Calculator',
+                ...options.headers,
+            },
+            body: JSON.stringify({
+                model: options.model || MODEL,
+                temperature: options.temperature ?? 0.7,
+                max_tokens: options.max_tokens ?? 1000,
+                messages,
+            }),
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`OpenRouter API error: ${response.status} ${text}`);
+        }
+
+        const data = await response.json();
+        const content = data.choices?.[0]?.message?.content;
+
+        if (!content) {
+            throw new Error('Empty response from OpenRouter');
+        }
+
+        return content;
+    } catch (error) {
+        // Enhance error with timing info for debugging
+        const duration = Date.now() - start;
+        console.error(`OpenRouter Call Failed after ${duration}ms:`, error);
+        throw error;
+    }
+}
 
 export interface LeadData {
     name: string;

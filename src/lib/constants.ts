@@ -19,7 +19,8 @@ export const CONTACT_INFO = {
 export const BUSINESS_INFO = {
   name: "Soho Connect",
   tagline: "Harare's Design & Print Partner",
-  trustSignal: "Trusted by 127+ businesses",
+  trustSignal: "Trusted by 127+ Harare businesses",
+  socialProofCount: 127,
   yearEstablished: "2018",
   servicesCount: "50+",
   responseTime: "We respond within 1 hour during business hours"
