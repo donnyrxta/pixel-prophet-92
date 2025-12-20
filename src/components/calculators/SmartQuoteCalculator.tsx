@@ -107,7 +107,7 @@ const SmartQuoteCalculator: React.FC<SmartQuoteCalculatorProps> = ({
 
   const [formData, setFormData] = useState<FormData>(() => {
     // Determine initial state based on props
-    let initialCategory = preselectedCategory || '';
+    let initialCategory: ServiceCategory | '' = preselectedCategory || '';
     if (!initialCategory && preselectedService) {
       const service = SERVICE_CATALOG.find(s => s.id === preselectedService);
       if (service) initialCategory = service.category;
