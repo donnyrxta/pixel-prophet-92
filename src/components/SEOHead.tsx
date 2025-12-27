@@ -4,7 +4,7 @@
  * Use this component to override default SEO settings per page
  */
 import { useEffect } from 'react';
-import { OrganizationSchema } from './SchemaMarkup';
+import { OrganizationSchema, WebSiteSchema } from './SchemaMarkup';
 
 interface SEOHeadProps {
   title: string;
@@ -142,6 +142,8 @@ const SEOHead = ({
     <>
       {/* Organization Schema - Always include */}
       <OrganizationSchema />
+      {/* WebSite Schema - For sitelinks search box */}
+      <WebSiteSchema />
     </>
   );
 };

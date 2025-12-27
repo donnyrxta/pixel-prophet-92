@@ -16,7 +16,7 @@ export const OrganizationSchema = () => {
     description: BUSINESS_INFO.tagline,
     url: 'https://sohoconnect.co.zw',
     logo: 'https://sohoconnect.co.zw/images/brand/logo-color-icon.png',
-    image: 'https://sohoconnect.co.zw/images/hero/creatopy-M35xxKGb_tA-unsplash.jpg',
+    image: 'https://sohoconnect.co.zw/images/hero/tanaka-malote-V3VKKSayZP0-unsplash.jpg',
     telephone: CONTACT_INFO.phone,
     email: CONTACT_INFO.email,
     address: {
@@ -271,6 +271,78 @@ export const FAQPageSchema = ({ faqs }: FAQPageSchemaProps) => {
         '@type': 'Answer',
         text: faq.answer
       }
+    }))
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+};
+
+/**
+ * WebSite Schema - For sitelinks search box
+ */
+export const WebSiteSchema = () => {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: BUSINESS_INFO.name,
+    url: 'https://sohoconnect.co.zw',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://sohoconnect.co.zw/webstore?search={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+};
+
+/**
+ * HowTo Schema - For process/step content
+ */
+interface HowToStep {
+  name: string;
+  text: string;
+  image?: string;
+}
+
+interface HowToSchemaProps {
+  name: string;
+  description: string;
+  steps: HowToStep[];
+  totalTime?: string;
+}
+
+export const HowToSchema = ({
+  name,
+  description,
+  steps,
+  totalTime
+}: HowToSchemaProps) => {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    totalTime: totalTime || 'PT24H',
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      image: step.image ? `https://sohoconnect.co.zw${step.image}` : undefined
     }))
   };
 
