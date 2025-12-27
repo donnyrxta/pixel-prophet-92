@@ -17,13 +17,16 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ClientLogos from '@/components/ClientLogos';
 import SEOHead from '@/components/SEOHead';
+import { FAQPageSchema } from '@/components/SchemaMarkup';
 import { useQuoteCalculator } from '@/context/QuoteCalculatorContext';
 import { trackCTAClick } from '@/lib/gtm';
+import { generalServiceFAQs } from '@/data/service-faqs';
 
 // Service categories structured for conversion and SEO
 const serviceCategories = [
@@ -307,6 +310,30 @@ const Services = () => {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section for SEO */}
+        <section className="py-16 px-4 bg-gray-50">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              Frequently Asked Questions
+            </h2>
+            <Accordion type="single" collapsible className="space-y-4">
+              {generalServiceFAQs.map((faq, idx) => (
+                <AccordionItem key={idx} value={`faq-${idx}`} className="bg-white rounded-lg border px-6">
+                  <AccordionTrigger className="text-left font-semibold text-gray-900">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
+        {/* FAQ Schema for SEO */}
+        <FAQPageSchema faqs={generalServiceFAQs} />
 
         {/* Final CTA */}
         <section className="py-16 px-4 bg-gradient-to-br from-primary to-blue-700 text-white">
