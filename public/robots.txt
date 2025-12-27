@@ -1,8 +1,13 @@
+# Soho Connect Robots.txt
+# Updated: Auto-generated
+
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
@@ -13,4 +18,10 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Sitemaps
 Sitemap: https://sohoconnect.co.zw/sitemap.xml
+Sitemap: https://sohoconnect.co.zw/sitemap-images.xml
+Sitemap: https://sohoconnect.co.zw/sitemap-index.xml
+
+# Host
+Host: https://sohoconnect.co.zw
