@@ -272,3 +272,59 @@ export const trackEvent = (eventName: string, properties?: Record<string, unknow
 
 // Alias for backward compatibility
 export const trackCustomEvent = trackEvent;
+
+// ==========================================
+// Lead Form Tracking (D2 Landing Page)
+// ==========================================
+
+/**
+ * Track when a lead form is started
+ * @param formType - Type of form (e.g., 'audit_request')
+ * @param packageName - Optional selected package
+ */
+export const trackLeadFormStarted = (formType: string, packageName?: string) => {
+  pushEvent({
+    event: 'lead_form_started',
+    form_type: formType,
+    package: packageName || 'not_selected',
+    page_path: window.location.pathname,
+  });
+};
+
+/**
+ * Track when a lead form is completed
+ * @param formType - Type of form
+ * @param bantScore - BANT qualification score
+ * @param bantTier - Lead tier (Hot/Warm/Cold)
+ */
+export const trackLeadFormCompleted = (
+  formType: string,
+  bantScore: number,
+  bantTier: string
+) => {
+  pushEvent({
+    event: 'lead_form_completed',
+    form_type: formType,
+    bant_score: bantScore,
+    bant_tier: bantTier,
+    page_path: window.location.pathname,
+  });
+};
+
+/**
+ * Track when a lead is submitted
+ * @param data - Lead submission data
+ */
+export const trackLeadSubmitted = (data: {
+  bantScore: number;
+  bantTier: string;
+  packageName?: string;
+}) => {
+  pushEvent({
+    event: 'lead_submitted',
+    bant_score: data.bantScore,
+    bant_tier: data.bantTier,
+    package: data.packageName || 'not_selected',
+    page_path: window.location.pathname,
+  });
+};
